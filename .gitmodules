@@ -1,0 +1,6 @@
+[submodule "ism2411"]
+	path = ism2411
+	url = https://github.com/markumreed/ism2411.git
+[submodule "ism3232"]
+	path = ism3232
+	url = https://github.com/markumreed/ism3232.git
