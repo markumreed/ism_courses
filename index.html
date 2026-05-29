@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISM Courses — Programming for Information Systems</title>
+  <meta name="description" content="Home for ISM 2411 and ISM 3232: the two-course programming sequence for information systems students.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f17;
+      --panel: #1a1a26;
+      --panel-2: #21212f;
+      --border: rgba(255,255,255,.08);
+      --border-strong: rgba(255,255,255,.14);
+      --text: #e8e8ef;
+      --text-dim: #cfcfd9;
+      --muted: #8a8a9c;
+      --accent: #7c9aff;
+      --accent-2: #b48cff;
+      --shadow: 0 12px 40px rgba(0,0,0,.5);
+    }
+    [data-theme="light"] {
+      --bg: #f6f6fa;
+      --panel: #ffffff;
+      --panel-2: #f0f0f5;
+      --border: rgba(0,0,0,.08);
+      --border-strong: rgba(0,0,0,.14);
+      --text: #1a1a26;
+      --text-dim: #2a2a35;
+      --muted: #6e6e80;
+      --accent: #4960d1;
+      --accent-2: #7a4dcf;
+      --shadow: 0 12px 40px rgba(0,0,0,.10);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top bar ─────────────────────────────────────────────────────── */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 24px;
+      background: rgba(15,15,23,.85);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    [data-theme="light"] .topbar { background: rgba(246,246,250,.85); }
+    .brand {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-weight: 600; font-size: 13px;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .brand .dot { color: var(--accent); }
+    .theme-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      color: var(--text-dim);
+      width: 36px; height: 36px; border-radius: 6px;
+      font-size: 16px; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .theme-btn:hover { background: var(--panel-2); }
+
+    /* ── Hero ────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 88px 24px 56px;
+      max-width: 920px; margin: 0 auto;
+      text-align: center;
+    }
+    .eyebrow {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(34px, 5.2vw, 54px);
+      line-height: 1.1; margin: 0 0 20px;
+      letter-spacing: -.02em; font-weight: 700;
+    }
+    h1 .grad {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      font-size: clamp(15px, 1.6vw, 18px);
+      color: var(--text-dim);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ── Tiles ───────────────────────────────────────────────────────── */
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 64px;
+    }
+    .tile {
+      display: flex; flex-direction: column;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px 28px;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .tile::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      opacity: .6;
+      transition: opacity .2s;
+    }
+    .tile:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow);
+    }
+    .tile:hover::before { opacity: 1; }
+
+    .tile-code {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .tile h2 {
+      font-size: 24px; line-height: 1.25;
+      margin: 0 0 12px;
+      letter-spacing: -.01em;
+      color: var(--text);
+    }
+    .tile-desc {
+      color: var(--text-dim);
+      font-size: 15px;
+      margin: 0 0 22px;
+      flex-grow: 1;
+    }
+    .tile-meta {
+      display: flex; flex-wrap: wrap; gap: 14px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+    .tile-meta span { display: inline-flex; align-items: center; gap: 6px; }
+    .tile-meta .pill {
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--accent);
+    }
+    .tile-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 13px; font-weight: 500;
+      color: var(--accent);
+      letter-spacing: .04em;
+    }
+    .tile-cta .arrow {
+      transition: transform .18s ease;
+    }
+    .tile:hover .tile-cta .arrow { transform: translateX(4px); }
+
+    /* ── Footer ──────────────────────────────────────────────────────── */
+    footer {
+      margin-top: auto;
+      padding: 24px;
+      text-align: center;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { padding: 56px 20px 40px; }
+      .tiles { grid-template-columns: 1fr; padding: 0 20px 48px; gap: 18px; }
+      .topbar { padding: 10px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">ISM <span class="dot">·</span> Courses</div>
+    <button id="theme-btn" class="theme-btn" aria-label="Toggle theme" title="Light / dark">☀</button>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Programming for Information Systems</div>
+    <h1>Two courses. <span class="grad">One developer toolkit.</span></h1>
+    <p>A two-course sequence that takes information systems students from their first line of Python to shipping a database-backed app with a GenAI feature.</p>
+  </section>
+
+  <main class="tiles">
+    <a class="tile" href="ism2411/index.html">
+      <div class="tile-code">ISM 2411</div>
+      <h2>Introduction to Programming for Information Systems</h2>
+      <p class="tile-desc">Start from zero: the command line, Python fundamentals, Git, and data analysis with pandas. Five units, sixteen weeks, ending in a capstone that turns a CSV of retail sales into a real analysis.</p>
+      <div class="tile-meta">
+        <span><span class="pill"></span>5 Units · 16 Weeks</span>
+        <span><span class="pill"></span>No prior experience</span>
+      </div>
+      <span class="tile-cta">Enter course <span class="arrow">→</span></span>
+    </a>
+
+    <a class="tile" href="ism3232/index.html">
+      <div class="tile-code">ISM 3232</div>
+      <h2>Programming for Information Systems II</h2>
+      <p class="tile-desc">Level up: the developer workflow with zsh and virtual environments, testing with pytest, object-oriented design, SQL, and a Streamlit capstone that ships a working business app with a GenAI feature.</p>
+      <div class="tile-meta">
+        <span><span class="pill"></span>4 Units · 16 Weeks</span>
+        <span><span class="pill"></span>Builds on ISM 2411</span>
+      </div>
+      <span class="tile-cta">Enter course <span class="arrow">→</span></span>
+    </a>
+  </main>
+
+  <footer>Markum Reed · Muma College of Business</footer>
+
+  <script>
+    (function () {
+      const KEY = 'ism-courses-theme';
+      const stored = localStorage.getItem(KEY);
+      const initial = stored || 'dark';
+      document.documentElement.setAttribute('data-theme', initial);
+
+      const btn = document.getElementById('theme-btn');
+      function paint(t) { btn.textContent = t === 'dark' ? '☀' : '☾'; }
+      paint(initial);
+
+      btn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem(KEY, next);
+        paint(next);
+      });
+    })();
+  </script>
+</body>
+</html>
