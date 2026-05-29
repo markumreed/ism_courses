@@ -52,7 +52,7 @@ Both course sites are static HTML with a shared design system. Mobile breakpoint
 /* mobile nav panel */
 .nav-mobile-panel {
   display: none; position: fixed;
-  top: var(--nav-h, 49px); left: 0; right: 0;
+  top: 49px; left: 0; right: 0;  /* 49px = nav padding (10+10) + button height (28px) + border (1px) */
   background: #1a1a26; border-bottom: 1px solid rgba(255,255,255,.1);
   padding: 12px 16px 20px; z-index: 99;
   box-shadow: 0 12px 40px rgba(0,0,0,.5);
@@ -88,10 +88,6 @@ One `@media(max-width:768px)` block added to both `site.css` files covering clas
   /* code blocks — scroll horizontally rather than break page layout */
   pre, code { overflow-x: auto; max-width: 100%; }
 
-  /* responsive iframe (YouTube embeds) — 16:9 aspect ratio */
-  .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
-  .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
   /* images never overflow their container */
   img { max-width: 100%; height: auto; }
 
@@ -100,7 +96,7 @@ One `@media(max-width:768px)` block added to both `site.css` files covering clas
 }
 ```
 
-**Note:** `.wrap` already uses `clamp()` padding — no tablet change needed. `.pn`, `.vpl-tile`, `.concept-grid` are covered by the 600px mobile sentinel.
+**Note:** YouTube iframes are already wrapped in a responsive `position:relative; padding-bottom:56.25%` container via inline styles on each lecture page — no additional CSS needed. `.wrap` uses `clamp()` — no tablet change needed. `.pn`, `.vpl-tile`, `.concept-grid` are covered by the 600px mobile sentinel.
 
 ---
 
