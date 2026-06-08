@@ -4,10 +4,12 @@
 
 | | Count | Finished runtime | Est. recording time |
 |---|---|---|---|
-| **Shared videos** | 12 | ~2h 39min | ~5h |
-| **ISM2411-only** | 8 | ~2h 17min | ~4.5h |
-| **ISM3232-only** | 13 | ~3h 37min | ~7h |
-| **Total** | **33 videos** | **~8h 33min** | **~16.5h** |
+| **Shared lecture videos** | 12 | ~2h 39min | ~5h |
+| **ISM2411-only lecture** | 8 | ~2h 17min | ~4.5h |
+| **ISM3232-only lecture** | 13 | ~3h 37min | ~7h |
+| **ISM2411 lab walkthroughs** | 14 | ~2h 20min | ~4.5h |
+| **ISM3232 lab walkthroughs** | 15 | ~2h 30min | ~5h |
+| **Total** | **62 videos** | **~13h 23min** | **~26h** |
 
 Recording-to-finish ratio estimated at ~2x (retakes, setup, dead air trimming).
 
@@ -15,7 +17,7 @@ Recording-to-finish ratio estimated at ~2x (retakes, setup, dead air trimming).
 
 ---
 
-## Phase 1 — Shared Videos
+## Phase 1 — Shared Lecture Videos
 *Record these first. Each video slots into both courses immediately.*
 
 ### Session 1 — Python Core
@@ -66,7 +68,7 @@ Recording-to-finish ratio estimated at ~2x (retakes, setup, dead air trimming).
 
 ---
 
-## Phase 2 — ISM2411-Only Videos
+## Phase 2 — ISM2411-Only Lecture Videos
 
 ### Session 5 — ISM2411 Foundations
 **Theme:** Computer concepts, Python setup
@@ -112,7 +114,7 @@ Recording-to-finish ratio estimated at ~2x (retakes, setup, dead air trimming).
 
 ---
 
-## Phase 3 — ISM3232-Only Videos
+## Phase 3 — ISM3232-Only Lecture Videos
 
 ### Session 9 — ISM3232 Developer Environment
 **Theme:** Shell, venv, tooling
@@ -172,11 +174,111 @@ Recording-to-finish ratio estimated at ~2x (retakes, setup, dead air trimming).
 
 ---
 
+## Phase 4 — ISM2411 Lab Walkthroughs
+*Screen-recorded solution walkthroughs. Record after all ISM2411 lecture videos are locked in.*
+
+### Session 14 — ISM2411 Labs W01–W04
+**Theme:** Computer concepts, terminal, first scripts, arithmetic
+**Block:** ~2h recording
+
+| # | Lab | Title | Runtime |
+|---|---|---|---|
+| L2411-01 | W01 | Computer Vocabulary & File System Tour | 10 min |
+| L2411-02 | W02 | First Terminal Session & First Python Script | 10 min |
+| L2411-03 | W03 | Product Pricer with F-Strings | 10 min |
+| L2411-04 | W04 | Revenue, Margin & Discount Calculator | 10 min |
+
+---
+
+### Session 15 — ISM2411 Labs W05–W08
+**Theme:** Conditionals, loops, functions, git
+**Block:** ~2h recording
+
+| # | Lab | Title | Runtime |
+|---|---|---|---|
+| L2411-05 | W05 | Tiered Discount Calculator | 10 min |
+| L2411-06 | W06 | Sales Loop — Sum, Average, Max | 10 min |
+| L2411-07 | W07 | Functions + Debug First, Then Ask | 10 min |
+| L2411-08 | W08 | Your First GitHub Submission | 10 min |
+
+---
+
+### Session 16 — ISM2411 Labs W10–W15
+**Theme:** Collections, files, pandas, data analysis
+**Block:** ~2.5h recording
+
+| # | Lab | Title | Runtime |
+|---|---|---|---|
+| L2411-10 | W10 | Inventory List Manager | 10 min |
+| L2411-11 | W11 | Customer Dictionary & Lookup | 10 min |
+| L2411-12 | W12 | Read a Sales CSV, Write a Cleaned Report | 10 min |
+| L2411-13 | W13 | First DataFrame — Retail Sales Explorer | 10 min |
+| L2411-14 | W14 | Clean a Messy Sales CSV | 10 min |
+| L2411-15 | W15 | Aggregate & Chart — Capstone Warm-up | 10 min |
+
+---
+
+## Phase 5 — ISM3232 Lab Walkthroughs
+*Screen-recorded solution walkthroughs. Record after all ISM3232 lecture videos are locked in.*
+
+### Session 17 — ISM3232 Labs W01–W04
+**Theme:** Dev environment, shell, venv, git workflow
+**Block:** ~2h recording
+
+| # | Lab | Title | Runtime |
+|---|---|---|---|
+| L3232-01 | W01 | Developer Mindset & First Setup | 10 min |
+| L3232-02 | W02 | zsh Navigation & File Operations | 10 min |
+| L3232-03 | W03 | Virtual Environments & Shell Customisation | 10 min |
+| L3232-04 | W04 | Search Tools, the Submission Ritual & Git | 10 min |
+
+---
+
+### Session 18 — ISM3232 Labs W05–W08
+**Theme:** Python fundamentals, loops, functions, debugging
+**Block:** ~2.5h recording
+
+| # | Lab | Title | Runtime |
+|---|---|---|---|
+| L3232-05 | W05 | Variables, Data Types & Operators | 10 min |
+| L3232-06 | W06 | Conditionals, Loops & Dictionaries | 10 min |
+| L3232-07 | W07 | Functions, Modules & pytest | 10 min |
+| L3232-08 | W08 | Debugging, AI Literacy & Midterm Review | 10 min |
+
+---
+
+### Session 19 — ISM3232 Labs W10–W12
+**Theme:** Object-oriented programming
+**Block:** ~2h recording
+
+| # | Lab | Title | Runtime |
+|---|---|---|---|
+| L3232-10 | W10 | OOP I — Classes & Objects | 10 min |
+| L3232-11 | W11 | OOP II — Composition, Inheritance & SQL Mapping | 10 min |
+| L3232-12 | W12 | OOP III — Applied Practice & Design | 10 min |
+
+---
+
+### Session 20 — ISM3232 Labs W13–W16
+**Theme:** SQL, Streamlit, GenAI capstone
+**Block:** ~2.5h recording
+
+| # | Lab | Title | Runtime |
+|---|---|---|---|
+| L3232-13 | W13 | Capstone Design & SQL Foundations | 10 min |
+| L3232-14 | W14 | Python + SQL Integration | 10 min |
+| L3232-15 | W15 | Streamlit Business Interface | 10 min |
+| L3232-16 | W16 | GenAI Feature & Final Demo | 10 min |
+
+---
+
 ## Recording Order Rationale
 
-1. **Shared videos first (Sessions 1–4)** — 12 videos that immediately serve both courses. Highest ROI: one recording session reduces work for both.
-2. **ISM2411-only next (Sessions 5–8)** — Python-only content, lighter cognitive load, shorter sessions.
-3. **ISM3232-only last (Sessions 9–13)** — Heavier technical content (OOP, SQL, Streamlit, API). Record after the shared Python fundamentals are locked in, since ISM3232 content assumes fluency in what was just recorded.
+1. **Shared lecture videos first (Sessions 1–4)** — 12 videos that immediately serve both courses. Highest ROI.
+2. **ISM2411-only lecture (Sessions 5–8)** — Python-only content, lighter cognitive load, shorter sessions.
+3. **ISM3232-only lecture (Sessions 9–13)** — Heavier technical content (OOP, SQL, Streamlit, API). Record after shared Python fundamentals are locked in.
+4. **ISM2411 lab walkthroughs (Sessions 14–16)** — Record after ISM2411 lecture content is finalized so walkthroughs match the lecture approach exactly.
+5. **ISM3232 lab walkthroughs (Sessions 17–20)** — Record last; most complex content, and ISM3232 labs build on OOP/SQL/Streamlit lectures.
 
 ---
 
@@ -184,9 +286,11 @@ Recording-to-finish ratio estimated at ~2x (retakes, setup, dead air trimming).
 
 | Phase | Sessions | Videos | Finished content |
 |---|---|---|---|
-| Phase 1 — Shared | 4 | 12 | 2h 39min |
-| Phase 2 — ISM2411 | 4 | 8 | 2h 17min |
-| Phase 3 — ISM3232 | 5 | 13 | 3h 37min |
-| **Total** | **13** | **33** | **8h 33min** |
+| Phase 1 — Shared lecture | 4 | 12 | 2h 39min |
+| Phase 2 — ISM2411 lecture | 4 | 8 | 2h 17min |
+| Phase 3 — ISM3232 lecture | 5 | 13 | 3h 37min |
+| Phase 4 — ISM2411 labs | 3 | 14 | 2h 20min |
+| Phase 5 — ISM3232 labs | 4 | 15 | 2h 30min |
+| **Total** | **20** | **62** | **13h 23min** |
 
 > **Infographic key:** ✓ = placed in course · ✓ ×2 = two-tab infographic on that module's page · — = no standalone infographic (video #11 covers GitHub workflow, handled via the Git infographic on the same page)
