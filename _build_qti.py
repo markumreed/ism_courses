@@ -331,5 +331,57 @@ write_zip(
     midterm_items,
 )
 
-print(f"\nDone. {len(MODULES)} module quizzes + 1 midterm written to quiz_exam_fa26/")
-print(f"Midterm total: {len(midterm_items)} questions")
+print(f"\n  {len(MODULES)} ISM2411 module quizzes + 1 midterm")
+print(f"  Midterm total: {len(midterm_items)} questions")
+
+# ── ISM3232 ───────────────────────────────────────────────────────────────────
+
+ISM3232_PAGES   = Path("/home/markumreed/Documents/ism_courses/ism3232/docs")
+ISM3232_MODULES = [1,2,3,4,5,6,7,8,10,11,12,13,14,15,16]
+
+ISM3232_TITLES = {
+    1:  "Developer Mindset & First Setup",
+    2:  "zsh Navigation & File Operations",
+    3:  "Virtual Environments & Shell Customisation",
+    4:  "Search Tools, the Submission Ritual & Git",
+    5:  "Variables, Data Types & Operators",
+    6:  "Conditionals, Loops & Dictionaries",
+    7:  "Functions, Modules & pytest",
+    8:  "Debugging, AI Literacy & Midterm Review",
+    10: "OOP I — Classes & Objects",
+    11: "OOP II — Composition, Inheritance & SQL Mapping",
+    12: "OOP III — Applied Practice & Design",
+    13: "Capstone Design & SQL Foundations",
+    14: "Python + SQL Integration",
+    15: "Streamlit Business Interface",
+    16: "GenAI Feature & Final Demo",
+}
+
+print("\nBuilding ISM3232 QTI files → quiz_exam_fa26/\n")
+
+ism3232_items = {}
+
+for mod in ISM3232_MODULES:
+    path  = ISM3232_PAGES / f"week{mod:02d}_reading.html"
+    items = parse_quiz(path)
+    ism3232_items[mod] = items
+
+    ident = f"ism3232_quiz_w{mod:02d}"
+    title = f"ISM3232 Module {mod:02d} Quiz — {ISM3232_TITLES[mod]}"
+    write_zip(OUT / f"{ident}.zip", ident, title, items)
+
+# ISM3232 midterm: modules 1–8
+ism3232_mid = []
+for mod in [1,2,3,4,5,6,7,8]:
+    ism3232_mid.extend(ism3232_items[mod])
+
+write_zip(
+    OUT / "ism3232_midterm.zip",
+    "ism3232_midterm",
+    "ISM3232 Midterm Exam — Modules 1–8",
+    ism3232_mid,
+)
+
+print(f"\n  {len(ISM3232_MODULES)} ISM3232 module quizzes + 1 midterm")
+print(f"  Midterm total: {len(ism3232_mid)} questions")
+print(f"\nDone. All QTI files written to quiz_exam_fa26/")
