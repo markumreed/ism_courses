@@ -15,3 +15,6 @@ __pycache__/
 
 # Presentations
 ppt/
+
+# Local infographic staging area (files live in ism-assets submodule)
+infographics/
