@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 10 Lab. We build the BusinessRequest class with __init__, four methods, and __repr__, create three independent instances, verify independence, and write seven pytest tests including the boundary case at exactly $1000.
 
+Course page: https://markumreed.github.io/ism3232/docs/week10_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — The BusinessRequest class: __init__ and attributes

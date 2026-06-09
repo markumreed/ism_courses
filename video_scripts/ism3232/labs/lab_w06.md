@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 6 Lab. We build a business record processor: a list of five dicts, two business rules with conditionals, a loop accumulating totals, formatted report output written to a file, and five pytest tests.
 
+Course page: https://markumreed.github.io/ism3232/docs/week06_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — List of five business record dicts

@@ -8,6 +8,8 @@ F-strings are Python's cleanest way to embed variables into text and format numb
 
 We'll build a formatted order receipt from scratch and finish with a clean sales report table — the kind of output that goes into emails, dashboards, and management summaries.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week03_lecture.html · https://markumreed.github.io/ism3232/docs/week05_lecture.html
+
 **Chapters:**
 0:00 — What f-strings are and why they replaced .format()
 1:30 — Basic f-string syntax

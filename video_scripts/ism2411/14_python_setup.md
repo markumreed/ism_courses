@@ -6,6 +6,8 @@
 **Description:**
 Get Python, VS Code, and your terminal working correctly in under 15 minutes. This video walks through installation on Mac and Windows (WSL), verifies each tool, creates the course folder structure, and runs a first Python script from the terminal — the professional way.
 
+Course page: https://markumreed.github.io/ism2411/pages/week02_lecture.html
+
 **Chapters:**
 0:00 — What we're installing and why
 1:30 — Installing VS Code

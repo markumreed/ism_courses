@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 15 Lab. We build a complete five-tab Streamlit application wired to the database.py functions from Lab 14: Submit, View, Filter, Update, and Report tabs. Then adapt the UI to the student's capstone domain.
 
+Course page: https://markumreed.github.io/ism3232/docs/week15_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — Install Streamlit and confirm the hello-world run

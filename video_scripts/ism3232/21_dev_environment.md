@@ -6,6 +6,8 @@
 **Description:**
 Build a professional development environment from scratch: install VS Code, Python 3, Git, and verify zsh is your shell. We'll create your course folder structure, run the 6 verification commands, and write your first ISM3232 Python script — all from the terminal.
 
+Course page: https://markumreed.github.io/ism3232/docs/week01_lecture.html
+
 **Chapters:**
 0:00 — What a developer environment is and why it matters
 1:30 — zsh — your shell

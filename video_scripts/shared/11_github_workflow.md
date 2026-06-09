@@ -6,6 +6,8 @@
 **Description:**
 This video covers the exact GitHub workflow used in ISM2411 and ISM3232: creating a repository for each assignment, working locally, committing progress, pushing to GitHub, and submitting the URL on Canvas. We also cover the most common setup mistakes that cause submissions to fail.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week08_lecture.html · https://markumreed.github.io/ism3232/docs/week04_lecture.html
+
 **Chapters:**
 0:00 — The assignment submission workflow
 1:30 — Creating a new repo for an assignment

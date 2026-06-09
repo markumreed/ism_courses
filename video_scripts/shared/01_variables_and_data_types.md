@@ -8,6 +8,8 @@ Learn how to store and work with data in Python using variables and the four cor
 
 In this video we build a product inventory record from scratch — naming a product, storing its price, tracking quantity, and flagging whether it's in stock. Along the way you'll learn exactly what Python is doing when you assign a variable, why the type of your data matters, and the errors beginners make most often.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week03_lecture.html · https://markumreed.github.io/ism3232/docs/week05_lecture.html
+
 **Chapters:**
 0:00 — Why variables matter in business programming
 1:30 — The four core data types (str, int, float, bool)

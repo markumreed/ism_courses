@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 11 Lab. We add the RequestManager class to models.py, wire it to BusinessRequest in main.py, complete the OOP-to-SQL mapping table in README.md, and write six new pytest tests covering both classes.
 
+Course page: https://markumreed.github.io/ism3232/docs/week11_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — RequestManager class: __init__, add, filter, total, report

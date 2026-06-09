@@ -8,6 +8,8 @@ A loop lets you apply the same logic to every item in a collection without copy-
 
 By the end you'll understand the accumulator pattern cold, know when to use enumerate() and range(), and be able to process any list of business records with clean, readable code.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week06_lecture.html · https://markumreed.github.io/ism3232/docs/week06_lecture.html
+
 **Chapters:**
 0:00 — Why loops exist
 1:00 — For loop syntax

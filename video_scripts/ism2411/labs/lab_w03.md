@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 3 Lab. We build a product pricing tool using variables, the four core data types, f-string formatting, and user input with type conversion.
 
+Course page: https://markumreed.github.io/ism2411/pages/week03_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — Defining variables for all four data types

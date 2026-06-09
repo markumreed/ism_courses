@@ -6,6 +6,8 @@
 **Description:**
 The hardest part of OOP is deciding what classes to create before writing any code. In this video we practice design-first OOP — drawing the class diagram, identifying responsibilities, spotting common mistakes, and building a complete multi-class business simulation with tests.
 
+Course page: https://markumreed.github.io/ism3232/docs/week12_lecture.html
+
 **Chapters:**
 0:00 — Design before you type, always
 2:00 — The design process: 4 questions

@@ -6,6 +6,8 @@
 **Description:**
 AI coding tools are powerful and widely used in industry — but using them wrong in a learning context stunts your growth and can compromise your academic integrity. This video gives you a clear framework for when AI helps, when it hurts, and how to use it in a way that builds real skills while staying within course policy.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week07_lecture.html · https://markumreed.github.io/ism3232/docs/week08_lecture.html
+
 **Chapters:**
 0:00 — AI tools are real, not going away
 1:30 — Three modes: Explainer, Debugger, Generator

@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 13 Lab. We write the capstone project proposal (PROPOSAL.md, all 10 fields), run SQL fundamentals in the sqlite3 shell, design the capstone schema in schema.sql, and add a SQL cheatsheet to README.md.
 
+Course page: https://markumreed.github.io/ism3232/docs/week13_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:45 — PROPOSAL.md: 10 required fields and why each matters

@@ -6,6 +6,8 @@
 **Description:**
 Group your data by category, compute aggregates, and visualize results with bar charts, line charts, and histograms. We'll build a complete sales analysis dashboard — revenue by region, weekly trends, and a distribution of order values — using pandas groupby and matplotlib.
 
+Course page: https://markumreed.github.io/ism2411/pages/week15_lecture.html
+
 **Chapters:**
 0:00 — From clean data to business insight
 1:30 — groupby() — the most powerful pandas method

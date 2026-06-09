@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 12 Lab. We design a multi-class business system from scratch: write design.md first, build two entity classes and a manager class, write six or more pytest tests, and run the full simulation.
 
+Course page: https://markumreed.github.io/ism3232/docs/week12_lab.html
+
 **Chapters:**
 0:00 — What this lab requires
 0:45 — design.md: write this BEFORE opening VS Code

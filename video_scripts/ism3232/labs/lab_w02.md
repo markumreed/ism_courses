@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 2 Lab. We master the zsh file system: pwd, ls -la, cd, mkdir, cp, mv, cat, wc, and the rm safety ritual. Submitting a README documenting 12+ commands.
 
+Course page: https://markumreed.github.io/ism3232/docs/week02_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:30 — Core navigation: pwd, ls -la, cd, mkdir

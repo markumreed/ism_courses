@@ -6,6 +6,8 @@
 **Description:**
 pytest is the standard Python testing framework. In this video you'll write tests for a business calculation module, run them from the terminal, understand the six required test types for ISM3232 assignments, and organize your project with proper module structure. Tests aren't extra work — they're how professionals verify correctness and catch regressions.
 
+Course page: https://markumreed.github.io/ism3232/docs/week07_lecture.html
+
 **Chapters:**
 0:00 — Why tests?
 1:30 — Project structure for testable code

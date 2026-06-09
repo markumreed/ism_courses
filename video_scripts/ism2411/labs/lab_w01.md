@@ -8,6 +8,8 @@ Walkthrough of ISM2411 Module 1 Lab. We work through the file system vocabulary 
 
 No Python in this lab — it's all about building the mental model of files, paths, and directories that every future script depends on.
 
+Course page: https://markumreed.github.io/ism2411/pages/week01_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:30 — Exercise 1: drawing a directory tree from a path

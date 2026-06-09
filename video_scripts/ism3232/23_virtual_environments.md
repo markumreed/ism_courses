@@ -6,6 +6,8 @@
 **Description:**
 A virtual environment isolates your project's Python packages from every other project on your machine. In this video you'll create a venv, activate it, install packages, freeze requirements, and customize your shell prompt in .zshrc — the professional Python workflow from day one.
 
+Course page: https://markumreed.github.io/ism3232/docs/week03_lecture.html
+
 **Chapters:**
 0:00 — Why virtual environments exist
 2:00 — Creating a venv

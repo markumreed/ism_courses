@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 12 Lab. We build a complete ETL pipeline: read a sales CSV with Python's csv module, filter for high-value orders, compute totals, and write a cleaned summary back to disk.
 
+Course page: https://markumreed.github.io/ism2411/pages/week12_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — Reading a CSV with csv.reader

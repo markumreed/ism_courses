@@ -8,6 +8,8 @@ Git is the version control system used by every professional software team. In t
 
 You'll understand what Git is actually tracking, why commit messages matter, and how to set up a repository and push to GitHub. No prior Git experience required.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week08_lecture.html · https://markumreed.github.io/ism3232/docs/week04_lecture.html
+
 **Chapters:**
 0:00 — What Git does and why it matters
 1:30 — git init — start tracking a project

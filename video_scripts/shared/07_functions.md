@@ -8,6 +8,8 @@ Functions let you name a block of logic, call it whenever you need it, and chang
 
 You'll learn the exact syntax, understand parameters vs arguments, master return values, and see the difference between a function that does its own printing versus one that returns a value you can use.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week07_lecture.html · https://markumreed.github.io/ism3232/docs/week07_lecture.html
+
 **Chapters:**
 0:00 — Why functions exist
 1:30 — def syntax and calling a function

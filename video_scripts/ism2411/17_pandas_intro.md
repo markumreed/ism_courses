@@ -6,6 +6,8 @@
 **Description:**
 pandas is the Python library for working with tabular data at scale. In this video you'll load a business CSV into a DataFrame, inspect it with head(), info(), and describe(), select columns, filter rows, and answer real business questions — all without writing a single for loop.
 
+Course page: https://markumreed.github.io/ism2411/pages/week13_lecture.html
+
 **Chapters:**
 0:00 — What pandas is and why it replaces manual CSV processing
 1:30 — Installing and importing pandas

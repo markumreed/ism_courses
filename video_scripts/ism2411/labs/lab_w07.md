@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 7 Lab. We write reusable business functions with parameters and return values, then work through the debugging exercise: read the traceback, add print() statements, and only then use AI — as an explainer, not a solution machine.
 
+Course page: https://markumreed.github.io/ism2411/pages/week07_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:45 — Writing the four business functions

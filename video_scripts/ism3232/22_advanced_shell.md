@@ -6,6 +6,8 @@
 **Description:**
 Go beyond the 5 core commands. In this video you'll learn grep (search file contents), find (locate files by name or type), and two modern speed tools — zoxide (smarter cd) and fzf (fuzzy finder). These are the tools professional developers use to navigate and search large codebases instantly.
 
+Course pages: https://markumreed.github.io/ism3232/docs/week02_lecture.html · https://markumreed.github.io/ism3232/docs/week03_lecture.html
+
 **Chapters:**
 0:00 — Why search tools matter in a growing project
 1:30 — grep — search inside files

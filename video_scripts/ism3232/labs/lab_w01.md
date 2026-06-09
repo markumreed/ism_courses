@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 1 Lab. We verify the full developer environment — zsh, Python 3, Git — create the course folder structure, write and run hello_ism3232.py, and submit a README documenting everything.
 
+Course page: https://markumreed.github.io/ism3232/docs/week01_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:30 — Running the six verification commands

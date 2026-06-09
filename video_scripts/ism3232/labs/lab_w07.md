@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 7 Lab. We write four business functions in a separate module with docstrings and type hints, import them in main.py, and write eight pytest tests including boundary cases.
 
+Course page: https://markumreed.github.io/ism3232/docs/week07_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — Four functions in business_rules.py with type hints

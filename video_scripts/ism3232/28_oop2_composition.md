@@ -6,6 +6,8 @@
 **Description:**
 Real business systems have objects that contain other objects (composition) and objects that are specialized versions of other objects (inheritance). In this video we build a RequestManager that holds BusinessRequest objects (has-a composition), add a UrgentRequest subclass (is-a inheritance), and map the design to SQL tables.
 
+Course page: https://markumreed.github.io/ism3232/docs/week11_lecture.html
+
 **Chapters:**
 0:00 — Composition vs inheritance — choosing correctly
 2:00 — Composition: RequestManager has BusinessRequests

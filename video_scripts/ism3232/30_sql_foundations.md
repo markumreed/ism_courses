@@ -6,6 +6,8 @@
 **Description:**
 SQL is the language of every business database. In this video you'll learn the five operations your ISM3232 capstone database must support: CREATE TABLE, INSERT, SELECT with WHERE, UPDATE, and DELETE — all through a product inventory scenario. We also cover JOIN for combining tables and schema design principles.
 
+Course page: https://markumreed.github.io/ism3232/docs/week13_lecture.html
+
 **Chapters:**
 0:00 — What SQL is and where it fits in your capstone
 1:30 — SQLite — the database you'll use

@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 6 Lab. We use for loops and the initialize-loop-update accumulator pattern to compute a sales total, average, and maximum from a list — the foundation of every data processing loop you'll write.
 
+Course page: https://markumreed.github.io/ism2411/pages/week06_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — The accumulator pattern: initialize, loop, update

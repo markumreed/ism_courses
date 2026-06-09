@@ -8,6 +8,8 @@ A dictionary stores related fields together under a single variable — exactly 
 
 Dictionaries are the data structure closest to a spreadsheet row, a database record, and a JSON object — so mastering them unlocks working with real-world data sources.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week11_lecture.html · https://markumreed.github.io/ism3232/docs/week06_lecture.html
+
 **Chapters:**
 0:00 — Why dictionaries exist
 1:30 — Creating a dictionary

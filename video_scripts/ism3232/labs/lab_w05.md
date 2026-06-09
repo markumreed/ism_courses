@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 5 Lab. We write a business data script covering all four Python data types, arithmetic and comparison operators, f-string formatting, and user input — then write five pytest tests and run the full submission ritual.
 
+Course page: https://markumreed.github.io/ism3232/docs/week05_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — Four data types and business operators

@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 8 Lab. We fix two deliberate bugs using traceback reading and print() debugging, document the process in debug_log.md, write five pytest tests, and complete the AI reflection before the midterm.
 
+Course page: https://markumreed.github.io/ism3232/docs/week08_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:45 — Reading the traceback without fixing anything first

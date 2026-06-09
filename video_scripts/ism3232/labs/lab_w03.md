@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 3 Lab. We create a virtual environment, install pytest and ruff, freeze requirements, write a .gitignore, and add 10+ aliases and a mkcd function to .zshrc.
 
+Course page: https://markumreed.github.io/ism3232/docs/week03_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:30 — Creating and activating the virtual environment

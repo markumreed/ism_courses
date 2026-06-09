@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 2 Lab. We open the terminal for the first time, run the five core commands, install Python and VS Code, and execute hello.py from the command line.
 
+Course page: https://markumreed.github.io/ism2411/pages/week02_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:30 — Opening the terminal and running pwd, ls, cd, mkdir

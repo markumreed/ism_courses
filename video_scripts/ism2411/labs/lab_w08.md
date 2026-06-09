@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 8 Lab. We create a GitHub repository, push our Module 7 work, write a README, and establish the exact git workflow that every remaining assignment uses.
 
+Course page: https://markumreed.github.io/ism2411/pages/week08_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:45 — Creating a GitHub repo and cloning it locally

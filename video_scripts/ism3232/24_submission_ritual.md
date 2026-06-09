@@ -6,6 +6,8 @@
 **Description:**
 The submission ritual is a fixed 9-step sequence you run before submitting every assignment in ISM3232. It's not bureaucracy — it's the professional pre-flight checklist that catches bugs, enforces clean code standards, ensures your tests pass, and guarantees your submission is visible on GitHub. Learn it once, run it every time.
 
+Course page: https://markumreed.github.io/ism3232/docs/week04_lecture.html
+
 **Chapters:**
 0:00 — Why a ritual?
 1:30 — Step 1: Activate venv

@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 15 Lab. We use the cleaned sales data to answer three business questions with groupby aggregations and four publication-ready charts. This is the exact workflow the capstone uses.
 
+Course page: https://markumreed.github.io/ism2411/pages/week15_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — Three business questions and groupby aggregations

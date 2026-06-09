@@ -6,6 +6,8 @@
 **Description:**
 Lists are Python's most versatile data structure — ordered, mutable collections you'll use constantly for sequences of sales figures, product names, customer IDs, and transaction records. Tuples are their immutable counterparts, ideal for fixed records like coordinates, date ranges, or table rows. Learn both with practical business examples.
 
+Course page: https://markumreed.github.io/ism2411/pages/week10_lecture.html
+
 **Chapters:**
 0:00 — Lists vs tuples — which and when
 1:30 — Creating and indexing lists

@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 13 Lab. We load the retail sales CSV into a pandas DataFrame, explore its shape and columns, run boolean filters, and select subsets — the foundation for every subsequent data lab.
 
+Course page: https://markumreed.github.io/ism2411/pages/week13_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — Loading the CSV and first inspection

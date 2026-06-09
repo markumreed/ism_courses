@@ -6,6 +6,8 @@
 **Description:**
 Real business data is messy — missing values, wrong types, inconsistent formatting. In this video you'll learn to detect and handle nulls, fix data types, standardize text fields, and compute descriptive statistics (mean, median, std, percentiles) on a realistic customer dataset.
 
+Course page: https://markumreed.github.io/ism2411/pages/week14_lecture.html
+
 **Chapters:**
 0:00 — Why data is always messy
 1:30 — Detecting missing values: isnull(), info()

@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 14 Lab. We build all five database.py functions: create_table, add_record, get_all_records, update_status, and get_status_report. Every function uses ? placeholders, row_factory for dict access, and a db_file parameter for test isolation. Five pytest tests use tmp_path.
 
+Course page: https://markumreed.github.io/ism3232/docs/week14_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — The two rules: ? placeholders only, db_file parameter on every function

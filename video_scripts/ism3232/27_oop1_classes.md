@@ -6,6 +6,8 @@
 **Description:**
 Object-Oriented Programming organizes code around objects — bundles of data and behavior that model real business entities. In this video we build a complete BusinessRequest class with __init__, instance attributes, business logic methods, and a full pytest test suite — the ISM3232 Module 10 standard.
 
+Course page: https://markumreed.github.io/ism3232/docs/week10_lecture.html
+
 **Chapters:**
 0:00 — The mental model: blueprint and instance
 2:00 — Defining a class

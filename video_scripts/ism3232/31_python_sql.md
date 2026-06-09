@@ -6,6 +6,8 @@
 **Description:**
 Connect your Python classes to a SQLite database using the built-in sqlite3 module. In this video we build the five required database functions for ISM3232 capstone projects: create_table, insert, get_all, get_by_id, and update — with parameterized queries to prevent SQL injection, and tests using pytest's tmp_path fixture.
 
+Course page: https://markumreed.github.io/ism3232/docs/week14_lecture.html
+
 **Chapters:**
 0:00 — The database layer architecture
 2:00 — Connecting with sqlite3

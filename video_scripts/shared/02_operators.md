@@ -8,6 +8,8 @@ Master Python's three operator families — arithmetic, comparison, and logical 
 
 You'll calculate order subtotals, apply discount rules, check approval thresholds, and combine conditions to make real business decisions. These are the building blocks of every conditional, loop, and function you'll write.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week04_lecture.html · https://markumreed.github.io/ism3232/docs/week05_lecture.html
+
 **Chapters:**
 0:00 — What operators do and why they matter
 1:00 — Arithmetic operators: +, -, *, /, //, %, **

@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 5 Lab. We build a tiered discount calculator using if/elif/else to apply different discount rates based on order size — the same logic used in real pricing systems.
 
+Course page: https://markumreed.github.io/ism2411/pages/week05_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — Writing the tiered if/elif/else logic

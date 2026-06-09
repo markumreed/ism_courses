@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 14 Lab. We apply the full pandas cleaning workflow to a deliberately messy dataset: find and handle nulls, fix data types, remove duplicates, flag outliers, and document every decision.
 
+Course page: https://markumreed.github.io/ism2411/pages/week14_lab.html
+
 **Chapters:**
 0:00 — What we're cleaning
 0:45 — Inspecting the mess: isnull, dtypes, describe

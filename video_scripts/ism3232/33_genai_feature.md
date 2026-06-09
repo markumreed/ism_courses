@@ -6,6 +6,8 @@
 **Description:**
 Add a production-grade AI feature to your capstone Streamlit app using the Anthropic API. This video covers the six required GenAI controls for ISM3232: system prompt, user confirmation, output preview, max tokens, rate limiting, and disclaimer — plus secure API key handling and a complete working implementation.
 
+Course page: https://markumreed.github.io/ism3232/docs/week16_lecture.html
+
 **Chapters:**
 0:00 — What a "controlled" AI feature means
 2:00 — Installing the Anthropic SDK

@@ -6,6 +6,8 @@
 **Description:**
 Before you write code that runs efficiently, you need to understand what's happening inside the machine. This video explains the three-layer model every programmer needs: CPU (the chef), RAM (the counter), and storage (the pantry). You'll understand why programs crash, why saving matters, and why a script that processes 5 million rows is slower than one that processes 5,000.
 
+Course page: https://markumreed.github.io/ism2411/pages/week01_lecture.html
+
 **Chapters:**
 0:00 — Why programmers need to understand hardware
 1:30 — The three layers: CPU, RAM, storage

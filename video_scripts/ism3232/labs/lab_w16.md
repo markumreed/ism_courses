@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 16 Lab. We build ai_feature.py with the summarise_request function using the Anthropic SDK, wire it into app.py Tab 1 with a disclosure label and human review button, write two mocked pytest tests, complete the final capstone checklist, and prepare for the 8-topic demo presentation.
 
+Course page: https://markumreed.github.io/ism3232/docs/week16_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:45 — Six required AI controls and why they exist

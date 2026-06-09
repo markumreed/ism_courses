@@ -8,6 +8,8 @@ Before you can run Python scripts professionally, you need to navigate the file 
 
 You'll understand paths (absolute vs relative), learn the mental model of the directory tree, and set up a real course project folder from scratch without touching a GUI.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week02_lecture.html · https://markumreed.github.io/ism3232/docs/week02_lecture.html
+
 **Chapters:**
 0:00 — Why the terminal matters
 1:00 — Opening the terminal in VS Code

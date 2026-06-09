@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM3232 Module 4 Lab. We use rg (ripgrep), find, and tree to search a codebase, write three pytest tests, then execute the complete pre-submission ritual from start to finish before pushing to GitHub.
 
+Course page: https://markumreed.github.io/ism3232/docs/week04_lab.html
+
 **Chapters:**
 0:00 — What this lab covers
 0:45 — Search tools: rg, find, tree

@@ -6,6 +6,8 @@
 **Description:**
 While loops repeat as long as a condition is true — essential for validation, retry logic, menus, and processing streams of indefinite length. In this video we build an order input loop with validation, a menu-driven interface, and a business accumulator using while — with careful attention to avoiding infinite loops.
 
+Course page: https://markumreed.github.io/ism3232/docs/week06_lecture.html
+
 **Chapters:**
 0:00 — When while beats for
 1:30 — while loop syntax

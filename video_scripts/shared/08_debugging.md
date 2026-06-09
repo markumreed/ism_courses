@@ -8,6 +8,8 @@ Error messages are not failures — they're instructions. Python tells you exact
 
 We'll work through real broken code — a business order processor with multiple bugs — and fix it step by step. By the end, error messages will feel less like obstacles and more like helpful guides.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week07_lecture.html · https://markumreed.github.io/ism3232/docs/week08_lecture.html
+
 **Chapters:**
 0:00 — Errors are information, not failure
 1:00 — Anatomy of a traceback

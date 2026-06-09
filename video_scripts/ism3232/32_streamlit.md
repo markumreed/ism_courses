@@ -6,6 +6,8 @@
 **Description:**
 Streamlit turns Python scripts into web applications with no HTML, CSS, or JavaScript. In this video we build the five features every ISM3232 capstone Streamlit app must have: view all records, add a record, update a record, delete/deactivate a record, and a summary dashboard — all wired to a SQLite database.
 
+Course page: https://markumreed.github.io/ism3232/docs/week15_lecture.html
+
 **Chapters:**
 0:00 — What Streamlit is and how it executes
 2:00 — Installing and running Streamlit

@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 10 Lab. We build an inventory management tool using Python lists — indexing, slicing, appending, removing, and looping — that mirrors real operations tooling.
 
+Course page: https://markumreed.github.io/ism2411/pages/week10_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — Building the inventory list and indexing

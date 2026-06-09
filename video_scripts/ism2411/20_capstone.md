@@ -6,6 +6,8 @@
 **Description:**
 Watch a complete business analytics project built from scratch: load a retail sales dataset, clean it, answer five business questions, produce four visualizations, and save a formatted summary report. This is the ISM2411 capstone pattern — use it as a reference for structuring your own project.
 
+Course page: https://markumreed.github.io/ism2411/pages/week16_lecture.html
+
 **Chapters:**
 0:00 — Project overview and structure
 2:00 — Loading and inspecting the data

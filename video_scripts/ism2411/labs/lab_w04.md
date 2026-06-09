@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 4 Lab. We apply arithmetic, comparison, and logical operators to real business formulas: revenue, profit margin, discount pricing, and pallet-packing logistics.
 
+Course page: https://markumreed.github.io/ism2411/pages/week04_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — Revenue and margin calculations

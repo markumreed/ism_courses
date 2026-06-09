@@ -8,6 +8,8 @@ Business rules are conditionals in disguise. "Apply a 10% discount on orders ove
 
 In this video we translate real business decision trees into Python code. You'll learn the exact syntax, understand indentation as structure, avoid the most common conditional bugs, and write a multi-tier discount engine by the end.
 
+Course pages: https://markumreed.github.io/ism2411/pages/week05_lecture.html · https://markumreed.github.io/ism3232/docs/week06_lecture.html
+
 **Chapters:**
 0:00 — Business rules as code
 1:00 — if statement syntax and indentation

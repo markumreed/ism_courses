@@ -6,6 +6,8 @@
 **Description:**
 Walkthrough of ISM2411 Module 11 Lab. We build customer records as dictionaries, use tier-based lookups, handle missing keys safely with .get(), and loop over a list of customer dicts to generate a summary report.
 
+Course page: https://markumreed.github.io/ism2411/pages/week11_lab.html
+
 **Chapters:**
 0:00 — What we're building
 0:45 — A customer record as a dictionary

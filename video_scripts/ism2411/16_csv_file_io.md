@@ -6,6 +6,8 @@
 **Description:**
 Real business data lives in files — CSVs exported from Excel, ERPs, and databases. In this video you'll learn to read and write text files, then work with CSVs using Python's built-in csv module. We'll load a sales dataset, calculate totals by region, filter records, and write results to a new file.
 
+Course page: https://markumreed.github.io/ism2411/pages/week12_lecture.html
+
 **Chapters:**
 0:00 — Why file I/O matters
 1:30 — Reading a text file with open()
