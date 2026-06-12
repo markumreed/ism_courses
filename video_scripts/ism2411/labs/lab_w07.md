@@ -105,6 +105,8 @@ print(f"DEBUG: total={total}, type={type(total)}")
 print(f"DEBUG: discount_pct={discount_pct}, type={type(discount_pct)}")
 ```
 
+Then, before reaching for AI, explain the suspect lines out loud to a rubber duck — or your water bottle, anything patient. Say what each line *literally* does, not what it should do. This is rubber duck debugging, straight from *The Pragmatic Programmer* (Hunt & Thomas, 1999), and the bug often announces itself mid-sentence. If it doesn't, you've just rehearsed exactly the question for the next step.
+
 **Step 3 — Ask AI for the error type, not the fix.** Paste only the error message into Claude or ChatGPT and ask "what does this error mean?" Not "fix my code." The explanation builds your understanding; the fix shortcircuits it.
 
 **Step 4 — Fix it yourself**, using the AI's explanation as a guide. Write a comment above the fix explaining what you changed and why.

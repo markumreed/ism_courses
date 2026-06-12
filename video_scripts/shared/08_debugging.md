@@ -4,7 +4,7 @@
 
 **Title:** Python Debugging — How to Read Tracebacks & Fix Errors | ISM2411 / ISM3232
 **Description:**
-Error messages are not failures — they're instructions. Python tells you exactly what went wrong, where, and usually why. In this video you'll learn to read a traceback from bottom to top, recognize the five most common error types, and fix bugs systematically using print() debugging.
+Error messages are not failures — they're instructions. Python tells you exactly what went wrong, where, and usually why. In this video you'll learn to read a traceback from bottom to top, recognize the five most common error types, and fix bugs systematically using print() debugging and rubber duck debugging — the explain-it-out-loud technique from The Pragmatic Programmer.
 
 We'll work through real broken code — a business order processor with multiple bugs — and fix it step by step. By the end, error messages will feel less like obstacles and more like helpful guides.
 
@@ -19,11 +19,12 @@ Course pages: https://markumreed.github.io/ism2411/pages/week07_lecture.html · 
 9:00 — ValueError — right type, wrong content
 10:30 — IndexError / KeyError
 12:00 — Print debugging
-14:00 — Recap
+14:00 — Rubber duck debugging
+15:30 — Recap
 
 **Applies to:** ISM2411 Module 7 · ISM3232 Module 8
 
-**Tags:** python debugging, python traceback, python error messages, python NameError, python TypeError, python SyntaxError, python debug, ISM2411, ISM3232, python tutorial, python beginner, python fix errors
+**Tags:** python debugging, python traceback, python error messages, python NameError, python TypeError, python SyntaxError, python debug, rubber duck debugging, ISM2411, ISM3232, python tutorial, python beginner, python fix errors
 
 ---
 
@@ -255,7 +256,25 @@ The print statements revealed that `discount_rate=1.10` when it should be `0.10`
 
 ---
 
-### RECAP (14:00–15:00)
+### RUBBER DUCK DEBUGGING (14:00–15:30)
+
+One more technique, and it's the cheapest one in this whole video: rubber duck debugging. It comes from a book called *The Pragmatic Programmer*, by Andrew Hunt and David Thomas, which tells of a developer who kept a small yellow rubber duck on his desk — and when he was stuck, he explained his code to it, out loud, one line at a time.
+
+Here's why talking to a toy works. A bug is a gap between what you *think* the code does and what it *actually* does. As long as the explanation stays in your head, your brain quietly papers over that gap with assumptions. Saying each line out loud forces you to state what the code literally says.
+
+Watch — same `process_order` function, no print statements this time, just me and the duck:
+
+*"Okay, duck. This function takes a subtotal and a discount rate. Line one: discount equals subtotal times the rate. The rate is... one point one zero. So the discount is a hundred and ten percent of the subtotal— wait. That's not a discount, that's the whole order plus ten percent."*
+
+Found it mid-sentence. No tools, no AI, no print statements — just the act of saying what the code actually does instead of what I assumed it does.
+
+Three rules: say what the code is *supposed* to do, then say what each line *literally* does — no skipping the "obvious" lines, that's where bugs hide — and stop the moment your explanation disagrees with the program's behavior. That disagreement is the bug's address.
+
+And if the duck doesn't crack it? You've lost two minutes and gained a perfectly rehearsed question. What you just said out loud is exactly what you paste into the discussion board or give to an AI in explainer mode.
+
+---
+
+### RECAP (15:30–16:30)
 
 - Read tracebacks **bottom to top** — the error type is at the bottom
 - **SyntaxError** — malformed code, missing colon/bracket/quote
@@ -264,5 +283,6 @@ The print statements revealed that `discount_rate=1.10` when it should be `0.10`
 - **ValueError** — right type, content doesn't parse
 - **IndexError/KeyError** — index or key doesn't exist; use `.get()` or bounds-check
 - **Print debugging** — add `print()` to see variable values mid-execution; remove when done
+- **Rubber duck debugging** — explain each line out loud to an inanimate object; the gap between what you say and what the code does is the bug (*The Pragmatic Programmer*, Hunt & Thomas, 1999)
 
 Next video: 5 core terminal commands — the shell skills you need to navigate, create, and manage your project files.

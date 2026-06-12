@@ -51,6 +51,8 @@ What you know from the traceback alone:
 - `quantity` is a float, not an int — or vice versa
 - Root cause: likely missing type conversion on input
 
+Now explain `process_order` to the duck — out loud, one line at a time, saying what each line *literally* does. This is rubber duck debugging, from *The Pragmatic Programmer* (Hunt & Thomas, 1999), and it's how you write the hypothesis: *"Line 6 multiplies price by quantity. Price came from input()... which returns a string. You can't multiply a string by a float."* What you just said to the duck goes straight into the log.
+
 Write this analysis in `debug_log.md` before changing a single line of code.
 
 ```markdown
@@ -59,6 +61,8 @@ Write this analysis in `debug_log.md` before changing a single line of code.
 **Error type:** TypeError
 **Line:** 6 in process_order
 **Error message:** can't multiply sequence by non-int of type 'float'
+**What I told the duck:**
+  line 6 multiplies price by quantity — but price came from input(), which returns str
 **What I think the bug is (before fixing):**
   price is a string — probably came from input() without float() conversion
 ```
