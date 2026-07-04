@@ -19,7 +19,7 @@ The final product of the course is a complete, live Streamlit business applicati
 
 ## COURSE FORMAT [PUBLIC]
 
-ISM3232 is offered in-person with a hybrid option. Class sessions run once or twice weekly (check your section schedule in Canvas). Each session combines: (1) reading review and extension by the instructor, (2) live coding demonstrations with student participation, and (3) in-class lab practice. Discussion is occasional; the primary learning mode is coding — students are expected to have VS Code and a terminal open during every session.
+ISM3232 is offered in a hybrid format. Reading review, concept explanations, and live-coding demonstrations are delivered online through the course website and completed independently, on your own schedule, before that week's lab. The course meets in person once per week for the lab session, where students apply the material through in-class coding practice with the instructor available for real-time support. Discussion is occasional; the primary learning mode is coding — students are expected to have VS Code and a terminal open during the lab. Week 1 (Developer Mindset & Setup) has no in-person lab meeting — pre-course setup and Assignment 1 are completed independently online, and the weekly in-person lab begins in Week 2.
 
 The course uses a professional developer workflow from Day 1: terminal navigation, virtual environments, automated code formatting (ruff), automated testing (pytest), and version control (Git and GitHub). Every assignment is submitted as a GitHub URL, not a file upload. This mirrors industry practice and is a deliberate design decision — employers recognize GitHub-based portfolios in a way they do not recognize Canvas assignment archives.
 
@@ -87,7 +87,7 @@ ISM3232 is a hands-on, professional-track course. Students who succeed treat it 
 
 **Complete the Pre-Course Setup before Week 1.** Students who arrive without Python, VS Code, Git, and a GitHub account installed fall behind immediately. The pre-course setup guide on the course website walks through every step with verification checks. Do not skip this.
 
-**Do the reading before each session.** The instructor builds on the reading — not from scratch. Arriving unprepared wastes your class time and everyone else's.
+**Complete the online reading and lecture material before each lab.** The in-person lab time builds on that material — not from scratch. Arriving unprepared wastes your lab time and everyone else's.
 
 **Commit code frequently, not all at once.** The instructor reads your Git log as part of grading. One commit at 11:55 PM tells a very different story from ten commits across a week. Commit every time something meaningful works.
 
@@ -245,10 +245,10 @@ This course uses USF's Canvas learning management system. All assignments, quizz
 Class sessions may be recorded using lecture capture technology (Microsoft Teams or similar). Student participation in live class discussions may be recorded. Recordings are made available only to students enrolled in this course, to assist those who cannot attend the live session or who want to review content. Students who prefer to participate via audio only may disable their video camera. Please discuss this preference with the instructor.
 
 ### Laptop Requirement
-A personal laptop is required for every class session. Mac or Linux are preferred; Windows is supported with WSL2 (Windows Subsystem for Linux). Chromebooks and tablets cannot run the required developer environment for this course. Contact the instructor in Week 1 if you need to discuss alternatives.
+A personal laptop is required for every in-person lab session, and for completing the online reading and lecture material. Mac or Linux are preferred; Windows is supported with WSL2 (Windows Subsystem for Linux). Chromebooks and tablets cannot run the required developer environment for this course. Contact the instructor in Week 1 if you need to discuss alternatives.
 
 ### Laptop Usage in Class
-Laptops are required for all class activities — terminal work, coding, testing, and demos. Close social media and unrelated applications during instruction. During the midterm practical exam, laptops and all electronic devices are prohibited. The exam is open notes (own printed or handwritten materials only).
+Laptops are required for all in-person lab activities — terminal work, coding, testing, and demos. Close social media and unrelated applications during lab. During the midterm practical exam, laptops and all electronic devices are prohibited. The exam is open notes (own printed or handwritten materials only).
 
 ### Phone Usage
 Phones must be silenced and put away during class sessions. Students may use devices to record lectures for personal use but must continue to meet classroom behavioral expectations. Phones are not permitted during the midterm exam.

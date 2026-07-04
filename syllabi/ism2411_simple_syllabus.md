@@ -19,15 +19,14 @@ This is a core IS course, not an elective. It is appropriate for students who ha
 
 ## COURSE FORMAT [PUBLIC]
 
-ISM2411 is offered in a hybrid format. Each week has two sessions: a lecture session (typically Tuesday) and a lab session (typically Thursday). Lectures introduce and demonstrate new concepts with live coding — students are expected to follow along in VS Code. Labs are structured practice sessions where students work through guided exercises with the instructor available for real-time support.
+ISM2411 is offered in a hybrid format. Lecture content — concept introductions and live-coding demonstrations — is delivered online through the course website and is completed independently, on your own schedule, before the week's lab. The course meets in person once per week for the lab session, a structured practice session where students work through guided exercises with the instructor available for real-time support. Module 1 (Week 1) has no lab meeting, since it is orientation and pre-course setup with no coding component; the weekly in-person lab begins in Week 2.
 
-Every week follows the same four-step rhythm:
-1. Complete the assigned reading on the course website before lecture
-2. Attend lecture and code along
-3. Attend lab and complete the lab assignment
-4. Submit the completed lab by Sunday at 11:59 PM
+Every week follows the same three-step rhythm:
+1. Complete the assigned online reading and lecture material on the course website before that week's lab
+2. Attend the weekly in-person lab session and complete the lab assignment with instructor support
+3. Submit the completed lab by Sunday at 11:59 PM
 
-Class time is mostly active: follow-along coding during lecture, independent and peer-supported coding during lab. Eight DataCamp courses run in parallel with lecture content and are completed independently outside class time.
+Class time is mostly active: independent, self-paced review of lecture content online, followed by independent and peer-supported coding during the in-person lab. Eight DataCamp courses run in parallel with lecture content and are completed independently outside class time.
 
 Learning is assessed through weekly labs and quizzes (35%), eight required DataCamp courses (15%), a 75-minute midterm exam (20%), a capstone retail analysis project (25%), and participation (5%).
 
@@ -81,9 +80,9 @@ The following free online textbooks are used throughout the course:
 
 **DataCamp for Classrooms:** USF provides free DataCamp access for enrolled students. Eight required courses are assigned in parallel with lecture content. See the DataCamp page on the course website for the complete list and deadlines.
 
-**Required Software (all free):** Python 3.10 or later, VS Code (with the Python extension), Git, a free GitHub account, and Jupyter Notebook. Full installation instructions are on the Pre-Course Setup page of the course website. Install everything before the first class session.
+**Required Software (all free):** Python 3.10 or later, VS Code (with the Python extension), Git, a free GitHub account, and Jupyter Notebook. Full installation instructions are on the Pre-Course Setup page of the course website. Install everything before the first lab session.
 
-**Laptop Requirement:** You need a personal laptop you can bring to every session — Mac, Windows, or Linux all work. Chromebooks and tablets do not support the local Python environment used in this course. Contact the instructor in Week 1 if you need to explore lab computer options.
+**Laptop Requirement:** You need a personal laptop you can bring to every in-person lab, and to use for the online lecture material — Mac, Windows, or Linux all work. Chromebooks and tablets do not support the local Python environment used in this course. Contact the instructor in Week 1 if you need to explore lab computer options.
 
 ### Supplementary (Optional) Texts and Materials
 
@@ -100,9 +99,9 @@ The following resources were used in developing course content and are recommend
 
 This course moves quickly, and each module builds on the previous one. Here is what works:
 
-**Do the reading before lecture.** Lecture time reinforces and extends the reading — it does not replace it. Students who skip readings arrive two steps behind.
+**Do the online reading and lecture material before lab.** The in-person lab time builds on that material — it does not replace it. Students who skip the online lecture content arrive to lab two steps behind.
 
-**Attend every lab.** Labs are structured practice that would take two to three times longer to complete alone. Missing lab hurts more than missing lecture.
+**Attend every lab.** It is the only in-person session each week, and it is structured practice that would take two to three times longer to complete alone. Missing lab hurts more than missing any single reading.
 
 **Use the self-check quizzes as your first study session.** Questions marked ★ MIDTERM-ELIGIBLE or ★ CAPSTONE-ELIGIBLE appear on formal assessments verbatim or with minor variation. Treat the quiz as early exam prep.
 
@@ -144,7 +143,7 @@ For questions that may benefit the whole class (debugging approaches, assignment
 | Component | Weight | Details |
 |-----------|--------|---------|
 | Weekly Labs | 30% | 14 labs total (Modules 1–8, 10–15). Due Sunday at 11:59 PM. Graded on correctness, completion, code quality, and proper submission. Code must run without errors. |
-| Weekly Quizzes | 5% | 14 quizzes on Canvas, tied to the assigned reading. Open-note, untimed. Due before Thursday lab. Questions marked ★ reappear on the midterm or capstone. |
+| Weekly Quizzes | 5% | 14 quizzes on Canvas, tied to the assigned reading. Open-note, untimed. Due before that week's lab. Questions marked ★ reappear on the midterm or capstone. |
 | DataCamp Courses | 15% | 8 required courses = 10% (graded on completion only, not speed or score). 2 optional bonus courses = up to 5% extra credit. See the DataCamp page for deadlines. |
 | Midterm Exam | 20% | Module 9. In-class, 75 minutes. Covers Modules 1–8. One double-sided cheatsheet allowed (handwritten or printed). No laptops, no phones. |
 | Capstone Project | 25% | Module 16. End-to-end retail sales analysis submitted as a GitHub repo with a Jupyter notebook. 5–7 minute live presentation. See the capstone rubric on the course website. |
@@ -235,7 +234,7 @@ This course uses USF's Canvas learning management system. All assignments, quizz
 Class sessions may be recorded using lecture capture technology. Student participation in live discussions may be captured. Recordings are made available only to students enrolled in this course, to assist those who cannot attend a live session or who want to review content. Students who prefer to participate via audio only may disable their video camera — please discuss this with the instructor.
 
 ### Laptop Usage
-Bring your laptop to every class session. During lab, you are expected to have VS Code and Python running. During lecture, follow along with code — close social media and unrelated tabs. During the midterm exam, all electronic devices are prohibited. Only a printed or handwritten cheatsheet (one double-sided sheet) is permitted during the exam.
+Bring your laptop to every in-person lab session with VS Code and Python running. When completing the online lecture material, follow along with the code in your own environment — close social media and unrelated tabs. During the midterm exam, all electronic devices are prohibited. Only a printed or handwritten cheatsheet (one double-sided sheet) is permitted during the exam.
 
 ### Phone Usage
 Phones must be silenced and put away during class sessions. Students may use devices to record lectures for personal use but must continue to meet classroom behavioral expectations while doing so. Phones are not permitted during the midterm exam.
