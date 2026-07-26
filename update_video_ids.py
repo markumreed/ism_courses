@@ -13,22 +13,22 @@ from pathlib import Path
 
 # Fill in real YouTube IDs as videos are uploaded:
 VIDEO_IDS = {
-    "PLACEHOLDER_V01": "",   # Variables & Data Types
-    "PLACEHOLDER_V02": "",   # Operators
-    "PLACEHOLDER_V03": "",   # F-strings
-    "PLACEHOLDER_V04": "",   # Conditionals
-    "PLACEHOLDER_V05": "",   # For Loops
-    "PLACEHOLDER_V06": "",   # Dictionaries
+    "PLACEHOLDER_V01": "h4yRB6pcq2Q",   # Variables & Data Types
+    "PLACEHOLDER_V02": "TgHxYmog4Xc",   # Operators
+    "PLACEHOLDER_V03": "hppj38Nf5pI",   # F-strings
+    "PLACEHOLDER_V04": "825mYnRp5hk",   # Conditionals
+    "PLACEHOLDER_V05": "mgKrEDyOE3k",   # For Loops
+    "PLACEHOLDER_V06": "dbg9NV307xQ",   # Dictionaries
     "PLACEHOLDER_V07": "",   # Functions
-    "PLACEHOLDER_V08": "",   # Debugging
+    "PLACEHOLDER_V08": "qgUS3QyPgdM",   # Debugging
     "PLACEHOLDER_V09": "",   # Terminal Commands
-    "PLACEHOLDER_V10": "",   # Git Basics
-    "PLACEHOLDER_V11": "",   # GitHub Workflow
-    "PLACEHOLDER_V12": "",   # AI Literacy
-    "PLACEHOLDER_V13": "",   # What is a Computer
+    "PLACEHOLDER_V10": "shA5AAp2Yuc",   # Git Basics
+    "PLACEHOLDER_V11": "BCBP0nxFt9c",   # GitHub Workflow
+    "PLACEHOLDER_V12": "j9F9ptblkD8",   # AI Literacy
+    "PLACEHOLDER_V13": "FF6fwpEQgW4",   # What is a Computer
     "PLACEHOLDER_V14": "",   # Python Setup
-    "PLACEHOLDER_V15": "",   # Lists & Tuples
-    "PLACEHOLDER_V16": "",   # CSV File I/O
+    "PLACEHOLDER_V15": "F-wTdh-0SQM",   # Lists & Tuples
+    "PLACEHOLDER_V16": "M-OynupFLwc",   # CSV File I/O
     "PLACEHOLDER_V17": "",   # pandas Intro
     "PLACEHOLDER_V18": "",   # Data Cleaning
     "PLACEHOLDER_V19": "",   # Aggregation & Charts
@@ -85,7 +85,7 @@ ISM3232_LAB_IDS = {
     "PLACEHOLDER_LAB_W16": "",   # ISM3232 Lab W16 — GenAI Feature & Final Demo
 }
 
-ROOT        = Path("/home/markumreed/Documents/ism_courses")
+ROOT        = Path(__file__).resolve().parent
 ism2411_dir = ROOT / "ism2411" / "pages"
 ism3232_dir = ROOT / "ism3232" / "docs"
 
