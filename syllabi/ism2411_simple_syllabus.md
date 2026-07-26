@@ -147,7 +147,7 @@ For questions that may benefit the whole class (debugging approaches, assignment
 | DataCamp Courses | 15% | 8 required courses = 10% (graded on completion only, not speed or score). 2 optional bonus courses = up to 5% extra credit. See the DataCamp page for deadlines. |
 | Midterm Exam | 20% | Module 9. In-class, 75 minutes. Covers Modules 1–8. One double-sided cheatsheet allowed (handwritten or printed). No laptops, no phones. |
 | Capstone Project | 25% | Module 16. End-to-end retail sales analysis submitted as a GitHub repo with a Jupyter notebook. 5–7 minute live presentation. See the capstone rubric on the course website. |
-| Participation | 5% | Holistic assessment at midterm and end of semester: in-class engagement, helping peers, completing in-class activities, attending office hours, demonstrating effort. |
+| Lab Participation & Engagement | 5% | Holistic assessment at midterm and end of semester: engagement during the weekly in-person lab, helping peers, completing in-class activities, attending office hours, demonstrating effort. |
 | **Total** | **100%** | |
 | DataCamp Bonus | Up to +5% | Completion of up to 2 optional DataCamp courses. Cannot raise the DataCamp component above 20% total. |
 

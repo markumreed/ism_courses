@@ -1,4 +1,4 @@
-V# Video Recording Schedule — ISM2411 & ISM3232
+# Video Recording Schedule — ISM2411 & ISM3232
 
 ## Summary
 

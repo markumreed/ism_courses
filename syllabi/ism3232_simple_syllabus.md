@@ -143,7 +143,7 @@ Messages that do not meet professional standards will be returned without a resp
 | Midterm Practical Exam | 20% | Week 9. Open notes (own printed or handwritten materials only — no internet, no AI, no classmates). Covers Weeks 1–8: tracing code, fixing bugs, and writing functions. |
 | Capstone Project | 30% | Weeks 13–16. Includes: proposal and SQL schema (Week 13), database integration (Week 14), Streamlit interface (Week 15), AI feature and live demo (Week 16). Submitted as a GitHub repository URL. |
 | Portfolio | 5% | GitHub profile reflecting 16 weeks of iterative, committed development. Assessed at end of semester. |
-| Participation | 5% | In-class engagement, discussion board contributions, peer feedback, and demonstration of professional effort. |
+| Lab Participation & Engagement | 5% | Attendance and engagement during the weekly in-person lab, discussion board contributions, peer feedback, and demonstration of professional effort. |
 | **Total** | **100%** | |
 | Automation Bonus | Up to +5% | Optional: automate a meaningful part of your development workflow. Details provided in Canvas. |
 
