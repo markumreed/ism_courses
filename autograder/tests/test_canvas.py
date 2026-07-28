@@ -126,3 +126,25 @@ def test_get_failure_raises():
 
     with pytest.raises(CanvasError, match="403"):
         client.find_assignment_id("Lab 3")
+
+
+def test_download_attachment_writes_content(tmp_path):
+    client, session = make_client()
+    session.get_responses["https://files.example.com/pricer.py"] = FakeResponse(
+        200, content=b"print('hello')"
+    )
+    dest = tmp_path / "pricer.py"
+
+    client.download_attachment({"url": "https://files.example.com/pricer.py"}, dest)
+
+    assert dest.read_bytes() == b"print('hello')"
+
+
+def test_download_attachment_failure_raises(tmp_path):
+    client, session = make_client()
+    session.get_responses["https://files.example.com/pricer.py"] = FakeResponse(404, text="not found")
+
+    with pytest.raises(CanvasError, match="404"):
+        client.download_attachment(
+            {"url": "https://files.example.com/pricer.py"}, tmp_path / "pricer.py"
+        )
