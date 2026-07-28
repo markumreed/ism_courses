@@ -1,0 +1,32 @@
+course: ism3232
+key: week07_assignment
+canvas_display_name: "Assignment 7: Functions, Modules & pytest"
+canvas_assignment_id: null
+submission_type: github_url
+expected_files: ["main.py"]
+run:
+  command: "python3 {file}"
+  timeout_seconds: 10
+mechanical_checks: ["file_present", "runs_without_error", "pytest_passes"]
+scoring_type: points
+# Point split is a template default (15 total) - adjust to match the real
+# Canvas assignment's configured point value once known. Correctness is
+# still human-scored: ism3232/docs/week07_lab.html asks for
+# "pytest -v with all eight tests green" via screenshot, which the
+# instructor confirms visually rather than trusting a student-authored
+# suite as ground truth (captured pytest output is shown for reference).
+rubric:
+  submission:
+    points: 2
+    source: mechanical
+    check: file_present
+  correctness:
+    points: 10
+    source: human
+    prompt: >-
+      Compare captured main.py output and pytest results to the deliverables
+      listed on ism3232/docs/week07_lab.html.
+  code_quality:
+    points: 3
+    source: human
+    prompt: "Meaningful names, docstrings/comments where useful, readable code."

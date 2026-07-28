@@ -1,0 +1,41 @@
+course: ism3232
+key: developer_workflow
+# Developer Workflow is assessed "holistically across all submissions
+# throughout the semester" per the syllabus (15% of the final grade), not
+# tied to one week's deliverable. Point this at a running "Developer
+# Workflow" gradebook column you create in Canvas, and re-run
+# fetch/check/upload against whichever repo state you want to score.
+canvas_display_name: "Developer Workflow"
+canvas_assignment_id: null
+submission_type: github_url
+expected_files: []
+mechanical_checks:
+  - ruff_clean
+  - pytest_passes
+  - git_log_commit_count
+  - git_log_message_quality
+  - git_log_spread
+scoring_type: points
+# Translates the syllabus's 5 assessed criteria (Developer Workflow Grade,
+# 15%) into a 5x3-point breakdown. Fully mechanical - no human input.
+rubric:
+  ritual_evidence:
+    points: 3
+    source: mechanical
+    check: git_log_commit_count
+  ruff_clean:
+    points: 3
+    source: mechanical
+    check: ruff_clean
+  pytest_green:
+    points: 3
+    source: mechanical
+    check: pytest_passes
+  commit_message_quality:
+    points: 3
+    source: mechanical
+    check: git_log_message_quality
+  commit_history_iterative:
+    points: 3
+    source: mechanical
+    check: git_log_spread

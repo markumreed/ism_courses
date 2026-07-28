@@ -1,0 +1,33 @@
+course: ism3232
+key: capstone
+canvas_display_name: "Capstone Project"
+canvas_assignment_id: null
+submission_type: github_url
+expected_files: []
+mechanical_checks: ["file_present", "runs_without_error", "pytest_passes"]
+scoring_type: points
+# Matches the 5-component, 100-point rubric in
+# ism3232/docs/capstone_rubric.html exactly (each component's point tiers
+# are discrete: e.g. OOP Design is 25/18/12/6/0, not a continuous scale).
+# The instructor enters the tier's point value directly for each component.
+rubric:
+  proposal_design:
+    points: 15
+    source: human
+    prompt: "Proposal & Design Document - see capstone_rubric.html component 1 (15/10/5/0 tiers)."
+  oop_design:
+    points: 25
+    source: human
+    prompt: "OOP Design (models.py) - see capstone_rubric.html component 2 (25/18/12/6/0 tiers)."
+  database_layer:
+    points: 20
+    source: human
+    prompt: "Database Layer (database.py) - see capstone_rubric.html component 3 (20/14/8/4/0 tiers)."
+  streamlit_interface:
+    points: 25
+    source: human
+    prompt: "Streamlit Interface (app.py) - see capstone_rubric.html component 4 (25/.../0 tiers)."
+  genai_feature:
+    points: 15
+    source: human
+    prompt: "GenAI Feature (ai_feature.py) - see capstone_rubric.html component 5 (15/.../0 tiers)."
