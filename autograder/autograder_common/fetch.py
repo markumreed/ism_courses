@@ -31,8 +31,9 @@ def fetch_canvas_upload(submission, canvas_client, dest_dir):
 
 def fetch_github_url(submission, dest_dir):
     """submission: a Canvas submission dict with 'url' (the GitHub link the
-    student pasted into Canvas). Shallow-clones the repo into dest_dir.
-    Returns dest_dir."""
+    student pasted into Canvas). Clones the repo (full history, needed for
+    git-log-based checks) into dest_dir, replacing any existing directory
+    there. Returns dest_dir."""
     url = submission.get("url")
     if not url:
         raise FetchError("no URL on this submission")
