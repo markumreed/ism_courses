@@ -1,0 +1,35 @@
+course: ism2411
+key: week03_lab
+# Exact Canvas assignment name to look up via the API. Set
+# canvas_assignment_id below instead if the name lookup is ambiguous or the
+# real Canvas assignment is named differently.
+canvas_display_name: "Lab 3: Product Pricer with F-Strings"
+canvas_assignment_id: null
+submission_type: canvas_upload
+expected_files: ["pricer.py"]
+run:
+  command: "python3 {file}"
+  timeout_seconds: 10
+mechanical_checks: ["file_present", "runs_without_error"]
+scoring_type: points
+# Matches the syllabus's fixed 10-point Lab Grading Rubric
+# (see syllabi/ism2411_simple_syllabus.md), applied identically to every lab.
+rubric:
+  submission:
+    points: 1
+    source: mechanical
+    check: file_present
+  correctness:
+    points: 4
+    source: human
+    prompt: >-
+      Compare the captured stdout to each exercise's stated "Expected: ..."
+      output on ism2411/pages/week03_lab.html (exercises 1-4).
+  completion:
+    points: 3
+    source: human
+    prompt: "Are exercises 1-4 all attempted and present in the file?"
+  code_quality:
+    points: 2
+    source: human
+    prompt: "Meaningful variable names, no unneeded repetition, readable code."

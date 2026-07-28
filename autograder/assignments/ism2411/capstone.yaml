@@ -1,0 +1,27 @@
+course: ism2411
+key: capstone
+canvas_display_name: "Capstone Project"
+canvas_assignment_id: null
+submission_type: github_url
+expected_files: []
+mechanical_checks: ["file_present", "runs_without_error"]
+scoring_type: capstone_levels
+# Matches the 4-dimension rubric in ism2411/pages/capstone_rubric.html,
+# each 25% of the capstone grade. Enter one of
+# excellent/good/developing/incomplete per dimension; the final score is
+# average(level 1-4) * 25, exactly as the rubric page states.
+rubric:
+  code_clarity:
+    source: human
+    prompt: >-
+      Can someone else read this code and understand what it does? See the
+      Code Clarity rubric cell on capstone_rubric.html for level definitions.
+  visualizations:
+    source: human
+    prompt: "Do the charts communicate, or do they just exist? See Visualizations rubric cell."
+  insight_quality:
+    source: human
+    prompt: "See Insight Quality rubric cell on capstone_rubric.html."
+  communication:
+    source: human
+    prompt: "See Communication rubric cell on capstone_rubric.html."
