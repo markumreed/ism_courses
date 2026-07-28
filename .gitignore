@@ -1,4 +1,23 @@
-runs/
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
 __pycache__/
 *.pyc
-.pytest_cache/
+
+# Presentations
+ppt/
+
+# Local infographic staging area (files live in ism-assets submodule)
+infographics/
+
+# Canvas QTI export files — not for GitHub
+quiz_exam_fa26/
