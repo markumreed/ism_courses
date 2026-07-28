@@ -60,6 +60,19 @@ def test_fetch_github_url_clones_with_correct_url(tmp_path):
     assert args[-1] == str(dest_dir)
 
 
+def test_fetch_github_url_removes_existing_dest_before_cloning(tmp_path):
+    dest_dir = tmp_path / "student"
+    dest_dir.mkdir()
+    (dest_dir / "stale_file.txt").write_text("old content")
+    submission = {"url": "https://github.com/janedoe/ism3232-week07"}
+
+    with patch("autograder_common.fetch.subprocess.run") as fake_run:
+        fake_run.return_value.returncode = 0
+        fetch_github_url(submission, dest_dir)
+
+    assert not (dest_dir / "stale_file.txt").exists()
+
+
 def test_fetch_github_url_clone_failure_raises(tmp_path):
     submission = {"url": "https://github.com/janedoe/private-repo"}
 

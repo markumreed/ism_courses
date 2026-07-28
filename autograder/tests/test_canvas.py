@@ -4,11 +4,12 @@ from autograder_common.canvas import CanvasClient, CanvasError
 
 
 class FakeResponse:
-    def __init__(self, status_code=200, json_data=None, text="", content=b""):
+    def __init__(self, status_code=200, json_data=None, text="", content=b"", links=None):
         self.status_code = status_code
         self._json_data = json_data
         self.text = text
         self.content = content
+        self.links = links or {}
 
     def json(self):
         return self._json_data
@@ -24,6 +25,8 @@ class FakeSession:
 
     def get(self, url, params=None):
         self.get_calls.append((url, params))
+        if url in self.get_responses:
+            return self.get_responses[url]
         for prefix, response in self.get_responses.items():
             if url.startswith(prefix):
                 return response
@@ -78,6 +81,41 @@ def test_list_submissions_returns_json():
     result = client.list_submissions(55)
 
     assert result == [{"user_id": 1, "user": {"name": "Jane Doe"}}]
+
+
+def test_list_submissions_follows_pagination():
+    client, session = make_client()
+    page1_url = "https://example.instructure.com/api/v1/courses/10/assignments/55/submissions"
+    page2_url = "https://example.instructure.com/api/v1/courses/10/assignments/55/submissions?page=2"
+    session.get_responses[page1_url] = FakeResponse(
+        200,
+        json_data=[{"user_id": 1, "user": {"name": "Jane Doe"}}],
+        links={"next": {"url": page2_url}},
+    )
+    session.get_responses[page2_url] = FakeResponse(
+        200, json_data=[{"user_id": 2, "user": {"name": "John Smith"}}]
+    )
+
+    result = client.list_submissions(55)
+
+    assert result == [
+        {"user_id": 1, "user": {"name": "Jane Doe"}},
+        {"user_id": 2, "user": {"name": "John Smith"}},
+    ]
+
+
+def test_find_assignment_id_follows_pagination():
+    client, session = make_client()
+    page1_url = "https://example.instructure.com/api/v1/courses/10/assignments"
+    page2_url = "https://example.instructure.com/api/v1/courses/10/assignments?page=2"
+    session.get_responses[page1_url] = FakeResponse(
+        200, json_data=[{"id": 1, "name": "Lab 1"}], links={"next": {"url": page2_url}}
+    )
+    session.get_responses[page2_url] = FakeResponse(
+        200, json_data=[{"id": 101, "name": "Lab 101"}]
+    )
+
+    assert client.find_assignment_id("Lab 101") == 101
 
 
 def test_get_current_grade_returns_score():

@@ -1,6 +1,7 @@
 """Resolve a Canvas submission (file upload or GitHub URL) into a local
 directory containing the student's code."""
 import re
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -40,8 +41,10 @@ def fetch_github_url(submission, dest_dir):
         raise FetchError(f"URL does not look like a GitHub link: {url}")
     clone_url = f"https://github.com/{match.group('owner')}/{match.group('repo')}.git"
     dest_dir = Path(dest_dir)
+    if dest_dir.exists():
+        shutil.rmtree(dest_dir)
     result = subprocess.run(
-        ["git", "clone", "--depth", "1", clone_url, str(dest_dir)],
+        ["git", "clone", clone_url, str(dest_dir)],
         capture_output=True,
         text=True,
     )

@@ -16,16 +16,32 @@ class CanvasClient:
         self.session = session or requests.Session()
         self.session.headers.update({"Authorization": f"Bearer {token}"})
 
-    def _get(self, path, params=None):
-        url = f"{self.base_url}{path}"
-        resp = self.session.get(url, params=params)
+    def _get(self, path, params=None, url=None):
+        target = url or f"{self.base_url}{path}"
+        resp = self.session.get(target, params=params if url is None else None)
         if resp.status_code != 200:
-            raise CanvasError(f"GET {url} failed: {resp.status_code} {resp.text[:200]}")
-        return resp.json()
+            raise CanvasError(f"GET {target} failed: {resp.status_code} {resp.text[:200]}")
+        return resp
+
+    def _get_json(self, path, params=None):
+        return self._get(path, params=params).json()
+
+    def _get_all_pages(self, path, params=None):
+        """GET path, following Link: rel="next" pagination until exhausted.
+        Returns the concatenated JSON list across all pages."""
+        results = []
+        resp = self._get(path, params=params)
+        results.extend(resp.json())
+        next_url = resp.links.get("next", {}).get("url")
+        while next_url:
+            resp = self._get(path=None, url=next_url)
+            results.extend(resp.json())
+            next_url = resp.links.get("next", {}).get("url")
+        return results
 
     def find_assignment_id(self, assignment_name):
         """Look up a Canvas assignment_id by exact name match within the course."""
-        assignments = self._get(
+        assignments = self._get_all_pages(
             f"/api/v1/courses/{self.course_id}/assignments", params={"per_page": 100}
         )
         matches = [a for a in assignments if a["name"] == assignment_name]
@@ -43,7 +59,7 @@ class CanvasClient:
     def list_submissions(self, assignment_id):
         """Return the list of submission dicts for the assignment (one per
         student), each including 'user' (name) via include[]=user."""
-        return self._get(
+        return self._get_all_pages(
             f"/api/v1/courses/{self.course_id}/assignments/{assignment_id}/submissions",
             params={"per_page": 100, "include[]": "user"},
         )
@@ -56,7 +72,7 @@ class CanvasClient:
         dest_path.write_bytes(resp.content)
 
     def get_current_grade(self, assignment_id, user_id):
-        data = self._get(
+        data = self._get_json(
             f"/api/v1/courses/{self.course_id}/assignments/{assignment_id}/submissions/{user_id}"
         )
         return data.get("score")
