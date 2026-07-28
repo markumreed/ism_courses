@@ -1,0 +1,3 @@
+# Fill in your institution's real Canvas details before running fetch/upload.
+canvas_base_url: "https://YOUR_INSTITUTION.instructure.com"
+canvas_course_id: 0

@@ -1,0 +1,8 @@
+# Fill in your institution's real Canvas details before running fetch/upload.
+# canvas_base_url is your Canvas instance's root URL (e.g. the URL you see
+# when logged into Canvas, without any /courses/... path).
+# canvas_course_id is the number in the course's Canvas URL:
+#   https://YOUR_INSTITUTION.instructure.com/courses/12345
+#                                                     ^^^^^ this
+canvas_base_url: "https://YOUR_INSTITUTION.instructure.com"
+canvas_course_id: 0
