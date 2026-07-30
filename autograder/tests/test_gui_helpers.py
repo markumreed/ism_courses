@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 
 from autograder_common import gui_helpers
+from autograder_common.scoring import ScoringError
 
 
 def test_student_key_strips_non_alphanumeric_and_lowercases():
@@ -82,3 +83,82 @@ def test_compute_student_record_marks_mechanical_fields(tmp_path):
     assert record["submission"] is True
     assert "correctness" not in record  # human fields are never set here
     assert "hello" in record["captured_output"]
+
+
+def test_live_score_returns_score_for_complete_row():
+    row = {"mech_submission": "True", "human_correctness": "4"}
+    assignment_config = {
+        "scoring_type": "points",
+        "rubric": {
+            "submission": {"points": 1, "source": "mechanical", "check": "file_present"},
+            "correctness": {"points": 4, "source": "human"},
+        },
+    }
+
+    assert gui_helpers.live_score(row, assignment_config) == 5.0
+
+
+def test_live_score_returns_none_for_incomplete_row():
+    row = {"mech_submission": "True", "human_correctness": ""}
+    assignment_config = {
+        "scoring_type": "points",
+        "rubric": {
+            "submission": {"points": 1, "source": "mechanical", "check": "file_present"},
+            "correctness": {"points": 4, "source": "human"},
+        },
+    }
+
+    assert gui_helpers.live_score(row, assignment_config) is None
+
+
+def test_live_score_returns_none_for_out_of_range_human_value():
+    row = {"mech_submission": "True", "human_correctness": "99"}
+    assignment_config = {
+        "scoring_type": "points",
+        "rubric": {
+            "submission": {"points": 1, "source": "mechanical", "check": "file_present"},
+            "correctness": {"points": 4, "source": "human"},
+        },
+    }
+
+    assert gui_helpers.live_score(row, assignment_config) is None
+
+
+def test_build_upload_plan_pairs_rows_with_current_grades():
+    rows = [
+        {
+            "student_key": "janedoe", "student_name": "Jane Doe", "status": "ok",
+            "mech_submission": "True", "human_correctness": "4", "comment": "Nice work",
+        },
+        {
+            "student_key": "johnsmith", "student_name": "John Smith", "status": "ok",
+            "mech_submission": "True", "human_correctness": "3", "comment": "",
+        },
+    ]
+    assignment_config = {
+        "scoring_type": "points",
+        "rubric": {
+            "submission": {"points": 1, "source": "mechanical", "check": "file_present"},
+            "correctness": {"points": 4, "source": "human"},
+        },
+    }
+    current_grades = {"janedoe": 3.0, "johnsmith": None}
+
+    plan = gui_helpers.build_upload_plan(rows, assignment_config, current_grades)
+
+    assert plan == [
+        {"student_key": "janedoe", "student_name": "Jane Doe", "current_grade": 3.0, "new_grade": 5.0, "comment": "Nice work"},
+        {"student_key": "johnsmith", "student_name": "John Smith", "current_grade": None, "new_grade": 4.0, "comment": ""},
+    ]
+
+
+def test_build_upload_plan_skips_non_ok_rows():
+    rows = [{"student_key": "janedoe", "student_name": "Jane Doe", "status": "fetch-failed"}]
+    assignment_config = {
+        "scoring_type": "points",
+        "rubric": {"submission": {"points": 1, "source": "mechanical", "check": "file_present"}},
+    }
+
+    plan = gui_helpers.build_upload_plan(rows, assignment_config, {"janedoe": None})
+
+    assert plan == []

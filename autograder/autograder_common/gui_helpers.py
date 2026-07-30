@@ -6,6 +6,7 @@ from pathlib import Path
 
 from . import checks
 from .config import load_assignment_config
+from .scoring import ScoringError, compute_score
 
 
 def student_key(user_name):
@@ -89,3 +90,35 @@ def compute_student_record(student_dir, student_key_val, student_name, assignmen
             passed, _ = signals.get(spec["check"], (False, ""))
             record[field_name] = passed
     return record
+
+
+def live_score(row, assignment_config):
+    """Compute the current score for a (possibly incomplete) worksheet row.
+    Returns None instead of raising when a human field is still blank or
+    out of range, so the GUI can render "-" without crashing the page."""
+    try:
+        return compute_score(row, assignment_config)
+    except ScoringError:
+        return None
+
+
+def build_upload_plan(rows, assignment_config, current_grades):
+    """rows: worksheet rows (as read by worksheet.read_worksheet).
+    current_grades: {student_key: float|None}, already fetched by the caller
+    via CanvasClient.get_current_grade (kept out of this function so it has
+    no Canvas dependency and stays trivially testable).
+
+    Returns a list of {student_key, student_name, current_grade, new_grade,
+    comment} for every status == "ok" row, in row order."""
+    plan = []
+    for row in rows:
+        if row.get("status") != "ok":
+            continue
+        plan.append({
+            "student_key": row["student_key"],
+            "student_name": row["student_name"],
+            "current_grade": current_grades.get(row["student_key"]),
+            "new_grade": compute_score(row, assignment_config),
+            "comment": row.get("comment", ""),
+        })
+    return plan
