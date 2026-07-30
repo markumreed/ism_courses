@@ -188,7 +188,6 @@ for row in rows:
                     value=current_val if current_val is not None else 0.0,
                     key=widget_key,
                 )
-                value = str(value) if current.strip() or value else ""
             row[col_name] = str(value)
 
         row["comment"] = st.text_area(
