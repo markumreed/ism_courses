@@ -53,6 +53,30 @@ python grade_ism2411.py upload  --assignment week03_lab
 Same for `grade_ism3232.py`, using assignment keys from
 `assignments/ism3232/`.
 
+## GUI (optional)
+
+A local Streamlit web app covers the same fetch/check/grade/upload workflow
+as the CLI above, with an in-browser grading review table instead of editing
+`review.csv` in a spreadsheet app:
+
+```bash
+cd autograder
+streamlit run gui.py
+```
+
+This opens a browser tab. Pick a course and assignment, click **Fetch
+Submissions** then **Run Checks** (same as `fetch`/`check` above), expand a
+student's row to see their captured output and enter scores for the
+human-judged rubric fields — for points-based rubrics, tick the **Graded**
+checkbox next to a field once you've entered its score (an unticked field is
+treated as not-yet-graded, even if a number is showing). Click **Save
+Worksheet** to persist your edits to the same `review.csv` the CLI reads and
+writes, so you can freely switch between the GUI and CLI on the same
+assignment. **Preview Upload** shows the current → new grade per student
+(same as `upload --dry-run`); **Post Grades to Canvas** stays disabled until
+you've previewed and typed the assignment key to confirm, then posts grades
+and writes the same `upload_log_<timestamp>.json` audit file the CLI writes.
+
 ## Adding a new assignment
 
 Copy an existing YAML file in `assignments/ism2411/` or

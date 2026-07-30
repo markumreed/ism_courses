@@ -59,6 +59,7 @@ if st.session_state.get("_current_state_key") != state_key:
     st.session_state["_current_state_key"] = state_key
     st.session_state["edited_rows"] = None
     st.session_state["upload_previewed"] = False
+st.session_state.setdefault("check_gen", 0)
 
 worksheet_path = RUNS_DIR / assignment_key / "review.csv"
 
@@ -138,6 +139,7 @@ with col2:
             worksheet.build_worksheet(worksheet_path, students, assignment_config)
             st.session_state["edited_rows"] = None
             st.session_state["upload_previewed"] = False
+            st.session_state["check_gen"] += 1
             st.success(f"Wrote {worksheet_path}")
 
 # ---------------------------------------------------------------------------
@@ -173,7 +175,7 @@ for row in rows:
             col_name = f"{worksheet.HUMAN_COLUMN_PREFIX}{field}"
             spec = assignment_config["rubric"][field]
             prompt = spec.get("prompt", field)
-            widget_key = f"{state_key}:{row['student_key']}:{field}"
+            widget_key = f"{state_key}:{st.session_state['check_gen']}:{row['student_key']}:{field}"
             if scoring_type == "capstone_levels":
                 options = ["", "excellent", "good", "developing", "incomplete"]
                 current = row.get(col_name, "")
@@ -195,7 +197,8 @@ for row in rows:
                 row[col_name] = str(value) if graded else ""
 
         row["comment"] = st.text_area(
-            "Comment", value=row.get("comment", ""), key=f"{state_key}:{row['student_key']}:comment"
+            "Comment", value=row.get("comment", ""),
+            key=f"{state_key}:{st.session_state['check_gen']}:{row['student_key']}:comment"
         )
 
         score = gui_helpers.live_score(row, assignment_config)
@@ -255,18 +258,22 @@ if st.button("Preview Upload"):
                 for s in submissions
             }
             current_grades = {}
-            for row in saved_rows:
-                if row.get("status") != "ok":
-                    continue
-                user_id = key_to_user_id.get(row["student_key"])
-                if user_id is not None:
-                    current_grades[row["student_key"]] = client.get_current_grade(assignment_id, user_id)
-            plan = gui_helpers.build_upload_plan(saved_rows, assignment_config, current_grades)
-            st.session_state["upload_plan"] = plan
-            st.session_state["upload_previewed"] = True
-            for item in plan:
-                current_str = "ungraded" if item["current_grade"] is None else item["current_grade"]
-                st.write(f"{item['student_name']}: {current_str} → {item['new_grade']}")
+            try:
+                for row in saved_rows:
+                    if row.get("status") != "ok":
+                        continue
+                    user_id = key_to_user_id.get(row["student_key"])
+                    if user_id is not None:
+                        current_grades[row["student_key"]] = client.get_current_grade(assignment_id, user_id)
+            except CanvasError as e:
+                st.error(f"Preview failed: {e}")
+            else:
+                plan = gui_helpers.build_upload_plan(saved_rows, assignment_config, current_grades)
+                st.session_state["upload_plan"] = plan
+                st.session_state["upload_previewed"] = True
+                for item in plan:
+                    current_str = "ungraded" if item["current_grade"] is None else item["current_grade"]
+                    st.write(f"{item['student_name']}: {current_str} → {item['new_grade']}")
 
 confirm_text = st.text_input(f"Type '{assignment_key}' to confirm posting grades")
 post_disabled = not (st.session_state.get("upload_previewed") and confirm_text == assignment_key)
@@ -292,6 +299,7 @@ if st.button("Post Grades to Canvas", disabled=post_disabled):
             from datetime import datetime, timezone
 
             log = []
+            error_message = None
             for row in saved_rows:
                 if row.get("status") != "ok":
                     continue
@@ -299,8 +307,12 @@ if st.button("Post Grades to Canvas", disabled=post_disabled):
                 if user_id is None:
                     continue
                 score = gui_helpers.live_score(row, assignment_config)
-                current = client.get_current_grade(assignment_id, user_id)
-                client.post_grade(assignment_id, user_id, score, row.get("comment") or None)
+                try:
+                    current = client.get_current_grade(assignment_id, user_id)
+                    client.post_grade(assignment_id, user_id, score, row.get("comment") or None)
+                except CanvasError as e:
+                    error_message = str(e)
+                    break
                 log.append({"user_id": user_id, "name": row["student_name"], "previous": current, "posted": score})
 
             runs_dir_path = RUNS_DIR / assignment_key
@@ -308,5 +320,12 @@ if st.button("Post Grades to Canvas", disabled=post_disabled):
             timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
             log_path = runs_dir_path / f"upload_log_{timestamp}.json"
             log_path.write_text(json.dumps(log, indent=2))
-            st.success(f"Posted {len(log)} grade(s). Log: {log_path}")
+
+            if error_message:
+                st.error(
+                    f"Upload stopped after posting {len(log)} grade(s) due to a Canvas "
+                    f"error: {error_message}. Log: {log_path}"
+                )
+            else:
+                st.success(f"Posted {len(log)} grade(s). Log: {log_path}")
             st.session_state["upload_previewed"] = False
