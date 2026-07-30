@@ -179,6 +179,7 @@ for row in rows:
                 current = row.get(col_name, "")
                 index = options.index(current) if current in options else 0
                 value = st.selectbox(prompt, options, index=index, key=widget_key)
+                row[col_name] = str(value)
             else:
                 points = spec.get("points", 0)
                 current = row.get(col_name, "")
@@ -186,9 +187,12 @@ for row in rows:
                 value = st.number_input(
                     prompt, min_value=0.0, max_value=float(points),
                     value=current_val if current_val is not None else 0.0,
-                    key=widget_key,
+                    key=f"{widget_key}:value",
                 )
-            row[col_name] = str(value)
+                graded = st.checkbox(
+                    "Graded", value=current_val is not None, key=f"{widget_key}:graded"
+                )
+                row[col_name] = str(value) if graded else ""
 
         row["comment"] = st.text_area(
             "Comment", value=row.get("comment", ""), key=f"{state_key}:{row['student_key']}:comment"
