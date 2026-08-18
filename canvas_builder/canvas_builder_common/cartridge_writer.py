@@ -111,3 +111,12 @@ def build_cartridge_files(course: CourseManifest) -> dict[str, bytes]:
     files = {path: content for _ident, _rtype, path, content in resource_entries}
     files["imsmanifest.xml"] = manifest_xml.encode("utf-8")
     return files
+
+
+def write_cartridge(course: CourseManifest, out_path: str) -> None:
+    import zipfile
+
+    files = build_cartridge_files(course)
+    with zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        for path, content in files.items():
+            zf.writestr(path, content)
