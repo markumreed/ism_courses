@@ -21,3 +21,6 @@ infographics/
 
 # Canvas QTI export files — not for GitHub
 quiz_exam_fa26/
+
+# Canvas cartridge builds — not for GitHub
+canvas_builder/*.imscc

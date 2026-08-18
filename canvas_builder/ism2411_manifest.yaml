@@ -1,0 +1,152 @@
+course_code: ISM2411
+course_title: "ISM2411: Python for Business"
+site_base_url: https://markumreed.github.io/ism2411/
+
+modules:
+  - title: "Module 1 — What is a Computer?"
+    items:
+      - {label: "Reading", site_path: "pages/week01_reading.html"}
+      - {label: "Lecture", site_path: "pages/week01_lecture.html"}
+      - {label: "Pre-Course Setup Walkthrough", site_path: "pages/week01_lab.html"}
+    # No assignment: Module 1 is orientation/setup, not a graded lab (per syllabus).
+
+  - title: "Module 2 — The Command Line"
+    items:
+      - {label: "Reading", site_path: "pages/week02_reading.html"}
+      - {label: "Lecture", site_path: "pages/week02_lecture.html"}
+      - {label: "Lab", site_path: "pages/week02_lab.html"}
+    assignment: {name: "Lab 1", group: "Weekly Labs", points: 10}
+
+  - title: "Module 3 — Variables & First Output"
+    items:
+      - {label: "Reading", site_path: "pages/week03_reading.html"}
+      - {label: "Lecture", site_path: "pages/week03_lecture.html"}
+      - {label: "Lab", site_path: "pages/week03_lab.html"}
+    assignment: {name: "Lab 2", group: "Weekly Labs", points: 10}
+
+  - title: "Module 4 — Operators & Expressions"
+    items:
+      - {label: "Reading", site_path: "pages/week04_reading.html"}
+      - {label: "Lecture", site_path: "pages/week04_lecture.html"}
+      - {label: "Lab", site_path: "pages/week04_lab.html"}
+    assignment: {name: "Lab 3", group: "Weekly Labs", points: 10}
+
+  - title: "Module 5 — Conditionals"
+    items:
+      - {label: "Reading", site_path: "pages/week05_reading.html"}
+      - {label: "Lecture", site_path: "pages/week05_lecture.html"}
+      - {label: "Lab", site_path: "pages/week05_lab.html"}
+    assignment: {name: "Lab 4", group: "Weekly Labs", points: 10}
+
+  - title: "Module 6 — Loops"
+    items:
+      - {label: "Reading", site_path: "pages/week06_reading.html"}
+      - {label: "Lecture", site_path: "pages/week06_lecture.html"}
+      - {label: "Lab", site_path: "pages/week06_lab.html"}
+    assignment: {name: "Lab 5", group: "Weekly Labs", points: 10}
+
+  - title: "Module 7 — Functions, Debugging & AI Literacy"
+    items:
+      - {label: "Reading", site_path: "pages/week07_reading.html"}
+      - {label: "Lecture", site_path: "pages/week07_lecture.html"}
+      - {label: "Lab", site_path: "pages/week07_lab.html"}
+    assignment: {name: "Lab 6", group: "Weekly Labs", points: 10}
+
+  - title: "Module 8 — Git & GitHub"
+    items:
+      - {label: "Reading", site_path: "pages/week08_reading.html"}
+      - {label: "Lecture", site_path: "pages/week08_lecture.html"}
+      - {label: "Lab", site_path: "pages/week08_lab.html"}
+    assignment: {name: "Lab 7", group: "Weekly Labs", points: 10}
+
+  - title: "Module 9 — Midterm Exam"
+    items:
+      - {label: "Midterm Overview", site_path: "pages/week09_midterm.html"}
+    assignment: {name: "Midterm Exam", group: "Midterm Exam", points: 100}
+
+  - title: "Module 10 — Lists & Tuples"
+    items:
+      - {label: "Reading", site_path: "pages/week10_reading.html"}
+      - {label: "Lecture", site_path: "pages/week10_lecture.html"}
+      - {label: "Lab", site_path: "pages/week10_lab.html"}
+    assignment: {name: "Lab 8", group: "Weekly Labs", points: 10}
+
+  - title: "Module 11 — Dictionaries"
+    items:
+      - {label: "Reading", site_path: "pages/week11_reading.html"}
+      - {label: "Lecture", site_path: "pages/week11_lecture.html"}
+      - {label: "Lab", site_path: "pages/week11_lab.html"}
+    assignment: {name: "Lab 9", group: "Weekly Labs", points: 10}
+
+  - title: "Module 12 — Working with Files"
+    items:
+      - {label: "Reading", site_path: "pages/week12_reading.html"}
+      - {label: "Lecture", site_path: "pages/week12_lecture.html"}
+      - {label: "Lab", site_path: "pages/week12_lab.html"}
+    assignment: {name: "Lab 10", group: "Weekly Labs", points: 10}
+
+  - title: "Module 13 — Intro to pandas"
+    items:
+      - {label: "Reading", site_path: "pages/week13_reading.html"}
+      - {label: "Lecture", site_path: "pages/week13_lecture.html"}
+      - {label: "Lab", site_path: "pages/week13_lab.html"}
+    assignment: {name: "Lab 11", group: "Weekly Labs", points: 10}
+
+  - title: "Module 14 — Data Cleaning & Descriptive Stats"
+    items:
+      - {label: "Reading", site_path: "pages/week14_reading.html"}
+      - {label: "Lecture", site_path: "pages/week14_lecture.html"}
+      - {label: "Lab", site_path: "pages/week14_lab.html"}
+    assignment: {name: "Lab 12", group: "Weekly Labs", points: 10}
+
+  - title: "Module 15 — Grouping & Visualization"
+    items:
+      - {label: "Reading", site_path: "pages/week15_reading.html"}
+      - {label: "Lecture", site_path: "pages/week15_lecture.html"}
+      - {label: "Lab", site_path: "pages/week15_lab.html"}
+    assignment: {name: "Lab 13", group: "Weekly Labs", points: 10}
+
+  - title: "Module 16 — Capstone Project"
+    items:
+      - {label: "Capstone Overview", site_path: "pages/week16_capstone.html"}
+      - {label: "Capstone Rubric", site_path: "pages/capstone_rubric.html"}
+    assignment: {name: "Capstone Project", group: "Capstone Project", points: 100}
+
+  # DataCamp for Classrooms — parallel track, 8 required + 2 bonus (see
+  # ism2411/pages/datacamp.html). All-or-nothing completion grade; the
+  # DataCamp platform itself tracks completion, so each item here is a
+  # placeholder the instructor marks complete/incomplete by the due week.
+  - title: "DataCamp 1 — Introduction to Python (due Week 2)"
+    items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
+    assignment: {name: "DataCamp: Introduction to Python", group: "DataCamp Courses", points: 0}
+  - title: "DataCamp 2 — Intermediate Python (due Week 4)"
+    items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
+    assignment: {name: "DataCamp: Intermediate Python", group: "DataCamp Courses", points: 0}
+  - title: "DataCamp 3 — Python Toolbox (due Week 6)"
+    items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
+    assignment: {name: "DataCamp: Python Toolbox", group: "DataCamp Courses", points: 0}
+  - title: "DataCamp 4 — Writing Functions in Python (due Week 7)"
+    items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
+    assignment: {name: "DataCamp: Writing Functions in Python", group: "DataCamp Courses", points: 0}
+  - title: "DataCamp 5 — Data Types for Data Science (due Week 10)"
+    items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
+    assignment: {name: "DataCamp: Data Types for Data Science", group: "DataCamp Courses", points: 0}
+  - title: "DataCamp 6 — Working with Dictionaries (due Week 11)"
+    items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
+    assignment: {name: "DataCamp: Working with Dictionaries", group: "DataCamp Courses", points: 0}
+  - title: "DataCamp 7 — Introduction to pandas (due Week 13)"
+    items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
+    assignment: {name: "DataCamp: Introduction to pandas", group: "DataCamp Courses", points: 0}
+  - title: "DataCamp 8 — Data Manipulation with pandas (due Week 14)"
+    items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
+    assignment: {name: "DataCamp: Data Manipulation with pandas", group: "DataCamp Courses", points: 0}
+  - title: "DataCamp Bonus — Joining Data with pandas (suggested Week 15)"
+    items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
+    assignment: {name: "DataCamp Bonus: Joining Data with pandas", group: "DataCamp Courses", points: 0}
+  - title: "DataCamp Bonus — Intro to Data Visualization with Matplotlib (suggested Week 15)"
+    items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
+    assignment: {name: "DataCamp Bonus: Intro to Data Visualization with Matplotlib", group: "DataCamp Courses", points: 0}
+
+  - title: "Participation"
+    items: [{label: "Syllabus — Grading", site_path: "pages/syllabus.html"}]
+    assignment: {name: "Lab Participation & Engagement", group: "Lab Participation & Engagement", points: 100}
