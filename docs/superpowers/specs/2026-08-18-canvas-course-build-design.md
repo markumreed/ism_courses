@@ -122,10 +122,34 @@ site organizes by week-within-unit rather than flat module numbers.
 | 10–15 | Lab 8–13 | Weekly Labs, 10 pts each |
 | 16 | Capstone Project | Capstone Project group |
 
-Plus 8 standalone DataCamp-course assignment stubs (DataCamp Courses group,
-completion-graded) linked from the DataCamp page, and one Lab Participation
-& Engagement assignment for the holistic score. Weekly-Quiz assignments are
-**not** created this pass (see Non-goals).
+Plus 10 standalone DataCamp-course assignment stubs, pulled directly from
+`ism2411/pages/datacamp.html` (completion-graded, all-or-nothing per
+course, linked to the DataCamp page for instructions), and one Lab
+Participation & Engagement assignment for the holistic score. Weekly-Quiz
+assignments are **not** created this pass (see Non-goals).
+
+**DataCamp Courses group (10%, required)** — one assignment each, due at
+the end of the listed week, 0 pts / complete-incomplete:
+
+| # | Due | Course |
+|---|---|---|
+| 1 | W2 | Introduction to Python |
+| 2 | W4 | Intermediate Python |
+| 3 | W6 | Python Toolbox |
+| 4 | W7 | Writing Functions in Python |
+| 5 | W10 | Data Types for Data Science |
+| 6 | W11 | Working with Dictionaries |
+| 7 | W13 | Introduction to pandas |
+| 8 | W14 | Data Manipulation with pandas |
+
+**DataCamp Bonus (extra credit, up to +5%, not in the 100% total)** — two
+more assignments, marked `omit_from_final_grade` off but zero-weighted /
+bonus points so they only add, never subtract:
+
+| # | Suggested by | Course |
+|---|---|---|
+| 9 | W15 | Joining Data with pandas |
+| 10 | W15 | Introduction to Data Visualization with Matplotlib |
 
 > **Flag for review:** the syllabus grading table says "14 labs total,"
 > but the week-by-week schedule table only shows 13 lab deliverables
@@ -178,9 +202,12 @@ Canvas Assignments to hold the grade, not as submission-graded items.
 1. **Site URLs** — confirm the live GitHub Pages base URL for each course
    (manifests currently placeholder these).
 2. **ISM2411 lab count discrepancy** — 13 vs. "14 labs" (see flag above).
-3. **DataCamp assignment list** — need the actual 8 (+2 bonus) DataCamp
-   course names/links from `pages/datacamp.html` to create real stubs
-   rather than generic placeholders.
+3. ~~**DataCamp assignment list**~~ — resolved: pulled directly from
+   `ism2411/pages/datacamp.html` (see the DataCamp Courses group table
+   above). `pages/datacamp.html` has no per-course links (DataCamp access
+   is via an emailed invite, not direct URLs), so each stub assignment
+   links back to the DataCamp Tracker page rather than a course-specific
+   URL.
 4. Whether Module 1's Canvas item should still be called an "Assignment"
    (ungraded, 0 pts) for the syllabus-required First-Day-Attendance
    check-in, even with quizzes deferred — or left purely informational
