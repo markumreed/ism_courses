@@ -190,10 +190,29 @@ in Python? (Select all that apply)" is a genuine multi-answer question
 (all 4 options are correct); confirm Canvas renders it as checkboxes, not
 radio buttons.
 
+### First Day Attendance / Syllabus Quiz
+
+Both syllabi require a short quiz confirming the student read the syllabus
+and is actively enrolled — USF policy allows dropping students who don't
+complete it by the deadline. Built by `_build_syllabus_quiz.py` (repo
+root), hand-authored from each syllabus's actual policies (not extracted
+from a reading page, since there's no reading page for this):
+
+```bash
+python _build_syllabus_quiz.py
+```
+
+Writes `ism2411_syllabus_quiz.zip` ("Module 1 Syllabus Quiz," 6 questions)
+and `ism3232_syllabus_quiz.zip` ("First Day Attendance Quiz," 6 questions)
+to `quiz_exam_fa26/`. Import each the same way as a weekly quiz (steps
+1–5 above), but **do not** link it into a Module — this quiz stands alone
+under the Quizzes tab as a course-entry gate, not weekly content. Point
+it into the syllabus itself: add a line to the Front Page or Syllabus
+page linking to it, since students need to find it without a Module to
+guide them there.
+
 ## Known gaps (deferred, see spec's Non-goals)
 
-- Neither course's First-Day-Attendance/Syllabus quiz is built — only the
-  weekly content quizzes above. A future pass can add these.
 - DataCamp assignments are manually marked complete/incomplete — DataCamp
   itself has no Canvas integration in this build.
 - `syllabi/ism2411_simple_syllabus.md` says "14 labs total," but the actual
