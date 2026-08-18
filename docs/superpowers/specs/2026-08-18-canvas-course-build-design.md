@@ -197,18 +197,24 @@ Canvas Assignments to hold the grade, not as submission-graded items.
 3. Hand off both `.imscc` files to the instructor to import into a real
    Canvas course — Claude does not perform the import.
 
-## Open items for the instructor to confirm before build
+## Decisions (resolved 2026-08-18)
 
-1. **Site URLs** — confirm the live GitHub Pages base URL for each course
-   (manifests currently placeholder these).
-2. **ISM2411 lab count discrepancy** — 13 vs. "14 labs" (see flag above).
+1. ~~**Site URLs**~~ — resolved: `https://markumreed.github.io/ism2411/` and
+   `https://markumreed.github.io/ism3232/`, inferred from the GitHub remote
+   (`markumreed/ism_courses`) and each README's own "Option 1" deploy
+   instructions. **Not independently confirmed as actually deployed** —
+   verify before import; if either site lives at a different URL, only the
+   `site_base_url` line in that course's manifest needs to change.
+2. ~~**ISM2411 lab count discrepancy**~~ — resolved: build off the 13-lab
+   schedule table (Modules 2–8, 10–15); the "14 labs" line in the grading
+   table is a pre-existing wording inconsistency in the syllabus source
+   itself, not something the Canvas build needs to resolve.
 3. ~~**DataCamp assignment list**~~ — resolved: pulled directly from
    `ism2411/pages/datacamp.html` (see the DataCamp Courses group table
    above). `pages/datacamp.html` has no per-course links (DataCamp access
    is via an emailed invite, not direct URLs), so each stub assignment
    links back to the DataCamp Tracker page rather than a course-specific
    URL.
-4. Whether Module 1's Canvas item should still be called an "Assignment"
-   (ungraded, 0 pts) for the syllabus-required First-Day-Attendance
-   check-in, even with quizzes deferred — or left purely informational
-   this pass.
+4. ~~**Module 1 check-in**~~ — resolved: stays purely informational this
+   pass, no placeholder assignment — consistent with deferring the
+   quiz/attendance-check system to the follow-up pass.
