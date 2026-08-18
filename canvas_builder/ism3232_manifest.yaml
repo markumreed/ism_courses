@@ -1,0 +1,146 @@
+course_code: ISM3232
+course_title: "ISM3232: Business Application Development"
+site_base_url: https://markumreed.github.io/ism3232/
+
+modules:
+  - title: "Unit 1 · Week 1 — Developer Mindset & Setup"
+    items:
+      - {label: "Reading", site_path: "docs/week01_reading.html"}
+      - {label: "Lecture", site_path: "docs/week01_lecture.html"}
+      - {label: "Lab", site_path: "docs/week01_lab.html"}
+      - {label: "Slides", site_path: "docs/week01_slides.html"}
+    assignment: {name: "Assignment 1: Setup Screenshots", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 1 · Week 2 — zsh Navigation & File Ops"
+    items:
+      - {label: "Reading", site_path: "docs/week02_reading.html"}
+      - {label: "Lecture", site_path: "docs/week02_lecture.html"}
+      - {label: "Lab", site_path: "docs/week02_lab.html"}
+      - {label: "Slides", site_path: "docs/week02_slides.html"}
+    assignment: {name: "Assignment 2: Terminal Screenshots", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 1 · Week 3 — Virtual Environments & .zshrc"
+    items:
+      - {label: "Reading", site_path: "docs/week03_reading.html"}
+      - {label: "Lecture", site_path: "docs/week03_lecture.html"}
+      - {label: "Lab", site_path: "docs/week03_lab.html"}
+      - {label: "Slides", site_path: "docs/week03_slides.html"}
+    assignment: {name: "Assignment 3: venv + .zshrc", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 1 · Week 4 — Search, Ritual & Git"
+    items:
+      - {label: "Reading", site_path: "docs/week04_reading.html"}
+      - {label: "Lecture", site_path: "docs/week04_lecture.html"}
+      - {label: "Lab", site_path: "docs/week04_lab.html"}
+      - {label: "Slides", site_path: "docs/week04_slides.html"}
+    assignment: {name: "Assignment 4: Ritual + GitHub URL", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 2 · Week 5 — Variables, Data Types & Operators"
+    items:
+      - {label: "Reading", site_path: "docs/week05_reading.html"}
+      - {label: "Lecture", site_path: "docs/week05_lecture.html"}
+      - {label: "Lab", site_path: "docs/week05_lab.html"}
+      - {label: "Slides", site_path: "docs/week05_slides.html"}
+    assignment: {name: "Assignment 5: business_data.py", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 2 · Week 6 — Conditionals, Loops & Dictionaries"
+    items:
+      - {label: "Reading", site_path: "docs/week06_reading.html"}
+      - {label: "Lecture", site_path: "docs/week06_lecture.html"}
+      - {label: "Lab", site_path: "docs/week06_lab.html"}
+      - {label: "Slides", site_path: "docs/week06_slides.html"}
+    assignment: {name: "Assignment 6: record_processor.py", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 2 · Week 7 — Functions, Modules & pytest"
+    items:
+      - {label: "Reading", site_path: "docs/week07_reading.html"}
+      - {label: "Lecture", site_path: "docs/week07_lecture.html"}
+      - {label: "Lab", site_path: "docs/week07_lab.html"}
+      - {label: "Slides", site_path: "docs/week07_slides.html"}
+    assignment: {name: "Assignment 7: business_rules.py", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 2 · Week 8 — Debugging & AI Literacy"
+    items:
+      - {label: "Reading", site_path: "docs/week08_reading.html"}
+      - {label: "Lecture", site_path: "docs/week08_lecture.html"}
+      - {label: "Lab", site_path: "docs/week08_lab.html"}
+      - {label: "Slides", site_path: "docs/week08_slides.html"}
+    assignment: {name: "Assignment 8: Fixed Code + Reflection", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 2 · Week 9 — Midterm Practical Exam"
+    items:
+      - {label: "Reading", site_path: "docs/week09_reading.html"}
+      - {label: "Lecture", site_path: "docs/week09_lecture.html"}
+      - {label: "Slides", site_path: "docs/week09_slides.html"}
+    assignment: {name: "Midterm Practical Exam", group: "Midterm Practical Exam", points: 100}
+
+  - title: "Unit 3 · Week 10 — OOP I: Classes & Objects"
+    items:
+      - {label: "Reading", site_path: "docs/week10_reading.html"}
+      - {label: "Lecture", site_path: "docs/week10_lecture.html"}
+      - {label: "Lab", site_path: "docs/week10_lab.html"}
+      - {label: "Slides", site_path: "docs/week10_slides.html"}
+    assignment: {name: "Assignment 10: models.py", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 3 · Week 11 — OOP II: Composition"
+    items:
+      - {label: "Reading", site_path: "docs/week11_reading.html"}
+      - {label: "Lecture", site_path: "docs/week11_lecture.html"}
+      - {label: "Lab", site_path: "docs/week11_lab.html"}
+      - {label: "Slides", site_path: "docs/week11_slides.html"}
+    assignment: {name: "Assignment 11: Entity + Manager", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 3 · Week 12 — OOP III: Design & Practice"
+    items:
+      - {label: "Reading", site_path: "docs/week12_reading.html"}
+      - {label: "Lecture", site_path: "docs/week12_lecture.html"}
+      - {label: "Lab", site_path: "docs/week12_lab.html"}
+      - {label: "Slides", site_path: "docs/week12_slides.html"}
+    assignment: {name: "Assignment 12: design.md + Models", group: "Weekly Assignments & Quizzes", points: 10}
+
+  - title: "Unit 4 · Week 13 — Capstone Design & SQL"
+    items:
+      - {label: "Reading", site_path: "docs/week13_reading.html"}
+      - {label: "Lecture", site_path: "docs/week13_lecture.html"}
+      - {label: "Lab", site_path: "docs/week13_lab.html"}
+      - {label: "Slides", site_path: "docs/week13_slides.html"}
+    assignment: {name: "Capstone: Proposal + schema.sql", group: "Capstone Project", points: 25}
+
+  - title: "Unit 4 · Week 14 — Python + SQL Integration"
+    items:
+      - {label: "Reading", site_path: "docs/week14_reading.html"}
+      - {label: "Lecture", site_path: "docs/week14_lecture.html"}
+      - {label: "Lab", site_path: "docs/week14_lab.html"}
+      - {label: "Slides", site_path: "docs/week14_slides.html"}
+    assignment: {name: "Capstone: database.py", group: "Capstone Project", points: 25}
+
+  - title: "Unit 4 · Week 15 — Streamlit Interface"
+    items:
+      - {label: "Reading", site_path: "docs/week15_reading.html"}
+      - {label: "Lecture", site_path: "docs/week15_lecture.html"}
+      - {label: "Lab", site_path: "docs/week15_lab.html"}
+      - {label: "Slides", site_path: "docs/week15_slides.html"}
+    assignment: {name: "Capstone: app.py", group: "Capstone Project", points: 25}
+
+  - title: "Unit 4 · Week 16 — GenAI Feature & Final Demo"
+    items:
+      - {label: "Reading", site_path: "docs/week16_reading.html"}
+      - {label: "Lecture", site_path: "docs/week16_lecture.html"}
+      - {label: "Lab", site_path: "docs/week16_lab.html"}
+      - {label: "Slides", site_path: "docs/week16_slides.html"}
+    assignment: {name: "Capstone: Full Repo + Live Demo", group: "Capstone Project", points: 25}
+
+  - title: "Developer Workflow & Portfolio"
+    items:
+      - {label: "Syllabus — Developer Workflow Grade", site_path: "docs/syllabus.html"}
+    assignment: {name: "Developer Workflow", group: "Developer Workflow", points: 100}
+
+  - title: "Portfolio"
+    items:
+      - {label: "Syllabus — Portfolio Requirement", site_path: "docs/syllabus.html"}
+    assignment: {name: "Portfolio", group: "Portfolio", points: 100}
+
+  - title: "Participation"
+    items:
+      - {label: "Syllabus — Grading", site_path: "docs/syllabus.html"}
+    assignment: {name: "Lab Participation & Engagement", group: "Lab Participation & Engagement", points: 100}
