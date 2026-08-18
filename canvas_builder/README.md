@@ -91,14 +91,15 @@ body, Front Page, Navigation settings, publish state, or submission types
    table below, then enable **weighted grading** in the Assignments page
    settings.
 
-   **ISM2411** (DataCamp is 10%, not 15% — see "Known gaps" below for why):
+   **ISM2411:**
 
    | Group | Weight | Assignments |
    |---|---|---|
    | Weekly Labs | 30% | 13 |
+   | Weekly Quizzes | 5% | 14 (imported separately as native Canvas Quizzes — see "Import Quizzes" below; Canvas auto-adds a shadow Assignment per quiz, drag those into this group) |
+   | DataCamp Courses | 15% | 10 (8 required + 2 bonus — see step 8 below for how the 2 bonus ones work) |
    | Midterm Exam | 20% | 1 |
    | Capstone Project | 25% | 1 |
-   | DataCamp Courses | 10% | 10 (8 required + 2 bonus — mark the 2 bonus ones "do not count towards final grade", step 8 below) |
    | Lab Participation & Engagement | 5% | 1 |
 
    **ISM3232**:
@@ -129,10 +130,20 @@ body, Front Page, Navigation settings, publish state, or submission types
 7. **Verify weblink URLs resolve** — spot-check a few Module items actually
    open the right page on the live site (confirms `site_base_url` in the
    manifest matches where the site is really deployed).
-8. **ISM2411 only — DataCamp bonus assignments** — on the two "DataCamp
-   Bonus" assignments, open Edit → check **"Do not count this assignment
-   towards the final grade"**, so they add up to +5% without diluting the
-   required DataCamp component's denominator.
+8. **ISM2411 only — DataCamp bonus assignments** — the syllabus specifies
+   the 8 required DataCamp courses earn the full 15% group weight, and the
+   2 bonus courses can add up to +5% more, capped so the DataCamp component
+   never exceeds 20% of the final grade. Canvas has no single checkbox for
+   "capped bonus" — the standard way to get this behavior is to set the 2
+   bonus assignments' **points possible to 0** while leaving them counted
+   normally in the group (not "omit from final grade"): a 0-point assignment
+   doesn't add to the group's points-possible denominator, but any points a
+   student earns on it still add to the numerator, which is exactly a
+   capped-when-not-completed, uncapped-within-reason-when-completed bonus.
+   Verify this behaves as expected in your Canvas instance before relying
+   on it — if it doesn't, "do not count this assignment towards the final
+   grade" is the safe fallback (bonus students get nothing, but nothing
+   breaks for anyone else).
 9. **Set due dates** — imported assignments have **no due dates**: this
    cartridge's assignment resources don't carry due-date data. Set each
    one Canvas-side to match the course's schedule (ISM2411: Sunday
@@ -183,11 +194,6 @@ radio buttons.
 
 - Neither course's First-Day-Attendance/Syllabus quiz is built — only the
   weekly content quizzes above. A future pass can add these.
-- `ism2411_syllabus.html`'s grading table doesn't yet reflect Weekly
-  Quizzes as a line item now that quizzes exist — its visible rows still
-  sum to 90%, not 100% (see the DataCamp 10%-vs-15% note in the git history
-  of this file). Reconciling the syllabus page's grading table with the
-  now-built quizzes is a small follow-up, not done as part of this pass.
 - DataCamp assignments are manually marked complete/incomplete — DataCamp
   itself has no Canvas integration in this build.
 - `syllabi/ism2411_simple_syllabus.md` says "14 labs total," but the actual
