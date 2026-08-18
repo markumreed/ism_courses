@@ -19,28 +19,28 @@ VIDEO_IDS = {
     "PLACEHOLDER_V04": "825mYnRp5hk",   # Conditionals
     "PLACEHOLDER_V05": "mgKrEDyOE3k",   # For Loops
     "PLACEHOLDER_V06": "dbg9NV307xQ",   # Dictionaries
-    "PLACEHOLDER_V07": "",   # Functions
+    "PLACEHOLDER_V07": "bC2sBRvJlKA",   # Functions — "The Python Function Blueprint"
     "PLACEHOLDER_V08": "qgUS3QyPgdM",   # Debugging
-    "PLACEHOLDER_V09": "",   # Terminal Commands
+    "PLACEHOLDER_V09": "oo5gSDFBkM0",   # Terminal Commands — "Python Terminal Mastery"
     "PLACEHOLDER_V10": "shA5AAp2Yuc",   # Git Basics
     "PLACEHOLDER_V11": "BCBP0nxFt9c",   # GitHub Workflow
     "PLACEHOLDER_V12": "j9F9ptblkD8",   # AI Literacy
     "PLACEHOLDER_V13": "FF6fwpEQgW4",   # What is a Computer
-    "PLACEHOLDER_V14": "",   # Python Setup
+    "PLACEHOLDER_V14": "PZNVtXHnrLg",   # Python Setup — "Python Workspace Assembly"
     "PLACEHOLDER_V15": "F-wTdh-0SQM",   # Lists & Tuples
     "PLACEHOLDER_V16": "M-OynupFLwc",   # CSV File I/O
-    "PLACEHOLDER_V17": "",   # pandas Intro
-    "PLACEHOLDER_V18": "",   # Data Cleaning
-    "PLACEHOLDER_V19": "",   # Aggregation & Charts
-    "PLACEHOLDER_V20": "",   # Capstone
-    "PLACEHOLDER_V21": "",   # Dev Environment
-    "PLACEHOLDER_V22": "",   # Advanced Shell
-    "PLACEHOLDER_V23": "",   # Virtual Environments
-    "PLACEHOLDER_V24": "",   # Submission Ritual
-    "PLACEHOLDER_V25": "",   # While Loops
-    "PLACEHOLDER_V26": "",   # pytest
-    "PLACEHOLDER_V27": "",   # OOP I
-    "PLACEHOLDER_V28": "",   # OOP II
+    "PLACEHOLDER_V17": "W_R_0loTXtQ",   # pandas Intro — "pandas for Beginners"
+    "PLACEHOLDER_V18": "odDCsNOEFAo",   # Data Cleaning — "Data Cleaning in pandas"
+    "PLACEHOLDER_V19": "TfHKTSpj4OQ",   # Aggregation & Charts — "pandas groupby & matplotlib"
+    "PLACEHOLDER_V20": "MsA756QObnw",   # Capstone — "End-to-End Data Analysis Project"
+    "PLACEHOLDER_V21": "K_jDuAcxtEY",   # Dev Environment — "Build a Complete Python Dev Environment"
+    "PLACEHOLDER_V22": "jLJT70Mm22w",   # Advanced Shell — "Advanced Terminal Tools"
+    "PLACEHOLDER_V23": "baISFsfkw80",   # Virtual Environments — "Python Virtual Environments Explained"
+    "PLACEHOLDER_V24": "udKob5Q-a6E",   # Submission Ritual — "The Pre-Submission Checklist for Code"
+    "PLACEHOLDER_V25": "_MitYAqQrbQ",   # While Loops — "Python while Loops Explained"
+    "PLACEHOLDER_V26": "IDBSC3dGnL4",   # pytest — "pytest for Beginners"
+    "PLACEHOLDER_V27": "zmu0iVoFlg4",   # OOP I — "Python Classes & OOP Explained"
+    "PLACEHOLDER_V28": "Agamemup6cw",   # OOP II — "Composition vs Inheritance in Python"
     "PLACEHOLDER_V29": "",   # OOP III
     "PLACEHOLDER_V30": "",   # SQL Foundations
     "PLACEHOLDER_V31": "",   # Python + SQL
