@@ -138,15 +138,56 @@ body, Front Page, Navigation settings, publish state, or submission types
    one Canvas-side to match the course's schedule (ISM2411: Sunday
    11:59 PM each week; ISM3232: per the syllabus's weekly schedule).
 
+## Import Quizzes (QTI)
+
+Weekly self-check quizzes for both courses are built separately from the
+cartridge, by `_build_qti.py` (repo root) — one Canvas-native QTI 1.2 `.zip`
+per week, plus a combined midterm-coverage `.zip` per course. Unlike the
+Common Cartridge above, Canvas has no bulk-import path for a set of QTI
+files — each `.zip` is imported as its own quiz.
+
+```bash
+python _build_qti.py
+```
+
+Writes to `quiz_exam_fa26/` (gitignored): 14 ISM2411 weekly quizzes + 1
+midterm, 15 ISM3232 weekly quizzes + 1 midterm. The script fails loudly
+(raises, doesn't write partial output) if it can't confidently determine a
+question's correct answer from the page HTML — don't silently patch around
+that if it ever fires again; fix the source reading page's answer text
+instead (see the git history on `ism2411`/`ism3232` for the pattern used
+to resolve this the first time).
+
+Per quiz, per course:
+
+1. Canvas → **Quizzes → + Quiz**, name it (e.g. "Module 2 Quiz")
+2. **Settings → Import Course Content → Content Type: QTI .zip file**,
+   choose that week's `.zip`, **Import**
+3. Open the quiz, confirm the question count and points match what the
+   build printed for that file
+4. **Publish** the quiz — QTI imports land unpublished, same as the
+   cartridge's modules/assignments
+5. **Set a due date** — not carried by QTI either
+6. **Link it into the matching Module** — the cartridge import (above)
+   already created that week's Module with Reading/Lecture/Lab items;
+   open that Module → **+ Add Item → Quiz** → select the quiz you just
+   imported → **Add Item**, so it appears alongside that week's other
+   content instead of living only under the standalone Quizzes tab
+
+Spot-check ISM2411's Module 5 quiz specifically — "Which values are falsy
+in Python? (Select all that apply)" is a genuine multi-answer question
+(all 4 options are correct); confirm Canvas renders it as checkboxes, not
+radio buttons.
+
 ## Known gaps (deferred, see spec's Non-goals)
 
-- No native Canvas Quizzes (ISM2411's 14 weekly quizzes, or either course's
-  First-Day-Attendance/Syllabus quiz). ISM2411 already has a QTI export
-  script (`_build_qti.py`, repo root) a future pass can wire in. Because
-  Weekly Quizzes is a real 5% grade category with no Canvas assignments
-  behind it yet, `ism2411_syllabus.html`'s grading table intentionally
-  omits it and its visible rows sum to 90%, not 100% — don't try to force
-  that to 100% by inventing quiz content; wait for the deferred pass.
+- Neither course's First-Day-Attendance/Syllabus quiz is built — only the
+  weekly content quizzes above. A future pass can add these.
+- `ism2411_syllabus.html`'s grading table doesn't yet reflect Weekly
+  Quizzes as a line item now that quizzes exist — its visible rows still
+  sum to 90%, not 100% (see the DataCamp 10%-vs-15% note in the git history
+  of this file). Reconciling the syllabus page's grading table with the
+  now-built quizzes is a small follow-up, not done as part of this pass.
 - DataCamp assignments are manually marked complete/incomplete — DataCamp
   itself has no Canvas integration in this build.
 - `syllabi/ism2411_simple_syllabus.md` says "14 labs total," but the actual
