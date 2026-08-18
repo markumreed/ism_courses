@@ -13,8 +13,9 @@ import zipfile
 from html.parser import HTMLParser
 from pathlib import Path
 
-PAGES   = Path("/home/markumreed/Documents/ism_courses/ism2411/pages")
-OUT     = Path("/home/markumreed/Documents/ism_courses/quiz_exam_fa26")
+ROOT    = Path(__file__).resolve().parent
+PAGES   = ROOT / "ism2411" / "pages"
+OUT     = ROOT / "quiz_exam_fa26"
 MODULES = [1,2,3,4,5,6,7,8,10,11,12,13,14,15]
 
 
@@ -147,6 +148,18 @@ def find_correct_ident(options: list[str], answer_raw: str) -> str | None:
     return None
 
 
+def find_correct_idents_all(options: list[str], answer_raw: str) -> list[str] | None:
+    """For a 'select all that apply' question whose explanation says every
+    option is correct (e.g. 'All of them — a, b, c, and d are all falsy'),
+    return every response_label ident. Returns None if the explanation
+    doesn't unambiguously say 'all of them' — callers should fail loudly
+    rather than guess a subset."""
+    answer_clean = answer_raw.strip().lower()
+    if answer_clean.startswith("all of them") or answer_clean.startswith("all of the above"):
+        return ["A", "B", "C", "D"][: len(options)]
+    return None
+
+
 # ── QTI XML builders ──────────────────────────────────────────────────────────
 
 def _e(text: str) -> str:
@@ -154,9 +167,11 @@ def _e(text: str) -> str:
     return html.escape(str(text), quote=True)
 
 
-def _qtype(type_label: str) -> str:
+def _qtype(type_label: str, question_text: str = "") -> str:
     tl = type_label.lower()
     if "multiple choice" in tl:
+        if "select all" in question_text.lower():
+            return "multiple_answers_question"
         return "multiple_choice_question"
     if "true" in tl or "false" in tl:
         return "true_false_question"
@@ -164,7 +179,7 @@ def _qtype(type_label: str) -> str:
 
 
 def item_xml(item: dict, idx: int, quiz_ident: str) -> str:
-    qtype     = _qtype(item["type_label"])
+    qtype     = _qtype(item["type_label"], item["question"])
     item_id   = f"{quiz_ident}_q{idx}"
     q_html    = item["question"].strip()
     answer    = item["answer"].strip()
@@ -187,7 +202,13 @@ def item_xml(item: dict, idx: int, quiz_ident: str) -> str:
             f'</mattext></material></response_label>'
             for i, o in enumerate(options)
         )
-        correct = find_correct_ident(options, answer) or "A"
+        correct = find_correct_ident(options, answer)
+        if correct is None:
+            raise ValueError(
+                f"{quiz_ident} q{idx}: can't determine the correct option from "
+                f"the answer text — refusing to silently default to A. "
+                f"Question: {q_html!r} Answer: {answer!r}"
+            )
         pres = f"""      <presentation>
         <material><mattext texttype="text/html">{_e(q_html)}</mattext></material>
         <response_lid ident="response1" rcardinality="Single">
@@ -199,6 +220,41 @@ def item_xml(item: dict, idx: int, quiz_ident: str) -> str:
         <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
         <respcondition continue="No">
           <conditionvar><varequal respident="response1">{correct}</varequal></conditionvar>
+          <setvar action="Set" varname="SCORE">100</setvar>
+        </respcondition>
+      </resprocessing>"""
+
+    elif qtype == "multiple_answers_question":
+        labels  = ["A", "B", "C", "D"]
+        choices = "\n".join(
+            f'        <response_label ident="{labels[i]}">'
+            f'<material><mattext texttype="text/html">{_e(_opt_text(o))}'
+            f'</mattext></material></response_label>'
+            for i, o in enumerate(options)
+        )
+        corrects = find_correct_idents_all(options, answer)
+        if corrects is None:
+            raise ValueError(
+                f"{quiz_ident} q{idx}: multi-answer question but explanation "
+                f"doesn't clearly say 'all of them' — refusing to guess which "
+                f"options are correct: {answer!r}"
+            )
+        conds = "\n".join(f'          <varequal respident="response1">{c}</varequal>' for c in corrects)
+        pres = f"""      <presentation>
+        <material><mattext texttype="text/html">{_e(q_html)}</mattext></material>
+        <response_lid ident="response1" rcardinality="Multiple">
+          <render_choice>{choices}
+          </render_choice>
+        </response_lid>
+      </presentation>
+      <resprocessing>
+        <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+        <respcondition continue="No">
+          <conditionvar>
+            <and>
+{conds}
+            </and>
+          </conditionvar>
           <setvar action="Set" varname="SCORE">100</setvar>
         </respcondition>
       </resprocessing>"""
@@ -305,6 +361,8 @@ MODULE_TITLES = {
     15: "Aggregation, Grouping & Charts",
 }
 
+OUT.mkdir(parents=True, exist_ok=True)
+
 print("Building ISM2411 QTI files → quiz_exam_fa26/\n")
 
 all_quiz_items = {}
@@ -336,7 +394,7 @@ print(f"  Midterm total: {len(midterm_items)} questions")
 
 # ── ISM3232 ───────────────────────────────────────────────────────────────────
 
-ISM3232_PAGES   = Path("/home/markumreed/Documents/ism_courses/ism3232/docs")
+ISM3232_PAGES   = ROOT / "ism3232" / "docs"
 ISM3232_MODULES = [1,2,3,4,5,6,7,8,10,11,12,13,14,15,16]
 
 ISM3232_TITLES = {
