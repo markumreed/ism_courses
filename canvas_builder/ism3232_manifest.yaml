@@ -130,7 +130,7 @@ modules:
       - {label: "Slides", site_path: "docs/week16_slides.html"}
     assignment: {name: "Capstone: Full Repo + Live Demo", group: "Capstone Project", points: 25}
 
-  - title: "Developer Workflow & Portfolio"
+  - title: "Developer Workflow"
     items:
       - {label: "Syllabus — Developer Workflow Grade", site_path: "docs/syllabus.html"}
     assignment: {name: "Developer Workflow", group: "Developer Workflow", points: 100}

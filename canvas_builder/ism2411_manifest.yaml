@@ -118,34 +118,34 @@ modules:
   # placeholder the instructor marks complete/incomplete by the due week.
   - title: "DataCamp 1 — Introduction to Python (due Week 2)"
     items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
-    assignment: {name: "DataCamp: Introduction to Python", group: "DataCamp Courses", points: 0}
+    assignment: {name: "DataCamp: Introduction to Python", group: "DataCamp Courses", points: 10}
   - title: "DataCamp 2 — Intermediate Python (due Week 4)"
     items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
-    assignment: {name: "DataCamp: Intermediate Python", group: "DataCamp Courses", points: 0}
+    assignment: {name: "DataCamp: Intermediate Python", group: "DataCamp Courses", points: 10}
   - title: "DataCamp 3 — Python Toolbox (due Week 6)"
     items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
-    assignment: {name: "DataCamp: Python Toolbox", group: "DataCamp Courses", points: 0}
+    assignment: {name: "DataCamp: Python Toolbox", group: "DataCamp Courses", points: 10}
   - title: "DataCamp 4 — Writing Functions in Python (due Week 7)"
     items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
-    assignment: {name: "DataCamp: Writing Functions in Python", group: "DataCamp Courses", points: 0}
+    assignment: {name: "DataCamp: Writing Functions in Python", group: "DataCamp Courses", points: 10}
   - title: "DataCamp 5 — Data Types for Data Science (due Week 10)"
     items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
-    assignment: {name: "DataCamp: Data Types for Data Science", group: "DataCamp Courses", points: 0}
+    assignment: {name: "DataCamp: Data Types for Data Science", group: "DataCamp Courses", points: 10}
   - title: "DataCamp 6 — Working with Dictionaries (due Week 11)"
     items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
-    assignment: {name: "DataCamp: Working with Dictionaries", group: "DataCamp Courses", points: 0}
+    assignment: {name: "DataCamp: Working with Dictionaries", group: "DataCamp Courses", points: 10}
   - title: "DataCamp 7 — Introduction to pandas (due Week 13)"
     items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
-    assignment: {name: "DataCamp: Introduction to pandas", group: "DataCamp Courses", points: 0}
+    assignment: {name: "DataCamp: Introduction to pandas", group: "DataCamp Courses", points: 10}
   - title: "DataCamp 8 — Data Manipulation with pandas (due Week 14)"
     items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
-    assignment: {name: "DataCamp: Data Manipulation with pandas", group: "DataCamp Courses", points: 0}
+    assignment: {name: "DataCamp: Data Manipulation with pandas", group: "DataCamp Courses", points: 10}
   - title: "DataCamp Bonus — Joining Data with pandas (suggested Week 15)"
     items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
-    assignment: {name: "DataCamp Bonus: Joining Data with pandas", group: "DataCamp Courses", points: 0}
+    assignment: {name: "DataCamp Bonus: Joining Data with pandas", group: "DataCamp Courses", points: 10}
   - title: "DataCamp Bonus — Intro to Data Visualization with Matplotlib (suggested Week 15)"
     items: [{label: "DataCamp Tracker", site_path: "pages/datacamp.html"}]
-    assignment: {name: "DataCamp Bonus: Intro to Data Visualization with Matplotlib", group: "DataCamp Courses", points: 0}
+    assignment: {name: "DataCamp Bonus: Intro to Data Visualization with Matplotlib", group: "DataCamp Courses", points: 10}
 
   - title: "Participation"
     items: [{label: "Syllabus — Grading", site_path: "pages/syllabus.html"}]
