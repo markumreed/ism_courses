@@ -1,0 +1,14 @@
+[tool.pytest.ini_options]
+# canvas_builder/tests/ and autograder/tests/ are both `tests` packages
+# (each has an __init__.py); pytest's default "prepend" import mode caches
+# imported test modules in sys.modules by their dotted name, so the second
+# "tests" package collected from a repo-root run collides with the first
+# (ModuleNotFoundError: No module named 'tests.test_x'). importlib mode
+# imports each test file by its own file-based module spec instead, so
+# same-named test packages in different directories no longer collide.
+addopts = "--import-mode=importlib"
+# Needed so `canvas_builder_common` / `autograder_common` resolve when
+# pytest is invoked from the repo root (running each package's own tests
+# from inside its directory, e.g. `cd canvas_builder && pytest tests/`,
+# instead relies on `python -m pytest` adding the cwd to sys.path).
+pythonpath = ["canvas_builder", "autograder"]

@@ -113,3 +113,74 @@ def test_module_without_assignment_has_no_assignment_resource():
     root = ET.fromstring(files["imsmanifest.xml"])
     resources = root.findall("cc:resources/cc:resource", NS)
     assert not any(r.get("type") == "assignment_xmlv1p0" for r in resources)
+
+
+def test_default_description_links_to_first_module_item():
+    files = build_cartridge_files(_course_with_assignment())
+    root = ET.fromstring(files["imsmanifest.xml"])
+    resources = root.findall("cc:resources/cc:resource", NS)
+    href = next(r.get("href") for r in resources if r.get("type") == "assignment_xmlv1p0")
+    content = files[href]
+
+    # Not just a bare title restatement...
+    assert content.count(b"Lab 1") >= 1
+    # ...it links out to the module's first item on the course website.
+    assert b"&lt;a href=" in content
+    assert b"https://example.github.io/ism9999/pages/week02_lab.html" in content
+
+
+def test_explicit_description_html_is_used_verbatim():
+    course = CourseManifest(
+        course_code="ISM9999",
+        course_title="Test Course",
+        site_base_url="https://example.github.io/ism9999",
+        modules=[
+            ModuleSpec(
+                title="Module 2",
+                items=[ModuleItem(label="Lab", site_path="pages/week02_lab.html")],
+                assignment=AssignmentSpec(
+                    name="Lab 1",
+                    group="Weekly Labs",
+                    points=10,
+                    description_html="<p>Custom instructions.</p>",
+                ),
+            ),
+        ],
+    )
+    files = build_cartridge_files(course)
+    root = ET.fromstring(files["imsmanifest.xml"])
+    resources = root.findall("cc:resources/cc:resource", NS)
+    href = next(r.get("href") for r in resources if r.get("type") == "assignment_xmlv1p0")
+    content = files[href]
+    assert b"&lt;p&gt;Custom instructions.&lt;/p&gt;" in content
+    assert b"&lt;a href=" not in content
+
+
+def test_bare_title_fallback_when_module_has_no_items():
+    course = CourseManifest(
+        course_code="ISM9999",
+        course_title="Test Course",
+        site_base_url="https://example.github.io/ism9999",
+        modules=[
+            ModuleSpec(
+                title="Module 2",
+                items=[],
+                assignment=AssignmentSpec(name="Lab 1", group="Weekly Labs", points=10),
+            ),
+        ],
+    )
+    files = build_cartridge_files(course)
+    root = ET.fromstring(files["imsmanifest.xml"])
+    resources = root.findall("cc:resources/cc:resource", NS)
+    href = next(r.get("href") for r in resources if r.get("type") == "assignment_xmlv1p0")
+    content = files[href]
+    assert b"&lt;p&gt;Lab 1&lt;/p&gt;" in content
+    assert b"&lt;a href=" not in content
+
+
+def test_ids_are_deterministic_across_builds():
+    course = _course_with_assignment()
+    files_a = build_cartridge_files(course)
+    files_b = build_cartridge_files(_course_with_assignment())
+    assert files_a["imsmanifest.xml"] == files_b["imsmanifest.xml"]
+    assert sorted(files_a.keys()) == sorted(files_b.keys())

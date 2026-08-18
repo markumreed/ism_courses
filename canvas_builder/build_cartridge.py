@@ -7,6 +7,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 import zipfile
 from pathlib import Path
@@ -41,6 +42,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if actual_weblinks != expected_weblinks or actual_assignments != expected_assignments:
         print("MISMATCH — cartridge contents do not match manifest. Do not import.", file=sys.stderr)
+        os.remove(args.out)
         return 1
 
     return 0

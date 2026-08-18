@@ -8,7 +8,8 @@ plan for why.
 """
 from __future__ import annotations
 
-import uuid
+import hashlib
+from dataclasses import replace
 from xml.sax.saxutils import escape
 
 from canvas_builder_common.manifest_schema import CourseManifest
@@ -18,8 +19,18 @@ WEBLINK_NS = "http://www.imsglobal.org/xsd/imsccv1p3/imswl_v1p3"
 ASSIGNMENT_NS = "http://www.imsglobal.org/xsd/imscc_extensions/assignment"
 
 
-def new_id(prefix: str) -> str:
-    return f"{prefix}_{uuid.uuid4().hex[:12]}"
+def stable_id(prefix: str, *parts: str) -> str:
+    """Deterministic identifier: same prefix + parts always yields the same id.
+
+    Canvas's import mechanism keys re-import update-vs-duplicate behavior on
+    the cartridge's resource identifiers, so identifiers must be stable
+    across repeated builds of the same manifest content (see final-review
+    finding #4) — unlike a random uuid4-based id, hashing the parts that
+    make each element unique within the manifest reproduces the same id
+    every time for the same input.
+    """
+    digest = hashlib.sha1("|".join(parts).encode("utf-8")).hexdigest()[:16]
+    return f"{prefix}_{digest}"
 
 
 def weblink_xml(title: str, url: str) -> str:
@@ -44,6 +55,23 @@ def assignment_xml(assignment, identifier: str) -> str:
     )
 
 
+def _default_description_for(course: CourseManifest, module) -> str:
+    """Richer default assignment description linking to the module's first
+    item on the course website, instead of a bare title restatement.
+
+    Falls back to the bare-title description for the rare module that has
+    an assignment but zero items.
+    """
+    if not module.items:
+        return f"<p>{escape(module.assignment.name)}</p>"
+    first_item = module.items[0]
+    url = f"{course.site_base_url}/{first_item.site_path}"
+    return (
+        f"<p>{escape(module.assignment.name)}. See the assignment instructions on the "
+        f'course website: <a href="{escape(url)}">{escape(module.title)}</a>.</p>'
+    )
+
+
 def build_cartridge_files(course: CourseManifest) -> dict[str, bytes]:
     """Returns {path-within-zip: content-bytes} for every cartridge file,
     including imsmanifest.xml."""
@@ -53,7 +81,7 @@ def build_cartridge_files(course: CourseManifest) -> dict[str, bytes]:
     for module in course.modules:
         child_items_xml = []
         for item in module.items:
-            ident = new_id("link")
+            ident = stable_id("link", course.course_code, module.title, item.label)
             url = f"{course.site_base_url}/{item.site_path}"
             path = f"weblinks/{ident}.xml"
             content = weblink_xml(item.label, url).encode("utf-8")
@@ -65,9 +93,15 @@ def build_cartridge_files(course: CourseManifest) -> dict[str, bytes]:
             )
 
         if module.assignment is not None:
-            ident = new_id("assignment")
+            ident = stable_id("assignment", course.course_code, module.title)
             path = f"{ident}/{ident}.xml"
-            content = assignment_xml(module.assignment, ident).encode("utf-8")
+            description = module.assignment.description_html or _default_description_for(
+                course, module
+            )
+            assignment_with_description = replace(
+                module.assignment, description_html=description
+            )
+            content = assignment_xml(assignment_with_description, ident).encode("utf-8")
             resource_entries.append((ident, "assignment_xmlv1p0", path, content))
             child_items_xml.append(
                 f'      <item identifier="item_{ident}" identifierref="{ident}">\n'
@@ -75,7 +109,7 @@ def build_cartridge_files(course: CourseManifest) -> dict[str, bytes]:
                 "      </item>\n"
             )
 
-        module_id = new_id("module")
+        module_id = stable_id("module", course.course_code, module.title)
         module_items_xml.append(
             f'    <item identifier="{module_id}">\n'
             f"      <title>{escape(module.title)}</title>\n"
@@ -92,13 +126,13 @@ def build_cartridge_files(course: CourseManifest) -> dict[str, bytes]:
 
     manifest_xml = (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        f'<manifest identifier="{new_id("man")}" xmlns="{CC_NS}">\n'
+        f'<manifest identifier="{stable_id("man", course.course_code)}" xmlns="{CC_NS}">\n'
         "  <metadata>\n"
         "    <schema>IMS Common Cartridge</schema>\n"
         "    <schemaversion>1.3.0</schemaversion>\n"
         "  </metadata>\n"
         "  <organizations>\n"
-        f'    <organization identifier="{new_id("org")}" structure="rooted-hierarchy">\n'
+        f'    <organization identifier="{stable_id("org", course.course_code)}" structure="rooted-hierarchy">\n'
         '      <item identifier="LearningModules">\n'
         + "".join(module_items_xml)
         + "      </item>\n"
