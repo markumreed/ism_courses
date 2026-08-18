@@ -1,7 +1,12 @@
 import xml.etree.ElementTree as ET
 
 from canvas_builder_common.cartridge_writer import build_cartridge_files
-from canvas_builder_common.manifest_schema import CourseManifest, ModuleItem, ModuleSpec
+from canvas_builder_common.manifest_schema import (
+    AssignmentSpec,
+    CourseManifest,
+    ModuleItem,
+    ModuleSpec,
+)
 
 NS = {"cc": "http://www.imsglobal.org/xsd/imsccv1p3/imscp_v1p1"}
 
@@ -66,3 +71,45 @@ def test_weblink_file_contains_absolute_url_built_from_site_base_url():
         if path.startswith("weblinks/") and b"<title>Reading</title>" in content
     )
     assert b"https://example.github.io/ism9999/pages/week01_reading.html" in reading_content
+
+
+def _course_with_assignment():
+    return CourseManifest(
+        course_code="ISM9999",
+        course_title="Test Course",
+        site_base_url="https://example.github.io/ism9999",
+        modules=[
+            ModuleSpec(
+                title="Module 2",
+                items=[ModuleItem(label="Lab", site_path="pages/week02_lab.html")],
+                assignment=AssignmentSpec(name="Lab 1", group="Weekly Labs", points=10),
+            ),
+        ],
+    )
+
+
+def test_module_with_assignment_gets_weblink_and_assignment_items():
+    files = build_cartridge_files(_course_with_assignment())
+    root = ET.fromstring(files["imsmanifest.xml"])
+    children = _module_items(root)[0].findall("cc:item", NS)
+    assert [c.find("cc:title", NS).text for c in children] == ["Lab", "Lab 1"]
+
+
+def test_assignment_resource_has_correct_type_and_points():
+    files = build_cartridge_files(_course_with_assignment())
+    root = ET.fromstring(files["imsmanifest.xml"])
+    resources = root.findall("cc:resources/cc:resource", NS)
+    assignment_resources = [r for r in resources if r.get("type") == "assignment_xmlv1p0"]
+    assert len(assignment_resources) == 1
+
+    href = assignment_resources[0].get("href")
+    content = files[href]
+    assert b"<title>Lab 1</title>" in content
+    assert b'points_possible="10"' in content
+
+
+def test_module_without_assignment_has_no_assignment_resource():
+    files = build_cartridge_files(_two_module_course())
+    root = ET.fromstring(files["imsmanifest.xml"])
+    resources = root.findall("cc:resources/cc:resource", NS)
+    assert not any(r.get("type") == "assignment_xmlv1p0" for r in resources)

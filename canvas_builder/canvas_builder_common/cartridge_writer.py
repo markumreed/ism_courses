@@ -15,6 +15,7 @@ from canvas_builder_common.manifest_schema import CourseManifest
 
 CC_NS = "http://www.imsglobal.org/xsd/imsccv1p3/imscp_v1p1"
 WEBLINK_NS = "http://www.imsglobal.org/xsd/imsccv1p3/imswl_v1p3"
+ASSIGNMENT_NS = "http://www.imsglobal.org/xsd/imscc_extensions/assignment"
 
 
 def new_id(prefix: str) -> str:
@@ -28,6 +29,18 @@ def weblink_xml(title: str, url: str) -> str:
         f"  <title>{escape(title)}</title>\n"
         f'  <url href="{escape(url)}" target="_blank"/>\n'
         "</webLink>\n"
+    )
+
+
+def assignment_xml(assignment, identifier: str) -> str:
+    description = assignment.description_html or f"<p>{escape(assignment.name)}</p>"
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        f'<assignment xmlns="{ASSIGNMENT_NS}" identifier="{identifier}">\n'
+        f"  <title>{escape(assignment.name)}</title>\n"
+        f'  <text texttype="text/html">{escape(description)}</text>\n'
+        f'  <gradable points_possible="{assignment.points:g}">true</gradable>\n'
+        "</assignment>\n"
     )
 
 
@@ -48,6 +61,17 @@ def build_cartridge_files(course: CourseManifest) -> dict[str, bytes]:
             child_items_xml.append(
                 f'      <item identifier="item_{ident}" identifierref="{ident}">\n'
                 f"        <title>{escape(item.label)}</title>\n"
+                "      </item>\n"
+            )
+
+        if module.assignment is not None:
+            ident = new_id("assignment")
+            path = f"{ident}/{ident}.xml"
+            content = assignment_xml(module.assignment, ident).encode("utf-8")
+            resource_entries.append((ident, "assignment_xmlv1p0", path, content))
+            child_items_xml.append(
+                f'      <item identifier="item_{ident}" identifierref="{ident}">\n'
+                f"        <title>{escape(module.assignment.name)}</title>\n"
                 "      </item>\n"
             )
 
