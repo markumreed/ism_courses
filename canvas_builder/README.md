@@ -124,6 +124,10 @@ body, Front Page, Navigation settings, publish state, or submission types
    HTML source view, paste the contents of `ism2411_front_page.html` (or
    `ism3232_front_page.html`), save, then Pages → **⋮ → Use as Front Page**.
    Finally, Course → Settings → **Choose Home Page → Front Page**.
+   **ISM3232 only:** before saving, replace the `href="#"` on "First Day
+   Attendance Quiz" with that quiz's real URL — copy it from the quiz you
+   imported in the "Import Quizzes" section below (it doesn't exist until
+   then, which is why it's a placeholder here).
 6. **Navigation cleanup** — Course → Settings → **Navigation** tab, drag
    unused items (Files, Collaborations, Discussions if unused, etc.) down
    into the hidden section, save.
