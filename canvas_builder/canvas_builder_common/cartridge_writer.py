@@ -45,17 +45,33 @@ def weblink_xml(title: str, url: str) -> str:
 
 def assignment_xml(assignment, identifier: str) -> str:
     description = assignment.description_html or f"<p>{escape(assignment.name)}</p>"
+    extensions = ""
+    if assignment.due_at:
+        # Canvas-specific extension, additive to the standard IMS assignment
+        # format: Canvas's own importer reads <extensions><assignment><due_at>
+        # from this same file (lib/cc/importer/standard/assignment_converter.rb,
+        # parse_canvas_assignment_data via doc.at_css("extensions > assignment")).
+        # Purely additive — an importer that doesn't recognize it just ignores
+        # it and the standard title/text/gradable fields above still work.
+        extensions = (
+            "  <extensions>\n"
+            "    <assignment>\n"
+            f"      <due_at>{escape(assignment.due_at)}</due_at>\n"
+            "    </assignment>\n"
+            "  </extensions>\n"
+        )
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         f'<assignment xmlns="{ASSIGNMENT_NS}" identifier="{identifier}">\n'
         f"  <title>{escape(assignment.name)}</title>\n"
         f'  <text texttype="text/html">{escape(description)}</text>\n'
         f'  <gradable points_possible="{assignment.points:g}">true</gradable>\n'
+        f"{extensions}"
         "</assignment>\n"
     )
 
 
-def _default_description_for(course: CourseManifest, module) -> str:
+def _default_description_for(course: CourseManifest, module, assignment) -> str:
     """Richer default assignment description linking to the module's first
     item on the course website, instead of a bare title restatement.
 
@@ -63,11 +79,11 @@ def _default_description_for(course: CourseManifest, module) -> str:
     an assignment but zero items.
     """
     if not module.items:
-        return f"<p>{escape(module.assignment.name)}</p>"
+        return f"<p>{escape(assignment.name)}</p>"
     first_item = module.items[0]
     url = f"{course.site_base_url}/{first_item.site_path}"
     return (
-        f"<p>{escape(module.assignment.name)}. See the assignment instructions on the "
+        f"<p>{escape(assignment.name)}. See the assignment instructions on the "
         f'course website: <a href="{escape(url)}">{escape(module.title)}</a>.</p>'
     )
 
@@ -92,20 +108,18 @@ def build_cartridge_files(course: CourseManifest) -> dict[str, bytes]:
                 "      </item>\n"
             )
 
-        if module.assignment is not None:
-            ident = stable_id("assignment", course.course_code, module.title)
+        for assignment in module.assignments:
+            ident = stable_id("assignment", course.course_code, module.title, assignment.name)
             path = f"{ident}/{ident}.xml"
-            description = module.assignment.description_html or _default_description_for(
-                course, module
+            description = assignment.description_html or _default_description_for(
+                course, module, assignment
             )
-            assignment_with_description = replace(
-                module.assignment, description_html=description
-            )
+            assignment_with_description = replace(assignment, description_html=description)
             content = assignment_xml(assignment_with_description, ident).encode("utf-8")
             resource_entries.append((ident, "assignment_xmlv1p0", path, content))
             child_items_xml.append(
                 f'      <item identifier="item_{ident}" identifierref="{ident}">\n'
-                f"        <title>{escape(module.assignment.name)}</title>\n"
+                f"        <title>{escape(assignment.name)}</title>\n"
                 "      </item>\n"
             )
 

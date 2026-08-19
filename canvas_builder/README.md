@@ -28,6 +28,19 @@ deterministically from the manifest content (course code, module title,
 item label) — building the same manifest twice produces byte-identical
 output. This matters for re-import: see "Import into Canvas" below.
 
+**ISM2411's structure:** `Module 0 — Course Info` comes first and holds
+the Syllabus/Grading link, the DataCamp Tracker link (once — not
+repeated per DataCamp course), and the Lab Participation & Engagement
+assignment. `Module 1` keeps the Pre-Course Setup Walkthrough alongside
+its Reading/Lecture. Every other module holds its own Lab assignment
+plus, where the syllabus schedules one, that week's DataCamp course as a
+second assignment in the same module — there are no separate
+"DataCamp N" modules. Weekly Labs, the Midterm, the Capstone, and every
+DataCamp assignment carry a `due_at` (11:59 PM Eastern, converted to UTC
+— correctly split across the Nov 1 2026 DST boundary); Lab Participation
+& Engagement doesn't, since the syllabus assesses it twice (midterm and
+end of semester), not on one date.
+
 ## Import into Canvas
 
 **Import into a Canvas sandbox/test course first**, not the live ISM2411 or
@@ -44,6 +57,14 @@ before importing into the real course.
 4. Wait for the import job to finish (Current Jobs list on the same page)
 5. Check **Modules** — every module and item from the manifest should appear
 6. Check **Assignments** — every assignment should exist with the right name and points
+7. **ISM2411 only** — open a couple of assignments (e.g. Lab 2) and check
+   whether a due date landed automatically. This uses an `<extensions>`
+   block inside the same standard assignment file — the same mechanism
+   Canvas's own exporter uses (verified against Canvas's own importer
+   source, `lib/cc/importer/standard/assignment_converter.rb`), but it's
+   untested against a real import in this project. If dates don't show
+   up, nothing else is affected — fall back to setting them by hand
+   (step 9 below), same as every other assignment always required.
 
 **Re-importing:** because resource identifiers are deterministic (same
 manifest in → same identifiers out, see "Build" above), re-importing the
@@ -148,10 +169,16 @@ body, Front Page, Navigation settings, publish state, or submission types
    on it — if it doesn't, "do not count this assignment towards the final
    grade" is the safe fallback (bonus students get nothing, but nothing
    breaks for anyone else).
-9. **Set due dates** — imported assignments have **no due dates**: this
-   cartridge's assignment resources don't carry due-date data. Set each
-   one Canvas-side to match the course's schedule (ISM2411: Sunday
-   11:59 PM each week; ISM3232: per the syllabus's weekly schedule).
+9. **Set due dates** —
+   **ISM2411**: Weekly Labs, DataCamp courses, the Midterm, and the
+   Capstone carry a `due_at` in the cartridge itself (see step 7 above) —
+   verify it actually landed rather than assuming it did, and set it by
+   hand for any assignment where it didn't. Lab Participation & Engagement
+   has no single due date by design (see "ISM2411's structure" above).
+   **ISM3232**: no assignment carries a due date in the cartridge — set
+   every one by hand, per the syllabus's weekly schedule.
+   **Both courses**: Quizzes never carry a due date regardless of course —
+   see "Import Quizzes" below for why — set those by hand too.
 
 ## Import Quizzes (QTI)
 
@@ -182,7 +209,15 @@ Per quiz, per course:
    build printed for that file
 4. **Publish** the quiz — QTI imports land unpublished, same as the
    cartridge's modules/assignments
-5. **Set a due date** — not carried by QTI either
+5. **Set a due date** — not carried by QTI either. Investigated this: Canvas's
+   quiz importer *can* read a due date, but only from a separate
+   `assessment_meta.xml` companion file inside a differently-typed resource
+   (`lib/cc/importer/canvas/quiz_metadata_converter.rb`), not from anything
+   inside the standard QTI file this project generates. Retrofitting that
+   would mean changing the quiz resource's type in `imsmanifest.xml` —
+   real risk to an import that's already known to work, for a feature this
+   codebase hasn't verified end-to-end. Not attempted; set quiz due dates
+   by hand.
 6. **Link it into the matching Module** — the cartridge import (above)
    already created that week's Module with Reading/Lecture/Lab items;
    open that Module → **+ Add Item → Quiz** → select the quiz you just

@@ -28,7 +28,7 @@ def main(argv: list[str] | None = None) -> int:
     write_cartridge(course, args.out)
 
     expected_weblinks = sum(len(m.items) for m in course.modules)
-    expected_assignments = sum(1 for m in course.modules if m.assignment)
+    expected_assignments = sum(len(m.assignments) for m in course.modules)
 
     with zipfile.ZipFile(args.out) as zf:
         names = zf.namelist()

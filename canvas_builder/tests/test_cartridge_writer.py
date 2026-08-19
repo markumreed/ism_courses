@@ -82,7 +82,7 @@ def _course_with_assignment():
             ModuleSpec(
                 title="Module 2",
                 items=[ModuleItem(label="Lab", site_path="pages/week02_lab.html")],
-                assignment=AssignmentSpec(name="Lab 1", group="Weekly Labs", points=10),
+                assignments=[AssignmentSpec(name="Lab 1", group="Weekly Labs", points=10)],
             ),
         ],
     )
@@ -138,12 +138,14 @@ def test_explicit_description_html_is_used_verbatim():
             ModuleSpec(
                 title="Module 2",
                 items=[ModuleItem(label="Lab", site_path="pages/week02_lab.html")],
-                assignment=AssignmentSpec(
-                    name="Lab 1",
-                    group="Weekly Labs",
-                    points=10,
-                    description_html="<p>Custom instructions.</p>",
-                ),
+                assignments=[
+                    AssignmentSpec(
+                        name="Lab 1",
+                        group="Weekly Labs",
+                        points=10,
+                        description_html="<p>Custom instructions.</p>",
+                    )
+                ],
             ),
         ],
     )
@@ -165,7 +167,7 @@ def test_bare_title_fallback_when_module_has_no_items():
             ModuleSpec(
                 title="Module 2",
                 items=[],
-                assignment=AssignmentSpec(name="Lab 1", group="Weekly Labs", points=10),
+                assignments=[AssignmentSpec(name="Lab 1", group="Weekly Labs", points=10)],
             ),
         ],
     )
@@ -184,3 +186,77 @@ def test_ids_are_deterministic_across_builds():
     files_b = build_cartridge_files(_course_with_assignment())
     assert files_a["imsmanifest.xml"] == files_b["imsmanifest.xml"]
     assert sorted(files_a.keys()) == sorted(files_b.keys())
+
+
+def test_module_with_two_assignments_gets_two_assignment_resources():
+    course = CourseManifest(
+        course_code="ISM9999",
+        course_title="Test Course",
+        site_base_url="https://example.github.io/ism9999",
+        modules=[
+            ModuleSpec(
+                title="Module 4",
+                items=[ModuleItem(label="Lab", site_path="pages/week04_lab.html")],
+                assignments=[
+                    AssignmentSpec(name="Lab 3", group="Weekly Labs", points=10),
+                    AssignmentSpec(
+                        name="DataCamp: Intermediate Python",
+                        group="DataCamp Courses",
+                        points=10,
+                    ),
+                ],
+            ),
+        ],
+    )
+    files = build_cartridge_files(course)
+    root = ET.fromstring(files["imsmanifest.xml"])
+    children = _module_items(root)[0].findall("cc:item", NS)
+    assert [c.find("cc:title", NS).text for c in children] == [
+        "Lab",
+        "Lab 3",
+        "DataCamp: Intermediate Python",
+    ]
+
+    resources = root.findall("cc:resources/cc:resource", NS)
+    assignment_resources = [r for r in resources if r.get("type") == "assignment_xmlv1p0"]
+    assert len(assignment_resources) == 2
+    titles = {files[r.get("href")].count(b"<title>Lab 3</title>") for r in assignment_resources}
+    assert 1 in titles  # one of the two resources is the Lab 3 assignment
+
+
+def test_due_at_produces_extensions_block_canvas_importer_reads():
+    course = CourseManifest(
+        course_code="ISM9999",
+        course_title="Test Course",
+        site_base_url="https://example.github.io/ism9999",
+        modules=[
+            ModuleSpec(
+                title="Module 2",
+                items=[ModuleItem(label="Lab", site_path="pages/week02_lab.html")],
+                assignments=[
+                    AssignmentSpec(
+                        name="Lab 1",
+                        group="Weekly Labs",
+                        points=10,
+                        due_at="2026-09-07T03:59:00Z",
+                    )
+                ],
+            ),
+        ],
+    )
+    files = build_cartridge_files(course)
+    root = ET.fromstring(files["imsmanifest.xml"])
+    resources = root.findall("cc:resources/cc:resource", NS)
+    href = next(r.get("href") for r in resources if r.get("type") == "assignment_xmlv1p0")
+    content = files[href]
+    assert b"<extensions>" in content
+    assert b"<due_at>2026-09-07T03:59:00Z</due_at>" in content
+
+
+def test_no_due_at_produces_no_extensions_block():
+    files = build_cartridge_files(_course_with_assignment())
+    root = ET.fromstring(files["imsmanifest.xml"])
+    resources = root.findall("cc:resources/cc:resource", NS)
+    href = next(r.get("href") for r in resources if r.get("type") == "assignment_xmlv1p0")
+    content = files[href]
+    assert b"<extensions>" not in content

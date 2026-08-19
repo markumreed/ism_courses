@@ -18,13 +18,14 @@ class AssignmentSpec:
     group: str
     points: float
     description_html: str = ""
+    due_at: str = ""  # ISO 8601 UTC timestamp, e.g. "2026-09-07T03:59:00Z"; "" = no due date
 
 
 @dataclass
 class ModuleSpec:
     title: str
     items: list[ModuleItem] = field(default_factory=list)
-    assignment: AssignmentSpec | None = None
+    assignments: list[AssignmentSpec] = field(default_factory=list)
 
 
 @dataclass
@@ -45,16 +46,26 @@ def load_manifest(path: str) -> CourseManifest:
             ModuleItem(label=i["label"], site_path=i["site_path"])
             for i in m.get("items", [])
         ]
-        assignment = None
-        a = m.get("assignment")
-        if a:
-            assignment = AssignmentSpec(
+        # Accept either a single `assignment:` mapping (most modules have at
+        # most one) or a plural `assignments:` list (a module with a Lab and
+        # a DataCamp course due the same week, for example) — normalize to
+        # a list either way.
+        raw_assignments = m.get("assignments")
+        if raw_assignments is None:
+            single = m.get("assignment")
+            raw_assignments = [single] if single else []
+
+        assignments = [
+            AssignmentSpec(
                 name=a["name"],
                 group=a["group"],
                 points=float(a["points"]),
                 description_html=a.get("description_html", ""),
+                due_at=a.get("due_at", ""),
             )
-        modules.append(ModuleSpec(title=m["title"], items=items, assignment=assignment))
+            for a in raw_assignments
+        ]
+        modules.append(ModuleSpec(title=m["title"], items=items, assignments=assignments))
 
     return CourseManifest(
         course_code=data["course_code"],
