@@ -26,9 +26,9 @@ Every week follows the same three-step rhythm:
 2. Attend the weekly in-person lab session and complete the lab assignment with instructor support
 3. Submit the completed lab by Sunday at 11:59 PM
 
-Class time is mostly active: independent, self-paced review of lecture content online, followed by independent and peer-supported coding during the in-person lab. Eight DataCamp courses run in parallel with lecture content and are completed independently outside class time.
+Class time is mostly active: independent, self-paced review of lecture content online, followed by independent and peer-supported coding during the in-person lab. Five required DataCamp courses (plus 2 optional) run in parallel with lecture content and are completed independently outside class time.
 
-Learning is assessed through weekly labs and quizzes (35%), eight required DataCamp courses (15%), a 75-minute midterm exam (20%), a capstone retail analysis project (25%), and participation (5%).
+Learning is assessed through weekly labs and quizzes (35%), five required DataCamp courses (15%), a 75-minute midterm exam (20%), a capstone retail analysis project (25%), and participation (5%).
 
 ---
 
@@ -78,7 +78,7 @@ The following free online textbooks are used throughout the course:
   Reference-level detail on pandas. Use it to look up specific methods and edge cases.
   Free at: wesmckinney.com/book
 
-**DataCamp for Classrooms:** USF provides free DataCamp access for enrolled students. Eight required courses are assigned in parallel with lecture content. See the DataCamp page on the course website for the complete list and deadlines.
+**DataCamp for Classrooms:** USF provides free DataCamp access for enrolled students. Five required courses are assigned in parallel with lecture content. See the DataCamp page on the course website for the complete list and deadlines.
 
 **Required Software (all free):** Python 3.10 or later, VS Code (with the Python extension), Git, a free GitHub account, and Jupyter Notebook. Full installation instructions are on the Pre-Course Setup page of the course website. Install everything before the first lab session.
 
@@ -144,7 +144,7 @@ For questions that may benefit the whole class (debugging approaches, assignment
 |-----------|--------|---------|
 | Weekly Labs | 30% | 14 labs total (Modules 1–8, 10–15). Due Sunday at 11:59 PM. Graded on correctness, completion, code quality, and proper submission. Code must run without errors. |
 | Weekly Quizzes | 5% | 14 quizzes on Canvas, tied to the assigned reading. Open-note, untimed. Due before that week's lab. Questions marked ★ reappear on the midterm or capstone. |
-| DataCamp Courses | 15% | 8 required courses = 10% (graded on completion only, not speed or score). 2 optional bonus courses = up to 5% extra credit. See the DataCamp page for deadlines. |
+| DataCamp Courses | 15% | 5 required courses = 10% (graded on completion only, not speed or score). 2 optional bonus courses = up to 5% extra credit. See the DataCamp page for deadlines. |
 | Midterm Exam | 20% | Module 9. In-class, 75 minutes. Covers Modules 1–8. One double-sided cheatsheet allowed (handwritten or printed). No laptops, no phones. |
 | Capstone Project | 25% | Module 16. End-to-end retail sales analysis submitted as a GitHub repo with a Jupyter notebook. 5–7 minute live presentation. See the capstone rubric on the course website. |
 | Lab Participation & Engagement | 5% | Holistic assessment at midterm and end of semester: engagement during the weekly in-person lab, helping peers, completing in-class activities, attending office hours, demonstrating effort. |

@@ -89,16 +89,14 @@ modules:
       - {label: "Lab", site_path: "pages/week10_lab.html"}
     assignments:
       - {name: "Lab 10", group: "Weekly Labs", points: 10, due_at: "2026-11-02T04:59:00Z"}
-      - {name: "DataCamp: Data Types for Data Science", group: "DataCamp Courses", points: 10, due_at: "2026-11-02T04:59:00Z"}
+      - {name: "DataCamp: Data Types in Python", group: "DataCamp Courses", points: 10, due_at: "2026-11-02T04:59:00Z"}
 
   - title: "Module 11 — Dictionaries"
     items:
       - {label: "Reading", site_path: "pages/week11_reading.html"}
       - {label: "Lecture", site_path: "pages/week11_lecture.html"}
       - {label: "Lab", site_path: "pages/week11_lab.html"}
-    assignments:
-      - {name: "Lab 11", group: "Weekly Labs", points: 10, due_at: "2026-11-09T04:59:00Z"}
-      - {name: "DataCamp: Working with Dictionaries", group: "DataCamp Courses", points: 10, due_at: "2026-11-09T04:59:00Z"}
+    assignment: {name: "Lab 11", group: "Weekly Labs", points: 10, due_at: "2026-11-09T04:59:00Z"}
 
   - title: "Module 12 — Working with Files"
     items:
@@ -112,32 +110,28 @@ modules:
       - {label: "Reading", site_path: "pages/week13_reading.html"}
       - {label: "Lecture", site_path: "pages/week13_lecture.html"}
       - {label: "Lab", site_path: "pages/week13_lab.html"}
-    assignments:
-      - {name: "Lab 13", group: "Weekly Labs", points: 10, due_at: "2026-11-23T04:59:00Z"}
-      - {name: "DataCamp: Introduction to pandas", group: "DataCamp Courses", points: 10, due_at: "2026-11-23T04:59:00Z"}
+    assignment: {name: "Lab 13", group: "Weekly Labs", points: 10, due_at: "2026-11-23T04:59:00Z"}
 
   - title: "Module 14 — Data Cleaning & Descriptive Stats"
     items:
       - {label: "Reading", site_path: "pages/week14_reading.html"}
       - {label: "Lecture", site_path: "pages/week14_lecture.html"}
       - {label: "Lab", site_path: "pages/week14_lab.html"}
+    # Bonus DataCamp courses are "suggested" for Week 14, not required that
+    # week specifically — due_at matches the Week 14 date as a soft target;
+    # see the README checklist for marking these as capped bonus (0 pts
+    # possible) rather than a hard required-by-this-date deliverable.
     assignments:
       - {name: "Lab 14", group: "Weekly Labs", points: 10, due_at: "2026-11-30T04:59:00Z"}
-      - {name: "DataCamp: Data Manipulation with pandas", group: "DataCamp Courses", points: 10, due_at: "2026-11-30T04:59:00Z"}
+      - {name: "DataCamp Bonus: Joining Data with pandas", group: "DataCamp Courses", points: 10, due_at: "2026-11-30T04:59:00Z"}
+      - {name: "DataCamp Bonus: Intro to Data Visualization with Matplotlib", group: "DataCamp Courses", points: 10, due_at: "2026-11-30T04:59:00Z"}
 
   - title: "Module 15 — Grouping & Visualization"
     items:
       - {label: "Reading", site_path: "pages/week15_reading.html"}
       - {label: "Lecture", site_path: "pages/week15_lecture.html"}
       - {label: "Lab", site_path: "pages/week15_lab.html"}
-    # Bonus DataCamp courses are "suggested" for Week 15, not required that
-    # week specifically — due_at matches the Week 15 date as a soft target;
-    # see the README checklist for marking these as capped bonus (0 pts
-    # possible) rather than a hard required-by-this-date deliverable.
-    assignments:
-      - {name: "Lab 15", group: "Weekly Labs", points: 10, due_at: "2026-12-07T04:59:00Z"}
-      - {name: "DataCamp Bonus: Joining Data with pandas", group: "DataCamp Courses", points: 10, due_at: "2026-12-07T04:59:00Z"}
-      - {name: "DataCamp Bonus: Intro to Data Visualization with Matplotlib", group: "DataCamp Courses", points: 10, due_at: "2026-12-07T04:59:00Z"}
+    assignment: {name: "Lab 15", group: "Weekly Labs", points: 10, due_at: "2026-12-07T04:59:00Z"}
 
   - title: "Module 16 — Capstone Project"
     items:

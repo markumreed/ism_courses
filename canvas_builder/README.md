@@ -118,7 +118,7 @@ body, Front Page, Navigation settings, publish state, or submission types
    |---|---|---|
    | Weekly Labs | 30% | 13 |
    | Weekly Quizzes | 5% | 14 (imported separately as native Canvas Quizzes — see "Import Quizzes" below; Canvas auto-adds a shadow Assignment per quiz, drag those into this group) |
-   | DataCamp Courses | 15% | 10 (8 required + 2 bonus — see step 8 below for how the 2 bonus ones work) |
+   | DataCamp Courses | 15% | 7 (5 required + 2 bonus — see step 8 below for how the 2 bonus ones work) |
    | Midterm Exam | 20% | 1 |
    | Capstone Project | 25% | 1 |
    | Lab Participation & Engagement | 5% | 1 |
@@ -156,7 +156,7 @@ body, Front Page, Navigation settings, publish state, or submission types
    open the right page on the live site (confirms `site_base_url` in the
    manifest matches where the site is really deployed).
 8. **ISM2411 only — DataCamp bonus assignments** — the syllabus specifies
-   the 8 required DataCamp courses earn the full 15% group weight, and the
+   the 5 required DataCamp courses earn the full 15% group weight, and the
    2 bonus courses can add up to +5% more, capped so the DataCamp component
    never exceeds 20% of the final grade. Canvas has no single checkbox for
    "capped bonus" — the standard way to get this behavior is to set the 2
