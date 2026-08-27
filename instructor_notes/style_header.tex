@@ -48,12 +48,19 @@
       \itshape\color{black}}
   {\end{tcolorbox}}
 
-% Fenced code blocks (pandoc's Shaded env) -> clean bordered box
-\renewenvironment{Shaded}
-  {\begin{tcolorbox}[breakable, enhanced, colback=codefill, colframe=codeborder,
-      boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=5pt, bottom=5pt,
-      before skip=9pt, after skip=11pt]}
-  {\end{tcolorbox}}
+% Fenced code blocks (pandoc's Shaded env) -> clean bordered box.
+% Pandoc only defines \Shaded when the document actually contains a
+% fenced code block, so guard with \@ifundefined — some labs (e.g. the
+% no-code Week 01 vocabulary session) have none at all.
+\makeatletter
+\newcommand{\ShadedBoxOpen}{\begin{tcolorbox}[breakable, enhanced, colback=codefill, colframe=codeborder,
+    boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=5pt, bottom=5pt,
+    before skip=9pt, after skip=11pt]}
+\newcommand{\ShadedBoxClose}{\end{tcolorbox}}
+\@ifundefined{Shaded}
+  {\newenvironment{Shaded}{\ShadedBoxOpen}{\ShadedBoxClose}}
+  {\renewenvironment{Shaded}{\ShadedBoxOpen}{\ShadedBoxClose}}
+\makeatother
 
 % ---- Tables: a touch more row padding, navy rules ----
 \usepackage{colortbl}
