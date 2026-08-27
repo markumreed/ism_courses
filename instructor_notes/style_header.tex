@@ -1,0 +1,67 @@
+% ============================================================
+% Instructor Guide house style — shared across every lab PDF.
+% Included via: pandoc --include-in-header=style_header.tex
+% ============================================================
+
+\usepackage{xcolor}
+\definecolor{navy}{HTML}{1B3A5C}
+\definecolor{sayfill}{HTML}{EFF6FF}
+\definecolor{sayborder}{HTML}{2563EB}
+\definecolor{codeborder}{HTML}{D0D7DE}
+\definecolor{codefill}{HTML}{F7F8FA}
+\definecolor{mutedtext}{HTML}{4B4F57}
+
+% ---- Headings: navy, with a rule under \section ----
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{navy}}
+  {\thesection}{0.6em}{}
+  [{\color{navy}\titlerule[0.8pt]}]
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{navy}}
+  {\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{navy}}
+  {\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.5em}{0.9em}
+\titlespacing*{\subsection}{0pt}{1.3em}{0.6em}
+\titlespacing*{\subsubsection}{0pt}{1.1em}{0.4em}
+
+% ---- Lists: a bit more breathing room between items ----
+\usepackage{enumitem}
+\setlist{itemsep=0.35em, topsep=0.4em, parsep=0em}
+
+% ---- Body text: slightly open line spacing for readability ----
+\usepackage{setspace}
+\setstretch{1.12}
+
+% ---- Callout boxes ----
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% "Say to the class" quotes (markdown "> ...") -> tinted callout box
+\renewenvironment{quote}
+  {\begin{tcolorbox}[breakable, enhanced, colback=sayfill, colframe=sayborder,
+      boxrule=0pt, leftrule=2.6pt, arc=1pt, outer arc=1pt,
+      left=9pt, right=9pt, top=6pt, bottom=6pt,
+      before skip=9pt, after skip=11pt]
+      \itshape\color{black}}
+  {\end{tcolorbox}}
+
+% Fenced code blocks (pandoc's Shaded env) -> clean bordered box
+\renewenvironment{Shaded}
+  {\begin{tcolorbox}[breakable, enhanced, colback=codefill, colframe=codeborder,
+      boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=5pt, bottom=5pt,
+      before skip=9pt, after skip=11pt]}
+  {\end{tcolorbox}}
+
+% ---- Tables: a touch more row padding, navy rules ----
+\usepackage{colortbl}
+\arrayrulecolor{navy!55}
+\renewcommand{\arraystretch}{1.25}
+
+% ---- Links: colors are set via YAML (linkcolor/urlcolor/citecolor:
+% "sayborder") so pandoc's own \hypersetup call — which runs after this
+% header-includes block and would otherwise override these — picks up
+% the color defined above instead of its default Maroon/Blue. ----
+\usepackage{hyperref}
