@@ -62,8 +62,8 @@ YouTube video ID is the 11-character string in the URL:
 
 | # | Placeholder ID | Title | Runtime | Course |
 |---|---|---|---|---|
-| 34 | PLACEHOLDER_LAB_W01 | Dev Environment Setup — Lab Walkthrough \| ISM2411 Lab 01 | 10 min | ISM2411 |
-| 35 | PLACEHOLDER_LAB_W02 | Python Setup & First Script — Lab Walkthrough \| ISM2411 Lab 02 | 10 min | ISM2411 |
+| 34 | 1WZVu0PDNwM | Computer Vocabulary & File System Tour — Lab Walkthrough \| ISM2411 Lab 01 | 10 min | ISM2411 |
+| 35 | giKZfTMnJyE | First Terminal Session & First Python Script — Lab Walkthrough \| ISM2411 Lab 02 | 10 min | ISM2411 |
 | 36 | PLACEHOLDER_LAB_W03 | Product Pricer with F-Strings — Lab Walkthrough \| ISM2411 Lab 03 | 10 min | ISM2411 |
 | 37 | PLACEHOLDER_LAB_W04 | Conditionals Lab — Lab Walkthrough \| ISM2411 Lab 04 | 10 min | ISM2411 |
 | 38 | PLACEHOLDER_LAB_W05 | For Loops Lab — Lab Walkthrough \| ISM2411 Lab 05 | 10 min | ISM2411 |
@@ -168,8 +168,8 @@ VIDEO_IDS = {
 
 # Phase 4 — ISM2411 lab video IDs (scoped to ism2411/pages/ only)
 ISM2411_LAB_IDS = {
-    "PLACEHOLDER_LAB_W01": "",   # ISM2411 Lab W01 — Dev Environment Setup
-    "PLACEHOLDER_LAB_W02": "",   # ISM2411 Lab W02 — Python Setup & First Script
+    "PLACEHOLDER_LAB_W01": "1WZVu0PDNwM",   # ISM2411 Lab W01 — Computer Vocabulary & File System Tour
+    "PLACEHOLDER_LAB_W02": "giKZfTMnJyE",   # ISM2411 Lab W02 — First Terminal Session & First Python Script
     "PLACEHOLDER_LAB_W03": "",   # ISM2411 Lab W03 — Product Pricer with F-Strings
     "PLACEHOLDER_LAB_W04": "",   # ISM2411 Lab W04 — Conditionals
     "PLACEHOLDER_LAB_W05": "",   # ISM2411 Lab W05 — For Loops
