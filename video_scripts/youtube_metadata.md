@@ -85,7 +85,7 @@ YouTube video ID is the 11-character string in the URL:
 | # | Placeholder ID | Title | Runtime | Course |
 |---|---|---|---|---|
 | 48 | PLACEHOLDER_LAB_W01 | Dev Environment Setup — Lab Walkthrough \| ISM3232 Lab 01 | 10 min | ISM3232 |
-| 49 | PLACEHOLDER_LAB_W02 | Advanced Shell Navigation — Lab Walkthrough \| ISM3232 Lab 02 | 10 min | ISM3232 |
+| 49 | yQBZqWj013E | Advanced Shell Navigation — Lab Walkthrough \| ISM3232 Lab 02 | 10 min | ISM3232 |
 | 50 | PLACEHOLDER_LAB_W03 | Virtual Environments & .zshrc — Lab Walkthrough \| ISM3232 Lab 03 | 10 min | ISM3232 |
 | 51 | PLACEHOLDER_LAB_W04 | Search, Git & Submission Ritual — Lab Walkthrough \| ISM3232 Lab 04 | 10 min | ISM3232 |
 | 52 | PLACEHOLDER_LAB_W05 | Variables, Data Types & Operators — Lab Walkthrough \| ISM3232 Lab 05 | 10 min | ISM3232 |
@@ -187,7 +187,7 @@ ISM2411_LAB_IDS = {
 # Phase 5 — ISM3232 lab video IDs (scoped to ism3232/docs/ only)
 ISM3232_LAB_IDS = {
     "PLACEHOLDER_LAB_W01": "",   # ISM3232 Lab W01 — Dev Environment Setup
-    "PLACEHOLDER_LAB_W02": "",   # ISM3232 Lab W02 — Advanced Shell Navigation
+    "PLACEHOLDER_LAB_W02": "yQBZqWj013E",   # ISM3232 Lab W02 — Advanced Shell Navigation
     "PLACEHOLDER_LAB_W03": "",   # ISM3232 Lab W03 — Virtual Environments & .zshrc
     "PLACEHOLDER_LAB_W04": "",   # ISM3232 Lab W04 — Search, Git & Submission Ritual
     "PLACEHOLDER_LAB_W05": "",   # ISM3232 Lab W05 — Variables, Data Types & Operators
