@@ -136,13 +136,22 @@ Modifiers (space-separated boolean attrs, or `data-stdin`):
 - `data-stdin="Notebook&#10;4.99&#10;12"` — pre-fills the stdin box, one value per line
   (`&#10;` = newline). A stdin box also appears automatically if the source contains
   `input(`.
-- `data-readonly` — no editable editor, just the source + a Run button (honored for
-  python).
+- `data-readonly` — **python:** the source renders as a static, syntax-highlighted
+  `<pre>` (no editable textarea) but still gets a **Run** button and an output pane.
+  **shell:** static highlighted `<pre>` only — no Run, no prompt, no transcript.
 - `data-autorun` — runs once automatically when its slide becomes active. Use sparingly;
-  never on a slow (pandas) block.
+  never on a slow (pandas) block. **Python blocks only** — `buildShell` never reads it, so
+  `data-autorun` on a `data-lang="shell"` block does nothing.
 
 Broken-then-fixed pattern (ISM2411 w03 Ex 3): two `.run` blocks with the same
 `data-stdin`, the first deliberately raising, each with its own `s-out`.
+
+> **Every `.run` python block executes in its OWN fresh namespace.** Blocks do **not**
+> share variables: a name defined on slide 4 is gone on slide 9. Each block must be a
+> complete, self-contained runnable script — re-do the imports and re-assign any variable
+> it uses. (This is deliberate: it keeps a `NameError` demo honest and keeps the
+> framework's `__lab_*` helpers out of a `dir()` / `globals()` demo. The *interpreter* is
+> still shared, so loaded packages and Pyodide's virtual FS persist across blocks.)
 
 ### Runnable shell — `data-lang="shell"` with a seeded FS
 
@@ -156,6 +165,11 @@ cat notes.txt</div>
 
 - `data-fs` is a JSON tree: object = directory, string = file contents. Keys may start
   `~/…`. Escape inner quotes and newlines for JSON (`\"`, `\n`).
+- **`data-fs` is a single-quoted HTML attribute holding JSON**, so the seeded file
+  contents must survive both layers. A `'` ends the attribute, and `&` / `<` start an
+  entity or a tag — any of the three breaks the block (the parse fails silently and the
+  shell boots with an empty FS). Keep fixture contents ASCII, quote-free and
+  apostrophe-free, or escape them (`&#39;`, `&amp;`, `&lt;`).
 - **The emulator always starts cwd at `/Users/student`.** Every shell block must lead with
   a `cd ~/...` to get where the guide's Setup step left the student.
 - `python3 <file>` inside the emulator delegates to Pyodide; `git`, `python -m venv`,
@@ -169,12 +183,14 @@ cat notes.txt</div>
   <button data-opt="A"><code>&lt;class 'int'&gt;</code></button>
   <button data-opt="B"><code>&lt;class 'str'&gt;</code></button>
   <button data-opt="C"><code>SyntaxError</code></button>
-  <p class="why">The quotes make it text, not a number. …</p>
+  <p class="why" hidden>The quotes make it text, not a number. …</p>
 </div>
 ```
 
 Multi-answer: `data-answer="A,C"` — the widget then renders a **Check** button and grades
-the selected set. `.why` is revealed after answering. Answer letters are matched
+the selected set (**Check** with nothing selected is a no-op, not a wrong answer).
+`.why` is revealed after answering — always ship it with the `hidden` attribute so it
+cannot flash before the widget upgrades the question. Answer letters are matched
 case-insensitively against `data-opt`.
 
 ### Predict-the-output — `.predict` (a variant of `s-out`)
@@ -263,9 +279,12 @@ parenthetical for that segment.
 
 ## 5. Per-course specifics
 
-### ISM2411 — all 14 labs Python, Pyodide only, no shell
+### ISM2411 — Python/Pyodide throughout, with a shell exception in w01–w02
 
-- `data-lang="python"` everywhere. No `data-lang="shell"` in any ISM2411 deck.
+- `data-lang="python"` is the default for every ISM2411 deck. **w01 and w02 MAY use
+  `data-lang="shell"`** for a genuine terminal sequence (the first-week folder/file setup);
+  the emulator ships in `ism2411/assets/` too, so it works there identically. Everything
+  else — every other week, and any block that is really Python — stays on Pyodide.
 - `input()` appears from **w03 on** — those blocks need `data-stdin` seeded with the
   guide's sample answers.
 - REPL demos (bare expressions that auto-echo) don't auto-echo in a `.run` block — wrap
@@ -330,31 +349,31 @@ parenthetical for that segment.
 - **w01–w04** (`zsh` / git / venv): `data-lang="shell"` with a seeded `data-fs`.
   - `git`, `python -m venv`, `pip install` **cannot run** in the emulator. Show them as
     `data-readonly` static code **with a visible note on the slide** ("shown for
-    reference — run this on your own machine"). See §6 for the `data-readonly`-on-shell
-    caveat.
+    reference — run this on your own machine"). `data-readonly` on a shell block gives
+    exactly that: highlighted source, no Run button, no terminal (§6.1).
   - w03's `.zshrc` / `.venv` content: seed it into `data-fs` so `ls -la` / `cat` show
     something real.
 - **w05–w16** Python → same as ISM2411 (`data-lang="python"`, `data-stdin` for `input()`).
 - **w14 SQL** — `import sqlite3` works (Pyodide stdlib). Normal `data-lang="python"`
   runnable blocks; seed any `.db` by building it in-script or from an inline SQL string.
-- **w15 Streamlit** and **w16 GenAI API calls** cannot run client-side. Those decks use
-  `data-readonly` code + a knowledge-check / walkthrough treatment instead of live
-  execution, **called out explicitly on the slide** ("this can't run in the browser —
-  walk through it, then run it locally").
+- **w15 Streamlit** and **w16 GenAI API calls** cannot run client-side. Those decks use a
+  knowledge-check / walkthrough treatment instead of live execution, **called out
+  explicitly on the slide** ("this can't run in the browser — walk through it, then run it
+  locally"). Note that `data-readonly` on a *python* block still shows a Run button (§3),
+  so for code that genuinely cannot run, put it in a plain `<pre><code
+  class="language-python">` **outside** any `.run` div rather than in a readonly `.run`.
 
 ---
 
 ## 6. Known framework limitations — work around these
 
-1. **`data-readonly` is ignored on `data-lang="shell"` blocks** (`buildShell` never checks
-   `el.dataset.readonly`; only `buildPython` honors it). Until the framework adds it, an
-   ISM3232 "readonly" shell step still renders as an interactive terminal. Options:
-   - Accept it — the FS is a sandboxed in-memory seed, so an interactive git/venv step is
-     harmless (the commands just error or no-op).
-   - Or present the step as a plain `<pre>` **outside** any `.run` div (no interactivity
-     at all) when the code must not look runnable.
-   - **This is the first framework fix the rollout should make** — honor `data-readonly`
-     in `buildShell` the same way `buildPython` does.
+1. **`data-readonly` behaves differently per language — by design.** On a
+   `data-lang="shell"` block it renders the source as a static, syntax-highlighted `<pre>`
+   with **no** Run-all button, no prompt line and no emulator transcript — the right
+   treatment for `git`, `python -m venv`, `pip` and `code .`, which cannot really run.
+   On a `data-lang="python"` block it renders the same static `<pre>` but **keeps** the
+   Run button and the output pane (the code is shown, not editable, and still runs).
+   *(Resolved — rollout Task 1.)*
 2. **`runPython` does not load packages from imports** — `import pandas` fails cold
    unless the package is preloaded. Add `data-packages="pandas,matplotlib"` to the
    block (§5); `buildPython` calls `loadPackages(...)` on the first Run. *(Resolved —
