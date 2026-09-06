@@ -272,38 +272,58 @@ parenthetical for that segment.
   each line in `print(...)` and add an `expect` note explaining the REPL would show quotes
   around strings. (w03 Ex 5 does this.)
 - **w12–w15 use pandas / matplotlib.** `runPython` does *not* auto-load packages from
-  imports, so `import pandas` fails cold. Handle it one of two ways:
-  1. **Opt-in "Load data tools" block** — a separate, non-`autorun` `.run` block placed
-     before the first pandas exercise:
+  imports, so `import pandas` fails cold. Add the `data-packages` attribute to the block:
 
-     ```html
-     <div class="run" data-lang="python" data-readonly>
-     import pyodide_js
-     await pyodide_js.loadPackage(["pandas", "matplotlib"])
-     print("data tools ready")
-     </div>
-     ```
+  ```html
+  <div class="run" data-lang="python" data-packages="pandas,matplotlib">
+  import pandas as pd
+  df = pd.read_csv("sales.csv")
+  print(df.describe())
+  </div>
+  ```
 
-     `runPythonAsync` allows top-level `await`, so this works with no framework change.
-     Presenter clicks Run once; later blocks in the same deck reuse the loaded packages
-     (the Pyodide instance is a singleton for the page).
-  2. **`data-readonly` + static output** — if load time on lab wifi is prohibitive,
-     present the pandas code as `data-readonly` and rely entirely on the paired `s-out`
-     (static text for a table; a committed PNG referenced from the slide for a chart).
-- **Sample data:** bundle any CSV inline as a Python string written to Pyodide's virtual
-  FS at the top of the block:
+  - `data-packages` is a comma-separated Pyodide package list — `"pandas"` or
+    `"pandas,matplotlib"`.
+  - The Run button's **first** activation shows `loading packages…` and preloads them
+    before the code runs. Later Runs of that block skip the load, and every other block
+    on the page reuses them (the Pyodide instance is a page singleton) — one
+    `data-packages` block early in the deck is enough, but repeating the attribute on
+    each data block is harmless and makes a block self-contained.
+  - Keep `data-packages` blocks **non-`autorun`** — the first run pays a multi-MB
+    download; let the presenter click Run.
+  - If the download fails (lab wifi offline), the error shows in the output pane and the
+    next Run retries. If load time is prohibitive, fall back to `data-readonly` + a
+    paired `s-out` (static text for a table; a committed PNG for a chart).
+- **Sample data (embedded CSV):** bundle any CSV inline as a triple-quoted Python
+  string and write it to Pyodide's virtual FS at the **top of the block**:
 
   ```python
-  csv = "product,price,qty\nNotebook,4.99,12\nPen,1.99,50\n"
-  open("sales.csv", "w").write(csv)
+  from pathlib import Path
+
+  CSV = """product,price,qty
+  Notebook,4.99,12
+  Pen,1.99,50
+  """
+  Path("sales.csv").write_text(CSV)
+
   import pandas as pd
   df = pd.read_csv("sales.csv")
   print(df)
   ```
 
-- **Charts:** render to PNG and show it in the output pane, e.g.
-  `plt.savefig("out.png"); print("saved")` then a follow-up block / static image — do not
-  rely on an interactive matplotlib backend.
+- **Charts (matplotlib → PNG):** when `data-packages` includes `matplotlib` the
+  framework forces the headless `AGG` backend and, after your code runs, captures any
+  open figure to a PNG shown in the output pane — just build the plot, no `plt.show()`
+  or `plt.savefig()` needed:
+
+  ```python
+  import matplotlib.pyplot as plt
+
+  plt.plot([1, 2, 3], [4, 9, 5])
+  plt.title("Sales trend")
+  ```
+
+  A block that draws nothing is fine — no figure, no image, no error.
 
 ### ISM3232 — w01–w04 shell, w05–w16 Python
 
@@ -335,10 +355,10 @@ parenthetical for that segment.
      at all) when the code must not look runnable.
    - **This is the first framework fix the rollout should make** — honor `data-readonly`
      in `buildShell` the same way `buildPython` does.
-2. **`runPython` does not load packages from imports.** No `data-packages` attribute
-   exists. Use the §5 "Load data tools" `pyodide_js.loadPackage` block. A clean second
-   framework fix: add `data-packages="pandas,matplotlib"` handling to `buildPython` that
-   calls `loadPackages(...)` before the first run.
+2. **`runPython` does not load packages from imports** — `import pandas` fails cold
+   unless the package is preloaded. Add `data-packages="pandas,matplotlib"` to the
+   block (§5); `buildPython` calls `loadPackages(...)` on the first Run. *(Resolved —
+   this was a rollout framework fix.)*
 3. **highlight.js emits a benign `console.warn`** if a `.predict` hidden `<pre>` contains
    an inner `<code class="language-*">`. Don't put one there — plain text only inside
    `<pre class="answer" hidden>`.
