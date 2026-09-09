@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | No coding today — a discussion- and worksheet-driven session. Students work on paper/in a doc, in pairs for Exercise 4, individually for the rest |
 | **Prerequisites** | None — this is the first lab of the semester |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week01\_lab](https://markumreed.github.io/ism2411/pages/week01_lab.html) |
-| **Exercises covered** | Exercises 1–6 (required) + Stretch A/B (as time allows) |
+| **Exercises covered** | Exercises 1–6 (required) |
 | **Submission** | No Canvas code submission this week — students bring their vocabulary answers, folder screenshot, and Exercise 4 automation examples to class |
 
 This is the only lab all semester with zero code in it, and that is deliberate: everything from Module 02 onward assumes students already have a rock-solid mental model of what a file *is*, where it *lives*, and how a computer *finds* it. Because there is no code to anchor the room's attention, this session lives or dies on your pacing and your questions — the content itself (nine vocabulary words, three RAM/storage scenarios) is thin enough to blow through in fifteen minutes if you let it. Don't. This guide over-provisions discussion prompts and extra worked examples specifically so you have material to slow down with.
@@ -58,7 +58,7 @@ By the end of this 75-minute session, students should be able to:
 
 - Projector/screen-share with Finder/Explorer visible
 - Students: laptop (file system only, no code editor needed) or paper
-- No Python, no internet research required for the core exercises (Stretch B needs a web search)
+- No Python, no internet research required for these exercises
 
 # Timing Plan (75 minutes)
 
@@ -71,9 +71,9 @@ By the end of this 75-minute session, students should be able to:
 | 0:34–0:44 | Exercise 4 — Automation reflection (pair discussion) | 10 |
 | 0:44–0:56 | Exercise 5 — Draw the directory tree (given + one extra rep) | 12 |
 | 0:56–1:06 | Exercise 6 — RAM vs. storage (three given + two extra scenarios) | 10 |
-| 1:06–1:15 | Stretch A/B preview + wrap-up, reflection, submission checklist | 9 |
+| 1:06–1:15 | Wrap-up, reflection, submission checklist | 9 |
 
-This lab's raw content (six exercises, no code) does not naturally fill 75 minutes at a lecture pace — it fills 75 minutes only if you run it as a genuine discussion with cold-calling, pair-share, and the extra reps built into this guide (marked **EXTRA** below). Do not compress the schedule by skipping the extras; skip Stretch A/B instead if you're short on time, since those are explicitly designed as optional take-home material.
+This lab's raw content (six exercises, no code) does not naturally fill 75 minutes at a lecture pace — it fills 75 minutes only if you run it as a genuine discussion with cold-calling, pair-share, and the extra reps built into this guide (marked **EXTRA** below). Do not compress the schedule by skipping the extras — the discussion reps *are* the lab.
 
 \newpage
 
@@ -313,14 +313,6 @@ Have students draw this tree on their own (it branches at `clients/`, into `acme
 - For scenario (b), guessing "RAM" because the error happened "while the program was running" — redirect: the *error itself* is about a missing file on disk, which is a storage concept regardless of when in the program's execution it surfaces.
 
 **Check for understanding:** "Someone tell me, in one sentence, the general rule for telling RAM problems and storage problems apart." (Something like: "If it's about something being lost when the power went out, it's RAM. If it's about a file not existing or being slow to read, it's storage.")
-
----
-
-## Stretch A & B (as time allows, folded into wrap-up)
-
-**Stretch A — Read an unfamiliar `.py` file.** Frame it for take-home practice rather than in-class time: "Find any short Python script online, 5–15 lines, and write one sentence per line explaining what it does — even if you're guessing on some of it. You'll do this constantly in your career, long before you can write everything from scratch." No live demo needed today since no Python has been introduced yet; this is intentionally a low-stakes first exposure.
-
-**Stretch B — Research: how much RAM does a real dataset need?** "Look up how much RAM Python needs to hold a pandas DataFrame with 1 million rows and 10 float columns, and write 3–4 sentences on why that matters for analysts." If a student asks for the number during class: a rough rule of thumb is that a pandas float64 DataFrame uses about 8 bytes per cell, so 1,000,000 rows × 10 columns × 8 bytes ≈ 80 MB for the raw data alone — but pandas overhead, indexes, and any object/string columns can push real usage well above that back-of-envelope number, which is exactly the kind of nuance a good Stretch B answer should surface rather than just quoting a single figure.
 
 \newpage
 

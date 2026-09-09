@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along |
 | **Prerequisites** | Module 11: dictionaries, `.get()` accumulate-into-a-dict pattern; Module 10: lists |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week12\_lab](https://markumreed.github.io/ism2411/pages/week12_lab.html) |
-| **Exercises covered** | Exercises 1–8 (required) + Stretch (as time allows) |
+| **Exercises covered** | Exercises 1–8 (required) |
 | **Submission** | `csv_practice.py` + the cleaned CSV and other output files, via GitHub (`week12/` folder), repo URL to Canvas |
 
 Every prior module's data lived only inside the running script — created fresh each run, gone the moment the program ended. This is the first lab where a program's *inputs and outputs are real files on disk*, and the lab page's own framing is worth repeating to the class verbatim: this is a first complete **ETL pipeline** (Extract, Transform, Load) — read raw data in, transform it (filter, compute, summarize), and write cleaned results back out. This exact shape — read, transform, write — is the skeleton of an enormous fraction of real business data work. Protect real time for the `with` block (Exercise 2) and the `newline=""` detail (Exercise 5) — both are easy to wave past but cause genuinely confusing bugs if skipped.
@@ -58,22 +58,9 @@ By the end of this 75-minute session, students should be able to:
 - Instructor laptop + terminal + editor, Python 3.10+ (the `csv` and `datetime` modules are both part of the standard library — no `pip install` needed)
 - Students: `sales.csv` (provided or self-created), same GitHub repo with a new `week12/data/` folder
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:04 | Welcome: "your first real ETL pipeline" | 4 |
-| 0:04–0:08 | Exercise 1 — Get the file | 4 |
-| 0:08–0:16 | Exercise 2 — Read and print raw rows | 8 |
-| 0:16–0:22 | Exercise 3 — Skip the header | 6 |
-| 0:22–0:31 | Exercise 4 — Compute totals | 9 |
-| 0:31–0:41 | Exercise 5 — Filter and write | 10 |
-| 0:41–0:48 | Exercise 6 — `csv.DictReader` | 7 |
-| 0:48–0:56 | Exercise 7 — Sales summary by product | 8 |
-| 0:56–1:06 | Exercise 8 — Append mode log | 10 |
-| 1:06–1:15 | Stretch preview + wrap-up, reflection, submission checklist | 9 |
-
-Eight required exercises fill the full 75 minutes; the Stretch challenge (writing `summary.csv`, sorted descending, optionally with `DictWriter`) is positioned as a closing preview since it's largely a direct extension of Exercises 5 and 7 rather than new material.
+The required exercises fill the available time.
 
 \newpage
 
@@ -512,25 +499,6 @@ with open("week12/data/run_log.txt", "a") as f:
 
 \newpage
 
-## Stretch — `summary.csv`, Sorted Descending (1:06–1:15, as time allows)
-
-**Frame as a quick preview/demo if time is short** — a direct extension of Exercises 5 and 7 rather than new material:
-
-```python
-with open("week12/data/summary.csv", "w", newline="") as f:
-    writer = csv.writer(f)
-    writer.writerow(["Product", "TotalRevenue"])
-    for product, total in sorted(summary.items(), key=lambda item: item[1], reverse=True):
-        writer.writerow([product, round(total, 2)])
-```
-
-**Two things worth saying explicitly if you demo this live:**
-
-- `sorted(summary.items(), key=lambda item: item[1], reverse=True)` — this is genuinely new syntax (a `lambda`, and a sort `key`) worth narrating even briefly: `summary.items()` gives `(product, total)` pairs; `key=lambda item: item[1]` tells `sorted()` to sort by each pair's *second* element (the total), not the product name (which would be the default, alphabetical behavior, same as Exercise 7); `reverse=True` flips it to descending, highest revenue first. This one line is doing real, non-obvious work — if time is short, it's completely reasonable to present it as "here's a working recipe for sorting a dictionary's items by value" without deriving `lambda` from first principles today.
-- **The bonus mentioned on the lab page — `csv.DictWriter` instead of `csv.writer`** — mirrors Exercise 6's reading-side choice on the writing side: `DictWriter` takes a dictionary per row (matched to a declared `fieldnames` list) instead of a plain positional list, which is safer for wide files with many columns, since a `writer.writerow([...])` call with values in the wrong order fails silently (wrong data under the wrong header), while a misspelled key in a `DictWriter`'s row dictionary raises a clear, catchable error instead.
-
-\newpage
-
 # Wrap-Up (last ~9 minutes)
 
 **Review the reflection questions out loud** (answered as a comment at the top of the file):
@@ -646,16 +614,6 @@ total_revenue = compute_total_revenue()
 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 with open("week12/data/run_log.txt", "a") as f:
     f.write(f"{timestamp} | Total revenue: ${total_revenue:.2f}\n")
-```
-
-**Stretch (`summary.csv`, sorted descending):**
-
-```python
-with open("week12/data/summary.csv", "w", newline="") as f:
-    writer = csv.writer(f)
-    writer.writerow(["Product", "TotalRevenue"])
-    for product, total in sorted(summary.items(), key=lambda item: item[1], reverse=True):
-        writer.writerow([product, round(total, 2)])
 ```
 
 # Appendix B — Sample `sales.csv` (verified)

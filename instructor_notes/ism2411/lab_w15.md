@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along |
 | **Prerequisites** | Module 14's `clean_sales.csv`; Module 13's `groupby`-adjacent filtering and aggregation basics |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week15\_lab](https://markumreed.github.io/ism2411/pages/week15_lab.html) |
-| **Exercises covered** | Exercises 1–7 (required) + Stretch 1/2 (as time allows) |
+| **Exercises covered** | Exercises 1–7 (required) |
 | **Submission** | `aggregate.ipynb` (or `.py`) + all 4 PNG chart files via GitHub (`module15/` folder), URL to Canvas |
 
 The lab page's own framing is worth stating to the class verbatim and taking seriously: "this is the capstone dress rehearsal — the workflow, standards, and deliverable format are identical." Everything graded loosely in earlier modules — vague comments, unlabeled output — is graded strictly here, on purpose, because the capstone won't give partial credit for a chart with no title. Two things deserve outsized attention: **the "state your finding as a sentence with a number" discipline** (every required chart needs a one-sentence, numeric finding beneath it) and **Exercise 2's "all 12 months" requirement**, which contains a genuine, easy-to-miss gotcha — `groupby` silently omits any month with zero orders unless explicitly told not to.
@@ -58,22 +58,9 @@ By the end of this 75-minute session, students should be able to:
 - Instructor laptop + terminal + editor (or Jupyter), Python 3.10+, `pandas`, `matplotlib`, `seaborn` installed
 - Students: `data/clean_sales.csv` from Module 14, same GitHub repo with a new `module15/` folder
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:04 | Welcome: "this is the capstone, rehearsed" | 4 |
-| 0:04–0:14 | Exercise 1 — Q1: Revenue by region | 10 |
-| 0:14–0:24 | Exercise 2 — Q2: Monthly revenue trend | 10 |
-| 0:24–0:33 | Exercise 3 — Q3: Order size distribution | 9 |
-| 0:33–0:41 | Exercise 4 — Q4: Your own business question | 8 |
-| 0:41–0:48 | Exercise 5 — Seaborn version | 7 |
-| 0:48–0:55 | Exercise 6 — Multiple aggregations | 7 |
-| 0:55–0:59 | Exercise 7 — Notebook tidy-up | 4 |
-| 0:59–1:09 | Stretch 1/2 preview | 10 |
-| 1:09–1:15 | Wrap-up, reflection, submission checklist | 6 |
-
-Seven required exercises fill the bulk of the 75 minutes; both Stretch challenges (side-by-side subplots, a pivot-table heatmap) are positioned as previews of genuinely dashboard-grade techniques worth seeing even briefly before the capstone.
+The required exercises fill most of the available time.
 
 \newpage
 
@@ -462,43 +449,6 @@ West         63666.44          245       259.863020
 
 \newpage
 
-## Stretch 1 & 2 Preview (0:59–1:09, as time allows)
-
-**Stretch 1 — Side-by-side subplots:**
-
-```python
-fig, axes = plt.subplots(1, 2, figsize=(14, 5))
-
-region_revenue.plot(kind="bar", x="region", y="revenue", ax=axes[0], legend=False, color="#4C72B0")
-axes[0].set_title("Revenue by Region")
-axes[0].set_ylabel("Revenue ($)")
-
-cat_revenue.plot(kind="bar", ax=axes[1], legend=False, color="#DD8452")
-axes[1].set_title("Revenue by Product Category")
-axes[1].set_ylabel("Revenue ($)")
-
-plt.tight_layout()
-plt.savefig("module15/charts/stretch1_subplots.png", dpi=150)
-```
-
-**One sentence of framing, if you demo this:** "`plt.subplots(1, 2, ...)` creates *two* axes side by side in one figure instead of one — `axes` is now a small array, and each chart gets built on its own slot (`axes[0]`, `axes[1]`) exactly like the single-axes pattern all lab long, just indexed. This two-charts-in-one-figure layout is exactly what executive dashboards use constantly — multiple related views, one glance."
-
-**Stretch 2 — Regional monthly heatmap:**
-
-```python
-pivot = df.pivot_table(index="region", columns="month", values="revenue", aggfunc="sum", fill_value=0)
-
-fig, ax = plt.subplots(figsize=(12, 5))
-sns.heatmap(pivot, annot=True, fmt=".0f", cmap="YlOrRd", ax=ax)
-ax.set_title("Revenue by Region and Month")
-plt.tight_layout()
-plt.savefig("module15/charts/stretch2_heatmap.png", dpi=150)
-```
-
-**One sentence of framing, if you demo this:** "`.pivot_table()` reshapes the data into a full grid — one row per region, one column per month — in a single call, which is genuinely a more direct route to this shape than manually building it from repeated `groupby` calls; `fill_value=0` is doing the exact same 'don't silently drop empty combinations' job as Exercise 2's `.reindex()`, just for a two-dimensional grid instead of a single list of months. `annot=True, fmt=\".0f\"` prints each cell's actual number directly on the heatmap, which is what makes it genuinely readable rather than just decoratively colorful."
-
-\newpage
-
 # Wrap-Up (last ~6 minutes)
 
 **Review the reflection questions out loud:**
@@ -612,31 +562,6 @@ print(region_stats)
 # Most orders: South (403). Highest average order value: East ($510.04).
 ```
 
-**Stretch 1 (`side-by-side subplots`):**
-
-```python
-fig, axes = plt.subplots(1, 2, figsize=(14, 5))
-region_revenue.plot(kind="bar", x="region", y="revenue", ax=axes[0], legend=False, color="#4C72B0")
-axes[0].set_title("Revenue by Region")
-axes[0].set_ylabel("Revenue ($)")
-cat_revenue.plot(kind="bar", ax=axes[1], legend=False, color="#DD8452")
-axes[1].set_title("Revenue by Product Category")
-axes[1].set_ylabel("Revenue ($)")
-plt.tight_layout()
-plt.savefig("module15/charts/stretch1_subplots.png", dpi=150)
-```
-
-**Stretch 2 (`regional monthly heatmap`):**
-
-```python
-pivot = df.pivot_table(index="region", columns="month", values="revenue", aggfunc="sum", fill_value=0)
-fig, ax = plt.subplots(figsize=(12, 5))
-sns.heatmap(pivot, annot=True, fmt=".0f", cmap="YlOrRd", ax=ax)
-ax.set_title("Revenue by Region and Month")
-plt.tight_layout()
-plt.savefig("module15/charts/stretch2_heatmap.png", dpi=150)
-```
-
 # Appendix B — Reproducible Full-Year Dataset (for instructor testing)
 
 A generator producing a 1,200-row, full-calendar-year dataset with a genuine December seasonal peak and a deliberate region split — South has the most orders, but East wins on both total revenue and average order value — specifically so Exercise 6's two questions have two different, non-obvious answers. **Use your course's real Module 14 output with students.**
@@ -691,7 +616,7 @@ All expected output, chart data, and findings shown throughout this guide were c
 
 # Appendix C — Extra Practice (only if the class finishes early)
 
-Seven required exercises plus the two stretch previews fill the full 75 minutes at a normal pace. If a section moves unusually fast:
+Seven required exercises fill the full 75 minutes at a normal pace. If a section moves unusually fast:
 
 **Extra — a second single-dimension aggregation, different grouping.** Have students compute and chart revenue by `product_category` broken down further with `.agg()` to also show order count per category, then answer: does the category with the most orders also have the highest total revenue? (Verified: highest revenue is Apparel at `$103,886.52`; a good independent check of whether "most popular" and "most revenue" align for categories the same way Exercise 6 explored for regions.)
 

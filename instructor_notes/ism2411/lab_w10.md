@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along |
 | **Prerequisites** | Modules 05–08: conditionals, loops, functions, Git/GitHub (this module's submission goes through GitHub) |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week10\_lab](https://markumreed.github.io/ism2411/pages/week10_lab.html) |
-| **Exercises covered** | Exercises 1–8 (required) + Stretch (as time allows) |
+| **Exercises covered** | Exercises 1–8 (required) |
 | **Submission** | `inventory.py` via GitHub (`week10/` folder), repo URL to Canvas |
 
 Module 9 was the midterm; this is the first lab of Unit 3, and it opens a genuinely new topic — data structures. Everything before this unit processed values one at a time or accumulated a single running number; this module is about a single variable holding an entire *collection*, and about the specific tools (indexing, slicing, list methods) for reaching into that collection. Two ideas deserve the most protected time: **zero-based indexing** (Exercise 2) and the **mutable-vs-immutable** distinction between lists and tuples (Exercise 5) — both are genuinely non-obvious the first time, and both cause real bugs for the rest of the semester if they don't land solidly today.
@@ -58,22 +58,9 @@ By the end of this 75-minute session, students should be able to:
 - Instructor laptop + terminal + editor, Python 3.10+
 - Students: `inventory.py`, GitHub repo from Module 08 with a `week10/` folder to add
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:04 | Welcome: "one variable, many values" | 4 |
-| 0:04–0:10 | Exercise 1 — Build the list | 6 |
-| 0:10–0:19 | Exercise 2 — Index practice | 9 |
-| 0:19–0:27 | Exercise 3 — Slicing | 8 |
-| 0:27–0:35 | Exercise 4 — Modify | 8 |
-| 0:35–0:45 | Exercise 5 — Tuple comparison | 10 |
-| 0:45–0:52 | Exercise 6 — Average of a list of sales | 7 |
-| 0:52–1:00 | Exercise 7 — Accumulator pattern (build a new list) | 8 |
-| 1:00–1:08 | Exercise 8 — Filter above threshold | 8 |
-| 1:08–1:15 | Stretch preview + wrap-up, reflection, submission checklist | 7 |
-
-Eight required exercises comfortably fill 75 minutes; the single Stretch challenge (`inventory_report` function) is positioned as a closing preview rather than full live-coded content, since it's primarily a review of Module 07's function skills applied to this module's new list operations, not new material itself.
+The required exercises comfortably fill the available time.
 
 \newpage
 
@@ -457,28 +444,6 @@ print(sum(high_sales) / len(high_sales))
 
 \newpage
 
-## Stretch — `inventory_report` Function (1:08–1:15, as time allows)
-
-**Frame as a quick preview/demo if time is short** — this is primarily Module 07 review (writing a function, calling it more than once with different inputs) applied to this module's new list vocabulary, not new material:
-
-```python
-def inventory_report(items):
-    print(f"Count: {len(items)}")
-    print(f"First (alphabetically): {min(items)}")
-    print(f"Last (alphabetically): {max(items)}")
-    print(f"Sorted: {sorted(items)}")
-
-inventory_report(inventory)
-inventory_report(["zebra", "apple", "mango"])
-```
-
-**Two things worth saying explicitly if you demo this live:**
-
-- `min(items)` / `max(items)` on a list of **strings** returns the alphabetically first/last item, not a numeric minimum/maximum — worth stating explicitly as a nice generalization of Exercise 6's numeric `min()`/`max()`: these functions work on any type that can be meaningfully compared/ordered, strings included.
-- `sorted(items)` (a **function**, called as `sorted(items)`) versus Exercise 4's `.sort()` (a **method**, called as `inventory.sort()`) — this is a genuinely useful distinction worth naming if time allows: `sorted()` returns a *new*, sorted list and leaves the original untouched, while `.sort()` modifies the original list in place and returns nothing. Calling `inventory_report` a second time, on a completely different list, is what confirms the function genuinely generalizes rather than being hardcoded to the specific `inventory` list from earlier in the file.
-
-\newpage
-
 # Wrap-Up (last ~7 minutes)
 
 **Review the reflection questions out loud** (these are answered as a comment at the top of the file, per this lab's submission format — different from prior modules' end-of-script reflection placement, worth noting explicitly):
@@ -564,19 +529,6 @@ for sale in sales:
 print(high_sales)
 print(len(high_sales))
 print(sum(high_sales) / len(high_sales))
-```
-
-**Stretch (`inventory_report` function):**
-
-```python
-def inventory_report(items):
-    print(f"Count: {len(items)}")
-    print(f"First (alphabetically): {min(items)}")
-    print(f"Last (alphabetically): {max(items)}")
-    print(f"Sorted: {sorted(items)}")
-
-inventory_report(inventory)
-inventory_report(["zebra", "apple", "mango"])
 ```
 
 # Appendix B — Extra Practice (only if the class finishes early)

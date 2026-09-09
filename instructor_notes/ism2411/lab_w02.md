@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along, but in the terminal rather than an editor for most of the session — students type every command themselves, on their own machine, in real time |
 | **Prerequisites** | Module 01 vocabulary (file, directory, path); Python and VS Code already installed per the precourse setup page |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week02\_lab](https://markumreed.github.io/ism2411/pages/week02_lab.html) |
-| **Exercises covered** | Exercises 1–7 (required) + Stretch A/B (as time allows) |
+| **Exercises covered** | Exercises 1–7 (required) |
 | **Submission** | Screenshot of both `hello.py` outputs (Exercises 3 and 5) plus `python3 --version` output, to Canvas |
 
 This is the highest-variance lab of the semester to run, because it is the first time every student's *environment* — not just their code — is on the critical path. A perfectly typed command fails for a student whose PATH isn't set up correctly, or who installed Python without checking "Add to PATH," or who has both Python 2 and 3 aliased confusingly. Budget real slack in your pacing for environment troubleshooting; the exercises themselves are short, but "my terminal says command not found" will eat real minutes for 10–20% of a typical room. This guide's timing plan already assumes that friction.
@@ -59,22 +59,9 @@ By the end of this 75-minute session, students should be able to:
 - VS Code (or any text editor) for writing `.py` files
 - Python 3.10+ and pip, already installed per precourse setup
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:05 | Welcome, why the terminal matters, environment triage | 5 |
-| 0:05–0:13 | Exercise 1 — Terminal warm-up | 8 |
-| 0:13–0:18 | Exercise 2 — Verify Python | 5 |
-| 0:18–0:26 | Exercise 3 — Write `hello.py` | 8 |
-| 0:26–0:32 | Exercise 4 — Path practice | 6 |
-| 0:32–0:40 | Exercise 5 — Make a sub-project | 8 |
-| 0:40–0:50 | Exercise 6 — Deliberate error experiment | 10 |
-| 0:50–0:58 | Exercise 7 — Run from the wrong directory | 8 |
-| 0:58–1:08 | Stretch A — Multi-print `intro.py` | 10 |
-| 1:08–1:15 | Stretch B preview + wrap-up, reflection, submission checklist | 7 |
-
-This plan uses all 75 minutes across the seven required exercises plus Stretch A; Stretch B (installing `requests` with pip) is intentionally light-touch here since Module 02's real teaching goal is terminal fluency, not package management — treat it as a genuine bonus, not core content, and don't sacrifice Exercise 6 or 7 to reach it, since those two carry this lab's most important ideas (reading errors, understanding why current directory matters).
+This plan uses all 75 minutes across the seven required exercises. Exercises 6 and 7 carry this lab's most important ideas (reading errors, understanding why the current directory matters), so protect their time if the room runs slow.
 
 \newpage
 
@@ -162,7 +149,7 @@ pip3 --version
 **Line-by-line explanation:**
 
 - `python3 --version` — asks the Python interpreter installed on this machine to report its own version. The explicit `3` matters: on many systems, plain `python` (no `3`) either doesn't exist, or points at an old Python 2 installation — a genuinely common and confusing trap, worth naming explicitly even though this course standardizes on `python3` everywhere specifically to sidestep it.
-- `pip3 --version` — `pip` is Python's package installer (used again in Stretch B); confirming it's present now means Stretch B doesn't hit a surprise failure later.
+- `pip3 --version` — `pip` is Python's package installer; confirming it works now means it won't surprise you with a failure the first time the course needs it.
 
 **Run it. Expected output (versions will vary by machine):**
 
@@ -175,7 +162,7 @@ pip 23.2.1 from /usr/local/lib/python3.11/site-packages/pip (python 3.11)
 
 - `command not found: python3` — almost always a PATH problem from an installation that didn't add Python to the system PATH, or (on Mac) a case where only the Xcode Command Line Tools' minimal Python stub is present. Do not debug this from scratch live; route to the precourse setup page and flag for follow-up, per the setup checklist above.
 - A version below 3.10 reported successfully — the command *works*, so this can slip past a quick glance; explicitly tell the room to actually read the number, not just confirm "something printed."
-- Confusing `pip3` (the package manager) with `python3` (the interpreter) as interchangeable — they're two different programs installed together; a 10-second clarification here prevents confusion when Stretch B introduces `pip3 install`.
+- Confusing `pip3` (the package manager) with `python3` (the interpreter) as interchangeable — they're two different programs installed together; a 10-second clarification here prevents confusion the first time the course uses `pip3 install`.
 
 **Check for understanding:** "If your `python3 --version` shows `3.9.1`, is that a problem, and why might a specific version threshold matter for a class?" (Yes, borderline — some f-string format-spec behavior and syntax used later in the course assumes 3.10+; consistency across the whole room's environment also avoids "it works on my machine" debugging later.)
 
@@ -413,65 +400,6 @@ Alex Chen — Finance major
 
 \newpage
 
-## Stretch A — Multi-Print `intro.py` (0:58–1:08, 10 min)
-
-**Teaching goal:** Practice multiple `print()` calls in one script, each with a label — light repetition of Exercise 3/5's save-and-run loop, now with five lines instead of one.
-
-**Say to the class:**
-
-> "Five lines this time, each labeled — this is good practice for the exact save/run loop we've been doing all class, just with more content."
-
-**Live-code this (or have students build it independently while you circulate):**
-
-```python
-# intro.py
-print("Name: Alex Chen")
-print("Major: Finance")
-print("Hometown: Tampa, FL")
-print("Hobby: rock climbing")
-print("Why this course: I want to automate the reporting I do in my internship")
-```
-
-**Run it (`python3 intro.py`). Expected output** (five lines, each following the `Label: value` pattern shown):
-
-```
-Name: Alex Chen
-Major: Finance
-Hometown: Tampa, FL
-Hobby: rock climbing
-Why this course: I want to automate the reporting I do in my internship
-```
-
-**Common student mistakes to watch for:**
-
-- Saving `intro.py` in the wrong folder (e.g. inside `module02/` instead of alongside it) and then being confused why `python3 intro.py` can't find it from `ism2411/` — a direct rehearsal of Exercise 7's lesson; use it as an opportunity to have students self-diagnose rather than telling them the answer immediately.
-
-**Check for understanding:** "How is this exercise different from Exercise 5, structurally?" (Multiple `print()` calls in one file instead of one — a small step, but it's the first time this semester a script has more than a single line of real content, foreshadowing every future lab.)
-
-## Stretch B Preview — Install and Test a Package (as time allows)
-
-**Frame it as a quick demo rather than full hands-on time** if the clock is tight:
-
-```
-pip3 install requests
-```
-
-Then, in a new file `test_requests.py`:
-
-```python
-import requests; print("requests version:", requests.__version__)
-```
-
-Run with `python3 test_requests.py`. **Expected output** (exact version number varies by install date):
-
-```
-requests version: 2.31.0
-```
-
-**One-sentence framing, said out loud:** "`pip3 install` downloads and installs a package that isn't part of Python's built-in toolkit — `requests` is a genuinely popular one for talking to web APIs, and you'll use it later this semester. All we're confirming today is that the install pipeline itself works on your machine before you need it for something real."
-
-\newpage
-
 # Wrap-Up (last ~7 minutes)
 
 **Review the reflection questions out loud:**
@@ -543,26 +471,9 @@ python3 hello.py              # runs the WRONG hello.py (or errors, if Ex. 3's c
 python3 module02/hello.py     # correct — runs Exercise 5's hello.py
 ```
 
-**Stretch A (`ism2411/intro.py`):**
-```python
-print("Name: Alex Chen")
-print("Major: Finance")
-print("Hometown: Tampa, FL")
-print("Hobby: rock climbing")
-print("Why this course: I want to automate the reporting I do in my internship")
-```
-
-**Stretch B:**
-```
-pip3 install requests
-```
-```python
-import requests; print("requests version:", requests.__version__)
-```
-
 # Appendix B — Extra Practice (only if the class finishes early)
 
-Seven required exercises plus Stretch A fill the full 75 minutes at a normal pace, including realistic environment-troubleshooting slack. If a section moves unusually fast:
+Seven required exercises fill the full 75 minutes at a normal pace, including realistic environment-troubleshooting slack. If a section moves unusually fast:
 
 **Extra — a third `hello.py`, three levels deep.** Have students run `mkdir -p practice/deep/folder` (or three separate `mkdir` + `cd` steps if `-p` isn't covered) and write a third `hello.py` inside it. From `ism2411/`, have them run it with a single relative path (`python3 practice/deep/folder/hello.py`) without `cd`-ing there first — good extra rep of Exercise 7's relative-path lesson at greater depth.
 

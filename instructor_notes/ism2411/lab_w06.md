@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along |
 | **Prerequisites** | Module 05: `if`/`elif`/`else`; Modules 01–04: variables, operators, f-strings |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week06\_lab](https://markumreed.github.io/ism2411/pages/week06_lab.html) |
-| **Exercises covered** | Exercises 1–7 (required) + Stretch 1/2 (as time allows) |
+| **Exercises covered** | Exercises 1–7 (required) |
 | **Submission** | `sales_loop.py` to Canvas |
 
 This is the module where Python stops being "one calculation at a time" and starts processing real *data sets* — a whole list of sales, not one transaction. The **accumulator pattern** (initialize, loop, update) introduced in Exercise 1 is the single most important idea in the entire lab; every later exercise is a variation of it. If students leave today able to explain, unprompted, why an accumulator needs to be initialized *before* the loop starts, this lab succeeded — everything else (max-tracking, filtered counting, break/continue) is the same skeleton with small variations.
@@ -57,22 +57,9 @@ By the end of this 75-minute session, students should be able to:
 - Instructor laptop + terminal + editor, Python 3.10+
 - Students: `sales_loop.py`, same project structure as prior modules
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:05 | Welcome: "processing a whole list, not one value" | 5 |
-| 0:05–0:15 | Exercise 1 — Sum a list (the accumulator pattern) | 10 |
-| 0:15–0:21 | Exercise 2 — Average | 6 |
-| 0:21–0:29 | Exercise 3 — Max | 8 |
-| 0:29–0:36 | Exercise 4 — Filtered count | 7 |
-| 0:36–0:46 | Exercise 5 — `break` / `continue` | 10 |
-| 0:46–0:54 | Exercise 6 — `while` loop rewrite | 8 |
-| 0:54–1:02 | Exercise 7 — Discount applied to all items | 8 |
-| 1:02–1:10 | Stretch 1 — Running total report | 8 |
-| 1:10–1:15 | Stretch 2 preview + wrap-up, reflection, submission checklist | 5 |
-
-Seven required exercises plus Stretch 1 fill the full 75 minutes; Stretch 2 (nested loops / multiplication table) is a genuinely separate topic (loops *inside* loops) rather than a variation on today's accumulator pattern, so it's positioned as a preview/take-home unless the room finishes unusually early.
+The required exercises provide comprehensive coverage of the accumulator pattern and its variations.
 
 \newpage
 
@@ -403,79 +390,6 @@ $80 → 0% discount → $80.00
 
 \newpage
 
-## Stretch 1 — Running Total Report (1:02–1:10, 8 min)
-
-**Teaching goal:** A bank-statement-style running total — print the accumulator's value *during* the loop, at every step, not just at the end — plus a genuinely interesting discussion point about what "count how many times it crossed $500" even means for strictly increasing data.
-
-**Say to the class:**
-
-> "One more accumulator variation: print the running total after *every single* transaction, like a bank statement, instead of only printing the final sum once at the end."
-
-**Live-code this:**
-
-```python
-# --- Stretch 1 ---
-running_total = 0
-crossed_500 = False
-crossings = 0
-
-for sale in sales:
-    running_total += sale
-    print(f"${sale} -> running total: ${running_total}")
-    if running_total > 500 and not crossed_500:
-        crossings += 1
-        crossed_500 = True
-
-print(f"Number of transactions that first pushed the running total above $500: {crossings}")
-```
-
-**Line-by-line explanation:**
-
-- `running_total += sale` then immediately `print(...)` — **inside the loop**, so the printed value updates on every single pass, unlike Exercise 1 where the total was only revealed once, at the very end.
-- `crossed_500 = False` — a **flag** variable: a boolean that starts `False` and gets set to `True` the first time (and only the first time) the running total exceeds $500. This is a new accumulator *shape* — not a running sum or count of *values*, but a one-time "has this happened yet" tracker.
-- `if running_total > 500 and not crossed_500:` — combines a numeric check with the flag, using `and not` (Module 05's Exercise 6 pattern) to make sure this only fires once — without the `not crossed_500` guard, `crossings` would increment on *every remaining pass* once the total first crosses $500, since `running_total > 500` stays `True` for every sale after that point (sales are all positive, so the running total only ever goes up).
-- **Worth raising as an explicit discussion point:** since every sale in this list is positive, `running_total` is *monotonically increasing* — it only ever goes up, never down. That means it can only cross the $500 threshold **exactly once**, no matter what the data looks like, which is why `crossings` will always report `1` for this dataset. Ask the room: "under what circumstances could this count be something other than 1?" (If the list contained negative values — refunds or returns — the running total could dip back below $500 after crossing it, then cross again later, making a genuine multi-crossing count meaningful. With today's all-positive sales data, the flag guard is still good practice, but the "count" is a bit of a red herring on this particular dataset — a good moment for honest, real critique of an exercise's design, which is itself a useful habit to model.)
-
-**Run it. Expected output** (final line only shown; full output has one line per sale):
-
-```
-$120 -> running total: $120
-$80 -> running total: $200
-$250 -> running total: $450
-$175 -> running total: $625
-$90 -> running total: $715
-$410 -> running total: $1125
-$60 -> running total: $1185
-$215 -> running total: $1400
-Number of transactions that first pushed the running total above $500: 1
-```
-
-**Common student mistakes to watch for:**
-
-- Omitting the `crossed_500` flag entirely and just counting every pass where `running_total > 500` — this overcounts badly (five of the eight passes have a running total over $500, so `crossings` would incorrectly report `5` instead of `1`), a good concrete illustration of why the flag is necessary.
-
-**Check for understanding:** "Which specific sale caused the running total to first cross $500?" Have the room trace it together rather than eyeballing it: `$120→$120`, `$80→$200`, `$250→$450`, `$175→$625` — it's the **fourth** sale, `$175`, that pushes the running total over $500, from `$450` to `$625`. This is worth genuinely walking through together, since it's an easy one to get wrong by guessing instead of tracing.
-
-## Stretch 2 Preview — Nested Loops (as time allows)
-
-**Frame as a quick preview if time is short:**
-
-> "One loop inside another — a nested loop. Classic first example: a multiplication table. For every row `i` from 1 to 5, and for every column `j` from 1 to 5, print `i × j`. That's 25 total multiplications from just two short loops."
-
-If time allows a live demo:
-
-```python
-for i in range(1, 6):
-    row = ""
-    for j in range(1, 6):
-        row += f"{i*j:4}"
-    print(row)
-```
-
-State the business-relevant extension verbally even if you don't code it live: "swap the multiplication table for 5 products × 3 quantity tiers, and you have a full price list generated by the exact same nested-loop shape — the answer key has the working version if you want to explore it before next class."
-
-\newpage
-
 # Wrap-Up (last ~5 minutes)
 
 **Review the reflection questions out loud:**
@@ -566,50 +480,9 @@ for sale in sales:
     print(f"${sale} → {discount*100:.0f}% discount → ${discounted_price:.2f}")
 ```
 
-**Stretch 1 (`Running total report`):**
-
-```python
-running_total = 0
-crossed_500 = False
-crossings = 0
-
-for sale in sales:
-    running_total += sale
-    print(f"${sale} -> running total: ${running_total}")
-    if running_total > 500 and not crossed_500:
-        crossings += 1
-        crossed_500 = True
-
-print(f"Number of transactions that first pushed the running total above $500: {crossings}")
-```
-
-**Stretch 2 (`Nested loops` — multiplication table, then price list):**
-
-```python
-for i in range(1, 6):
-    row = ""
-    for j in range(1, 6):
-        row += f"{i*j:4}"
-    print(row)
-
-products = ["Widget", "Gadget", "Gizmo", "Doohickey", "Thingamajig"]
-tiers = [1, 5, 10]
-price_per_unit = 25
-for product in products:
-    for qty in tiers:
-        if qty >= 10:
-            discount = 0.10
-        elif qty >= 5:
-            discount = 0.05
-        else:
-            discount = 0
-        total_price = price_per_unit * qty * (1 - discount)
-        print(f"{product} x{qty}: ${total_price:.2f}")
-```
-
 # Appendix B — Extra Practice (only if the class finishes early)
 
-Seven required exercises plus Stretch 1 fill the full 75 minutes at a normal pace. If a section moves unusually fast:
+Seven required exercises fill the full 75 minutes at a normal pace. If a section moves unusually fast:
 
 **Extra — a second accumulator pass, different data.** `expenses = [45, 120, 15, 300, 60, 90]`. Have students independently compute, using the accumulator pattern from scratch (no peeking at Exercise 1–4's code): total, count, average, and max, without looking at their earlier code. (Total: `$630`. Count: `6`. Average: `$105.00`. Max: `$300`.)
 

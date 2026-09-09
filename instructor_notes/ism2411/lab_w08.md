@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live terminal/browser code-along — no new Python syntax today; the "code" is Git commands and Markdown |
 | **Prerequisites** | Module 02 terminal fluency; a `functions.py` file from Module 07 to add to the new repo |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week08\_lab](https://markumreed.github.io/ism2411/pages/week08_lab.html) |
-| **Exercises covered** | Exercises 1–6 (required) + Stretch 1/2 (as time allows) |
+| **Exercises covered** | Exercises 1–6 (required) |
 | **Submission** | The URL to the student's GitHub repo, submitted to Canvas |
 
 This is the second-highest-variance lab of the semester to run, after Module 02, for the same underlying reason: real accounts, real network access, real external services (github.com) are now on the critical path, not just each student's local machine. Authentication issues, two-factor setup friction, and the first-ever `git push` failing for an unexpected reason are all normal here — budget real slack. The actual Git concepts (stage, commit, push, log) are genuinely simple; the friction is almost entirely in the tooling and account setup, not the ideas.
@@ -60,21 +60,9 @@ By the end of this 75-minute session, students should be able to:
 - A terminal and text editor
 - `functions.py` from Module 07 (needed for Exercise 4)
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:05 | Welcome: why version control, and why this workflow repeats all semester | 5 |
-| 0:05–0:15 | Exercise 1 — Create the account | 10 |
-| 0:15–0:25 | Exercise 2 — New repo, clone locally | 10 |
-| 0:25–0:35 | Exercise 3 — Add a `.gitignore` | 10 |
-| 0:35–0:43 | Exercise 4 — Add Module 7 work | 8 |
-| 0:43–0:51 | Exercise 5 — Write a README | 8 |
-| 0:51–0:59 | Exercise 6 — Three commits, `git log` | 8 |
-| 0:59–1:07 | Stretch 1 — Back-fill earlier modules | 8 |
-| 1:07–1:15 | Stretch 2 preview + wrap-up, reflection, submission checklist | 8 |
-
-This plan assumes accounts already exist per the setup checklist above; if account creation genuinely has to happen live for several students, expect Exercise 1 to run long and treat Stretch 1/2 as the first things to compress or cut, not Exercises 2–6, which establish the actual workflow every remaining lab this semester depends on.
+If account creation happens live for several students, expect Exercise 1 to run long; protect the time for Exercises 2–6, which establish the workflow all remaining labs depend on.
 
 \newpage
 
@@ -305,7 +293,7 @@ git push
 - Forgetting the blank line between a heading and the paragraph below it, or between list items and surrounding text — Markdown is sometimes forgiving about this, sometimes not, and inconsistent spacing is the most common cause of a README that "looks wrong" on GitHub without any error message at all. If a student's rendering looks off, have them view the *raw* file (a toggle GitHub provides) side by side with the rendered version to spot the issue visually.
 - Using single asterisks (`*bold*`) expecting bold — single asterisks render as *italic*, not bold; double asterisks (`**bold**`) are required for bold. A quick, easy mix-up worth naming explicitly.
 
-**Check for understanding:** "If I add a fifth module folder next week, what exactly do I need to update in this README to keep it accurate?" (Add one more bullet line under `## Modules` — get a student to notice this file needs ongoing maintenance as the semester progresses, not just a one-time setup; this directly previews Exercise 6/Stretch 1's back-filling work.)
+**Check for understanding:** "If I add a fifth module folder next week, what exactly do I need to update in this README to keep it accurate?" (Add one more bullet line under `## Modules` — get a student to notice this file needs ongoing maintenance as the semester progresses, not just a one-time setup.)
 
 ---
 
@@ -346,44 +334,6 @@ f7c2b3e add README with module listing and run instructions
 - Confusing the *order* `git log` displays commits in — most recent commit at the **top** — with the order they were made in. If a student expects chronological top-to-bottom (oldest first), clarify explicitly that `git log`'s default and near-universal convention is newest-first.
 
 **Check for understanding:** "The default branch on GitHub is often called `main` these days, though older repos or certain local Git configurations may default to `master` — does this distinction affect anything you did in this lab?" (Not for this exercise specifically, but it's worth surfacing as an example of a small inconsistency students may encounter and should recognize rather than be thrown by — different repos, different defaults, same underlying Git concepts.)
-
-\newpage
-
-## Stretch 1 — Back-fill Earlier Modules (0:59–1:07, 8 min)
-
-**Teaching goal:** Repeat the full add-a-module cycle independently, twice, without step-by-step guidance — the real test of whether the workflow actually transferred, not just whether students could follow along live.
-
-**Say to the class:**
-
-> "Now do Exercise 4's process again, on your own, twice — once for Module 5's `discount.py`, once for Module 6's `sales_loop.py`. Separate commits for each, not one combined commit for both. Then update the README's module list."
-
-**Facilitation notes rather than a live-coded demo** — this is intentionally independent practice:
-
-- Circulate and check specifically for **commit granularity** — a student who does `git add week05/ week06/` and commits both in one shot has technically completed the task but missed the actual point (practicing the discipline of separate, coherent commits). Redirect gently: "can you undo that and do it as two separate commits instead?" is a fine, low-stakes correction at this stage.
-- The README update is easy to forget entirely, since it's a small, easy-to-overlook step after the "real" work of adding two folders — this is worth an explicit reminder mid-exercise, since a README that lists Modules 7–8 but not 5–6 is a subtle but real inconsistency a careful grader (or a future employer) would notice.
-
-**Verify:** `git log --oneline` should now show five total commits (the original three plus two more), and the README should list all modules covered so far.
-
-**Common student mistakes to watch for:**
-
-- Copying `discount.py`/`sales_loop.py` from their original Module 05/06 project folders but accidentally also copying unrelated files alongside them (like an old `__pycache__/` folder) — a good live check that `.gitignore` from Exercise 3 is actually doing its job: those files should *not* show up as trackable in `git status`, even if physically present in the folder, confirming the ignore rules work as intended.
-
-## Stretch 2 Preview — Simulate a Bug and Rollback (as time allows)
-
-**Frame as a quick demo if time is short**, since it's genuinely one of the more valuable "why Git matters" moments in the whole lab:
-
-```
-# Deliberately break something
-git add functions.py
-git commit -m "introduce bug for rollback exercise"
-git push
-
-# Then restore the working version
-git revert HEAD
-git push
-```
-
-**One sentence of framing, said out loud, is worth more than a full live demo here if time is tight:** "This is the entire reason version control exists: your mistake is never actually lost, and neither is the fix. `git revert` creates a *new* commit that undoes a previous one — the broken version stays visible in history (which is honest and often useful later), but the working code is restored. Confirm with `git log --oneline` afterward: you'll see *both* the 'introduce bug' commit and a new 'Revert ...' commit, not a history with the bug simply erased." If you demo it live, verify with the class that the file's content is genuinely restored to working order by re-running the script, not just trusting the command succeeded silently.
 
 \newpage
 
@@ -444,36 +394,9 @@ git push
 git log --oneline
 ```
 
-**Stretch 1 (back-fill, repeated per module):**
-```
-mkdir week05
-cp /path/to/your/discount.py week05/
-git add week05/
-git commit -m "add module 5 discount tier calculator"
-git push
-
-mkdir week06
-cp /path/to/your/sales_loop.py week06/
-git add week06/
-git commit -m "add module 6 sales loop: sum, average, max"
-git push
-```
-
-**Stretch 2 (simulate bug, then roll back):**
-```
-git add functions.py
-git commit -m "introduce bug for rollback exercise"
-git push
-
-git revert HEAD
-git push
-```
-
-Verified with a scratch repo: `git revert HEAD` (with no other flags) opens an editor for the revert commit's message — running `git revert --no-edit HEAD` skips that prompt and accepts Git's auto-generated "Revert '...'" message, which is a fine option to mention if a student gets stuck in an unfamiliar editor prompt (the same Vim-escape guidance from Exercise 3 applies here too).
-
 # Appendix B — Extra Practice (only if the class finishes early)
 
-Six required exercises plus Stretch 1 fill the full 75 minutes at a normal pace, including realistic account-setup and authentication friction. If a section moves unusually fast:
+Six required exercises fill the full 75 minutes at a normal pace, including realistic account-setup and authentication friction. If a section moves unusually fast:
 
 **Extra — a fourth, deliberately small commit.** Have students add one more bullet point to the README (e.g., a "Contact" or "License" section) and commit it on its own, with its own descriptive message — good extra rehearsal of the full cycle on the smallest possible unit of change, reinforcing that a "commit" doesn't need to represent a large amount of work, just one coherent one.
 

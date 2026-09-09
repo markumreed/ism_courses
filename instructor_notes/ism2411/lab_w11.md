@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along |
 | **Prerequisites** | Module 10: lists, indexing; Modules 05–06: conditionals, loops, accumulator pattern |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week11\_lab](https://markumreed.github.io/ism2411/pages/week11_lab.html) |
-| **Exercises covered** | Exercises 1–8 (required) + Stretch (as time allows) |
+| **Exercises covered** | Exercises 1–8 (required) |
 | **Submission** | `customers.py` via GitHub (`week11/` folder), repo URL to Canvas |
 
 Where Module 10's lists are reached by *position* (index `0`, `1`, `2`...), this module's dictionaries are reached by *name* — a genuinely different mental model, and arguably the single most professionally useful data structure in the entire course. The lab page's own framing is exactly right: "this is the pattern that underlies every real CRM and analytics workflow" — a customer record with named fields, a lookup table, a list of records, and a summary built by accumulating into a dictionary are all patterns students will meet again, immediately, in any real business-data role. Protect real time for Exercise 3's `.get()` vs. bracket-notation distinction and Exercise 8's accumulate-into-a-dictionary pattern — both come up constantly in real work.
@@ -57,22 +57,9 @@ By the end of this 75-minute session, students should be able to:
 - Instructor laptop + terminal + editor, Python 3.10+
 - Students: `customers.py`, GitHub repo with a `week11/` folder to add
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:04 | Welcome: "reached by name, not position" | 4 |
-| 0:04–0:11 | Exercise 1 — One customer | 7 |
-| 0:11–0:18 | Exercise 2 — Update and add | 7 |
-| 0:18–0:27 | Exercise 3 — Safe lookup (`.get()` vs. bracket notation) | 9 |
-| 0:27–0:34 | Exercise 4 — Iterate | 7 |
-| 0:34–0:42 | Exercise 5 — Lookup table | 8 |
-| 0:42–0:50 | Exercise 6 — List of dicts | 8 |
-| 0:50–0:58 | Exercise 7 — Nested catalog | 8 |
-| 0:58–1:07 | Exercise 8 — Sales by region (accumulate into a dict) | 9 |
-| 1:07–1:15 | Stretch preview + wrap-up, reflection, submission checklist | 8 |
-
-Eight required exercises fill the full 75 minutes at a normal pace; the Stretch challenge (`customer_report` function) is positioned as a closing preview, since it's primarily Module 07 function-writing applied to this module's dictionary vocabulary rather than new material.
+The required exercises fill the available time.
 
 \newpage
 
@@ -277,7 +264,7 @@ phone
 - Writing `for key, value in customer:` (forgetting `.items()` but still trying to unpack two variables) — raises `ValueError: too many values to unpack (expected 2)`, since a bare dictionary iteration yields only single keys, not pairs, and Python can't unpack one key-string into two variables. A good, very literal error message worth reading together.
 - Assuming the printed key order is alphabetical or otherwise automatically "organized" — it's actually **insertion order**: `name` and `tier` print first here specifically because they were the first fields ever added (back in Exercise 1), and `phone` prints last because it was the most recently added field (Exercise 2) — the order tracks *when each key was first inserted*, not the alphabet, not the order keys were last modified, and not any other implicit sorting. If a student expects alphabetical order, clarify explicitly that dictionaries don't sort automatically — `sorted()` is a separate, deliberate step, as Exercise 8 will show.
 
-**Check for understanding:** "If I wanted keys sorted alphabetically instead of in insertion order, what one built-in function from Module 10's Stretch challenge could help?" (`sorted()` — e.g. `for key in sorted(customer):` — a good callback confirming `sorted()` works generally on any iterable, not just lists, which previews Exercise 8's own use of `sorted()` on dictionary keys later in this same lab.)
+**Check for understanding:** "If I wanted keys sorted alphabetically instead of in insertion order, what one built-in function could help?" (`sorted()` — e.g. `for key in sorted(customer):` — a good callback confirming `sorted()` works generally on any iterable, not just lists, which previews Exercise 8's own use of `sorted()` on dictionary keys later in this same lab.)
 
 \newpage
 
@@ -443,7 +430,7 @@ for region in sorted(summary):
 - `summary = {}` — **initialize**, same accumulator-pattern skeleton from Module 06, but the "empty" starting value is now an empty *dictionary*, not `0` or `[]` — a third shape for the same underlying pattern this course keeps returning to.
 - `summary[region] = summary.get(region, 0) + t["amount"]` — **this is the single most important line in this lab; walk it slowly, right to left.** `summary.get(region, 0)` looks up the running total *so far* for this region — using `.get()` with a default of `0` specifically because, on a region's *first* appearance, it isn't in `summary` yet at all, and without the default, this would raise `KeyError` immediately. `+ t["amount"]` adds this transaction's amount onto whatever that running total was. `summary[region] = ...` (plain bracket-notation assignment, not `.get()`) stores the new running total back — say explicitly why the *assignment* side uses bracket notation while the *read* side uses `.get()`: assignment always works regardless of whether the key existed before (Exercise 2's "same syntax adds or updates" lesson), so there's no need for a default there — only the *read*, which happens before we know if this region has been seen yet, needs the safety net.
 - **Trace it by hand with the class, transaction by transaction, since this is the real payoff:** first transaction, South/300 — `summary.get("South", 0)` is `0` (not seen yet), so `summary["South"] = 0 + 300 = 300`. Second, North/150 — `summary.get("North", 0)` is `0`, so `summary["North"] = 150`. Third, South/200 again — `summary.get("South", 0)` is now `300` (found this time!), so `summary["South"] = 300 + 200 = 500`.
-- `for region in sorted(summary):` — `sorted()` on a dictionary sorts and returns its **keys** (region names), alphabetically — reusing Exercise 4's Stretch-adjacent idea that `sorted()` works on more than just lists.
+- `for region in sorted(summary):` — `sorted()` on a dictionary sorts and returns its **keys** (region names), alphabetically — reusing Exercise 4's idea that `sorted()` works on more than just lists.
 
 **Run it. Expected output:**
 
@@ -458,30 +445,6 @@ South: 500
 - Forgetting the default entirely (`summary.get(region)`, no `0`) — returns `None` on a region's first appearance, and `None + t["amount"]` raises `TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'` — a good, readable error worth tracing back to its cause together.
 
 **Check for understanding:** "If a fourth transaction came in for a brand-new region, `'East'`, what's the very first value `summary.get('East', 0)` would return, and why does that matter?" (`0` — the default, since `'East'` has never been seen before this point; getting a student to state explicitly *why* `0` is the correct starting value for a running sum (not `1`, not the transaction amount itself) confirms the accumulator logic, not just the syntax, actually landed.)
-
-\newpage
-
-## Stretch — `customer_report` Function (1:07–1:15, as time allows)
-
-**Frame as a quick preview/demo if time is short** — Module 07 function-writing, applied to this module's dictionary/lookup-table vocabulary:
-
-```python
-def customer_report(customers, tier_discounts, purchase):
-    for c in customers:
-        discount = tier_discounts.get(c["tier"], 0)
-        final_price = purchase * (1 - discount)
-        print(f"{c['name']:<10} {c['tier']:<10} {discount*100:>5.0f}%   ${final_price:<10.2f}")
-
-customers = [
-    {"name": "Alice", "tier": "platinum"},
-    {"name": "Bob", "tier": "gold"},
-    {"name": "Carol", "tier": "silver"},
-    {"name": "Dan", "tier": "bronze"},
-]
-customer_report(customers, tier_discounts, 300)
-```
-
-**One thing worth saying explicitly if you demo this live:** this function takes **three** parameters — the list of customers, the lookup table, and the purchase amount — rather than assuming `tier_discounts` is some fixed global value the function can just reach out and use. Ask the room: "why pass `tier_discounts` in as a parameter, instead of just referencing the `tier_discounts` variable that already exists earlier in the file?" (Because a function that only works by silently depending on a specific variable existing *outside* it, under one specific name, is fragile and hard to reuse or test in isolation — passing it explicitly as a parameter, exactly like `customers` and `purchase`, makes the function self-contained and makes its real dependencies visible just by reading its `def` line. This is a genuinely important software-engineering habit worth naming, even briefly.)
 
 \newpage
 
@@ -583,24 +546,6 @@ for t in transactions:
     summary[region] = summary.get(region, 0) + t["amount"]
 for region in sorted(summary):
     print(f"{region}: {summary[region]}")
-```
-
-**Stretch (`customer_report` function):**
-
-```python
-def customer_report(customers, tier_discounts, purchase):
-    for c in customers:
-        discount = tier_discounts.get(c["tier"], 0)
-        final_price = purchase * (1 - discount)
-        print(f"{c['name']:<10} {c['tier']:<10} {discount*100:>5.0f}%   ${final_price:<10.2f}")
-
-customers = [
-    {"name": "Alice", "tier": "platinum"},
-    {"name": "Bob", "tier": "gold"},
-    {"name": "Carol", "tier": "silver"},
-    {"name": "Dan", "tier": "bronze"},
-]
-customer_report(customers, tier_discounts, 300)
 ```
 
 # Appendix B — Extra Practice (only if the class finishes early)

@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along |
 | **Prerequisites** | Modules 01–04: variables, types, f-strings, arithmetic/comparison/logical operators |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week05\_lab](https://markumreed.github.io/ism2411/pages/week05_lab.html) |
-| **Exercises covered** | Exercises 1–6 (required) + Stretch 1/2 (as time allows) |
+| **Exercises covered** | Exercises 1–6 (required) |
 | **Submission** | `discount.py` to Canvas |
 
 Every module up to this point produced a boolean (`is_premium`, `product_a_wins`) and then just *printed* it. This is the module where booleans finally start controlling what the program *does* — `if`/`elif`/`else` branching. This is arguably the single most important control-flow concept in the entire course: nearly every remaining module depends on students being fluent with conditionals, and the most common real bug category from here forward is "the wrong branch ran" or "no branch ran when one should have." Budget real time for tracing execution by hand (Exercise 1's reflection question asks for exactly this) — it is the actual skill, more than typing the syntax correctly.
@@ -49,7 +49,6 @@ By the end of this 75-minute session, students should be able to:
 # Before Class — Setup Checklist
 
 - [ ] Open `discount.py`, empty except for the header comment — build every exercise live.
-- [ ] Work through Stretch 2 (the tax-bracket problem) yourself before class — it's the trickiest logic in this lab (marginal, not flat, taxation) and is easy to get subtly wrong live if you haven't rehearsed it once.
 - [ ] Decide which values you'll use to test each `if`/`elif`/`else` chain live — this guide uses `total = 250` throughout for consistency with the lab page's own expected output; keep using the same test value across exercises so students aren't recomputing a new mental model each time.
 
 # Materials Needed
@@ -57,21 +56,9 @@ By the end of this 75-minute session, students should be able to:
 - Instructor laptop + terminal + editor, Python 3.10+
 - Students: `discount.py`, same project structure as prior modules
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:05 | Welcome: "your first real branching logic" | 5 |
-| 0:05–0:15 | Exercise 1 — Discount tiers (`if`/`elif`/`else`) | 10 |
-| 0:15–0:21 | Exercise 2 — Approval flag | 6 |
-| 0:21–0:29 | Exercise 3 — Combine conditions with `and` | 8 |
-| 0:29–0:37 | Exercise 4 — Refactor a nested `if` | 8 |
-| 0:37–0:45 | Exercise 5 — Anomaly flagging | 8 |
-| 0:45–0:53 | Exercise 6 — Boolean logic (`or`, `not`) | 8 |
-| 0:53–1:05 | Stretch 1 — Full pricing engine | 12 |
-| 1:05–1:15 | Stretch 2 preview + wrap-up, reflection, submission checklist | 10 |
-
-Six required exercises plus Stretch 1 comfortably fill 75 minutes; Stretch 2 (tax brackets) is intentionally positioned as a preview/take-home rather than full live-coded content, since marginal taxation is genuinely tricky to build correctly in real time and deserves unhurried attention if you do walk through it.
+Six required exercises provide comprehensive coverage of today's conditional-logic material.
 
 \newpage
 
@@ -348,7 +335,7 @@ print(f"VIP upgrade: {vip}")
 
 - `(total_spent > 2000 or orders_placed > 10)` — `or` returns `True` if **either** side is `True` (or both) — contrast explicitly with Exercise 3/4's `and`, which required **all** sides true. Here, a customer with `total_spent = 2200` and `orders_placed = 3` still qualifies, because the spending condition alone is enough.
 - `not (outstanding_balance > 0)` — `not` flips a boolean: if `outstanding_balance > 0` is `True` (they owe money), `not` makes it `False`, and the whole `and` clause becomes `False`, disqualifying an otherwise-qualifying customer. Read the whole line as one sentence: "qualifies on spending or order count, **and** does not have an outstanding balance."
-- The parentheses around `(total_spent > 2000 or orders_placed > 10)` are required here for the same order-of-operations reason flagged since Module 04's Stretch B: `and` binds tighter than `or` in Python, so without the parentheses, this would group as `total_spent > 2000 or (orders_placed > 10 and not (...))` — a different, wrong rule. This is worth explicitly connecting back to that earlier precedence-trap lesson.
+- The parentheses around `(total_spent > 2000 or orders_placed > 10)` are required here for the same order-of-operations reason flagged since Module 04: `and` binds tighter than `or` in Python, so without the parentheses, this would group as `total_spent > 2000 or (orders_placed > 10 and not (...))` — a different, wrong rule. This is worth explicitly connecting back to that earlier precedence-trap lesson.
 
 **Run it with the values above. Expected output:**
 
@@ -367,90 +354,6 @@ VIP upgrade: True
 
 \newpage
 
-## Stretch 1 — Full Pricing Engine (0:53–1:05, 12 min)
-
-**Teaching goal:** Combine every rule from Exercises 1–3 into one script that also layers in two new discounts (wholesale, first-order), with a printed breakdown of each step — the closest this lab gets to a realistic, complete business script.
-
-**Say to the class:**
-
-> "Everything from today, combined, plus two new rules, applied in a specific order, with a full breakdown printed at the end — like a receipt showing exactly how the final price was reached."
-
-**Live-code this (or walk through it conceptually and hand out the answer key if time is short):**
-
-```python
-# --- Stretch 1 ---
-cart_total = 600
-region = "South"
-customer_type = "wholesale"
-first_order = True
-
-breakdown = []
-
-if cart_total >= 500:
-    discount = 0.15
-elif cart_total >= 200:
-    discount = 0.10
-elif cart_total >= 100:
-    discount = 0.05
-else:
-    discount = 0
-breakdown.append(f"Tier discount: {discount*100:.0f}%")
-
-if region == "South":
-    discount += 0.02
-    breakdown.append("Regional bonus (South): +2%")
-
-if customer_type == "wholesale":
-    discount += 0.05
-    breakdown.append("Wholesale extra: +5%")
-
-if first_order:
-    discount += 0.03
-    breakdown.append("First-order welcome discount: +3%")
-
-final = cart_total * (1 - discount)
-breakdown.append(f"Total discount: {discount*100:.0f}%")
-breakdown.append(f"Final price: ${final:.2f}")
-
-for line in breakdown:
-    print(line)
-```
-
-**Line-by-line explanation (highlighting what's new relative to Exercises 1–3):**
-
-- `breakdown = []` — an empty list that will collect one string per applied rule, so the final printout shows every step, not just the end result. This is new: earlier exercises just printed as they went; this one accumulates messages and prints them all at the end, which is a small preview of the accumulator pattern coming in Module 06.
-- The tier `if`/`elif`/`else` block is identical to Exercise 1, with one addition: `breakdown.append(...)` records which tier applied.
-- Three separate `if` blocks follow — South bonus, wholesale extra, first-order discount — **note these are three independent `if`s, not `elif`s**, because a single order can qualify for *all three* simultaneously (unlike Exercise 1's tiers, which are mutually exclusive by construction). This is worth stating explicitly as the key structural difference from Exercise 1: mutually exclusive outcomes need `elif`; independently-stackable bonuses need separate `if`s, exactly like Exercise 3's bonus was separate from Exercise 1's tier.
-- `for line in breakdown: print(line)` — a `for` loop over the list, printing each recorded line in order. If `for` loops haven't been covered yet in your section's actual pacing (they're nominally Module 06), this line can be replaced with explicit `print(breakdown[0])`, `print(breakdown[1])`, etc., or simply `print(breakdown)` to show the whole list at once, with a note that a cleaner one-line-per-entry version is coming next module.
-
-**Run it with the values shown. Expected output:**
-
-```
-Tier discount: 15%
-Regional bonus (South): +2%
-Wholesale extra: +5%
-First-order welcome discount: +3%
-Total discount: 25%
-Final price: $450.00
-```
-
-**Common student mistakes to watch for:**
-
-- Writing the three bonus rules as `elif` instead of independent `if`s — this silently caps the order at receiving only *one* bonus even when it qualifies for several, since an `elif` chain stops at the first true branch. This is the exercise's central "gotcha," directly extending Exercise 1's `elif`-vs-separate-`if` lesson to a case where the *opposite* choice is now correct.
-- Applying the bonuses in a different order than specified (tier → regional → wholesale → first-order) — mathematically this particular script produces the same total discount regardless of order (since `+=` is commutative), but say explicitly that this is a coincidence of *this specific formula* (simple additive stacking), not a general rule — many real discount-stacking rules are order-sensitive (e.g., percentage-of-percentage stacking), and the spec's explicit ordering is worth following as a matter of professional habit even when it doesn't change today's output.
-
-**Check for understanding:** "If this customer were *not* on their first order, which line disappears from the breakdown, and does the final price change?" (The "First-order welcome discount: +3%" line disappears, `discount` becomes `22%` instead of `25%`, and the final price increases from `$450.00` to `$468.00` — a good quick mental-math check that the room is actually tracking the accumulation, not just pattern-matching the output.)
-
-## Stretch 2 Preview — Tax Brackets (as time allows)
-
-**Frame this as a preview/take-home rather than full live-coded content** — marginal taxation is genuinely easy to get subtly wrong live, and rewarding to work through carefully rather than rushed:
-
-> "One more example of tiered logic, from a completely different domain: federal income tax brackets. The trick is that this is **marginal** taxation — each bracket only taxes the income that falls *within* that bracket, not your whole income at that bracket's rate. Someone earning $60,000 does not pay 22% tax on all $60,000 — only the portion above $47,150 is taxed at 22%; the portion from $11,600 to $47,150 is taxed at 12%; the first $11,600 is taxed at 10%."
-
-If you do walk through it live, the answer key in Appendix A has a verified, working version; the key teaching moment is that a naive "if income is in the 22% bracket, multiply the *whole* income by 22%" approach is wrong and worth explicitly contrasting against the correct marginal calculation.
-
-\newpage
-
 # Wrap-Up (last ~10 minutes)
 
 **Review the reflection questions out loud:**
@@ -466,7 +369,7 @@ If you do walk through it live, the answer key in Appendix A has a verified, wor
 - [ ] `if`/`elif`/`else` used correctly for mutually exclusive tiers; separate `if`s used for independently-stackable bonuses
 - [ ] Script runs top to bottom with no errors given valid input
 
-**Preview Module 06:** "Today's scripts all handled *one* transaction at a time. Next module, you'll process a whole *list* of sales with a `for` loop — and Stretch 1's `breakdown.append(...)` pattern you just saw is a direct preview of the accumulator pattern that's coming."
+**Preview Module 06:** "Today's scripts all handled *one* transaction at a time. Next module, you'll process a whole *list* of sales with a `for` loop, building up a running result as you go with `.append(...)` — the accumulator pattern."
 
 # Appendix A — Full Answer Key (`discount.py`)
 
@@ -530,72 +433,9 @@ vip = (total_spent > 2000 or orders_placed > 10) and not (outstanding_balance > 
 print(f"VIP upgrade: {vip}")
 ```
 
-**Stretch 1 (`Full pricing engine`):**
-
-```python
-cart_total = 600
-region = "South"
-customer_type = "wholesale"
-first_order = True
-
-breakdown = []
-
-if cart_total >= 500:
-    discount = 0.15
-elif cart_total >= 200:
-    discount = 0.10
-elif cart_total >= 100:
-    discount = 0.05
-else:
-    discount = 0
-breakdown.append(f"Tier discount: {discount*100:.0f}%")
-
-if region == "South":
-    discount += 0.02
-    breakdown.append("Regional bonus (South): +2%")
-
-if customer_type == "wholesale":
-    discount += 0.05
-    breakdown.append("Wholesale extra: +5%")
-
-if first_order:
-    discount += 0.03
-    breakdown.append("First-order welcome discount: +3%")
-
-final = cart_total * (1 - discount)
-breakdown.append(f"Total discount: {discount*100:.0f}%")
-breakdown.append(f"Final price: ${final:.2f}")
-
-for line in breakdown:
-    print(line)
-```
-
-**Stretch 2 (`Marginal tax brackets`, verified for a single filer, 2024 simplified brackets):**
-
-```python
-income = 60000
-
-tax = 0
-remaining = income
-
-if remaining > 47150:
-    tax += (min(remaining, 100525) - 47150) * 0.22
-    remaining = 47150
-
-if remaining > 11600:
-    tax += (remaining - 11600) * 0.12
-    remaining = 11600
-
-tax += remaining * 0.10
-
-print(f"Tax owed on ${income:,.2f}: ${tax:,.2f}")
-```
-
-Verified results: income `$10,000` → tax `$1,000.00`; income `$30,000` → tax `$3,368.00`; income `$60,000` → tax `$8,253.00`.
-
 # Appendix B — Extra Practice (only if the class finishes early)
 
-Six required exercises plus Stretch 1 fill the full 75 minutes at a normal pace. If a section moves unusually fast:
+Six required exercises fill the full 75 minutes at a normal pace. If a section moves unusually fast:
 
 **Extra — a different tiered system: shipping cost.** Orders under $25 pay a flat $6.99 shipping fee; $25–$74.99 pay $3.99; $75 and over ship free. Have students write the `if`/`elif`/`else` independently and test with `order_total = 80`, `order_total = 50`, `order_total = 10`. (`$0.00`, `$3.99`, `$6.99` respectively.)
 

@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along — you type on the shared screen, students type along on their own machines and run every step with you |
 | **Prerequisites** | Modules 01–03: file system basics, variables and data types, `print()` / f-strings |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week04\_lab](https://markumreed.github.io/ism2411/pages/week04_lab.html) |
-| **Exercises covered** | Exercises 1–7 (required) + Stretch A/B (as time allows) |
+| **Exercises covered** | Exercises 1–7 (required) |
 | **Submission** | `calculator.py` to Canvas, all seven exercises in one file, each marked with a `# --- Exercise N ---` comment |
 
 This is the first lab this semester where students write real, graded business logic — arithmetic operators, comparisons, and boolean logic applied to pricing, margin, and discount formulas. Modules 1–3 were about reading and typing things correctly; this module is about **computing** things correctly, and about the specific ways Python's operators quietly do something other than what a spreadsheet-trained brain expects (integer vs. float division, operator precedence, percentage-as-decimal). Budget real time for the mistakes — they are the content, not a distraction from it.
@@ -64,20 +64,9 @@ By the end of this 75-minute session, students should be able to:
 - Students: their own laptops, `calculator.py` open in the same editor they used in Modules 1–3
 - No new libraries, no internet access required — this entire lab is pure Python built-ins
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:05 | Welcome, recap Modules 1–3, frame today's file | 5 |
-| 0:05–0:15 | Exercise 1 (Revenue) + Exercise 2 (Margin) | 10 |
-| 0:15–0:22 | Exercise 3 (Two products / comparison) | 7 |
-| 0:22–0:30 | Exercise 4 (Logical combo / `and`) | 8 |
-| 0:30–0:40 | Exercise 5 (`/` vs `//` vs `%` prediction) | 10 |
-| 0:40–0:55 | Exercise 6 (Full pricing calculator with `input()`) | 15 |
-| 0:55–1:07 | Exercise 7 (Packaging problem) | 12 |
-| 1:07–1:15 | Stretch A/B as time allows + wrap-up, reflection, submission checklist | 8 |
-
-This plan already uses all 75 minutes on the seven required exercises plus buffer — there is no thin spot to pad here. If your section moves faster than this pacing (common with an experienced group), the two Stretch challenges and the "Extra Practice" block in the Appendix are the release valve; do **not** cut required exercises short to reach the stretch material.
+The exercises use all available time. If your section moves faster, the "Extra Practice" block in the Appendix is the release valve; do **not** cut required exercises short to reach it.
 
 \newpage
 
@@ -167,7 +156,7 @@ print(f"Margin: {margin:.1%}")
 **Line-by-line explanation:**
 
 - `cost = 32`, `price = 50` — reusing `price` here shadows the value from Exercise 1. Point this out explicitly: **variables are not scoped per-exercise** — once `price` is reassigned to `50` again here it's fine because it's the same value, but flag that in Exercise 3 we'll rename to `price_a` / `price_b` specifically to avoid this kind of collision.
-- `margin = (price - cost) / price` — the parentheses are **required**, not stylistic. `price - cost / price` would divide `cost` by `price` first (division binds tighter than subtraction) and then subtract — a completely different, wrong number. This is the first live preview of the precedence trap that Stretch B drills on directly; flag it now so it's not a surprise later.
+- `margin = (price - cost) / price` — the parentheses are **required**, not stylistic. `price - cost / price` would divide `cost` by `price` first (division binds tighter than subtraction) and then subtract — a completely different, wrong number. This is the first live preview of the operator-precedence trap; flag it now so it's not a surprise later.
 - `/` is **true division** — it always returns a `float`, even when the answer would come out evenly (e.g., `10 / 2` is `5.0`, not `5`). Contrast this verbally with `//`, which is coming in Exercise 5.
 - `margin` is `0.36` — a *decimal fraction*, not "36." This is the detail the format spec handles for you next.
 - `f"Margin: {margin:.1%}"` — the `%` format type does two things at once: multiplies the value by 100, and appends a literal `%` character. `.1` means one digit after the decimal point *in the percentage*, not in the raw fraction. So `0.36` becomes `36.0%`.
@@ -278,7 +267,7 @@ Run it — output is `is_premium = False`, even though `price > 100` alone is `T
 - Writing `price > 100 and margin > 30` (forgetting margin is a decimal, not a whole-number percentage) — this compiles and runs without error, just always evaluates unexpectedly. This is a "silent wrong answer" bug, exactly the category the intro warned about — flag it as such when you see it.
 - Confusing `and` with `&` — `&` exists in Python but is bitwise, not logical, and will misbehave here. Not worth a deep detour, but worth a one-sentence "we're not using that operator today" if someone tries it.
 
-**Check for understanding:** "I want to check if a product is premium OR on clearance — would I use `and` here?" (No — `or`, which returns `True` if *either* side is true. Don't code it yet — that's a natural bridge into Stretch B and into next module's `if`/`elif` — just get the room to say "or" out loud correctly.)
+**Check for understanding:** "I want to check if a product is premium OR on clearance — would I use `and` here?" (No — `or`, which returns `True` if *either* side is true. Don't code it yet — that's a natural bridge into next module's `if`/`elif` — just get the room to say "or" out loud correctly.)
 
 \newpage
 
@@ -464,102 +453,6 @@ This second run is important — it's the only case in the whole lab where stude
 
 \newpage
 
-## Stretch A — Break-Even Calculator (as time allows)
-
-**Teaching goal:** Combining `//` and `%` in a genuinely useful financial formula — how many units does a business need to sell before it stops losing money.
-
-**Frame it, live-code it if you have time, otherwise assign it as optional take-home practice:**
-
-```python
-# --- Stretch A ---
-fixed_costs = int(input("Fixed costs (rent, salaries, etc.): "))
-variable_cost_per_unit = float(input("Variable cost per unit: "))
-retail_price_per_unit = float(input("Retail price per unit: "))
-
-contribution_margin = retail_price_per_unit - variable_cost_per_unit
-break_even_units = fixed_costs // contribution_margin
-remainder = fixed_costs % contribution_margin
-
-print(f"Break-even quantity: {break_even_units:.0f} whole units, "
-      f"plus ${remainder:,.2f} still uncovered at that quantity")
-print(f"Exact (fractional) break-even: "
-      f"{fixed_costs / contribution_margin:.2f} units")
-```
-
-**Line-by-line explanation (abbreviated — same operators as Exercises 5–7, new formula):**
-
-- `contribution_margin = retail_price_per_unit - variable_cost_per_unit` — how much of each unit's price is left after covering the *variable* cost of making it; this is what pays down the *fixed* costs, one unit at a time.
-- `break_even_units = fixed_costs // contribution_margin` — how many whole units it takes for accumulated contribution margin to cover fixed costs.
-- `remainder = fixed_costs % contribution_margin` — how much fixed cost is still uncovered right at that whole-unit boundary — this is why the business actually needs to sell *one more* unit than the floor-division answer to be truly profitable, which is a genuinely good discussion point if time allows.
-
-**Run with** `fixed_costs = 12500`, `variable_cost_per_unit = 8`, `retail_price_per_unit = 20`. **Expected output:**
-
-```
-Break-even quantity: 1041 whole units, plus $8.00 still uncovered at that quantity
-Exact (fractional) break-even: 1041.67 units
-```
-
----
-
-## Stretch B — Operator Precedence Trap (as time allows)
-
-**Teaching goal:** This exercise is the direct payoff of every "the parentheses are required here" aside from the last hour. If you only have time for one stretch exercise, pick this one over Stretch A — it's the more important idea and does not require re-explaining a new formula.
-
-**Say to the class:**
-
-> "Five expressions. For each, I'll show you the version without parentheses and the version with — and you'll see they give *different numbers*. Neither one crashes. That's the whole danger."
-
-Work through as many of these five as time allows, live, showing both versions:
-
-**1. Average of three margins**
-
-```python
-a, b, c = 10, 20, 90
-wrong = a + b + c / 3
-right = (a + b + c) / 3
-```
-`wrong` = `60.0` (only `c` gets divided by 3, because `/` binds tighter than `+`). `right` = `40.0`, the true average.
-
-**2. Margin formula**
-
-```python
-price, cost = 600, 320
-wrong = price - cost / price
-right = (price - cost) / price
-```
-`wrong` = `599.47` — division happens before subtraction, so this computes `price − (cost / price)`, a number that looks superficially plausible as a dollar figure but is not a margin at all. `right` = `0.4667`, the correct 46.7% margin.
-
-**3. Logical flag (`or` / `and`)**
-
-```python
-price, margin = 15, 0.2
-wrong = price < 20 or price > 200 and margin < 0.15
-right = (price < 20 or price > 200) and margin < 0.15
-```
-`wrong` = `True` (`and` binds tighter than `or`, so this evaluates as `price < 20 or (price > 200 and margin < 0.15)` — the low price alone triggers the flag). `right` = `False` (grouping the "low or high price" check together and requiring thin margin *in addition*). Same variables, opposite conclusions — flag this as the most dangerous of the five, because a boolean result gives no numeric hint that anything is wrong.
-
-**4. Reserved-stock boxing problem**
-
-```python
-items, reserved, box_size = 100, 15, 24
-wrong = items - reserved // box_size
-right = (items - reserved) // box_size
-```
-`wrong` = `100` (`reserved // box_size` is `0`, since 15 < 24, so nothing is subtracted at all). `right` = `3` (subtract the 15 reserved items first, *then* box the remaining 85).
-
-**5. Compound growth**
-
-```python
-principal, rate, years = 1000, 0.05, 3
-wrong = principal * 1 + rate ** years
-right = principal * (1 + rate) ** years
-```
-`wrong` = `1000.000125` (`**` binds before `*`, and this computes `(principal * 1) + (rate ** years)` — nowhere close to compound growth). `right` = `1157.63`, correct 5% compounded over 3 years.
-
-**For each one you work through, require the same three-part answer the exercise asks for:** (a) the unparenthesized expression and its result, (b) the parenthesized expression and its result, (c) one sentence on which is correct and why. Do not just show the numbers — make students articulate the *why*, since that's the actual submitted deliverable.
-
-\newpage
-
 # Wrap-Up (last ~5 minutes of the 1:07–1:15 block)
 
 **Review the reflection questions out loud** (full text is on the student lab page) — do not answer them for the class, but preview what a strong answer looks like:
@@ -673,13 +566,13 @@ Exact fit: False
 
 # Appendix B — Extra Practice (only if the class finishes early)
 
-This lab's seven required exercises plus two stretch challenges fill the full 75 minutes at a normal teaching pace, so treat this appendix as a release valve rather than core content — use it only if a section moves unusually fast, or assign individual items to early finishers while the rest of the class catches up.
+This lab's seven required exercises fill the full 75 minutes at a normal teaching pace, so treat this appendix as a release valve rather than core content — use it only if a section moves unusually fast, or assign individual items to early finishers while the rest of the class catches up.
 
 **Extra 1 — Different numbers, Exercise 1/2 pattern.** A product has `price = 84` and `cost = 61`. Have students compute and print revenue for `quantity = 27` and the margin, using the exact same two format specs from Exercises 1–2. (Revenue: `$2,268.00`. Margin: `27.4%`.)
 
 **Extra 2 — Different numbers, Exercise 7 pattern.** A concert venue seats people in rows of 18. `212` tickets were sold. How many full rows, how many people in the partial row, and is it an exact fit? (`11` full rows, `14` left over, `Exact fit: False`.) This is the same shift/box-packing idea as the Exercise 7 check-for-understanding question — use whichever framing (warehouse, shifts, seating) the room hasn't already seen.
 
-**Extra 3 — One more precedence trap, in the style of Stretch B.** A store takes a 20% employee discount off retail price, then adds 7% sales tax on the discounted price. `retail_price = 100`.
+**Extra 3 — An operator-precedence trap.** A store takes a 20% employee discount off retail price, then adds 7% sales tax on the discounted price. `retail_price = 100`.
 ```python
 wrong = 100 - 0.20 * 100 + 0.07 * 100 - 0.20 * 100
 right = (100 - 0.20 * 100) * 1.07

@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along |
 | **Prerequisites** | Module 12: CSV files, the general read-transform-write shape; Module 10–11: lists, dictionaries, boolean logic |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week13\_lab](https://markumreed.github.io/ism2411/pages/week13_lab.html) |
-| **Exercises covered** | Exercises 1–8 (required) + Stretch 1/2 (as time allows) |
+| **Exercises covered** | Exercises 1–8 (required) |
 | **Submission** | `explore.py` (or `explore.ipynb`) via GitHub in a `module13/` folder, URL to Canvas |
 
 The lab page's own framing is exactly right and worth repeating verbatim to the class: this is "the foundation for every subsequent lab and the capstone." Everything from here to the end of the semester builds on the DataFrame vocabulary introduced today — `.head()`, boolean filtering, `.sort_values()`, new columns, `.unique()`/`.value_counts()`. Two ideas deserve the most protected time: the **boolean filter mental model** (Exercise 2 — a filter is a same-length column of `True`/`False`, not a search) and the **`&`/parentheses requirement** (Exercise 4), which is a real, common source of genuinely confusing errors if not addressed head-on.
@@ -58,23 +58,9 @@ By the end of this 75-minute session, students should be able to:
 - Instructor laptop + terminal + editor (or Jupyter), Python 3.10+, `pandas` installed
 - Students: `data/retail_sales.csv`, same GitHub repo with a new `module13/` folder
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:04 | Welcome: "the tool for the rest of the semester" | 4 |
-| 0:04–0:12 | Exercise 1 — Load it | 8 |
-| 0:12–0:20 | Exercise 2 — Filter by region | 8 |
-| 0:20–0:27 | Exercise 3 — Top 5 by revenue | 7 |
-| 0:27–0:36 | Exercise 4 — Two-condition filter | 9 |
-| 0:36–0:44 | Exercise 5 — A new column | 8 |
-| 0:44–0:51 | Exercise 6 — Unique values | 7 |
-| 0:51–0:57 | Exercise 7 — Select columns | 6 |
-| 0:57–1:02 | Exercise 8 — Save | 5 |
-| 1:02–1:10 | Stretch 1/2 preview | 8 |
-| 1:10–1:15 | Wrap-up, reflection, submission checklist | 5 |
-
-Eight required exercises fill the bulk of the 75 minutes; both Stretch challenges are positioned as previews since Stretch 1 explicitly depends on `groupby`, a Module 15 concept the lab page itself flags as ahead of this lab's normal sequence.
+The required exercises fill most of the available time.
 
 \newpage
 
@@ -492,31 +478,6 @@ df.to_csv('data/explored.csv', index=False)
 
 \newpage
 
-## Stretch 1 & 2 Preview (1:02–1:10, as time allows)
-
-**Frame both as previews rather than full live-coded content** — Stretch 1 explicitly uses `groupby`, which the lab page itself flags as a Module 15 concept, ahead of this lab's normal sequence:
-
-**Stretch 1 — Top 3 products by average per-unit price in the South:**
-
-```python
-south = df[df['region'] == 'South']
-print(south.groupby('product')['per_unit'].mean().sort_values(ascending=False).head(3))
-```
-
-**If you demo this, one sentence of framing is enough:** "`.groupby('product')` splits the South data into one group per product name; `['per_unit'].mean()` then computes the average per-unit price *within each group separately*; the rest is Exercise 3's familiar sort-and-head pattern. Don't worry about fully understanding `groupby` today — Module 15 covers it properly; this is just a preview that today's filtering and column-creation skills combine directly with tools you'll learn soon."
-
-**Stretch 2 — What fraction of revenue comes from orders above $500?**
-
-```python
-big_orders = df[df['revenue'] > 500]
-fraction = big_orders['revenue'].sum() / df['revenue'].sum() * 100
-print(f"{fraction:.1f}%")
-```
-
-**This one is fully within today's toolkit** — Exercise 2's filtering pattern, plus `.sum()` (parallel to Exercise 5's `.mean()`), plus an f-string format spec from Module 03. Worth doing live if time allows, since — unlike Stretch 1 — it requires nothing beyond what's already been taught this session. (Verified against the synthetic sample: `59.7%`.)
-
-\newpage
-
 # Wrap-Up (last ~5 minutes)
 
 **Review the reflection questions out loud:**
@@ -581,21 +542,6 @@ print(subset.shape)
 df.to_csv('data/explored.csv', index=False)
 ```
 
-**Stretch 1 (`groupby` preview):**
-
-```python
-south = df[df['region'] == 'South']
-print(south.groupby('product')['per_unit'].mean().sort_values(ascending=False).head(3))
-```
-
-**Stretch 2 (`% of revenue from big orders`):**
-
-```python
-big_orders = df[df['revenue'] > 500]
-fraction = big_orders['revenue'].sum() / df['revenue'].sum() * 100
-print(f"{fraction:.1f}%")
-```
-
 # Appendix B — Reproducible Synthetic Dataset (for instructor testing)
 
 If your course's real `retail_sales.csv` isn't yet available for pre-class testing, this generator produces a structurally equivalent, reproducible dataset (fixed random seed) matching the lab page's expected `(5000, 6)` shape. **Use the actual course-provided file with students** — this is for your own rehearsal only.
@@ -630,7 +576,7 @@ df = pd.DataFrame({
 df.to_csv("data/retail_sales.csv", index=False)
 ```
 
-All expected output shown throughout this guide (row counts, means, top-5 values, the Stretch 2 percentage) was computed and verified against this exact generator's output.
+All expected output shown throughout this guide (row counts, means, top-5 values) was computed and verified against this exact generator's output.
 
 # Appendix C — Extra Practice (only if the class finishes early)
 

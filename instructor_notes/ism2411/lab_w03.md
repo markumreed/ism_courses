@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along |
 | **Prerequisites** | Module 02: terminal navigation, running a `.py` file, reading a basic error message |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week03\_lab](https://markumreed.github.io/ism2411/pages/week03_lab.html) |
-| **Exercises covered** | Exercises 1–5 (required) + Stretch A/B (as time allows) |
+| **Exercises covered** | Exercises 1–5 (required) |
 | **Submission** | `pricer.py` to Canvas, exercises 1–4 as one runnable script, comments separating each exercise |
 
 Module 02 got students *running* a script someone else wrote (essentially — `hello.py` is one line). This is the first lab where students write meaningfully structured code themselves: multiple variables of different types, working together, formatted into professional-looking output. The two ideas to protect time for are (1) that Python variables carry a *type*, and types determine behavior (`+` means something completely different for strings than for numbers), and (2) the f-string format-spec mini-language, which will be reused in nearly every remaining module this semester.
@@ -57,22 +57,11 @@ By the end of this 75-minute session, students should be able to:
 
 - Instructor laptop + terminal + editor, Python 3.10+
 - Students: `pricer.py` open in the same project folder structure from Modules 01–02
-- No external packages needed for the required exercises; Stretch content in Module 02 already introduced `pip install`, not needed again here
+- No external packages needed for these exercises
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:05 | Welcome, recap Module 02, frame today's file | 5 |
-| 0:05–0:13 | Exercise 1 — Variables and types | 8 |
-| 0:13–0:21 | Exercise 2 — f-string practice | 8 |
-| 0:21–0:31 | Exercise 3 — Input version | 10 |
-| 0:31–0:43 | Exercise 4 — Multi-variable product card | 12 |
-| 0:43–0:55 | Exercise 5 — Type investigation (REPL) | 12 |
-| 0:55–1:10 | Stretch A — Three-product comparison | 15 |
-| 1:10–1:15 | Stretch B preview + wrap-up, reflection, submission checklist | 5 |
-
-Five required exercises plus Stretch A comfortably fill 75 minutes at a code-along pace; Stretch B (format-spec exploration) is a fast, discussion-style closer rather than a full 15-minute block — if the room is behind schedule, cut Stretch B to a single one-sentence teaser rather than skipping Exercise 5 or Stretch A.
+Five required exercises fill the session at a code-along pace. If the room is ahead of schedule, use the Extra Practice items in Appendix B rather than skipping or rushing Exercise 5.
 
 \newpage
 
@@ -341,93 +330,6 @@ $ python3
 
 \newpage
 
-## Stretch A — Three-Product Comparison (0:55–1:10, 15 min)
-
-**Teaching goal:** Scale Exercise 4's single product card to three products using parallel variable naming, and use comparison operators to pick a winner — direct rehearsal for the more general "many records" processing that loops (a later module) will handle more elegantly.
-
-**Say to the class:**
-
-> "Three products, three full sets of variables, three margins — and a final line declaring the winner. This previews a real pain point: right now, with no loops yet, three products means typing almost the same code three times. Notice that discomfort — it's setting up why we'll want a better tool for this soon."
-
-**Live-code this:**
-
-```python
-# --- Stretch A ---
-product1, price1, cost1, qty1 = "Notebook", 4.99, 3.29, 12
-product2, price2, cost2, qty2 = "Pen", 1.99, 0.85, 50
-product3, price3, cost3, qty3 = "Stapler", 12.49, 7.10, 5
-
-margin1 = (price1 - cost1) / price1
-margin2 = (price2 - cost2) / price2
-margin3 = (price3 - cost3) / price3
-
-for name, price, qty, margin in [
-    (product1, price1, qty1, margin1),
-    (product2, price2, qty2, margin2),
-    (product3, price3, qty3, margin3),
-]:
-    print(f"Product: {name} | Price: ${price:.2f} | Qty: {qty} | "
-          f"Revenue: ${price * qty:.2f} | Margin: {margin:.1%}")
-
-best_margin, best_product = max([(margin1, product1), (margin2, product2), (margin3, product3)])
-print(f"Highest margin: {best_product} at {best_margin:.1%}")
-```
-
-**Line-by-line explanation:**
-
-- The three `productN, priceN, costN, qtyN = ...` lines — tuple unpacking again (Exercise 3's product card, scaled to three parallel sets). Point out explicitly: **numbered variable names like this are a known anti-pattern** — the exercise is teaching students to feel that pain, not endorsing it as good style. If a student asks "isn't there a better way," the honest answer is "yes, a list of dictionaries or a loop-friendly structure — that's coming in a later module; today's exercise is intentionally the 'hard way' so the better way lands harder when you see it."
-- The `for` loop over a list of tuples is one legitimate way to avoid writing three nearly-identical `print()` calls — if your section hasn't covered `for` loops yet, **replace this with three explicit, separately-typed `print()` calls instead** (one per product, copy-pasted with the numbers changed) so the loop syntax doesn't introduce an unannounced concept; the accompanying appendix answer key shows both versions.
-- `max([(margin1, product1), (margin2, product2), (margin3, product3)])` — `max()` on a list of tuples compares tuples element by element, so it compares the *margins first* (since margin is listed first in each tuple) and only looks at the product name to break ties. This is a genuinely useful trick worth naming explicitly, since it's not obvious the first time you see it: `max()` doesn't need you to write your own comparison logic here, because tuple comparison does it for you.
-
-**Run it. Expected output:**
-
-```
-Product: Notebook | Price: $4.99 | Qty: 12 | Revenue: $59.88 | Margin: 34.1%
-Product: Pen | Price: $1.99 | Qty: 50 | Revenue: $99.50 | Margin: 57.3%
-Product: Stapler | Price: $12.49 | Qty: 5 | Revenue: $62.45 | Margin: 43.2%
-Highest margin: Pen at 57.3%
-```
-
-**If `for` loops are not yet in scope for your section**, use this simpler, fully explicit version instead (same numbers, same output for the first three lines):
-
-```python
-print(f"Product: {product1} | Price: ${price1:.2f} | Qty: {qty1} | "
-      f"Revenue: ${price1 * qty1:.2f} | Margin: {margin1:.1%}")
-print(f"Product: {product2} | Price: ${price2:.2f} | Qty: {qty2} | "
-      f"Revenue: ${price2 * qty2:.2f} | Margin: {margin2:.1%}")
-print(f"Product: {product3} | Price: ${price3:.2f} | Qty: {qty3} | "
-      f"Revenue: ${price3 * qty3:.2f} | Margin: {margin3:.1%}")
-```
-
-Have the class determine the winner "by hand" (comparing the three printed margins visually) rather than computing it in code, if you're avoiding `max()` on tuples as too advanced for today.
-
-**Common student mistakes to watch for:**
-
-- Mixing up which numbered variable belongs to which product mid-script (e.g., using `cost2` in a formula meant for product 3) — a classic consequence of the numbered-variable anti-pattern; when you see it, this is the moment to really land the "wouldn't this be so much easier and safer with a list or a loop variable" point.
-
-**Check for understanding:** "If I added a fourth product, what has to change about this script?" (Every numbered-variable line needs a new set — `product4, price4, cost4, qty4` — and the loop's list or the three manual print calls need a fourth entry too. Get someone to say out loud that this doesn't scale — that's the intended discomfort.)
-
-## Stretch B Preview — Format Spec Exploration (as time allows)
-
-**Frame it as a quick, verbal walkthrough rather than a full live-coded block** if time is short — this is designed as REPL exploration, not a script:
-
-```
->>> f"{1234567:.2f}"
-'1234567.00'
->>> f"{1234567:,.0f}"
-'1,234,567'
->>> f"{0.3456:.1%}"
-'34.6%'
->>> f"{42:05d}"
-'00042'
->>> f"{'hello':>20}"
-'               hello'
-```
-
-One sentence each, said out loud: `.2f` forces two decimals even on a whole number; `,.0f` adds thousands separators with zero decimals; `.1%` multiplies by 100 and appends a percent sign, one decimal digit; `05d` pads an integer with leading zeros to a total width of 5 characters (useful for things like order numbers or zip codes); `>20` right-aligns text within a 20-character-wide field (useful for the "columns that line up" problem Exercise 4's manual spacing was working around by hand). If time is genuinely tight, this closing line alone is worth saying: "Everything in that `:` after the value in an f-string is its own small formatting language — you've now seen currency, percentages, thousands separators, zero-padding, and alignment. That's most of what you'll need all semester."
-
-\newpage
-
 # Wrap-Up (last ~5 minutes)
 
 **Review the reflection questions out loud:**
@@ -508,7 +410,7 @@ print(f"Margin:   {margin:.1%}")
 
 # Appendix B — Extra Practice (only if the class finishes early)
 
-Five required exercises plus Stretch A already fill the full 75 minutes at a normal teaching pace. If a section moves unusually fast, use this instead of pulling in Stretch B early:
+If a section moves unusually fast, use these items rather than ending early:
 
 **Extra — a second product card, different numbers.** `product = "Desk Lamp"`, `unit_price = 24.50`, `unit_cost = 15.80`, `quantity = 8`. Have students build the same five-line card independently. (Revenue: `$196.00`. Margin: `35.5%`.)
 

@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along, with one structured 20-minute debugging-protocol block (Exercise 5) run individually/in pairs on a timer |
 | **Prerequisites** | Modules 05–06: `if`/`elif`/`else`, `for`/`while` loops, the accumulator pattern |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week07\_lab](https://markumreed.github.io/ism2411/pages/week07_lab.html) |
-| **Exercises covered** | Exercises 1–6 (required) + Stretch 1/2 (as time allows) |
+| **Exercises covered** | Exercises 1–6 (required) |
 | **Submission** | `functions.py` + the Canvas reflection |
 
 Two genuinely distinct teaching goals live in this one lab. The first half (Exercises 1–4, 6) is standard technical content: `def`, parameters, `return`, and scope — the single biggest new syntax jump since `if`/`elif`/`else`. The second half (Exercise 5) is an **AI-literacy exercise**, not a programming exercise — a structured protocol for debugging *before* reaching for an AI assistant, and for using AI narrowly (to explain an error, not to hand over a fix) when you do reach for it. Run Exercise 5 on an actual timer, out loud, since its four steps are the entire point — a rushed or skipped version of it defeats the exercise.
@@ -58,21 +58,9 @@ By the end of this 75-minute session, students should be able to:
 - Instructor laptop + terminal + editor, Python 3.10+
 - Students: `functions.py`, `broken_sales.py` (provided), a phone or water bottle for rubber-duck debugging (only half-joking — see Exercise 5), access to an AI assistant for the narrowly-scoped step only
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:04 | Welcome: functions as "package it once, call it by name" | 4 |
-| 0:04–0:10 | Exercise 1 — `calculate_tax` | 6 |
-| 0:10–0:18 | Exercise 2 — `apply_discount` | 8 |
-| 0:18–0:26 | Exercise 3 — Compose them | 8 |
-| 0:26–0:34 | Exercise 4 — Loop + function | 8 |
-| 0:34–0:54 | Exercise 5 — Debug First, Then Ask (four 5-minute timed steps) | 20 |
-| 0:54–1:02 | Exercise 6 — Scope experiment | 8 |
-| 1:02–1:10 | Stretch 1 — Summarize a list with a function | 8 |
-| 1:10–1:15 | Stretch 2 preview + wrap-up, reflection, submission checklist | 5 |
-
-Exercise 5 is deliberately allotted its full, literal 20 minutes (the lab page's own four 5-minute steps) — do not compress it to make room elsewhere; it is arguably the most important exercise of the semester for long-term habit formation, more than any single syntax lesson.
+Exercise 5 covers debugging habit formation — do not compress it; it's arguably the most important exercise of the semester for long-term skill development.
 
 \newpage
 
@@ -387,88 +375,6 @@ print(x)              # has x changed?
 
 \newpage
 
-## Stretch 1 — Summarize a List with a Function (1:02–1:10, 8 min)
-
-**Teaching goal:** Package Module 06's entire accumulator-pattern lab into a single reusable function that returns a **dictionary** — a new data structure, holding several named results from one function call.
-
-**Say to the class:**
-
-> "Everything from last module's sum/count/average/max exercises, wrapped into one function that returns all four results — plus a minimum — bundled together in a dictionary."
-
-**Live-code this:**
-
-```python
-# --- Stretch 1 ---
-def summarize(sales_list):
-    total = 0
-    count = 0
-    current_max = sales_list[0]
-    current_min = sales_list[0]
-    for sale in sales_list:
-        total += sale
-        count += 1
-        if sale > current_max:
-            current_max = sale
-        if sale < current_min:
-            current_min = sale
-    return {
-        "total": total,
-        "count": count,
-        "average": total / count,
-        "max": current_max,
-        "min": current_min,
-    }
-
-result = summarize([120, 80, 250, 175, 90, 410, 60, 215])
-for key, value in result.items():
-    print(f"{key}: {value}")
-```
-
-**Line-by-line explanation:**
-
-- `current_max = sales_list[0]` and `current_min = sales_list[0]` — initialized to the list's **first actual element**, not a hardcoded `0` — recall Module 06 Exercise 3's flagged limitation: initializing to `0` breaks if the list could contain values below zero. This function is written to be genuinely correct for any list, including one with negative numbers, which is worth calling out as the "more robust" version promised back in Module 06.
-- The loop body runs all four accumulator updates (`total`, `count`, `current_max`, `current_min`) together, in one pass through the list — this is the exercise's real point: one loop can maintain several accumulators simultaneously, not just one.
-- `return {"total": total, "count": count, ...}` — a **dictionary literal**: curly braces, `"key": value` pairs separated by commas. This is the first time this semester a function returns something other than a single number or string — it's returning a small bundle of *named* results at once, which the caller can then access by key.
-- `for key, value in result.items():` — `.items()` gives back each key/value pair together, unpacked into two loop variables in one step, the same unpacking idea as Exercise 4's `for price, tier in orders:`.
-
-**Run it. Expected output:**
-
-```
-total: 1400
-count: 8
-average: 175.0
-max: 410
-min: 60
-```
-
-**Common student mistakes to watch for:**
-
-- Initializing `current_max`/`current_min` to `0` out of habit from Module 06's original version, rather than `sales_list[0]` — harmless for this specific all-positive dataset, but worth pointing out explicitly as the exact limitation flagged back in Module 06, now finally worth fixing properly since this function is meant to be reusable on data the author doesn't control in advance.
-- Forgetting the trailing comma after the last dictionary entry (`"min": current_min` with no comma before the closing `}`) — actually valid Python (a trailing comma is optional, not required), but if a student *removes* a comma between two entries by mistake instead, that's a real `SyntaxError` worth reading together if it comes up.
-
-**Check for understanding:** "If I call `summarize([])` — an empty list — what happens?" (`sales_list[0]` raises `IndexError: list index out of range`, since there's no first element to initialize `current_max`/`current_min` from — a good moment to note that this function, while more robust than Module 06's original, still isn't bulletproof against every possible input; handling an empty list gracefully would need an explicit check, which is a good "what would you add" discussion prompt if time allows.)
-
-## Stretch 2 Preview — Default Parameters (as time allows)
-
-**Frame as a quick demo if time is short:**
-
-```python
-def calculate_tax(price, rate=0.07):
-    """Return the tax owed on a price at a given rate (default 7%)."""
-    return price * rate
-
-print(calculate_tax(100))        # uses the default rate
-print(calculate_tax(100, 0.1))   # overrides it
-```
-
-**Two things worth saying explicitly if you demo this live:**
-
-- `rate=0.07` in the parameter list gives `rate` a **default value**, used only when the caller doesn't supply one — `calculate_tax(100)` uses `0.07` automatically; `calculate_tax(100, 0.1)` overrides it with `0.1`.
-- **A genuinely worthwhile "gotcha" if you have two spare minutes:** run `print(calculate_tax(100))` and look closely at the output — it's `7.000000000000001`, not exactly `7.0`. This is a real floating-point precision quirk (`100 * 0.07` cannot be represented exactly in binary floating point), not a bug in the function. It's worth demonstrating `100 * 0.07 == 7.0` directly in the REPL and showing it evaluates to `False` — a genuinely useful, real-world caveat about comparing floats for exact equality, and a good preview that "the math is right, but the display isn't always exactly what you'd write by hand" is a recurring theme when working with floats in any language, not just Python.
-- The triple-quoted string immediately under `def` is a **docstring** — a description of what the function does, callable later with `help(calculate_tax)` or visible in most editors' hover tooltips. Mention this is genuinely how professional Python code documents functions, not a classroom-only convention.
-
-\newpage
-
 # Wrap-Up (last ~5 minutes)
 
 **Review the reflection questions out loud:**
@@ -548,45 +454,6 @@ print(x)
 # to that function and does not affect a same-named variable outside it.
 ```
 
-**Stretch 1 (`Summarize a list with a function`):**
-
-```python
-def summarize(sales_list):
-    total = 0
-    count = 0
-    current_max = sales_list[0]
-    current_min = sales_list[0]
-    for sale in sales_list:
-        total += sale
-        count += 1
-        if sale > current_max:
-            current_max = sale
-        if sale < current_min:
-            current_min = sale
-    return {
-        "total": total,
-        "count": count,
-        "average": total / count,
-        "max": current_max,
-        "min": current_min,
-    }
-
-result = summarize([120, 80, 250, 175, 90, 410, 60, 215])
-for key, value in result.items():
-    print(f"{key}: {value}")
-```
-
-**Stretch 2 (`Default parameters`):**
-
-```python
-def calculate_tax(price, rate=0.07):
-    """Return the tax owed on a price at a given rate (default 7%)."""
-    return price * rate
-
-print(calculate_tax(100))       # 7.000000000000001 — float precision, not a bug
-print(calculate_tax(100, 0.1))  # 10.0
-```
-
 # Appendix B — `broken_sales.py` (for Exercise 5)
 
 A verified, three-bug version to distribute if your course doesn't already provide one on Canvas. Each bug is a distinct category, deliberately: the file **will not run at all** until the first bug is fixed (a `SyntaxError` blocks the whole file from parsing), which forces every student through the same first discovery regardless of where they start looking.
@@ -645,7 +512,7 @@ Verified output of the fixed version: `Total: $715`, `Count: 5`, then the five s
 
 # Appendix C — Extra Practice (only if the class finishes early)
 
-Six required exercises plus Exercise 5's full 20-minute protocol and Stretch 1 already fill the full 75 minutes at a normal pace. If a section moves unusually fast:
+Six required exercises plus Exercise 5's full 20-minute protocol already fill the full 75 minutes at a normal pace. If a section moves unusually fast:
 
 **Extra — one more composed function.** Have students write `def shipping_cost(order_total): return 0 if order_total >= 75 else (3.99 if order_total >= 25 else 6.99)` (or, more readably, the equivalent `if`/`elif`/`else` form) and a second function `def order_total_with_shipping(order_total): return order_total + shipping_cost(order_total)`. Test with `order_total = 20`, `50`, `100`. (Totals: `$26.99`, `$53.99`, `$100.00`.)
 

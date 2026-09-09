@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Format** | Live code-along |
 | **Prerequisites** | Module 13: DataFrames, boolean filtering, `.dtypes` |
 | **Student-facing lab page** | [markumreed.github.io/ism2411 — week14\_lab](https://markumreed.github.io/ism2411/pages/week14_lab.html) |
-| **Exercises covered** | Exercises 1–7 (required) + Stretch 1/2 (as time allows) |
+| **Exercises covered** | Exercises 1–7 (required) |
 | **Submission** | `clean.py` (or `clean.ipynb`) + `clean_sales.csv` via GitHub (`module14/` folder), URL to Canvas |
 
 Module 13 quietly assumed the data was already clean. This module confronts the fact that real data almost never starts that way — and the lab page's own framing deserves repeating verbatim: "every decision you make here will feed directly into Module 15's analysis and the capstone." Two things make this lab different from every prior one: first, several exercises have **no single correct answer** — dropping vs. filling a missing value is a judgment call, and this lab explicitly grades the *reasoning* in students' comments, not just working code. Second, real messy data teaches lessons no clean synthetic dataset can — protect real time for actually looking at `.info()`'s output together (Exercise 1) and for the genuinely surprising type-loss-on-reload gotcha in Exercise 7.
@@ -58,22 +58,9 @@ By the end of this 75-minute session, students should be able to:
 - Instructor laptop + terminal + editor, Python 3.10+, `pandas` installed
 - Students: `data/messy_sales.csv`, same GitHub repo with a new `module14/` folder
 
-# Timing Plan (75 minutes)
+# Segments
 
-| Time | Segment | Minutes |
-|---|---|---|
-| 0:00–0:04 | Welcome: "real data doesn't start clean" | 4 |
-| 0:04–0:12 | Exercise 1 — Inspect | 8 |
-| 0:12–0:18 | Exercise 2 — Standardize column names | 6 |
-| 0:18–0:28 | Exercise 3 — Handle missing values | 10 |
-| 0:28–0:38 | Exercise 4 — Fix types | 10 |
-| 0:38–0:44 | Exercise 5 — Check duplicates | 6 |
-| 0:44–0:53 | Exercise 6 — Describe | 9 |
-| 0:53–1:01 | Exercise 7 — Save (and the reload gotcha) | 8 |
-| 1:01–1:10 | Stretch 1/2 preview | 9 |
-| 1:10–1:15 | Wrap-up, reflection, submission checklist | 5 |
-
-Seven required exercises fill the bulk of the 75 minutes; both Stretch challenges are positioned as previews — Stretch 1 (IQR outlier detection) is genuinely new statistical content worth its own unhurried treatment, and Stretch 2 (wrapping the whole pipeline in a function) is best done only once the pipeline itself is solid.
+The required exercises fill most of the available time.
 
 \newpage
 
@@ -455,48 +442,6 @@ print(reloaded_fixed.dtypes)
 
 \newpage
 
-## Stretch 1 & 2 Preview (1:01–1:10, as time allows)
-
-**Stretch 1 — Detect and flag outliers with the IQR method:**
-
-```python
-q1 = df["unit_price"].quantile(0.25)
-q3 = df["unit_price"].quantile(0.75)
-iqr = q3 - q1
-lower_bound = q1 - 1.5 * iqr
-upper_bound = q3 + 1.5 * iqr
-
-df["is_outlier"] = (df["unit_price"] < lower_bound) | (df["unit_price"] > upper_bound)
-print(f"Outliers: {df['is_outlier'].sum()}")
-print(f"Average price of outliers: ${df[df['is_outlier']]['unit_price'].mean():.2f}")
-```
-
-**If you demo this live, one genuinely interesting observation is worth surfacing, verified against the synthetic sample:** the IQR method flags the `999.99` extreme value as an outlier, but **not** the `-25.00` negative price from Exercise 6 — because `lower_bound` computes out to roughly `-73` (pulled that low specifically *because* the `999.99` outlier widens `Q3` and the IQR itself). Ask the room: "does this mean the negative price *isn't* actually a problem, since the IQR method didn't flag it?" (No — this is a genuinely important limitation to name explicitly: **the IQR method is a statistical rule of thumb about a value's position relative to the rest of the data's spread, not a business-logic check** — it has no concept that a negative price is nonsensical regardless of statistical position. Exercise 6's manual, human read of `.describe()`'s `min` value caught something this automated method alone would have missed entirely — a genuinely good argument for why "look at the numbers yourself" and "run an automated check" are complementary, not substitutable.)
-
-**Stretch 2 — Write a reusable `clean_sales(filepath)` function:**
-
-```python
-def clean_sales(filepath):
-    df = pd.read_csv(filepath)
-    df.columns = df.columns.str.lower().str.replace(' ', '_')
-    df = df.dropna(subset=["order_id", "order_date"])
-    df["unit_price"] = df["unit_price"].astype(str).str.replace("$", "", regex=False)
-    df["unit_price"] = pd.to_numeric(df["unit_price"], errors="coerce")
-    df["unit_price"] = df["unit_price"].fillna(df["unit_price"].mean())
-    df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")
-    df["quantity_sold"] = df["quantity_sold"].astype(int)
-    df = df.drop_duplicates()
-    return df
-
-result = clean_sales('data/messy_sales.csv')
-print(result.shape)
-print(result.dtypes)
-```
-
-**One sentence of framing, if you demo this:** "This is Module 07's function-writing applied to today's whole pipeline — wrapping steps 2 through 7 in one callable function means next semester's messy dataset, or next month's updated export, gets cleaned with one line, not by re-running eight cells by hand."
-
-\newpage
-
 # Wrap-Up (last ~5 minutes)
 
 **Review the reflection questions out loud:**
@@ -576,39 +521,6 @@ reloaded_fixed = pd.read_csv('data/clean_sales.csv', parse_dates=['order_date'])
 print(reloaded_fixed.dtypes)
 ```
 
-**Stretch 1 (`IQR outlier detection`):**
-
-```python
-q1 = df["unit_price"].quantile(0.25)
-q3 = df["unit_price"].quantile(0.75)
-iqr = q3 - q1
-lower_bound = q1 - 1.5 * iqr
-upper_bound = q3 + 1.5 * iqr
-df["is_outlier"] = (df["unit_price"] < lower_bound) | (df["unit_price"] > upper_bound)
-print(f"Outliers: {df['is_outlier'].sum()}")
-print(f"Average price of outliers: ${df[df['is_outlier']]['unit_price'].mean():.2f}")
-```
-
-**Stretch 2 (`clean_sales(filepath)` function):**
-
-```python
-def clean_sales(filepath):
-    df = pd.read_csv(filepath)
-    df.columns = df.columns.str.lower().str.replace(' ', '_')
-    df = df.dropna(subset=["order_id", "order_date"])
-    df["unit_price"] = df["unit_price"].astype(str).str.replace("$", "", regex=False)
-    df["unit_price"] = pd.to_numeric(df["unit_price"], errors="coerce")
-    df["unit_price"] = df["unit_price"].fillna(df["unit_price"].mean())
-    df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")
-    df["quantity_sold"] = df["quantity_sold"].astype(int)
-    df = df.drop_duplicates()
-    return df
-
-result = clean_sales('data/messy_sales.csv')
-print(result.shape)
-print(result.dtypes)
-```
-
 # Appendix B — Reproducible Messy Dataset (for instructor testing)
 
 A generator producing a 42-row dataset with deliberate, realistic data-quality issues: mixed-case/spaced column names; five `"$"`-prefixed price strings; two missing prices; one missing `order_id`; one missing `order_date`; one malformed date string; two duplicated rows (one of which also carries the extreme price outlier); and one negative price. **Use your course's real dataset with students** — this is for your own rehearsal only.
@@ -656,7 +568,7 @@ All expected output shown throughout this guide was computed and verified agains
 
 # Appendix C — Extra Practice (only if the class finishes early)
 
-Seven required exercises plus the two stretch previews fill the full 75 minutes at a normal pace. If a section moves unusually fast:
+Seven required exercises fill the full 75 minutes at a normal pace. If a section moves unusually fast:
 
 **Extra — inspect `quantity_sold` for its own quality issues.** Even though `.info()` showed it as already `int64` with no missing values, have students check `df["quantity_sold"].describe()` on its own and look specifically for a `min` of `0` or below — a zero-quantity order might indicate a cancelled order that shouldn't be counted in revenue totals, a good extra "does this number make business sense" exercise even on a column that passed the basic type/missingness checks.
 
