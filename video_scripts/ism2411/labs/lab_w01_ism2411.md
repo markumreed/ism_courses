@@ -17,10 +17,8 @@ Published video: https://youtu.be/1WZVu0PDNwM
 5:30 — Exercise 4: automation reflection
 6:50 — Exercise 5: draw the directory tree from three paths
 9:00 — Exercise 6: RAM vs. storage scenarios
-11:00 — Stretch A: read an unfamiliar .py file line by line
-12:10 — Stretch B: research pandas memory use
-13:00 — Reflection questions
-13:40 — Submission checklist
+11:00 — Reflection questions
+11:40 — Submission checklist
 
 **Applies to:** ISM2411 Module 01
 
@@ -161,27 +159,7 @@ Read it out loud: "Starting in `scripts/`, `..` goes up to `q1_report/`, a secon
 
 ---
 
-### STRETCH A — Read an Unfamiliar .py File (11:00–12:10)
-
-**SAY:** "If you finish early: find any short Python script online — 5 to 15 lines — and explain it line by line, even if you're guessing at some of it."
-
-**DO:** Search for a short `.py` file (a simple example script from documentation works well). Open it in a text editor. For each line, write one sentence explaining what it does — for example: "Line 1 imports the `math` library so the script can use functions like `sqrt`." "Line 3 defines a variable called `radius` and sets it to `5`."
-
-**CHECK:** Every line has a one-sentence explanation, even lines you're not 100% sure about — the point of this exercise is practicing the skill of reading unfamiliar code, which you'll do constantly in your career, long before you can write everything from scratch yourself.
-
----
-
-### STRETCH B — Research: How Much RAM Do Real Workloads Need? (12:10–13:00)
-
-**SAY:** "If you finish early: a short research question connecting today's vocabulary to real data-analysis work."
-
-**DO:** Look up: how much RAM does Python typically use to hold a pandas DataFrame with 1 million rows and 10 columns of floats? Write 3–4 sentences explaining why this matters for analysts working with large datasets.
-
-**CHECK:** Your answer should connect back to today's vocabulary — RAM is the fast, temporary memory that has to hold the *entire* dataset while you're working with it, so a dataset that's larger than your available RAM will be slow or will fail to load at all, which is exactly why data analysts care about file size and available memory before they even open a large CSV.
-
----
-
-### REFLECTION QUESTIONS (13:00–13:40)
+### REFLECTION QUESTIONS (11:00–11:40)
 
 **SAY:** "Three self-assessment questions — no code, just honest reflection before you submit."
 
@@ -194,15 +172,15 @@ Read it out loud: "Starting in `scripts/`, `..` goes up to `q1_report/`, a secon
 
 ---
 
-### SUBMISSION CHECKLIST (13:40–end)
+### SUBMISSION CHECKLIST (11:40–end)
 
-**SAY:** "No code submission this module — bring these to class instead."
+**SAY:** "One text file plus one screenshot to Canvas — no code yet, but the deliverable is still specific about what it wants."
 
-- [ ] Written, labeled file path from Exercise 1 (root, directory chain, filename, extension)
-- [ ] `ism2411/` folder with one subfolder per unit, visible in Finder/Explorer
-- [ ] All nine vocabulary terms defined in your own words
-- [ ] Three automation examples from Exercise 4, with explanations
-- [ ] Directory tree drawn from Exercise 5's three paths, plus the relative path
-- [ ] All three RAM-vs-storage scenarios from Exercise 6 answered with reasoning
-- [ ] Three reflection questions answered honestly
-- [ ] Brought to class (no Canvas code submission this week)
+- [ ] One file named exactly `module01_lab.txt` (or `.md`)
+- [ ] Exercise 1: the full file path traced, with root, directory chain, filename, and extension each labeled
+- [ ] Exercise 3: all nine vocabulary definitions, in your own words
+- [ ] Exercise 4: the three automation examples and whether each could be automated
+- [ ] Exercise 5: the directory tree drawn out in text (indentation is fine) and the one relative path
+- [ ] Exercise 6: the RAM-vs-storage explanation for scenarios (a), (b), and (c)
+- [ ] Answers to all 3 Self-Assessment Questions
+- [ ] One screenshot of Finder/Explorer showing the `ism2411/` folder expanded with `unit1/`, `unit2/`, etc. visible (from Exercise 2)

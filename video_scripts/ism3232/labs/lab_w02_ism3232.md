@@ -29,8 +29,7 @@ Published video: https://youtu.be/yQBZqWj013E
 9:10 — Step 12: the rm safety ritual, command by command
 10:40 — Screenshot 4 checkpoint — before/after rm
 11:00 — Step 13: write the 12+ command README table
-13:00 — Stretch: pipes and append redirect
-13:50 — Submission checklist
+13:00 — Submission checklist
 
 **Applies to:** ISM3232 Module 02
 
@@ -159,12 +158,13 @@ tree -L 2
 │   └── hello_ism3232.py
 ├── module02_zsh
 │   └── week2_lab
-├── module03_venv
-├── module04_search
-├── module05_python
-├── module06_loops
-├── module07_functions
-└── module08_debug
+├── module03_git_github
+├── module04_programming
+├── module05_functions
+├── module06_oop
+├── module07_final_project
+├── data
+└── screenshots
 ```
 (Exact contents of `module01_setup` will match whatever you built last week; the point is the tree renders without error and `week2_lab` shows up under `module02_zsh`.)
 
@@ -411,29 +411,7 @@ I did not use AI for this lab.
 
 ---
 
-### STRETCH — Pipes and Append Redirect (13:00–13:50)
-
-**SAY:** "If you finish early: two operators that come up constantly — the pipe and append redirect."
-
-**DO:**
-```bash
-ls -la | head -5
-echo 'extra line' >> notes.txt
-cat notes.txt
-wc -l notes.txt
-```
-
-**CHECK:**
-```
-Week 2 navigation practice
-extra line
-       2 notes.txt
-```
-`|` (pipe) feeds one command's output into the next command's input — here, `ls -la`'s output is truncated to its first 5 lines by `head`. `>>` (double arrow) *appends* to a file instead of overwriting it like the single `>` did in Step 8 — that's why `notes.txt` now has two lines instead of one.
-
----
-
-### SUBMISSION CHECKLIST (13:50–end)
+### SUBMISSION CHECKLIST (13:00–end)
 
 - [ ] Screenshot 1: `tree -L 2` output from `~/ism3232/`
 - [ ] Screenshot 2: `ls -la` and `python3 week2_script.py` output

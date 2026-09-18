@@ -18,10 +18,8 @@ Published video: https://youtu.be/giKZfTMnJyE
 4:50 — Exercise 5: a second hello.py in a subfolder
 5:50 — Exercise 6: break the script on purpose, read the error
 7:20 — Exercise 7: run from the wrong directory
-8:50 — Stretch A: the five-line intro.py
-9:50 — Stretch B: install and test the requests package
-10:50 — Reflection questions
-11:30 — Submission checklist
+8:50 — Reflection questions
+9:30 — Submission checklist
 
 **Applies to:** ISM2411 Module 02
 
@@ -225,52 +223,7 @@ Alex Chen — Finance major
 
 ---
 
-### STRETCH A — Multi-Print Script (8:50–9:50)
-
-**SAY:** "If you finish early: a slightly longer script — five labeled lines about yourself."
-
-**DO:** Create `intro.py`:
-```python
-print("Name: Alex Chen")
-print("Major: Finance")
-print("Hometown: Tampa, FL")
-print("Hobby: Rock climbing")
-print("Why this course: I want to automate the reports I build in my internship")
-```
-```bash
-python3 intro.py
-```
-
-**CHECK:** Five lines print, each with a clear `Label: value` format — confirm all five required pieces of information (name, major, hometown, hobby, reason for taking the course) are present.
-
----
-
-### STRETCH B — Install and Test a Package (9:50–10:50)
-
-**SAY:** "If you finish early: install your first third-party package — something you didn't write, that other people built and shared."
-
-**DO:**
-```bash
-pip3 install requests
-```
-Create `test_requests.py`:
-```python
-import requests
-print("requests version:", requests.__version__)
-```
-```bash
-python3 test_requests.py
-```
-
-**CHECK:**
-```
-requests version: 2.31.0
-```
-(Exact version number may differ.) If a real version number prints, `requests` installed correctly — you'll use this package later in the semester to pull data from the web.
-
----
-
-### REFLECTION QUESTIONS (10:50–11:30)
+### REFLECTION QUESTIONS (8:50–9:30)
 
 **DO:** Answer honestly, in your own words:
 1. Before today, how did you think about navigating your computer? Has using only the terminal — no GUI — changed your mental model of where files live?
@@ -281,11 +234,10 @@ requests version: 2.31.0
 
 ---
 
-### SUBMISSION CHECKLIST (11:30–end)
+### SUBMISSION CHECKLIST (9:30–end)
 
-- [ ] Screenshot of the terminal showing both `hello.py` outputs (Exercise 3 and Exercise 5)
-- [ ] Screenshot includes (or a second screenshot shows) the output of `python3 --version`
-- [ ] Exercise 6's written error analysis: line number, error type, what the message meant
-- [ ] Exercise 7's two attempts and an explanation of why one failed and one succeeded
+- [ ] Screenshot(s) of the terminal, in this order: (1) `python3 --version` output, (2) `hello.py` printing `Hello, ISM2411!` (Exercise 3), (3) `module02/hello.py` printing your name and major (Exercise 5), (4) the "No such file or directory" error from Exercise 7 followed by the successful run using the relative path
+- [ ] The terminal prompt and command you typed are visible above each output, not just the output itself
+- [ ] File named `module02_notes.txt` containing: (a) the error type and line number from Exercise 6, in your own words, and (b) 1–2 sentences explaining why the first attempt in Exercise 7 failed and the second succeeded
 - [ ] Three reflection questions answered honestly
 - [ ] Submitted to Canvas
