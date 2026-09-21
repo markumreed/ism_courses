@@ -222,16 +222,18 @@ mkdir -p tests && touch tests/__init__.py tests/test_week5.py
 code tests/test_week5.py
 ```
 ```python
+import math
+
 def test_tax_at_seven_percent():
     subtotal = 200.00
     tax = subtotal * 0.07
-    assert tax == 14.0
+    assert math.isclose(tax, 14.0)
 
 def test_over_limit_true():
-    assert 1500 > 1000 is True
+    assert (1500 > 1000) is True
 
 def test_over_limit_false():
-    assert 500 > 1000 is False
+    assert (500 > 1000) is False
 
 def test_type_of_string():
     name = 'ISM3232'
@@ -242,7 +244,7 @@ def test_type_conversion():
     assert int(s) == 42
 ```
 
-**CHECK:** Read `test_over_limit_true` closely on camera: "`1500 > 1000 is True` — Python evaluates `1000 is True` first because of operator precedence, then compares `1500 > (1000 is True)`. It happens to still pass here, but it's worth noticing `is` isn't the same as `==` for this kind of check."
+**CHECK:** Read two lines closely on camera. First, `test_tax_at_seven_percent`: "I use `math.isclose` instead of `==` because `200.00 * 0.07` is actually `14.000000000000002` in floating point — computers can't store `0.07` exactly, so never compare a computed decimal with `==`." Second, `test_over_limit_true`: "The parentheses matter. Without them, `1500 > 1000 is True` is a *chained comparison* — Python reads it as `1500 > 1000 and 1000 is True`, and `1000 is True` is `False`, so the test would fail even though 1500 really is greater than 1000. Parenthesize the comparison so it's evaluated first, then checked against `True`. Also worth knowing: `is` is not the same as `==`."
 
 ---
 
