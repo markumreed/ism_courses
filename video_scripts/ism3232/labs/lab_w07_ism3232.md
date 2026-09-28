@@ -15,11 +15,11 @@ Course page: https://markumreed.github.io/ism3232/docs/week07_lab.html
 3:10 — Step 3: write get_approval_tier and apply_discount
 4:30 — Step 4: write main.py and import all four functions
 5:40 — Step 5: run main.py and verify all four results
-6:30 — Screenshot 1 checkpoint
+6:30 — Checkpoint 1
 6:50 — Step 6: write all eight pytest tests
 9:20 — Step 7: the two boundary-case tests, explained
 10:10 — Step 8: run pytest -v and confirm all eight green
-10:40 — Screenshot 2 checkpoint
+10:40 — Checkpoint 2
 11:00 — Step 9: the ritual and push
 11:50 — Submission checklist
 
@@ -158,9 +158,9 @@ Approval tier:   manager
 
 ---
 
-#### Screenshot 1 checkpoint (6:30–6:50)
+#### Checkpoint 1 (6:30–6:50)
 
-**SAY:** "Screenshot 1 — the `main.py` output showing all four function results."
+**SAY:** "Checkpoint 1 — confirm you see the `main.py` output showing all four function results. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -241,9 +241,9 @@ tests/test_business_rules.py::test_discount_ten PASSED
 
 ---
 
-#### Screenshot 2 checkpoint (10:40–11:00)
+#### Checkpoint 2 (10:40–11:00)
 
-**SAY:** "Screenshot 2 — `pytest -v` with all eight tests green."
+**SAY:** "Checkpoint 2 — confirm you see `pytest -v` with all eight tests green. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -263,8 +263,8 @@ git add . && git commit -m 'lab 7: functions modules pytest' && git push
 
 ### SUBMISSION CHECKLIST (11:50–end)
 
-- [ ] Screenshot 1: `main.py` output showing all four function results
-- [ ] Screenshot 2: `pytest -v` with all eight tests green
+- [ ] Verified before pushing: `main.py` output showing all four function results
+- [ ] Verified before pushing: `pytest -v` with all eight tests green
 - [ ] `business_rules.py` has zero `print()` calls at the module level
 - [ ] Git commit message includes "lab 7"
-- [ ] GitHub repository URL pasted into Canvas
+- [ ] GitHub repository is Public and its URL is pasted into Canvas (no screenshots — the repo is graded directly)

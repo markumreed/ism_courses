@@ -16,10 +16,10 @@ Course page: https://markumreed.github.io/ism3232/docs/week06_lab.html
 3:20 — Step 4: two business rules — LIMIT and HIGH thresholds
 5:00 — Step 5: build the formatted summary and write to file
 6:40 — Step 6: run and verify the file was written
-7:30 — Screenshot 1 checkpoint
+7:30 — Checkpoint 1
 7:50 — Step 7: write all five pytest tests
 9:40 — Step 8: run pytest -v and confirm all green
-10:10 — Screenshot 2 checkpoint
+10:10 — Checkpoint 2
 10:30 — Step 9: the ritual and push
 11:20 — Submission checklist
 
@@ -202,9 +202,9 @@ High-value:      1
 
 ---
 
-#### Screenshot 1 checkpoint (7:30–7:50)
+#### Checkpoint 1 (7:30–7:50)
 
-**SAY:** "Screenshot 1 — the complete terminal output of `week6_lab.py`."
+**SAY:** "Checkpoint 1 — confirm you see the complete terminal output of `week6_lab.py`. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -268,9 +268,9 @@ tests/test_week6.py::test_list_of_dicts_length PASSED
 
 ---
 
-#### Screenshot 2 checkpoint (10:10–10:30)
+#### Checkpoint 2 (10:10–10:30)
 
-**SAY:** "Screenshot 2 — `pytest -v` with all five tests green."
+**SAY:** "Checkpoint 2 — confirm you see `pytest -v` with all five tests green. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -290,7 +290,7 @@ git add . && git commit -m 'lab 6: conditionals loops dicts' && git push
 
 ### SUBMISSION CHECKLIST (11:20–end)
 
-- [ ] Screenshot 1: complete terminal output of `week6_lab.py`
-- [ ] Screenshot 2: `pytest -v` with all five tests green
+- [ ] Verified before pushing: complete terminal output of `week6_lab.py`
+- [ ] Verified before pushing: `pytest -v` with all five tests green
 - [ ] Git commit message includes "lab 6"
-- [ ] GitHub repository URL pasted into Canvas
+- [ ] GitHub repository is Public and its URL is pasted into Canvas (no screenshots — the repo is graded directly)

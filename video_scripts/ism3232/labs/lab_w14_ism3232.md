@@ -14,17 +14,17 @@ Course page: https://markumreed.github.io/ism3232/docs/week14_lab.html
 2:20 — Step 2: write add_record() with ? placeholders
 3:30 — Step 3: write get_all_records() with row_factory
 4:50 — Step 4: test both manually in the Python shell
-6:10 — Screenshot 1 checkpoint
+6:10 — Checkpoint 1
 6:30 — Step 5: write update_status()
 7:20 — Step 6: write get_status_report()
 8:10 — Step 7: verify the complete file against the reference
 8:40 — Step 8: write all five pytest tests with tmp_path
 11:20 — Step 9: why tmp_path matters, explained
 12:00 — Step 10: run pytest -v and confirm all green
-12:30 — Screenshot 2 checkpoint
+12:30 — Checkpoint 2
 12:50 — Step 11: write test_script.py end to end
 14:20 — Step 12: run it and verify the status report
-15:10 — Screenshot 3 checkpoint
+15:10 — Checkpoint 3
 15:30 — Step 13: the ritual and push
 16:10 — Submission checklist
 
@@ -149,9 +149,9 @@ A real Python dict, printed directly — confirming both `row_factory` and the `
 
 ---
 
-#### Screenshot 1 checkpoint (6:10–6:30)
+#### Checkpoint 1 (6:10–6:30)
 
-**SAY:** "Screenshot 1 — the Python shell showing that record retrieved as a dict."
+**SAY:** "Checkpoint 1 — confirm you see the Python shell showing that record retrieved as a dict. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -290,9 +290,9 @@ tests/test_database.py::test_status_report_groups_correctly PASSED
 
 ---
 
-#### Screenshot 2 checkpoint (12:30–12:50)
+#### Checkpoint 2 (12:30–12:50)
 
-**SAY:** "Screenshot 2 — `pytest -v` with all five tests green."
+**SAY:** "Checkpoint 2 — confirm you see `pytest -v` with all five tests green. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -347,9 +347,9 @@ Confirm this matches the hand trace: Morgan (3500) is the lone Approved record; 
 
 ---
 
-#### Screenshot 3 checkpoint (15:10–15:30)
+#### Checkpoint 3 (15:10–15:30)
 
-**SAY:** "Screenshot 3 — the `test_script.py` output showing the status report."
+**SAY:** "Checkpoint 3 — confirm you see the `test_script.py` output showing the status report. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -369,10 +369,10 @@ git add . && git commit -m 'lab 14: Python SQL integration' && git push
 
 ### SUBMISSION CHECKLIST (16:10–end)
 
-- [ ] Screenshot 1: Python shell showing a record retrieved as a dict from `get_all_records()`
-- [ ] Screenshot 2: `pytest -v` with all five tests green
-- [ ] Screenshot 3: `test_script.py` output showing the status report
+- [ ] Verified before pushing: Python shell showing a record retrieved as a dict from `get_all_records()`
+- [ ] Verified before pushing: `pytest -v` with all five tests green
+- [ ] Verified before pushing: `test_script.py` output showing the status report
 - [ ] `database.py` uses `?` placeholders on every query — never f-strings or concatenation
 - [ ] Every function in `database.py` accepts an optional `db_file` parameter
 - [ ] Git commit message includes "lab 14"
-- [ ] GitHub repository URL pasted into Canvas
+- [ ] GitHub repository is Public and its URL is pasted into Canvas (no screenshots — the repo is graded directly)

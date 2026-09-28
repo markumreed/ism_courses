@@ -20,10 +20,10 @@ Course page: https://markumreed.github.io/ism3232/docs/week12_lab.html
 9:20 — Step 8: write all seven pytest tests
 11:40 — Step 9: the boundary test, explained
 12:10 — Step 10: run pytest -v and confirm all green
-12:40 — Screenshot 1 checkpoint
+12:40 — Checkpoint 1
 13:00 — Step 11: write main.py — four instances, one status change
 14:10 — Step 12: run and verify the full report
-15:10 — Screenshot 2 checkpoint
+15:10 — Checkpoint 2
 15:30 — Step 13: the ritual and push
 16:20 — Submission checklist
 
@@ -331,9 +331,9 @@ tests/test_models.py::test_manager_independence PASSED
 
 ---
 
-#### Screenshot 1 checkpoint (12:40–13:00)
+#### Checkpoint 1 (12:40–13:00)
 
-**SAY:** "Screenshot 1 — `pytest -v` with all seven tests green."
+**SAY:** "Checkpoint 1 — confirm you see `pytest -v` with all seven tests green. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -393,9 +393,9 @@ Confirm the total by hand: 1800 + 3200 + 450 + 6000 = 11,450. Confirm the three 
 
 ---
 
-#### Screenshot 2 checkpoint (15:10–15:30)
+#### Checkpoint 2 (15:10–15:30)
 
-**SAY:** "Screenshot 2 — the `main.py` simulation output showing the full report."
+**SAY:** "Checkpoint 2 — confirm you see the `main.py` simulation output showing the full report. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -419,7 +419,7 @@ git add . && git commit -m 'lab 12: OOP III applied practice' && git push
 - [ ] `models.py` with two entity classes plus one manager class
 - [ ] `main.py` with 4+ instances, at least one status change, and a `report()` call
 - [ ] 6+ pytest tests: default status, each business method, a boundary case, manager add, manager filter, manager independence
-- [ ] Screenshot 1: `pytest -v` all green
-- [ ] Screenshot 2: `main.py` output showing the report
+- [ ] Verified before pushing: `pytest -v` all green
+- [ ] Verified before pushing: `main.py` output showing the report
 - [ ] Git commit message includes "lab 12"
-- [ ] GitHub repository URL pasted into Canvas
+- [ ] GitHub repository is Public and its URL is pasted into Canvas (no screenshots — the repo is graded directly)

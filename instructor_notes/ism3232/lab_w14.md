@@ -32,7 +32,7 @@ citecolor: "sayborder"
 | **Prerequisites** | Week 13: approved `PROPOSAL.md`, `schema.sql`, `sqlite3` shell fluency |
 | **Student-facing lab page** | Week 14 In-Class Lab — Module 7C, "Python + SQL Integration" |
 | **Parts covered** | Part 1 (`database.py` setup) – Part 5 (test script + ritual) |
-| **Submission** | 3 screenshots, GitHub URL, Canvas, completion credit |
+| **Submission** | GitHub URL in Canvas (no screenshots), completion credit |
 
 The lab page states two rules up front, applying to *every single line* of today's code, and both deserve to be treated as absolute, not stylistic: **Rule 1 — always use `?` placeholders, never f-strings or string concatenation, to build SQL.** **Rule 2 — every function accepts an optional `db_file` parameter, defaulting to `DB_FILE`, so tests can use an isolated temporary database.** Rule 1 is a genuine security discipline (SQL injection prevention), not a style preference — worth demonstrating the actual vulnerability, not just stating the rule. Rule 2 is what makes Part 4's `pytest` tests possible at all without corrupting the real development database. Today's `database.py` becomes the actual data layer the capstone's Streamlit interface (Week 15) reads from and writes to — this is genuinely load-bearing code, not a standalone exercise.
 

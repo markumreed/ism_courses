@@ -32,7 +32,7 @@ citecolor: "sayborder"
 | **Prerequisites** | Weeks 1–8: full Python foundations, functions, `pytest`, debugging discipline; Week 9 was the midterm |
 | **Student-facing lab page** | Week 10 In-Class Lab — Module 6, "OOP I: Classes, Objects, Attributes, and Methods" |
 | **Parts covered** | Part 1 (write the class) – Part 5 (ritual + push) + Stretch (`summary()` method) |
-| **Submission** | 2 screenshots + Canvas URL, completion credit |
+| **Submission** | GitHub URL in Canvas (no screenshots), completion credit |
 
 The midterm is behind the class; this is the first lab of Unit 3, and it opens a genuinely new paradigm — object-oriented programming. Everything before this unit used functions operating on plain dictionaries (`records = [{...}, {...}]`, `def get_total(records): ...`); today, a `class` bundles data *and* the functions that operate on it into a single, reusable blueprint. The lab page's own warning deserves emphasis: **no AI-generated classes** — every line must be explainable, and any AI-assisted portion needs to be pasted verbatim with an explanatory comment. This is a stricter standard than prior weeks' general AI-use disclosure, worth stating explicitly at the start, since OOP syntax (especially `self` and `__init__`) is genuinely tempting to just paste from an AI tool without understanding.
 

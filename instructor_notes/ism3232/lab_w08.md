@@ -32,7 +32,7 @@ citecolor: "sayborder"
 | **Prerequisites** | Week 7: functions, modules, `pytest`, type hints (marked Midterm-Eligible; last lab before Week 9's midterm) |
 | **Student-facing lab page** | Week 8 In-Class Lab — Module 5, "Debugging, Tracebacks, and AI Literacy" |
 | **Parts covered** | Part 1 (read the traceback) – Part 5 (AI reflection + push) + Stretch (a third bug) |
-| **Submission** | 2 screenshots + `debug_log.md`, GitHub URL, Canvas, completion credit |
+| **Submission** | `debug_log.md` in the repo, GitHub URL in Canvas (no screenshots), completion credit |
 
 The lab page's own rule, stated as a heading, is the entire lesson of this lab: **Debug First, Then Ask.** Attempt each bug yourself, using the traceback and `print()`, before touching any AI tool — and document the attempt in `debug_log.md` *before* asking AI anything. Say explicitly to the class: **this is graded on process, not just working code.** A student who pastes an error into an AI tool immediately and gets working code back, with no documented independent attempt, has not actually done this lab, even if their script runs correctly at the end. This is also the last lab before Week 9's midterm — a good moment to fold in brief review of anything from Weeks 5–7 that's felt shaky, without derailing today's own content.
 

@@ -20,10 +20,10 @@ Course page: https://markumreed.github.io/ism3232/docs/week13_lab.html
 8:10 — Step 8: filter with WHERE
 8:40 — Step 9: update a record and re-select
 9:20 — Step 10: the GROUP BY aggregate report
-10:20 — Screenshot 1 checkpoint
+10:20 — Checkpoint 1
 10:40 — Step 11: write your capstone schema.sql
 12:10 — Step 12: test it — read, insert, select
-13:20 — Screenshot 2 checkpoint
+13:20 — Checkpoint 2
 13:40 — Step 13: add the SQL cheatsheet to README.md
 14:40 — Step 14: commit and push
 15:10 — Submission checklist
@@ -266,9 +266,9 @@ Exit the shell:
 
 ---
 
-#### Screenshot 1 checkpoint (10:20–10:40)
+#### Checkpoint 1 (10:20–10:40)
 
-**SAY:** "Screenshot 1 — the sqlite3 shell showing the final `SELECT` and the `GROUP BY` report."
+**SAY:** "Checkpoint 1 — confirm you see the sqlite3 shell showing the final `SELECT` and the `GROUP BY` report. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -308,9 +308,9 @@ SELECT * FROM [yourtable];
 
 ---
 
-#### Screenshot 2 checkpoint (13:20–13:40)
+#### Checkpoint 2 (13:20–13:40)
 
-**SAY:** "Screenshot 2 — the sqlite3 shell showing your schema, a test insert, and the select."
+**SAY:** "Checkpoint 2 — confirm you see the sqlite3 shell showing your schema, a test insert, and the select. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -357,7 +357,7 @@ git add . && git commit -m 'lab 13: proposal and SQL schema' && git push
 
 - [ ] `PROPOSAL.md` — all 10 fields completed, with instructor sign-off
 - [ ] `schema.sql` — the `CREATE TABLE` statement for your capstone
-- [ ] Screenshot: sqlite3 shell showing your schema, a test insert, and the `GROUP BY` report
+- [ ] Verified before pushing: sqlite3 shell showing your schema, a test insert, and the `GROUP BY` report
 - [ ] `README.md` SQL cheatsheet with all eight operations
 - [ ] Git commit message includes "lab 13"
-- [ ] GitHub repository URL pasted into Canvas
+- [ ] GitHub repository is Public and its URL is pasted into Canvas (no screenshots — the repo is graded directly)

@@ -12,7 +12,7 @@ Course page: https://markumreed.github.io/ism3232/docs/week15_lab.html
 0:00 — What this lab covers — five tabs, one database
 0:40 — Step 1: install streamlit and freeze requirements
 1:20 — Step 2: write and run the hello-world app
-2:20 — Screenshot 1 checkpoint
+2:20 — Checkpoint 1
 2:40 — Step 3: page config, imports, and the five tabs
 3:40 — Step 4: build Tab 1 — Submit
 5:00 — Step 5: build Tab 2 — View
@@ -21,12 +21,12 @@ Course page: https://markumreed.github.io/ism3232/docs/week15_lab.html
 8:40 — Step 8: build Tab 5 — Report
 9:50 — Step 9: run the full app for the first time
 10:20 — Step 10: submit three test records on Tab 1
-11:40 — Screenshot 2 checkpoint
+11:40 — Checkpoint 2
 12:00 — Step 11: verify Tab 2 and Tab 3
 13:00 — Step 12: update a status on Tab 4, confirm on Tab 3
-14:00 — Screenshot 3 checkpoint
+14:00 — Checkpoint 3
 14:20 — Step 13: verify Tab 5's metrics
-15:00 — Screenshot 4 checkpoint
+15:00 — Checkpoint 4
 15:20 — Step 14: adapt the app to your own capstone domain
 16:20 — Step 15: stop Streamlit and run the ritual
 17:00 — Submission checklist
@@ -90,9 +90,9 @@ streamlit run app.py
 
 ---
 
-#### Screenshot 1 checkpoint (2:20–2:40)
+#### Checkpoint 1 (2:20–2:40)
 
-**SAY:** "Screenshot 1 — the browser showing the Streamlit hello page."
+**SAY:** "Checkpoint 1 — confirm you see the browser showing the Streamlit hello page. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -253,9 +253,9 @@ streamlit run app.py
 
 ---
 
-#### Screenshot 2 checkpoint (11:40–12:00)
+#### Checkpoint 2 (11:40–12:00)
 
-**SAY:** "Screenshot 2 — Tab 1 right after a successful submission."
+**SAY:** "Checkpoint 2 — confirm you see tab 1 right after a successful submission. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -275,9 +275,9 @@ streamlit run app.py
 
 ---
 
-#### Screenshot 3 checkpoint (14:00–14:20)
+#### Checkpoint 3 (14:00–14:20)
 
-**SAY:** "Screenshot 3 — Tab 4 right after updating a status."
+**SAY:** "Checkpoint 3 — confirm you see tab 4 right after updating a status. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -289,9 +289,9 @@ streamlit run app.py
 
 ---
 
-#### Screenshot 4 checkpoint (15:00–15:20)
+#### Checkpoint 4 (15:00–15:20)
 
-**SAY:** "Screenshot 4 — Tab 5 showing the status report metrics with real data."
+**SAY:** "Checkpoint 4 — confirm you see tab 5 showing the status report metrics with real data. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -329,10 +329,10 @@ git add . && git commit -m 'lab 15: Streamlit five-feature interface' && git pus
 
 ### SUBMISSION CHECKLIST (17:00–end)
 
-- [ ] Screenshot 1: Tab 1 (Submit) showing a successful submission
-- [ ] Screenshot 2: Tab 4 (Update) after changing a status
-- [ ] Screenshot 3: Tab 5 (Report) showing the status metrics with real data
+- [ ] Verified before pushing: Tab 1 (Submit) showing a successful submission
+- [ ] Verified before pushing: Tab 4 (Update) after changing a status
+- [ ] Verified before pushing: Tab 5 (Report) showing the status metrics with real data
 - [ ] All five tabs — Submit, View, Filter, Update, Report — working end to end
 - [ ] `app.py` adapted to your own capstone domain (title, categories, columns, statuses)
 - [ ] Git commit message includes "lab 15"
-- [ ] GitHub repository URL pasted into Canvas
+- [ ] GitHub repository is Public and its URL is pasted into Canvas (no screenshots — the repo is graded directly)

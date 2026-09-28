@@ -31,7 +31,7 @@ citecolor: "sayborder"
 | **Prerequisites** | Week 14: complete, tested `database.py` (all five functions, `?` placeholders, `db_file` parameters) |
 | **Student-facing lab page** | Week 15 In-Class Lab — Module 7D, "Streamlit Business Interface" |
 | **Parts covered** | Part 1 (install + first run) – Part 5 (test + ritual) |
-| **Submission** | 3 screenshots, GitHub URL, Canvas, completion credit |
+| **Submission** | GitHub URL in Canvas (no screenshots), completion credit |
 
 This is the lab where the capstone becomes a real, clickable application — a genuine, if simple, business tool a non-programmer could actually use. Every one of today's five tabs calls directly into Week 14's `database.py` functions; nothing about the data layer changes today, only a real interface sits in front of it. **A version-specific caution worth knowing before class:** this guide's code (matching the lab page) uses `st.dataframe(..., use_container_width=True)`, a parameter Streamlit has deprecated in favor of `width='stretch'`; depending on exactly which Streamlit version `pip install streamlit` pulls for your section, this may show a harmless deprecation warning or, in a sufficiently new version, may already require the updated syntax — verified below, with the fix ready if needed.
 

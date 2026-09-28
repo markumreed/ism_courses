@@ -32,7 +32,7 @@ citecolor: "sayborder"
 | **Prerequisites** | Week 10: `BusinessRequest` class, `__init__`, `self`, instance methods, `__repr__` |
 | **Student-facing lab page** | Week 11 In-Class Lab — Module 6, "OOP II: Composition and the Manager Class" |
 | **Parts covered** | Part 1 (`RequestManager`) – Part 5 (ritual + push) + Stretch (light inheritance) |
-| **Submission** | 2 screenshots + `README.md` with OOP-to-SQL mapping, GitHub URL, Canvas, completion credit |
+| **Submission** | `README.md` with OOP-to-SQL mapping in the repo, GitHub URL in Canvas (no screenshots), completion credit |
 
 Week 10 built one class, standing alone. Today introduces **composition** — a `RequestManager` class whose entire job is to *hold and manage a collection* of `BusinessRequest` objects, not replace them. This is a genuinely different relationship between classes than the inheritance shown briefly in the Stretch section, and the distinction is worth stating explicitly: composition is "has-a" (a manager *has* a list of requests), inheritance is "is-a" (a `TravelRequest` *is a* kind of `BusinessRequest`). Part 3's OOP-to-SQL mapping table is also worth taking seriously as more than a formality — it's this course's first explicit bridge toward Week 13–14's database content, and getting students to genuinely map `class` → table, `instance` → row, `attribute` → column now pays off directly in three weeks.
 

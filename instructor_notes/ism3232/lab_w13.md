@@ -32,7 +32,7 @@ citecolor: "sayborder"
 | **Prerequisites** | Weeks 10–12: full OOP fluency — classes, composition, independent design and build |
 | **Student-facing lab page** | Week 13 In-Class Lab — Module 7A & 7B, "Project Proposal and SQL Foundations" |
 | **Parts covered** | Part 1 (capstone proposal) – Part 5 (ritual + push) |
-| **Submission** | `PROPOSAL.md` (instructor-approved) + `schema.sql` + screenshot, GitHub URL, Canvas |
+| **Submission** | `PROPOSAL.md` (instructor-approved) + `schema.sql` in the repo, GitHub URL in Canvas (no screenshots) |
 
 This is the highest-stakes single lab of the semester so far, for one specific reason: **the capstone proposal written today must be reviewed and approved before any capstone code is written in Week 14, and the entire remaining four weeks of the course build on it.** The lab page's own warning deserves to be taken at face value: a vague proposal produces an undefined system that is genuinely impossible to finish in four weeks. This lab also introduces SQL for the first time — real, hands-on `sqlite3` shell work — which pairs directly with Week 11's OOP-to-SQL mapping table and gives that abstract exercise concrete, executable form.
 

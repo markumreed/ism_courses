@@ -13,11 +13,11 @@ Course page: https://markumreed.github.io/ism3232/docs/week16_lab.html
 0:50 — Step 1: install the Anthropic SDK
 1:20 — Step 2: write summarise_request()
 2:40 — Step 3: test it manually in the Python shell
-3:40 — Screenshot 1 checkpoint
+3:40 — Checkpoint 1
 4:00 — Step 4: add the AI feature UI to Tab 1
 5:40 — Step 5: the disclosure label and review gate, explained
 6:30 — Step 6: run the full flow — generate, review, save
-7:30 — Screenshot 2 checkpoint
+7:30 — Checkpoint 2
 7:50 — Step 7: write the mocked API tests
 10:00 — Step 8: why mocking matters here, explained
 10:40 — Step 9: run pytest -v and confirm both pass
@@ -111,9 +111,9 @@ python3
 
 ---
 
-#### Screenshot 1 checkpoint (3:40–4:00)
+#### Checkpoint 1 (3:40–4:00)
 
-**SAY:** "Screenshot 1 — the Python shell showing the AI-generated summary."
+**SAY:** "Checkpoint 1 — confirm you see the Python shell showing the AI-generated summary. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -165,9 +165,9 @@ On Tab 1: enter a description, click "Generate AI Summary," read the disclosure 
 
 ---
 
-#### Screenshot 2 checkpoint (7:30–7:50)
+#### Checkpoint 2 (7:30–7:50)
 
-**SAY:** "Screenshot 2 — Tab 1 showing the AI-generated summary with the disclosure label and review button visible."
+**SAY:** "Checkpoint 2 — confirm you see tab 1 showing the AI-generated summary with the disclosure label and review button visible. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -315,10 +315,10 @@ git add . && git commit -m 'lab 16: GenAI feature + final submission' && git pus
 
 ### SUBMISSION CHECKLIST (16:00–end)
 
-- [ ] Screenshot 1: AI feature in Tab 1 — summary visible with disclosure label and review button
-- [ ] Screenshot 2: `pytest -v` showing all tests passing (including the mocked AI tests)
+- [ ] Verified before pushing: AI feature in Tab 1 — summary visible with disclosure label and review button
+- [ ] Verified before pushing: `pytest -v` showing all tests passing (including the mocked AI tests)
 - [ ] `README.md` with the completed AI feature section
 - [ ] `ai_feature.py` in the repo
 - [ ] `tests/test_ai_feature.py` in the repo
 - [ ] Git commit message includes "lab 16"
-- [ ] GitHub repository URL pasted into Canvas
+- [ ] GitHub repository is Public and its URL is pasted into Canvas (no screenshots — the repo is graded directly)

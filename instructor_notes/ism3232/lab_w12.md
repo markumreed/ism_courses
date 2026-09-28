@@ -32,7 +32,7 @@ citecolor: "sayborder"
 | **Prerequisites** | Weeks 10–11: `BusinessRequest`/`RequestManager` — two entity classes, a manager class, composition, boundary/independence testing |
 | **Student-facing lab page** | Week 12 In-Class Lab — Module 6, "OOP III: Applied Practice and Design" |
 | **Parts covered** | Part 1 (design document, enforced) – Part 5 (simulation + ritual) |
-| **Submission** | `design.md` + 2 screenshots, GitHub URL, Canvas, completion credit |
+| **Submission** | `design.md` in the repo, GitHub URL in Canvas (no screenshots), completion credit |
 
 This lab is structurally different from every prior week: **students design and build their own multi-class system, in a business domain of their own choosing** — not the `BusinessRequest` template from Weeks 10–11. The lab page's own rule is worth enforcing exactly as written, without softening it: **students may not open VS Code to write class code until their `design.md` is reviewed by the instructor.** This means today's central facilitation challenge isn't teaching new syntax — it's running an efficient, fair design-review queue for an entire room, and this guide's Part 1 is built specifically around that logistics problem. There is no single shared example to live-code; instead, this guide walks a complete worked example (a different domain — event registrations — from the `BusinessRequest` template) that you can demonstrate as *process*, not as an answer key for students to copy.
 

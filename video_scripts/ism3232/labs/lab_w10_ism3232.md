@@ -17,12 +17,12 @@ Course page: https://markumreed.github.io/ism3232/docs/week10_lab.html
 4:50 — Step 5: create three instances in main.py
 5:50 — Step 6: print initial state — three distinct reprs
 6:30 — Step 7: call methods and verify independence
-7:50 — Screenshot 1 checkpoint
+7:50 — Checkpoint 1
 8:10 — Step 8: answer the five OOP reflection questions
 9:50 — Step 9: write all seven pytest tests
 12:00 — Step 10: the boundary test and the independence test, explained
 12:50 — Step 11: run pytest -v and confirm all green
-13:20 — Screenshot 2 checkpoint
+13:20 — Checkpoint 2
 13:40 — Step 12: the ritual and push
 14:30 — Submission checklist
 
@@ -205,9 +205,9 @@ Confirm `req_103.status` still prints `Pending` even though `req_101` and `req_1
 
 ---
 
-#### Screenshot 1 checkpoint (7:50–8:10)
+#### Checkpoint 1 (7:50–8:10)
 
-**SAY:** "Screenshot 1 — the complete `main.py` output showing all method calls and results."
+**SAY:** "Checkpoint 1 — confirm you see the complete `main.py` output showing all method calls and results. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -313,9 +313,9 @@ tests/test_models.py::test_instances_are_independent PASSED
 
 ---
 
-#### Screenshot 2 checkpoint (13:20–13:40)
+#### Checkpoint 2 (13:20–13:40)
 
-**SAY:** "Screenshot 2 — `pytest -v` with all seven tests green."
+**SAY:** "Checkpoint 2 — confirm you see `pytest -v` with all seven tests green. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -335,8 +335,8 @@ git add . && git commit -m 'lab 10: OOP I BusinessRequest class' && git push
 
 ### SUBMISSION CHECKLIST (14:30–end)
 
-- [ ] Screenshot 1: complete `main.py` output showing all method calls and results
-- [ ] Screenshot 2: `pytest -v` with all seven tests green
+- [ ] Verified before pushing: complete `main.py` output showing all method calls and results
+- [ ] Verified before pushing: `pytest -v` with all seven tests green
 - [ ] Comment block with all five OOP reflection questions answered
 - [ ] Git commit message includes "lab 10"
-- [ ] GitHub repository URL pasted into Canvas
+- [ ] GitHub repository is Public and its URL is pasted into Canvas (no screenshots — the repo is graded directly)

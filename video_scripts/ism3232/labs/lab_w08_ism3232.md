@@ -18,10 +18,10 @@ Course page: https://markumreed.github.io/ism3232/docs/week08_lab.html
 6:20 — Step 6: spot and fix the typo, remove the print
 7:00 — Step 7: a new error appears — read Bug 2's traceback
 7:50 — Step 8: rubber-duck the type comparison, fix it
-8:40 — Screenshot 1 checkpoint — correct final output
+8:40 — Checkpoint 1 — correct final output
 9:00 — Step 9: write all five pytest tests for the fixed code
 10:40 — Step 10: run pytest -v and confirm all green
-11:10 — Screenshot 2 checkpoint
+11:10 — Checkpoint 2
 11:30 — Step 11: complete the AI literacy reflection honestly
 12:30 — Step 12: the ritual and push
 13:20 — Submission checklist
@@ -232,9 +232,9 @@ Update `debug_log.md`'s Bug 2 section with the same structure as Bug 1: error ty
 
 ---
 
-#### Screenshot 1 checkpoint (8:40–9:00)
+#### Checkpoint 1 (8:40–9:00)
 
-**SAY:** "Screenshot 1 — the correct final output, both bugs fixed: `Total: $5150.00 across 3 records` followed by `True`."
+**SAY:** "Checkpoint 1 — confirm you see the correct final output, both bugs fixed: `Total: $5150.00 across 3 records` followed by `True`. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -300,9 +300,9 @@ tests/test_week8.py::test_format_summary PASSED
 
 ---
 
-#### Screenshot 2 checkpoint (11:10–11:30)
+#### Checkpoint 2 (11:10–11:30)
 
-**SAY:** "Screenshot 2 — `pytest -v` with all five tests green."
+**SAY:** "Checkpoint 2 — confirm you see `pytest -v` with all five tests green. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -347,8 +347,8 @@ git add . && git commit -m 'lab 8: debugging ai literacy' && git push
 
 ### SUBMISSION CHECKLIST (13:20–end)
 
-- [ ] Screenshot 1: correct final output after both bugs are fixed
-- [ ] Screenshot 2: `pytest -v` showing all five tests passing
+- [ ] Verified before pushing: correct final output after both bugs are fixed
+- [ ] Verified before pushing: `pytest -v` showing all five tests passing
 - [ ] `debug_log.md` — all sections completed, including the AI reflection
 - [ ] Git commit message includes "lab 8"
-- [ ] GitHub repository URL pasted into Canvas
+- [ ] GitHub repository is Public and its URL is pasted into Canvas (no screenshots — the repo is graded directly)

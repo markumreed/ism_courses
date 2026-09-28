@@ -15,12 +15,12 @@ Course page: https://markumreed.github.io/ism3232/docs/week11_lab.html
 2:50 — Step 3: write total_amount and summary_report
 4:00 — Step 4: rewrite main.py to use the manager
 5:20 — Step 5: run and verify the summary report
-6:10 — Screenshot 1 checkpoint
+6:10 — Checkpoint 1
 6:30 — Step 6: fill in the OOP-to-SQL mapping table
 8:10 — Step 7: write all six new tests
 10:40 — Step 8: two tests worth a closer look
 11:30 — Step 9: run pytest -v — old and new tests together
-12:00 — Screenshot 2 checkpoint
+12:00 — Checkpoint 2
 12:20 — Step 10: the ritual and push
 13:10 — Submission checklist
 
@@ -158,9 +158,9 @@ Confirm the math by hand: 1200 + 450 + 3500 + 89 = 5,239. Taylor's request (101)
 
 ---
 
-#### Screenshot 1 checkpoint (6:10–6:30)
+#### Checkpoint 1 (6:10–6:30)
 
-**SAY:** "Screenshot 1 — the `summary_report()` output from `main.py`."
+**SAY:** "Checkpoint 1 — confirm you see the `summary_report()` output from `main.py`. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -269,9 +269,9 @@ pytest -v
 
 ---
 
-#### Screenshot 2 checkpoint (12:00–12:20)
+#### Checkpoint 2 (12:00–12:20)
 
-**SAY:** "Screenshot 2 — `pytest -v` with all tests green, old and new together."
+**SAY:** "Checkpoint 2 — confirm you see `pytest -v` with all tests green, old and new together. No screenshot needed; your pushed repo is what gets graded."
 
 ---
 
@@ -291,8 +291,8 @@ git add . && git commit -m 'lab 11: OOP II RequestManager composition' && git pu
 
 ### SUBMISSION CHECKLIST (13:10–end)
 
-- [ ] Screenshot 1: `summary_report()` output from `main.py`
-- [ ] Screenshot 2: `pytest -v` with all tests green (Week 10 + Week 11 combined)
+- [ ] Verified before pushing: `summary_report()` output from `main.py`
+- [ ] Verified before pushing: `pytest -v` with all tests green (Week 10 + Week 11 combined)
 - [ ] `README.md` with the OOP-to-SQL mapping table filled in
 - [ ] Git commit message includes "lab 11"
-- [ ] GitHub repository URL pasted into Canvas
+- [ ] GitHub repository is Public and its URL is pasted into Canvas (no screenshots — the repo is graded directly)

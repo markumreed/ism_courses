@@ -32,7 +32,7 @@ citecolor: "sayborder"
 | **Prerequisites** | Week 15: complete, tested, five-tab Streamlit app wired to `database.py` |
 | **Student-facing lab page** | Week 16 In-Class Lab — Module 7E & 7F, "GenAI Feature + Final Demo" |
 | **Parts covered** | Part 1 (`ai_feature.py`) – Part 4 (final checklist + push), Part 5 (demo presentations) |
-| **Submission** | 2 screenshots, GitHub URL, Canvas, completion credit, live presentation |
+| **Submission** | GitHub URL in Canvas (no screenshots), completion credit, live presentation |
 
 This is the final lab of the semester, and the lab page's own warning is worth reading to the class exactly as written: **all six GenAI controls are required, and missing any one fails the feature on the capstone rubric.** **Read this guide's Part 2 before class — the lab page's own provided wiring code, exactly as written, contains a genuine, verified bug in the single most safety-critical control of the six: the human-review-before-save gate does not actually work as written**, due to a classic Streamlit state-management pitfall (a button nested inside another button's conditional block). This guide explains the bug, why it happens, and ships a verified, working fix using `st.session_state` — treat this the way Week 5's floating-point/chained-comparison bugs were treated: a genuine teaching opportunity, not something to quietly route around.
 
