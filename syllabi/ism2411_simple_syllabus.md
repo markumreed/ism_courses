@@ -154,7 +154,7 @@ For questions that may benefit the whole class (debugging approaches, assignment
 ### Lab Grading Rubric (each lab scored out of 10 points)
 
 - **4 pts — Correctness:** code produces the expected output for all exercises
-- **3 pts — Completion:** all exercises attempted, including stretch challenges (partial credit for reasonable attempts)
+- **3 pts — Completion:** all exercises attempted (partial credit for reasonable attempts)
 - **2 pts — Code quality:** meaningful variable names, no unnecessary repetition, readable code
 - **1 pt — Submission:** submitted on time via the correct method (GitHub repo link or Canvas upload), notebook runs clean from top to bottom
 
