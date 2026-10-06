@@ -103,7 +103,7 @@ This course moves quickly, and each module builds on the previous one. Here is w
 
 **Attend every lab.** It is the only in-person session each week, and it is structured practice that would take two to three times longer to complete alone. Missing lab hurts more than missing any single reading.
 
-**Use the self-check quizzes as your first study session.** Questions marked ★ MIDTERM-ELIGIBLE or ★ CAPSTONE-ELIGIBLE appear on formal assessments verbatim or with minor variation. Treat the quiz as early exam prep.
+**Use the self-check quizzes as your first study session.** Quizzes marked ★ MIDTERM-ELIGIBLE cover material tested on the midterm. The midterm is three handwritten questions, so those quiz questions will not repeat word for word. Questions marked ★ CAPSTONE-ELIGIBLE appear on the capstone verbatim or with minor variation. Treat the quiz as early exam prep.
 
 **Run your code often.** Do not write 20 lines and then run. Write 3 lines, run, check, continue. Errors are easier to find when you introduce them one at a time.
 
@@ -143,7 +143,7 @@ For questions that may benefit the whole class (debugging approaches, assignment
 | Component | Weight | Details |
 |-----------|--------|---------|
 | Weekly Labs | 30% | 14 labs total (Modules 1–8, 10–15). Due Sunday at 11:59 PM. Graded on correctness, completion, code quality, and proper submission. Code must run without errors. |
-| Weekly Quizzes | 5% | 14 quizzes on Canvas, tied to the assigned reading. Open-note, untimed. Due before that week's lab. Questions marked ★ reappear on the midterm or capstone. |
+| Weekly Quizzes | 5% | 14 quizzes on Canvas, tied to the assigned reading. Open-note, untimed. Due before that week's lab. Quizzes marked ★ MIDTERM-ELIGIBLE cover material tested on the midterm. Questions marked ★ CAPSTONE-ELIGIBLE reappear on the capstone. |
 | DataCamp Courses | 15% | 5 required courses = 10% (graded on completion only, not speed or score). 2 optional bonus courses = up to 5% extra credit. See the DataCamp page for deadlines. |
 | Midterm Exam | 20% | Module 9. In-class, 75 minutes. Covers Modules 1–8. One handwritten page of notes allowed, using one side only of a standard 8.5 × 11 sheet. No laptops, no phones. |
 | Capstone Project | 25% | Module 16. End-to-end retail sales analysis submitted as a GitHub repo with a Jupyter notebook. 5–7 minute live presentation. See the capstone rubric on the course website. |
