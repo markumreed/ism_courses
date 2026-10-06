@@ -145,7 +145,7 @@ For questions that may benefit the whole class (debugging approaches, assignment
 | Weekly Labs | 30% | 14 labs total (Modules 1–8, 10–15). Due Sunday at 11:59 PM. Graded on correctness, completion, code quality, and proper submission. Code must run without errors. |
 | Weekly Quizzes | 5% | 14 quizzes on Canvas, tied to the assigned reading. Open-note, untimed. Due before that week's lab. Questions marked ★ reappear on the midterm or capstone. |
 | DataCamp Courses | 15% | 5 required courses = 10% (graded on completion only, not speed or score). 2 optional bonus courses = up to 5% extra credit. See the DataCamp page for deadlines. |
-| Midterm Exam | 20% | Module 9. In-class, 75 minutes. Covers Modules 1–8. One double-sided cheatsheet allowed (handwritten or printed). No laptops, no phones. |
+| Midterm Exam | 20% | Module 9. In-class, 75 minutes. Covers Modules 1–8. One handwritten page of notes allowed, using one side only of a standard 8.5 × 11 sheet. No laptops, no phones. |
 | Capstone Project | 25% | Module 16. End-to-end retail sales analysis submitted as a GitHub repo with a Jupyter notebook. 5–7 minute live presentation. See the capstone rubric on the course website. |
 | Lab Participation & Engagement | 5% | Holistic assessment at midterm and end of semester: engagement during the weekly in-person lab, helping peers, completing in-class activities, attending office hours, demonstrating effort. |
 | **Total** | **100%** | |
@@ -182,7 +182,7 @@ You can access your scores at any time in Canvas under Grades. If you believe a 
 | 6 | Loops | for / while; break / continue; process transactions | Lab 5 |
 | 7 | Functions, Debugging & AI Literacy | def / return; tracebacks; AI modes; disclosure policy | Lab 6 |
 | 8 | Git & GitHub | Version control; push/pull; GitHub submission begins | Lab 7 |
-| 9 | **Midterm Exam** | Covers Modules 1–8 · 75 min · one cheatsheet allowed | Midterm |
+| 9 | **Midterm Exam** | Covers Modules 1–8 · 75 min · one handwritten page of notes allowed | Midterm |
 | 10 | Lists & Tuples | Indexing, slicing, methods; product inventory | Lab 8 |
 | 11 | Dictionaries | Key-value pairs; nesting; customer records | Lab 9 |
 | 12 | Working with Files | txt / csv; open(); import data; export report | Lab 10 |
@@ -234,7 +234,7 @@ This course uses USF's Canvas learning management system. All assignments, quizz
 Class sessions may be recorded using lecture capture technology. Student participation in live discussions may be captured. Recordings are made available only to students enrolled in this course, to assist those who cannot attend a live session or who want to review content. Students who prefer to participate via audio only may disable their video camera — please discuss this with the instructor.
 
 ### Laptop Usage
-Bring your laptop to every in-person lab session with VS Code and Python running. When completing the online lecture material, follow along with the code in your own environment — close social media and unrelated tabs. During the midterm exam, all electronic devices are prohibited. Only a printed or handwritten cheatsheet (one double-sided sheet) is permitted during the exam.
+Bring your laptop to every in-person lab session with VS Code and Python running. When completing the online lecture material, follow along with the code in your own environment — close social media and unrelated tabs. During the midterm exam, all electronic devices are prohibited. Only one handwritten page of notes (one side of a standard 8.5 × 11 sheet) is permitted during the exam.
 
 ### Phone Usage
 Phones must be silenced and put away during class sessions. Students may use devices to record lectures for personal use but must continue to meet classroom behavioral expectations while doing so. Phones are not permitted during the midterm exam.
