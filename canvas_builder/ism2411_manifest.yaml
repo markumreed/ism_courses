@@ -80,6 +80,7 @@ modules:
   - title: "Module 9 — Midterm Exam"
     items:
       - {label: "Midterm Overview", site_path: "pages/week09_midterm.html"}
+      - {label: "Study Guide", site_path: "pages/week09_study_guide.html"}
     assignment: {name: "Midterm Exam", group: "Midterm Exam", points: 100, due_at: "2026-10-26T03:59:00Z"}
 
   - title: "Module 10 — Lists & Tuples"
