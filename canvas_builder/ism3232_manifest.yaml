@@ -72,6 +72,7 @@ modules:
       - {label: "Reading", site_path: "docs/week09_reading.html"}
       - {label: "Lecture", site_path: "docs/week09_lecture.html"}
       - {label: "Slides", site_path: "docs/week09_slides.html"}
+      - {label: "Study Guide", site_path: "docs/week09_study_guide.html"}
     assignment: {name: "Midterm Practical Exam", group: "Midterm Practical Exam", points: 100}
 
   - title: "Unit 3 · Week 10 — OOP I: Classes & Objects"
