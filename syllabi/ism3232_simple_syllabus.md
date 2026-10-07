@@ -140,7 +140,7 @@ Messages that do not meet professional standards will be returned without a resp
 |-----------|--------|---------|
 | Developer Workflow | 15% | Ritual adherence, ruff formatting, pytest results, and Git commit quality — assessed holistically across all submissions throughout the semester. |
 | Weekly Assignments & Quizzes | 25% | One coding assignment per active week, submitted as a GitHub URL. Lowest grade dropped. Quizzes are completed in Canvas and tied to the assigned reading. |
-| Midterm Practical Exam | 20% | Week 9. Open notes (own printed or handwritten materials only — no internet, no AI, no classmates). Covers Weeks 1–8: tracing code, fixing bugs, and writing functions. |
+| Midterm Practical Exam | 20% | Week 9. Handwritten, 100 points: three questions on conditionals, loops, and functions. One handwritten page of notes, one side only of a standard 8.5 × 11 sheet (no internet, no AI, no classmates). Covers Weeks 1–8. |
 | Capstone Project | 30% | Weeks 13–16. Includes: proposal and SQL schema (Week 13), database integration (Week 14), Streamlit interface (Week 15), AI feature and live demo (Week 16). Submitted as a GitHub repository URL. |
 | Portfolio | 5% | GitHub profile reflecting 16 weeks of iterative, committed development. Assessed at end of semester. |
 | Lab Participation & Engagement | 5% | Attendance and engagement during the weekly in-person lab, discussion board contributions, peer feedback, and demonstration of professional effort. |
@@ -180,7 +180,7 @@ You can view your grades at any time in Canvas under Grades. Grade disputes must
 | 6 | U2 | Conditionals, Loops & Dictionaries | if/elif/else · for loops · accumulator · list-of-dicts | Assignment 6: record_processor.py |
 | 7 | U2 | Functions, Modules & pytest | def · return · type hints · scope · modules · 6 test types | Assignment 7: business_rules.py |
 | 8 | U2 | Debugging & AI Literacy | Tracebacks · print() debugging · Debug-First workflow | Assignment 8: Fixed code + reflection |
-| ★ 9 | U2 | **Midterm Practical Exam** | Open notes · Weeks 1–8 · Trace + Fix bug + Write code | Midterm exam |
+| ★ 9 | U2 | **Midterm Practical Exam** | One handwritten page of notes · Weeks 1–8 · Three handwritten coding questions | Midterm exam |
 | 10 | U3 | OOP I — Classes & Objects | class · `__init__` · self · methods · `__repr__` | Assignment 10: models.py |
 | 11 | U3 | OOP II — Composition | Composition · manager class · inheritance · OOP → SQL bridge | Assignment 11: entity + manager |
 | 12 | U3 | OOP III — Design & Practice | design.md first · 2 entities · 1 manager · 6 tests | Assignment 12: design.md + models |
@@ -189,7 +189,7 @@ You can view your grades at any time in Canvas under Grades. Grade disputes must
 | 15 | U4 | Streamlit Interface | Rerun model · 5 tabs · Submit/View/Filter/Update/Report | Capstone: app.py |
 | 16 | U4 | GenAI Feature & Final Demo | 6 controls · ai_feature.py · repo polish · live demo | Capstone: full repo + live demo |
 
-★ Week 9 Midterm: open notes (own materials only). No internet access, no AI tools, no collaboration.
+★ Week 9 Midterm: one handwritten page of notes, one side only. No internet access, no AI tools, no collaboration.
 
 **University-Scheduled Final Exam:** [Date and time per USF Final Examination calendar — posted in Canvas.]
 
@@ -248,7 +248,7 @@ Class sessions may be recorded using lecture capture technology (Microsoft Teams
 A personal laptop is required for every in-person lab session, and for completing the online reading and lecture material. Mac or Linux are preferred; Windows is supported with WSL2 (Windows Subsystem for Linux). Chromebooks and tablets cannot run the required developer environment for this course. Contact the instructor in Week 1 if you need to discuss alternatives.
 
 ### Laptop Usage in Class
-Laptops are required for all in-person lab activities — terminal work, coding, testing, and demos. Close social media and unrelated applications during lab. During the midterm practical exam, laptops and all electronic devices are prohibited. The exam is open notes (own printed or handwritten materials only).
+Laptops are required for all in-person lab activities — terminal work, coding, testing, and demos. Close social media and unrelated applications during lab. During the midterm practical exam, laptops and all electronic devices are prohibited. You may bring one handwritten page of notes, using one side only of a standard 8.5 × 11 sheet.
 
 ### Phone Usage
 Phones must be silenced and put away during class sessions. Students may use devices to record lectures for personal use but must continue to meet classroom behavioral expectations. Phones are not permitted during the midterm exam.
