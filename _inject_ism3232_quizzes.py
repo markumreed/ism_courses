@@ -632,7 +632,7 @@ def quiz_section(week: int, data: dict) -> str:
         "color:var(--accent);letter-spacing:.12em;margin-left:10px;\">&#9733; Midterm-Eligible</span>"
         if data["midterm"] else ""
     )
-    lede = ("This module's material is covered on the midterm. The midterm asks you to write code by hand "
+    lede = ("This module's material is covered on the midterm. The midterm is a project you build "
             '(see the <a href="week09_reading.html">Exam Guide</a>), so these quiz questions will not repeat '
             "word for word. Click each answer to reveal it."
             if data["midterm"]
