@@ -406,7 +406,7 @@ ISM3232_TITLES = {
     6:  "Conditionals, Loops & Dictionaries",
     7:  "Functions, Modules & pytest",
     8:  "Debugging, AI Literacy & Midterm Review",
-    10: "OOP I — Classes & Objects",
+    10: "OOP for Agents — Classes, Objects & Composition",
     11: "OOP II — Composition, Inheritance & SQL Mapping",
     12: "OOP III — Applied Practice & Design",
     13: "Capstone Design & SQL Foundations",
