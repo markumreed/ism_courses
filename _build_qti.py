@@ -407,7 +407,7 @@ ISM3232_TITLES = {
     7:  "Functions, Modules & pytest",
     8:  "Debugging, AI Literacy & Midterm Review",
     10: "OOP for Agents — Classes, Objects & Composition",
-    11: "OOP II — Composition, Inheritance & SQL Mapping",
+    11: "Talking to a Local Model — Ollama, Instructions & History",
     12: "OOP III — Applied Practice & Design",
     13: "Capstone Design & SQL Foundations",
     14: "Python + SQL Integration",
