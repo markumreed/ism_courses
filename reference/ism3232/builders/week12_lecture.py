@@ -380,23 +380,33 @@ def build():
             [
                 (
                     "Discussion 1: who decides?",
-                    "The model asked for <code>request_address_change</code> with an address nobody typed. "
-                    "Whose job was it to stop that: the model's, the instructions', or the code's?",
-                    "Look for: the model cannot check itself; instructions help but do not guarantee; "
-                    "the Toolbox check and the staff approval are code and people.",
+                    (
+                        "The model asked for <code>request_address_change</code> with an address nobody typed. "
+                        "Whose job was it to stop that: the model's, the instructions', or the code's?"
+                    ),
+                    (
+                        "Look for: the model cannot check itself; instructions help but do not guarantee; "
+                        "the Toolbox check and the staff approval are code and people."
+                    ),
                 ),
                 (
                     "Discussion 2: which tools need a person?",
-                    "Bayside wants three more tools: show a product's price, cancel an order, and issue a "
-                    "refund. Which ones may run straight away, and which must wait in the queue?",
-                    "Look for: looking something up changes nothing; anything that moves money or "
-                    "changes an order waits for a person.",
+                    (
+                        "Bayside wants three more tools: show a product's price, cancel an order, and issue a "
+                        "refund. Which ones may run straight away, and which must wait in the queue?"
+                    ),
+                    (
+                        "Look for: looking something up changes nothing; anything that moves money or "
+                        "changes an order waits for a person."
+                    ),
                 ),
                 (
                     "Discussion 3: false alarms",
                     "Is it acceptable that <em>Do you sell gift cards?</em> goes to a person?",
-                    "Look for: the cost of each kind of mistake; a protective rule should prefer the "
-                    "cheap mistake.",
+                    (
+                        "Look for: the cost of each kind of mistake; a protective rule should prefer the "
+                        "cheap mistake."
+                    ),
                 ),
             ]
         )
@@ -427,9 +437,11 @@ def build():
             [
                 (
                     "&#x1F40D;",
-                    "<strong>Files:</strong> <code>toolbox.py</code>, <code>change_queue.py</code>, "
-                    "<code>keyword_model.py</code>, <code>fake_model.py</code>, and the updated chatbot, "
-                    "tools and <code>ollama_model.py</code>.",
+                    (
+                        "<strong>Files:</strong> <code>toolbox.py</code>, <code>change_queue.py</code>, "
+                        "<code>keyword_model.py</code>, <code>fake_model.py</code>, and the updated chatbot, "
+                        "tools and <code>ollama_model.py</code>."
+                    ),
                 ),
                 (
                     "&#x1F9EA;",
