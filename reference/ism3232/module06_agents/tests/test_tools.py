@@ -82,3 +82,10 @@ def test_order_id_must_come_from_the_customer():
 def test_customer_said_ignores_capitals():
     tools = make_tools()
     assert tools.customer_said(customer("Ship it to 9 PINE STREET"), "9 Pine Street")
+
+
+def test_only_delivered_orders_can_be_returned():
+    tools = make_tools()
+    tools.order_tool.orders["A101"]["status"] = "delivered"
+    assert "can be returned" in tools.order_tool.check_return("A101")
+    assert "cannot be returned yet" in tools.order_tool.check_return("A100")
