@@ -88,6 +88,28 @@ def slide_outputs_match(page):
     return wrong
 
 
+def lab_slide_outputs_match(page):
+    """Run each browser-runnable block with CPython in an empty folder and compare
+    with the <pre> on the output slide that follows it."""
+    import html
+    import re
+    import tempfile
+
+    from pagekit import run_snippet
+
+    text = (DOCS / page).read_text()
+    empty = Path(tempfile.mkdtemp(prefix="ism3232-run-"))
+    wrong = []
+    for match in re.finditer(
+        r'<div class="run" data-lang="python">(.*?)</div>', text, re.DOTALL
+    ):
+        code = html.unescape(match.group(1))
+        shown = re.search(r"<pre>(.*?)</pre>", text[match.end() :], re.DOTALL)
+        if shown is None or run_snippet(code, empty) != html.unescape(shown.group(1)):
+            wrong.append(code.split("\n")[0][:60])
+    return wrong
+
+
 if __name__ == "__main__":
     import importlib
 
@@ -108,7 +130,11 @@ if __name__ == "__main__":
     for page in sys.argv[1:]:
         missing = check_listings(DOCS / page, sources(derived))
         leaks = leaked_answers(page)
-        if "slides" in page:
+        if page.endswith("lab_slides.html"):
+            mismatched = lab_slide_outputs_match(page)
+            print(page, "runnable blocks whose output slide differs:", mismatched)
+            bad += len(mismatched)
+        elif "slides" in page:
             mismatched = slide_outputs_match(page)
             print(page, "slide outputs that differ when run:", mismatched)
             bad += len(mismatched)

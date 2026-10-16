@@ -1,0 +1,9 @@
+Type a message, or type quit to stop.
+You: Sunny: Your request to change the shipping address for order A100 has been submitted and is awaiting staff approval.
+You: Messages in this conversation: 3
+Staff review
+Request 1: A100 to 123 Main St, Anytown, AN 12345
+Approve? yes or no: Request 1 rejected.
+A100 14 Bay Road
+A101 3 Gull Lane
+A102 88 Pier Street

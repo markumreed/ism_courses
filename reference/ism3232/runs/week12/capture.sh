@@ -24,3 +24,6 @@ echo "all done $(( $(date +%s) - start ))s"
 #   exercise4_fallback.txt: the same input against a copy of the folder whose main.py
 #   uses FallbackModel(OllamaModel(MODEL_NAME), KeywordModel()).
 # mini_project_hello.txt comes from: "$PY" -B ../runs/week12/mini_project_hello.py
+# exercise3_main.txt: a copy of the guided folder (commit c805807) with "return True"
+# added as the first line of Toolbox.customer_said, then
+#   printf '%s\n' "I want to change my shipping address" "quit" "no" | "$PY" -B main.py

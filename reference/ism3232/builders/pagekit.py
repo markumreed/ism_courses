@@ -259,8 +259,10 @@ def check_listings(page_path, sources):
     pool = "\n".join(texts)
     missing = []
     text = re.sub(r'<aside class="notes">.*?</aside>', "", text, flags=re.DOTALL)
-    for match in re.finditer(r"<pre[^>]*>(.*?)</pre>", text, re.DOTALL):
-        code = html.unescape(re.sub(r"<[^>]+>", "", match.group(1)))
+    blocks = r'<pre[^>]*>(.*?)</pre>|<div class="run"[^>]*>(.*?)</div>'
+    for match in re.finditer(blocks, text, re.DOTALL):
+        raw = match.group(1) or match.group(2) or ""
+        code = html.unescape(re.sub(r"<[^>]+>", "", raw))
         if code.strip() and code not in pool:
             missing.append(code.split("\n")[0][:70])
     return missing
@@ -468,3 +470,90 @@ def with_output(code, output):
     """The slide convention: the code, a blank line, then '# Output:' and each printed line."""
     lines = "\n".join(f"# {line}" if line else "#" for line in output.split("\n"))
     return f"{code.rstrip()}\n\n# Output:\n{lines}"
+
+
+SHELL_DRIVER = r"""
+import code, contextlib, io, sys
+console = code.InteractiveConsole()
+for line in sys.stdin.read().split("\n"):
+    buffer = io.StringIO()
+    with contextlib.redirect_stdout(buffer):
+        console.push(line)
+    print(">>> " + line)
+    if buffer.getvalue():
+        print(buffer.getvalue(), end="")
+"""
+
+
+def shell(lines, folder):
+    """A Python shell session as students see it: each typed line after '>>> '
+    and whatever it printed, from a real run inside `folder`."""
+    import subprocess
+    import sys
+
+    result = subprocess.run(
+        [sys.executable, "-B", "-c", SHELL_DRIVER],
+        cwd=folder,
+        input="\n".join(lines),
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return "python3\n" + result.stdout.rstrip("\n") + "\n>>> exit()"
+
+
+def task(number, title, body):
+    return (
+        f'<div class="task"><div class="task-num">{number}</div><div class="task-content">'
+        f'<div class="task-title">{title}</div><div class="task-body">{body}</div></div></div>'
+    )
+
+
+def expected(text):
+    return f'<div class="expected" style="white-space:pre-wrap;">{esc(text.rstrip())}</div>'
+
+
+def hint(html_text):
+    return f'<div class="hint-box">{html_text}</div>'
+
+
+def callout_box(kind, icon, label, body):
+    """kind: 'blue' or 'warn' (lab callouts)."""
+    return (
+        f'<div class="callout {kind}"><div class="callout-icon">{icon}</div><div>'
+        f'<div class="callout-label">{label}</div><div class="callout-body">{body}</div></div></div>'
+    )
+
+
+def reveal(summary, body):
+    """A click-to-reveal answer key in the lab style."""
+    return (
+        '<details style="margin:10px 0 4px;border:1px solid var(--border);border-radius:8px;'
+        'padding:10px 14px;background:var(--bg-card);"><summary style="cursor:pointer;font-weight:700;'
+        f'color:var(--text-primary);font-size:13px;">{summary}</summary><div style="margin-top:10px;">'
+        f"{body}</div></details>"
+    )
+
+
+def check_list(items):
+    return (
+        '<ul class="check-list">'
+        + "".join(f"<li><span>{i}</span></li>" for i in items)
+        + "</ul>"
+    )
+
+
+def time_bar(parts):
+    return (
+        '<div class="time-bar">'
+        + "".join(f'<span class="time-block">{p}</span>' for p in parts)
+        + "</div>"
+    )
+
+
+def submit_box(header, title, deliverables):
+    items = "".join(
+        f'<div class="deliverable"><div class="d-icon">{icon}</div><div class="d-text">{text}</div></div>'
+        for icon, text in deliverables
+    )
+    return f'<div class="submit-box"><div class="sb-header">{header}</div><h3>{title}</h3>{items}</div>'

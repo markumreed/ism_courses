@@ -33,6 +33,10 @@ class OrderLookup:
             return "No order with that ID was found. Order IDs look like A100."
         return f"Order {found} is {self.find_status(found)}."
 
+    def change_address(self, order_id, new_address):
+        """Change the shipping address on one order. Only an approval calls this."""
+        self.orders[order_id]["address"] = new_address
+
     def check_return(self, order_id):
         """Say whether one order can be returned yet.
 
@@ -45,7 +49,3 @@ class OrderLookup:
         if self.find_status(found) == "delivered":
             return f"Order {found} was delivered, so it can be returned within 30 days."
         return f"Order {found} has not been delivered, so it cannot be returned yet."
-
-    def change_address(self, order_id, new_address):
-        """Change the shipping address on one order. Only an approval calls this."""
-        self.orders[order_id]["address"] = new_address
