@@ -1,7 +1,7 @@
 # ISM3232 Weeks 12–16 and Capstone: One Agent Through-Line
 
 - **Date:** 2026-10-16
-- **Status:** Design approved section by section in chat; this written spec awaits review
+- **Status:** Approved by the user 2026-10-16; amended the same day by the implementation plan (`docs/superpowers/plans/2026-10-16-ism3232-agents-throughline.md`)
 - **Scope:** ISM3232 Weeks 12–16, the capstone rubric, and every page or file still keyed to the old Weeks 10–16
 - **Builds on:** the agents redesign approved 2026-10-12 (Week 10 shipped as ism3232 `005902d`, Week 11 as `afeb8e4`)
 
@@ -64,7 +64,9 @@ PROPOSAL.md  schema.sql  README.md  requirements.txt  .gitignore
 database.py      W14  plain functions; ? placeholders; db_file= parameter for tests
 tools.py         W14  what the model may ask for; checks arguments; returns text
 agent.py         W12  the chatbot class: rules first, model, tool loop, history
+keyword_model.py W12  keyword-rule stand-in; runs the app without Ollama
 fake_model.py    W12  scripted model (it can ask for a tool), used by tests
+fallback_model.py W12 real model first, keyword model when it is down
 ollama_model.py  W11  the real model, now also sent the tool list
 app.py           W15  Streamlit: Chat tab and Staff tab
 evaluation.py    W16  fixed conversations run against the real model
@@ -105,7 +107,7 @@ Due Nov 15. Lab on Bayside in `module06_agents`, closing Unit 3.
 
 - **Starts from:** Week 11's open problems. Keyword rules miss "Has my package A101 shipped?" and catch "Do you sell gift cards?" (because of "card"). The model once claimed A101 had shipped when it had not. Every reply in the history has role `assistant`, whoever produced it.
 - **Teaches:** what a tool call is (the model asks; your code decides whether to run it); tool descriptions written as docstrings; the tool loop (ask, check, run, send the result back, ask again), capped at three rounds; argument checks (an unknown tool, a blank argument, or an unknown order ID gets an explanation, never a crash); a `tool` role in the history.
-- **Bayside code added:** the model's reply becomes a dict, `{"text": ...}` or `{"tool": ..., "arguments": {...}}`, or `None` when the model is down. `FakeModel` plays back scripted replies, including tool requests. A `ChangeQueue` class (a list of dicts with `status: "waiting"`): `request_address_change` can only add to it, and `approve()` is the one place `orders` changes. The order and stock keyword rules are removed; the payment/card handoff stays.
+- **Bayside code added:** a new model method, `decide(instructions, history, tools)`, returns a dict, `{"text": ...}` or `{"tool": ..., "arguments": {...}}`, or `None` when the model is down. The Week 11 `reply()` stays unchanged, because the Week 11 mini-project in the same folder still calls it. `FakeModel` plays back scripted decisions for tests; `KeywordModel` carries the old keyword rules so the chatbot runs without Ollama; `FallbackModel` asks the real model first and the keyword model when it has no answer. A `Toolbox` with `tool_list()` and `run(name, arguments, history)` is the one place tool requests are checked. A `ChangeQueue` class (a list of dicts with `status: "waiting"`): `request_address_change` can only add to it, and `approve()` is the one place `orders` changes. The order and stock keyword rules are removed; the payment/card handoff stays.
 - **Shown with real runs:** the Week 11 failures run again, showing what was fixed and what was not.
 - **Leads into Week 13:** approved changes live in a Python list, so a restart loses them. A business needs data that lasts.
 
@@ -122,7 +124,7 @@ Due Nov 22. First capstone milestone, in `module07_final_project`.
 
 Due Nov 29.
 
-- **Teaches:** `database.py` with `with sqlite3.connect(...)`, `?` placeholders, rows as dicts, a `db_file=` parameter, and `tmp_path` tests. `tools.py` wraps those functions with argument checks and returns text. Tool names match Week 12's, so `agent.py` is copied over and works unchanged: the list became a table and the agent did not notice.
+- **Teaches:** `database.py` with `with sqlite3.connect(...)`, `?` placeholders, rows as dicts, a `db_file=` parameter, and `tmp_path` tests. `tools.py` wraps those functions with argument checks and returns text. Tool names match Week 12's, and the tools class has the same two methods as Week 12's `Toolbox`, `tool_list()` and `run(name, arguments, history)`, so `agent.py` is copied over and works unchanged: the list became a table and the agent did not notice.
 - **Safety link:** placeholders matter more here than in a form app, because the model writes the arguments and a customer can steer the model.
 - **Lab:** the student's `database.py`, `tools.py`, adapted `agent.py`, tests, and a terminal chat loop against their database.
 - **Leads into Week 15:** staff cannot approve anything without running Python.
@@ -186,7 +188,7 @@ Six businesses chosen to stay clear of Bayside, the midterm businesses, the stud
 | Tests & workflow | 10 | ruff clean; at least 15 tests across three files that pass without Ollama or Streamlit installed; a real commit history; README run steps |
 | Live demo (W16) | 10 | Real model; one approval round trip; one file explained line by line; AI-use statement |
 
-The "without Ollama or Streamlit installed" rule follows from the autograder, which runs `python -m pytest -q` with its own interpreter, no installs, no network, and a 30-second timeout. Tests may import `agent.py`, `tools.py`, `database.py`, and `fake_model.py`, never `app.py` or `ollama_model.py`.
+The "without Ollama or Streamlit installed" rule follows from the autograder, which runs `python -m pytest -q` with its own interpreter, no installs, no network, and a 30-second timeout. Tests may import `agent.py`, `tools.py`, `database.py`, `fake_model.py`, `keyword_model.py`, and `fallback_model.py`, never `app.py` or `ollama_model.py`.
 
 Removed from the old rubric: `models.py` entity/manager classes, the `design.md`-before-code timestamp check, the Anthropic API and its key, and `unittest.mock.patch` (students write their own fake model instead).
 
