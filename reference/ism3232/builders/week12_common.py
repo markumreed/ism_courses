@@ -111,3 +111,65 @@ def lookup_history():
 def source(name, rev=GUIDED):
     """A module06_agents file as students have it after the guided parts."""
     return read(f"module06_agents/{name}", rev)
+
+
+# Standalone snippets the lecture and slides show. The builders run each one
+# inside the guided folder and print its real output under it.
+SNIPPETS = {
+    "decision": """decision = {"tool": "look_up_order", "arguments": {"order_id": "A101"}}
+print("text" in decision)
+print(decision["tool"], decision["arguments"]["order_id"])""",
+    "loop": """from change_queue import ChangeQueue
+from chatbot import SupportChatbot
+from fake_model import FakeModel
+from order_tool import OrderLookup
+from stock_tool import StockLookup
+from toolbox import Toolbox
+
+orders = {"A101": {"status": "processing", "address": "3 Gull Lane"}}
+order_tool = OrderLookup(orders)
+tools = Toolbox(order_tool, StockLookup({}), ChangeQueue(order_tool))
+model = FakeModel(
+    [
+        {"tool": "look_up_order", "arguments": {"order_id": "A101"}},
+        {"text": "Order A101 is still processing."},
+    ]
+)
+bot = SupportChatbot("Sunny", "Be brief.", tools, model)
+print(bot.respond("Has my package A101 shipped?"))
+for entry in bot.history:
+    print(entry["role"], "|", entry["content"])""",
+    "door": """from change_queue import ChangeQueue
+from order_tool import OrderLookup
+from stock_tool import StockLookup
+from toolbox import Toolbox
+
+orders = {"A100": {"status": "shipped", "address": "14 Bay Road"}}
+order_tool = OrderLookup(orders)
+tools = Toolbox(order_tool, StockLookup({}), ChangeQueue(order_tool))
+history = [{"role": "user", "content": "I want to change my shipping address"}]
+
+print(tools.run("delete_order", {"order_id": "A100"}, history))
+print(tools.run("look_up_order", {"order_id": " "}, history))
+made_up = {"order_id": "A100", "new_address": "123 Main St"}
+print(tools.run("request_address_change", made_up, history))""",
+    "queue": """from change_queue import ChangeQueue
+from order_tool import OrderLookup
+
+orders = {"A100": {"status": "shipped", "address": "14 Bay Road"}}
+queue = ChangeQueue(OrderLookup(orders))
+
+print(queue.request_address_change("A100", "9 Pine Street"))
+print(orders["A100"]["address"])
+print(queue.approve(1))
+print(orders["A100"]["address"])
+print(queue.approve(1))""",
+}
+
+
+def snippet_outputs():
+    """Run every snippet in a copy of the guided folder. Returns {name: output}."""
+    from pagekit import folder_at, run_snippet
+
+    folder = folder_at(GUIDED)
+    return {name: run_snippet(code, folder) for name, code in SNIPPETS.items()}

@@ -63,14 +63,55 @@ def leaked_answers(page):
     return [name for name in ANSWERS if name in text]
 
 
-if __name__ == "__main__":
-    import week12_reading
+def slide_outputs_match(page):
+    """Re-run every slide block that shows '# Output:' and compare what it prints."""
+    import html
+    import re
 
-    _, derived = week12_reading.build()
+    from pagekit import folder_at, run_snippet
+
+    text = (DOCS / page).read_text()
+    folder = folder_at(w.GUIDED)
+    wrong = []
+    for match in re.finditer(
+        r'<code class="language-python"[^>]*>(.*?)</code>', text, re.DOTALL
+    ):
+        block = html.unescape(match.group(1))
+        if "\n# Output:\n" not in block:
+            continue
+        code, shown = block.split("\n# Output:\n")
+        expected = "\n".join(
+            line[2:] if line.startswith("# ") else "" for line in shown.split("\n")
+        )
+        if run_snippet(code, folder) != expected:
+            wrong.append(code.split("\n")[0][:60])
+    return wrong
+
+
+if __name__ == "__main__":
+    import importlib
+
+    derived = []
+    for name in (
+        "week12_reading",
+        "week12_lecture",
+        "week12_slides",
+        "week12_lab",
+        "week12_lab_slides",
+    ):
+        try:
+            module = importlib.import_module(name)
+        except ModuleNotFoundError:
+            continue
+        derived += module.build()[1]
     bad = 0
     for page in sys.argv[1:]:
         missing = check_listings(DOCS / page, sources(derived))
         leaks = leaked_answers(page)
+        if "slides" in page:
+            mismatched = slide_outputs_match(page)
+            print(page, "slide outputs that differ when run:", mismatched)
+            bad += len(mismatched)
         print(page, "missing:", missing, "answer leaks:", leaks)
         bad += len(missing) + len(leaks)
     sys.exit(1 if bad else 0)
