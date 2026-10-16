@@ -1,0 +1,11 @@
+Type a message, or type quit to stop.
+You: Robin: Hello! How may I assist you today?
+You: Robin: The office is open on Monday at 9:00 am and 2:30 pm.
+You: Robin: Could you please provide the full name of the client you’d like to book the appointment for?
+You: Robin: Your request to book Monday at 9:00 am has been sent to the front desk for approval. They will confirm or reject the booking shortly.
+You: Robin: I can't change a booking. I'm passing you to the front desk.
+You: Messages in this conversation: 13
+Front desk review
+Request 1: Dana Cruz, monday 9:00 am
+Approve? yes or no: Request 1 approved.
+Bookings: 1

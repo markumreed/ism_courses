@@ -26,7 +26,7 @@ SKIP = shutil.ignore_patterns(".venv", "__pycache__", ".ruff_cache", ".pytest_ca
 def check(folder):
     """Return 0 if the folder passes every step, otherwise the failing exit code."""
     with tempfile.TemporaryDirectory() as temp:
-        copy = Path(temp) / Path(folder).name
+        copy = Path(temp) / Path(folder).resolve().name
         shutil.copytree(folder, copy, ignore=SKIP)
         steps = [
             [sys.executable, "-m", "ruff", "format", "--isolated", "--check", "."],

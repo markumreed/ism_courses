@@ -51,3 +51,8 @@ def test_the_folder_itself_is_not_changed(tmp_path):
     check(folder)
     assert not (folder / ".ruff_cache").exists()
     assert not (folder / "tests" / "__pycache__").exists()
+
+
+def test_a_dot_path_works_from_inside_the_folder(tmp_path, monkeypatch):
+    monkeypatch.chdir(make_project(tmp_path))
+    assert check(".") == 0

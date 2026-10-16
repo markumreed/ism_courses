@@ -1,0 +1,33 @@
+== without the greeting sentence
+run 1: Robin: Hello! How may I assist you today?
+  tools: []
+run 2: Robin: Hello! How may I assist you today?
+  tools: []
+run 3: Robin: The office is open on Mondays at 9:00 am and 2:30 pm.
+  tools: [('check_open_times', {'day': 'Monday'})]
+run 4: Robin: Hello! How may I assist you today?
+  tools: []
+run 5: Robin: The office is open on Mondays at 9:00 am and 2:30 pm.
+  tools: [('check_open_times', {'day': 'Monday'})]
+== without it, plus: Use a tool only when the client asks about open times or wants to book.
+run 1: Robin: We are open on Mondays at 9:00 am and 2:30 pm.
+  tools: [('check_open_times', {'day': 'Monday'})]
+run 2: Robin: Our office is open on Mondays at 9:00 am and 2:30 pm.
+  tools: [('check_open_times', {'day': 'Monday'})]
+run 3: Robin: Our office is open on Mondays at 9:00 am and 2:30 pm.
+  tools: [('check_open_times', {'day': 'Monday'})]
+run 4: Robin: Our office is open on Mondays at 9:00 am and 2:30 pm.
+  tools: [('check_open_times', {'day': 'Monday'})]
+run 5: Robin: Our office is open on Mondays at 9:00 am and 2:30 pm.
+  tools: [('check_open_times', {'day': 'Monday'})]
+== as written, with: If the client only says hello, greet them and ask how you can help.
+run 1: Robin: Hello! How may I assist you today?
+  tools: []
+run 2: Robin: Hello! How may I assist you today?
+  tools: []
+run 3: Robin: Hello! How may I assist you today?
+  tools: []
+run 4: Robin: Hello! How may I assist you today?
+  tools: []
+run 5: Robin: Hello! How may I assist you today?
+  tools: []

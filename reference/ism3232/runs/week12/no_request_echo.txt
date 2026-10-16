@@ -1,0 +1,26 @@
+--- run 1
+You: Where is order A100?
+Sunny: Your order A100 has been shipped.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+--- run 2
+You: Where is order A100?
+Sunny: Order A100 has been shipped.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+--- run 3
+You: Where is order A100?
+Sunny: Your order A100 has been shipped.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+--- run 4
+You: Where is order A100?
+Sunny: Sorry, I couldn't finish that. I'm passing you to a human agent.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+--- run 5
+You: Where is order A100?
+Sunny: Your order A100 has been shipped.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.

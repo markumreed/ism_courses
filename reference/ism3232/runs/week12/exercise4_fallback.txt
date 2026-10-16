@@ -1,0 +1,8 @@
+Type a message, or type quit to stop.
+You: Sunny: Hello! How can I help you today?
+You: Sunny: Order A100 is shipped.
+You: Messages in this conversation: 5
+Staff review
+A100 14 Bay Road
+A101 3 Gull Lane
+A102 88 Pier Street

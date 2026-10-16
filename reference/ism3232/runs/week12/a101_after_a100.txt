@@ -1,0 +1,35 @@
+--- run 1
+You: Where is order A100?
+Sunny: Order A100 has been shipped.
+You: Has A101 shipped yet?
+Sunny: Order A101 is still processing.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A101'} -> Order A101 is processing.
+--- run 2
+You: Where is order A100?
+Sunny: Order A100 has been shipped.
+You: Has A101 shipped yet?
+Sunny: Order A101 is still processing.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A101'} -> Order A101 is processing.
+--- run 3
+You: Where is order A100?
+Sunny: Order A100 has been shipped.
+You: Has A101 shipped yet?
+Sunny: Order A101 is still processing.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A101'} -> Order A101 is processing.
+--- run 4
+You: Where is order A100?
+Sunny: Order A100 has been shipped.
+You: Has A101 shipped yet?
+Sunny: Order A101 is still processing.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A101'} -> Order A101 is processing.
+--- run 5
+You: Where is order A100?
+Sunny: Order A100 has been shipped.
+You: Has A101 shipped yet?
+Sunny: Order A101 is still processing.
+  tool look_up_order {'order_id': 'A100'} -> Order A100 is shipped.
+  tool look_up_order {'order_id': 'A101'} -> Order A101 is processing.

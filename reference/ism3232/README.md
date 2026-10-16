@@ -13,10 +13,14 @@ from these files, so a listing on the site always matches code that ran.
   course model and prints every run.
 - `runs/weekNN/`: captured real runs that the pages quote.
 
-Real runs use the course model on CPU limited to four cores, about what a
-student laptop does:
+Real runs use the course model on the CPU only, as on a student laptop
+without a usable GPU, with Ollama's default 4k context:
 
-    CUDA_VISIBLE_DEVICES=-1 taskset -c 0-3 ollama serve
+    CUDA_VISIBLE_DEVICES=-1 ollama serve
+
+Do not pin it to a few cores with taskset: llama-server still starts one
+thread per physical core, and the oversubscribed threads make each reply
+take minutes. Pages never quote timings from these runs.
 
 Use a Python that has ruff, pytest, ollama, and streamlit installed (a
 virtual environment outside this repo). Exams and keys never go here.

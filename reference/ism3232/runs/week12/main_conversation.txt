@@ -1,0 +1,15 @@
+Type a message, or type quit to stop.
+You: Sunny: Hello! How may I assist you today?
+You: Sunny: Your package A101 is still processing.
+You: Sunny: The day pack is currently out of stock.
+You: Sunny: Could you please provide the full new shipping address?
+You: Sunny: Could you please provide the full new shipping address for order A102?
+You: Sunny: Your address change request for order A102 has been submitted and will be reviewed by staff. Please wait for confirmation.
+You: Sunny: I can't help with that here. I'm passing you to a human agent.
+You: Messages in this conversation: 19
+Staff review
+Request 1: A102 to 9 Pine Street, Tampa
+Approve? yes or no: Request 1 approved.
+A100 14 Bay Road
+A101 3 Gull Lane
+A102 9 Pine Street, Tampa
