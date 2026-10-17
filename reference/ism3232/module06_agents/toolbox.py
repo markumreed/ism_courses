@@ -15,6 +15,7 @@ class Toolbox:
         """Return the tools the model may ask for. They are not called here."""
         return [
             self.order_tool.look_up_order,
+            self.order_tool.check_return,
             self.stock_tool.check_stock,
             self.change_queue.request_address_change,
         ]
@@ -28,6 +29,13 @@ class Toolbox:
             if not self.customer_said(history, order_id):
                 return "The customer has not given that order ID. Ask them for it."
             return self.order_tool.look_up_order(order_id)
+        if name == "check_return":
+            order_id = self.clean(arguments, "order_id")
+            if order_id == "":
+                return "The order ID is missing. Ask the customer for it."
+            if not self.customer_said(history, order_id):
+                return "The customer has not given that order ID. Ask them for it."
+            return self.order_tool.check_return(order_id)
         if name == "check_stock":
             item = self.clean(arguments, "item")
             if item == "":

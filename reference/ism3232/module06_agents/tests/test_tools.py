@@ -84,6 +84,13 @@ def test_customer_said_ignores_capitals():
     assert tools.customer_said(customer("Ship it to 9 PINE STREET"), "9 Pine Street")
 
 
+def test_only_delivered_orders_can_be_returned():
+    tools = make_tools()
+    tools.order_tool.orders["A101"]["status"] = "delivered"
+    assert "can be returned" in tools.order_tool.check_return("A101")
+    assert "cannot be returned yet" in tools.order_tool.check_return("A100")
+
+
 def test_unknown_order_containing_a_known_id_is_not_queued():
     tools = make_tools()
     reply = tools.change_queue.request_address_change("A1000", "9 Pine Street")
