@@ -39,6 +39,10 @@ def show(text):
 create_tables(DB_FILE)
 st.title("Bayside Outfitters")
 choice = st.sidebar.radio("Model", [COURSE_MODEL, KEYWORDS_ONLY])
+st.sidebar.caption(
+    "If Ollama is not running, the keyword rules answer instead. "
+    "They can look things up but cannot file an address change."
+)
 
 if "bot" not in st.session_state:
     tools = BaysideTools(DB_FILE)
@@ -73,7 +77,7 @@ with staff_tab:
     for request in waiting:
         number = request["number"]
         text_col, approve_col, reject_col = st.columns([4, 1, 1])
-        text_col.write(
+        text_col.text(
             f"Request {number}: {request['order_id']} to {request['new_address']}"
         )
         if approve_col.button("Approve", key=f"approve{number}"):

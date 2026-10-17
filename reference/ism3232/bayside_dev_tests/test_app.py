@@ -97,3 +97,21 @@ def test_restock_form_updates_the_stock(tmp_path, monkeypatch):
 
     assert database.find_product("bayside.db", "day pack")["stock"] == 7
     assert app.success[0].value == "The day pack now has 7 in stock."
+
+
+def test_a_typed_address_is_plain_text_on_the_staff_tab(tmp_path, monkeypatch):
+    app = start_app(tmp_path, monkeypatch)
+    app.run()
+    import database
+
+    address = "[click me](https://example.com) $5 and $6"
+    database.add_change_request("bayside.db", "A102", address)
+    app.run()
+    texts = [element.value for element in app.text]
+    assert f"Request 1: A102 to {address}" in texts
+
+
+def test_the_sidebar_says_what_happens_when_ollama_is_down(tmp_path, monkeypatch):
+    app = start_app(tmp_path, monkeypatch)
+    app.run()
+    assert "keyword rules answer" in app.sidebar.caption[0].value
