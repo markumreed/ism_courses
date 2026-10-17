@@ -6,6 +6,19 @@ from these files, so a listing on the site always matches code that ran.
 - `module06_agents/`: the Weeks 10–12 lab folder. Its git history holds each
   checkpoint (Week 11 end, Week 12 guided parts, Week 12 with exercises and
   mini-project).
+- `bayside_app/`: the Bayside Outfitters reference app that the Week 13–16
+  pages quote. It is laid out exactly like a student's capstone repository.
+  Checkpoint commits (page builders read each week's listings from these):
+  - Week 13 `04bc8c9`: `schema.sql`
+  - Week 14 `835cc6f`: `database.py`, `tools.py`, `agent.py`, `settings.py`,
+    `main.py`, the four model files, `tests/`
+  - Week 15 `ce25ab8`: `app.py`
+  - Week 16 `637468a`: `evaluation.py`
+- `bayside_dev_tests/`: Streamlit `AppTest` and evaluation checks for the app.
+  They live beside the app, not inside it, so `pytest` in `bayside_app/` (and
+  the autograder) never collects them. Run with
+  `python -m pytest -q reference/ism3232/bayside_dev_tests`.
+- `tools/streamlit_shots.py`: screenshots both tabs of a running Streamlit app.
 - `tools/check.py`: copies a folder to a temporary directory and runs
   `ruff format --check`, `ruff check` (default rules), and pytest with the
   `ollama` and `streamlit` packages blocked, as the autograder sees it.
