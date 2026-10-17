@@ -1,18 +1,17 @@
 # appointment_bot.py
 # Author: [Your Name]
 
-HANDOFF_WORDS = ["cancel", "reschedule"]
-MAX_TOOL_ROUNDS = 3
+HANDOFF_WORDS = ["book", "cancel", "reschedule"]
 
 
 class AppointmentHelper:
-    """An appointment helper. The model decides. The toolbox checks every request."""
+    """An appointment helper. Rules handle the schedule. A model handles the rest."""
 
-    def __init__(self, name, instructions, tools, model):
-        """Set up one helper with its own name, instructions, tools, model, and history."""
+    def __init__(self, name, instructions, appointment_book, model):
+        """Set up one helper with its own name, instructions, tool, model, and history."""
         self.name = name
         self.instructions = instructions
-        self.tools = tools
+        self.appointment_book = appointment_book
         self.model = model
         self.history = []
 
@@ -24,38 +23,32 @@ class AppointmentHelper:
         return reply
 
     def choose_reply(self, user_message):
-        """Pass cancellations and changes to the front desk. Send the rest to the model."""
-        if self.needs_human(user_message.lower()):
-            return "I can't change a booking. I'm passing you to the front desk."
+        """Use a rule when one applies. Otherwise ask the model."""
+        text = user_message.lower()
+        if self.needs_human(text):
+            return "I can't change the schedule. I'm passing you to the front desk."
+        if "open" in text or "available" in text:
+            return self.times_reply(user_message)
         return self.model_reply()
 
+    def model_reply(self):
+        """Ask the model for a reply. Give a safe answer if the model has none."""
+        reply = self.model.reply(self.instructions, self.history)
+        if reply is None:
+            return "Sorry, I can't answer that right now. Please try again in a moment."
+        return reply
+
     def needs_human(self, text):
-        """Return True if the message asks to cancel or move a booking."""
+        """Return True if the message asks to change the schedule."""
         for word in HANDOFF_WORDS:
             if word in text:
                 return True
         return False
 
-    def model_reply(self):
-        """Ask the model. Run each tool it asks for, then ask again, up to a limit."""
-        rounds = 0
-        while rounds < MAX_TOOL_ROUNDS:
-            tool_list = self.tools.tool_list()
-            decision = self.model.decide(self.instructions, self.history, tool_list)
-            if decision is None:
-                return "Sorry, I can't answer that right now. Please try again in a moment."
-            if "text" in decision:
-                return decision["text"]
-            name = decision["tool"]
-            arguments = decision["arguments"]
-            result = self.tools.run(name, arguments, self.history)
-            self.history.append(
-                {
-                    "role": "tool",
-                    "tool_name": name,
-                    "arguments": arguments,
-                    "content": result,
-                }
-            )
-            rounds += 1
-        return "Sorry, I couldn't finish that. I'm passing you to the front desk."
+    def times_reply(self, user_message):
+        """Use the appointment book to answer a question about open times."""
+        day = self.appointment_book.find_day(user_message)
+        if day is None:
+            return "Which day? I can check Monday, Wednesday, or Friday."
+        times = self.appointment_book.times_for(day)
+        return f"Open times on {day}: {times}."

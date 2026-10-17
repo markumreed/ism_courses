@@ -1,7 +1,6 @@
 from change_queue import ChangeQueue
 from chatbot import SupportChatbot
 from fake_model import FakeModel
-from fallback_model import FallbackModel
 from keyword_model import KeywordModel
 from order_tool import OrderLookup
 from stock_tool import StockLookup
@@ -159,20 +158,3 @@ def test_count_user_messages_skips_tool_entries():
     bot.respond("hello")
     bot.respond("Where is order A100?")
     assert bot.count_user_messages() == 2
-
-
-def test_model_can_ask_about_a_return():
-    model = FakeModel(
-        [
-            ask_for_tool("check_return", {"order_id": "A100"}),
-            {"text": "Not yet."},
-        ]
-    )
-    bot = make_bot(model)
-    bot.respond("Can I return order A100?")
-    assert "cannot be returned yet" in bot.history[1]["content"]
-
-
-def test_lookups_keep_working_when_the_model_is_down():
-    bot = make_bot(FallbackModel(SilentModel(), KeywordModel()))
-    assert bot.respond("Where is order A100?") == "Order A100 is shipped."

@@ -17,13 +17,13 @@ class ChangeQueue:
             order_id: The order ID, like A100.
             new_address: The full new shipping address.
         """
-        found = self.order_tool.find_order_id(order_id)
-        if found is None:
+        order_id = order_id.upper()
+        if self.order_tool.find_status(order_id) is None:
             return "No order with that ID was found. Order IDs look like A100."
         number = len(self.requests) + 1
         request = {
             "number": number,
-            "order_id": found,
+            "order_id": order_id,
             "new_address": new_address,
             "status": "waiting",
         }
