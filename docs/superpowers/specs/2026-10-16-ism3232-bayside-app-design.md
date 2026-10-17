@@ -102,7 +102,7 @@ Plain functions. Each takes `db_file` first, opens a connection, uses `?` placeh
 | `check_request(number)` | looks up one request; never repeats the address | `Request N for order A102 is waiting.` / `was approved.` / `was rejected.`, or `There is no request N.` |
 | `tool_list()` | the four methods above, not called | — |
 | `run(name, arguments, history)` | Week 12's door: refuses an unknown tool, an empty or missing value (`.get()`, `str()`, `.strip()`), and an order ID, address or request number the customer never typed; every refusal is a sentence telling the model what to do | — |
-| `clean(arguments, key)`, `customer_said(history, text)` | as in Week 12 | — |
+| `clean(arguments, key)`, `customer_said(history, text)`, `words(text)` | `clean` as in Week 12; `customer_said` now matches **whole words** (`words` lower-cases, splits, and strips `?.!,#` around each word), so a typo like `A1000` never counts as `A100` and request number `1` never matches inside `A101` (amended after the final review) | — |
 
 Each tool method has a docstring with an `Args:` section, as Week 12 taught.
 
@@ -118,7 +118,7 @@ Week 12's `chatbot.py`, copied unchanged apart from its file-name comment on lin
 
 `settings.py` holds the three values every entry point shares: `DB_FILE = "bayside.db"`, `MODEL_NAME = "granite4.1:3b"`, and `INSTRUCTIONS` (Week 12's Bayside instructions: hours, returns, "only state facts that appear in these instructions or in tool results", say you do not know and offer a human). `agent.py` stays unchanged because it never needs them; `main.py`, `app.py` and `evaluation.py` import them.
 
-`main.py` is Week 12's terminal program on the database: `create_tables`, the chat loop with `OllamaModel`, then a staff review loop over `waiting_requests` that calls `approve_request` or `reject_request`, then the orders from `all_orders`. It is Week 14's "terminal chat against the database".
+`main.py` is Week 12's terminal program on the database: `create_tables`, the chat loop with `OllamaModel`, then a staff review loop over `waiting_requests` in which only `yes` calls `approve_request`, only `no` calls `reject_request`, and any other answer leaves the request waiting (a stored rejection cannot be undone), then the orders from `all_orders`. It is Week 14's "terminal chat against the database".
 
 ### Tests (all with `tmp_path`, none importing `app.py` or `ollama_model.py`)
 
@@ -131,7 +131,7 @@ Week 12's `chatbot.py`, copied unchanged apart from its file-name comment on lin
 ### `app.py`
 
 1. `DB_FILE`, `MODEL_NAME` and `INSTRUCTIONS` from `settings.py`; `create_tables(DB_FILE)` on every run.
-2. A sidebar radio: "Course model, keyword rules if it is down" (`FallbackModel(OllamaModel(MODEL_NAME), KeywordModel())`, the default) or "Keyword rules only (no AI)" (`KeywordModel()`).
+2. A sidebar radio, with a caption saying that if Ollama is not running the keyword rules answer and cannot file an address change: "Course model, keyword rules if it is down" (`FallbackModel(OllamaModel(MODEL_NAME), KeywordModel())`, the default) or "Keyword rules only (no AI)" (`KeywordModel()`).
 3. The chatbot is created once per browser session in `st.session_state`; on every run `bot.model = make_model(choice)`, so switching keeps the conversation.
 4. `st.tabs(["Chat", "Staff"])`.
 
@@ -139,7 +139,7 @@ Week 12's `chatbot.py`, copied unchanged apart from its file-name comment on lin
 
 **Staff tab:**
 
-- *Waiting for approval:* one row per waiting request (`st.columns`), with Approve and Reject buttons keyed by request number. A click calls `approve_request` or `reject_request`, keeps the returned message in `st.session_state`, and reruns; the message shows at the top of the tab on the next run. With nothing waiting, a sentence says so.
+- *Waiting for approval:* one row per waiting request (`st.columns`), shown with `st.text` so a customer-typed address can never render as a link or as math, with Approve and Reject buttons keyed by request number. A click calls `approve_request` or `reject_request`, keeps the returned message in `st.session_state`, and reruns; the message shows at the top of the tab on the next run. With nothing waiting, a sentence says so.
 - *Orders:* `st.dataframe(all_orders(DB_FILE))`.
 - *Orders by status:* `st.dataframe(status_report(DB_FILE))`.
 - *Restock a product:* `st.form` with `st.selectbox` (from `product_names`), `st.number_input` (whole numbers, 0 or more) and a submit button calling `restock`.

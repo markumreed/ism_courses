@@ -10,10 +10,12 @@ from these files, so a listing on the site always matches code that ran.
   pages quote. It is laid out exactly like a student's capstone repository.
   Checkpoint commits (page builders read each week's listings from these):
   - Week 13 `04bc8c9`: `schema.sql`
-  - Week 14 `835cc6f`: `database.py`, `tools.py`, `agent.py`, `settings.py`,
+  - Week 14 `d44a23b`: `database.py`, `tools.py`, `agent.py`, `settings.py`,
     `main.py`, the four model files, `tests/`
-  - Week 15 `ce25ab8`: `app.py`
-  - Week 16 `637468a`: `evaluation.py`
+  - Week 15 `8b1b491`: `app.py`
+  - Week 16 `172d6ad`: `evaluation.py` (the whole app)
+  (The first Week 14–16 checkpoints, `835cc6f`, `ce25ab8` and `637468a`, came
+  before the final-review fixes and must not be used for pages.)
 - `bayside_dev_tests/`: Streamlit `AppTest` and evaluation checks for the app.
   They live beside the app, not inside it, so `pytest` in `bayside_app/` (and
   the autograder) never collects them. Run with
