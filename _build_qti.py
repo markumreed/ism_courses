@@ -408,7 +408,7 @@ ISM3232_TITLES = {
     8:  "Debugging, AI Literacy & Midterm Review",
     10: "OOP for Agents — Classes, Objects & Composition",
     11: "Talking to a Local Model — Ollama, Instructions & History",
-    12: "OOP III — Applied Practice & Design",
+    12: "Tools and Guardrails — Model-Chosen Tools, Checks & Approval",
     13: "Capstone Design & SQL Foundations",
     14: "Python + SQL Integration",
     15: "Streamlit Business Interface",
