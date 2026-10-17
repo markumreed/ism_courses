@@ -24,3 +24,6 @@ quiz_exam_fa26/
 
 # Canvas cartridge builds — not for GitHub
 canvas_builder/*.imscc
+
+# SQLite files made by the ISM3232 reference apps
+reference/ism3232/**/*.db
