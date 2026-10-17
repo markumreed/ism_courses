@@ -28,6 +28,9 @@ M = "module06_agents/"
 G = w.GUIDED
 
 
+OUT = DOCS / "week12_slides.html"
+
+
 def of(pair):
     return f"{words(pair[0])} out of {words(pair[1])}"
 
@@ -273,11 +276,10 @@ def build():
         count=1,
     )
     page = before + "\n" + "\n".join(s) + after
-    path = DOCS / "week12_slides.html"
-    path.write_text(page)
-    return path, list(blocks.values())
+    return page, list(blocks.values())
 
 
 if __name__ == "__main__":
-    path, _ = build()
-    print("wrote", path)
+    page, _ = build()
+    OUT.write_text(page)
+    print("wrote", OUT)

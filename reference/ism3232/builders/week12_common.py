@@ -19,9 +19,10 @@ PREV = (
 )
 NEXT = ("week13", "Week 13", "Capstone Design &amp; SQL")
 FOLDER = REF / "module06_agents"
-# The commit where module06_agents holds the end of the guided parts (Task 2),
-# before the exercise and mini-project answers were added.
-GUIDED = "c805807"
+# The commit where module06_agents holds the end of the guided parts, before
+# the exercise and mini-project answers were added. (c805807 was the first such
+# checkpoint; 5bead57 adds exact order IDs in the change queue.)
+GUIDED = "5bead57"
 
 
 def run_text(name):

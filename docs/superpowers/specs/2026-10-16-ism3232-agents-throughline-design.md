@@ -224,7 +224,7 @@ All four Unit 4 weeks take their listings from the step 2 app, so Week 15's `app
 - Write and run the real code first; generate page listings from the verified files.
 - Rebuild the lab folder from the finished page and run `ruff format . && ruff check . && pytest` with current ruff defaults (0.16+ enables I001 and SIM rules).
 - Run pytest with `sys.modules['ollama'] = None` and Streamlit absent, matching the autograder.
-- Every model reply on a page is a captured real run of `granite4.1:3b` on CPU limited to 4 threads; every "5 out of 5" comes from five actual runs.
+- Every model reply on a page is a captured real run of `granite4.1:3b` on the CPU only (`CUDA_VISIBLE_DEVICES=-1 ollama serve`, Ollama's default 4k context); every "5 out of 5" comes from five actual runs. Do not pin the server to a few cores with taskset: llama-server still starts one thread per physical core and each reply then takes minutes.
 - Streamlit: Streamlit's `AppTest` for automated checks, plus a browser check. Lab slides previewed over `python3 -m http.server`. Quiz items parsed by `_build_qti.py`.
 - Reuse each existing page's `<head>`; keep the lecture `.code-block` classes and the `.expected` `white-space: pre-wrap` fix.
 - Commit and push to `main` (the live site) only when the user says so; stage only this work's files.

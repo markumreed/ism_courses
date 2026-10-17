@@ -44,6 +44,9 @@ MAIN_INPUTS = [
 PROMPTS = ("You: ", "Approve? yes or no: ")
 
 
+OUT = DOCS / "week12_reading.html"
+
+
 def typed(output, inputs):
     """Rebuild what the terminal showed: each prompt followed by what was typed."""
     out, i, pos = [], 0, 0
@@ -329,6 +332,10 @@ def build():
         "is new: it removes spaces from both ends, so a value of only spaces counts as empty.</li>"
         "<li>Every refusal is a sentence for the model, such as <em>Ask them for it.</em> The model "
         "reads it as the tool's result and asks the customer.</li></ul>"
+        "<p>The customer-said check asks one question: does this text appear in something the "
+        "customer typed? It cannot tell whether that text is really an address. A request that "
+        "passes still waits for a person. The check and the approval are two layers, and neither "
+        "is enough alone.</p>"
     )
     add(
         f"<p>Here is why the customer-said check is there. Asked <em>I want to change my shipping "
@@ -382,7 +389,11 @@ def build():
         "<p><code>request_address_change</code> adds a request with the status "
         '<code>"waiting"</code> and tells the customer the address has not changed yet. '
         "<code>approve</code> is the only code that changes an order. It refuses a request that is "
-        "already approved or rejected, so a change can never happen twice. Orders are now "
+        "already approved or rejected, so a change can never happen twice. It also checks the "
+        "order ID exactly: <code>A1000</code> is not <code>A100</code>. Last week's "
+        "<code>find_order_id</code> looks for a known ID anywhere in the text, which is fine for "
+        "a lookup but not for a change. One extra digit in a typo would file a request against "
+        "someone else's order, and staff would only see the order it matched. Orders are now "
         "dictionaries with a status and an address, which is also the shape of a database row in "
         "Week 14.</p>"
     )
@@ -463,6 +474,10 @@ def build():
         "be nearly the same.</li>"
         "<li><strong>Proving who a customer is.</strong> Anyone who types an order ID can ask about "
         "that order. An order ID is not proof of identity. Real systems sign customers in first.</li>"
+        "<li><strong>Exact IDs for lookups.</strong> <code>look_up_order</code> finds a known ID "
+        "inside whatever text it is given, so <em>A1015</em> is read as A101. The reply names the "
+        "order it found, and the change queue checks IDs exactly. In Week 14 the database matches "
+        "IDs exactly everywhere.</li>"
         "<li><strong>Data that lasts.</strong> Approved changes live in a list and vanish when the "
         "program stops. That is next week.</li></ul>"
     )
@@ -504,7 +519,8 @@ def build():
         "<li>Can explain why the model never runs a tool itself</li>"
         "<li>Can point to the three places a tool lives: its method, <code>tool_list</code>, and a branch in <code>run</code></li>"
         "<li>Can trace one message through <code>model_reply</code> and say what the history holds afterwards</li>"
-        "<li>Can explain why a made-up address never reaches the approval queue</li>"
+        "<li>Can explain why an address the customer never typed is refused, and why a person still "
+        "approves whatever gets through</li>"
         "<li>Can explain why a change tool only files a request</li>"
         "<li>Can say when a test should use <code>FakeModel</code> and when <code>KeywordModel</code></li>"
         "<li>All tests pass without Ollama running</li>"
@@ -630,8 +646,6 @@ def build():
     page = (
         f'{head}\n<body>\n{body}\n<script src="../site.js"></script>\n</body></html>\n'
     )
-    out = DOCS / "week12_reading.html"
-    out.write_text(page)
     derived = [
         main_typed,
         no_guard_run,
@@ -641,9 +655,10 @@ def build():
         decision_example,
         text_example,
     ]
-    return out, derived
+    return page, derived
 
 
 if __name__ == "__main__":
-    path, _ = build()
-    print("wrote", path)
+    page, _ = build()
+    OUT.write_text(page)
+    print("wrote", OUT)

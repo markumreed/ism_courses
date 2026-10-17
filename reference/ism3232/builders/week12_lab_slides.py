@@ -70,6 +70,9 @@ print("history entries:", len(history))""",
 }
 
 
+OUT = DOCS / "week12_lab_slides.html"
+
+
 def of(pair):
     return f"{words(pair[0])} out of {words(pair[1])}"
 
@@ -536,7 +539,9 @@ def build():
             "pytest -v — the whole suite",
             pane,
             "Real output with no Ollama installed in the test path.",
-            "Fourteen chatbot tests, ten tool tests, and the six mini-project tests, which still use MockModel and reply.",
+            f"{words(pane.count('test_chatbot.py::')).capitalize()} chatbot tests, "
+            f"{words(pane.count('test_tools.py::'))} tool tests, and the "
+            f"{words(pane.count('test_appointment_bot.py::'))} mini-project tests, which still use MockModel and reply.",
         )
     )
     add(
@@ -588,7 +593,8 @@ def build():
             "Watch for",
             [
                 "Every reply is the apology: Ollama is not running, or the model is not downloaded.",
-                "The model rewords an address (<em>9 Pine St</em> for <em>9 Pine Street</em>): the door refuses it and the model asks again. That is the check working.",
+                "The model rewords an address the customer typed (<em>9 Pine Street</em> for <em>9 Pine St</em>): the door refuses it and the model asks again. That is the check working.",
+                "A shortened address (<em>9 Pine St</em> for <em>9 Pine Street</em>) is inside what the customer typed, so it passes. Staff see it in the review: the check and the approval are two layers.",
                 "Expecting the same wording as the slide. Only the tool results and the staff review are fixed.",
             ],
             "If the room's laptops are slow, show this part from the front.",
@@ -688,16 +694,15 @@ def build():
         count=1,
     )
     page = before + "\n\n" + "\n".join(s) + "\n" + template[end:]
-    path = DOCS / "week12_lab_slides.html"
-    path.write_text(page)
     derived = [*RUNNABLE.values(), *outputs.values(), *SHOWN]
     derived += [
         "cd ~/ism3232/module06_agents\nsource .venv/bin/activate\npytest -q",
         "ruff format . && ruff check . && pytest -v\ngit add . && git commit -m 'lab 12: tools, guardrails, and approval' && git push",
     ]
-    return path, derived
+    return page, derived
 
 
 if __name__ == "__main__":
-    path, _ = build()
-    print("wrote", path)
+    page, _ = build()
+    OUT.write_text(page)
+    print("wrote", OUT)

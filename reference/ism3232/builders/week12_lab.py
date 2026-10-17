@@ -43,11 +43,15 @@ from pagekit import (
     task,
     time_bar,
 )
+from runs import words
 from week12_reading import MAIN_INPUTS, typed
 
 M = "module06_agents/"
 G = w.GUIDED
 DASH = " &mdash; "
+
+
+OUT = DOCS / "week12_lab.html"
 
 
 def block(label, code):
@@ -174,6 +178,15 @@ def build():
     )
     tools_tests = pytest_summary(guided, "tests/test_tools.py")
     all_tests = pytest_summary(guided)
+    n_chat = w.source("tests/test_chatbot.py").count("\ndef test_")
+    n_tools = w.source("tests/test_tools.py").count("\ndef test_")
+    n_appt = w.source("tests/test_appointment_bot.py").count("\ndef test_")
+    guided_total = n_chat + n_tools + n_appt
+    final_total = pytest_summary(w.FOLDER)
+    if final_total != f"{guided_total + 3} passed":
+        raise ValueError(
+            f"expected {guided_total + 3} tests at the end, found {final_total}"
+        )
 
     p = []
     add = p.append
@@ -314,7 +327,9 @@ def build():
             4,
             "Write ChangeQueue in change_queue.py",
             "<p>A change tool never makes the change. It files a request with the status "
-            '<code>"waiting"</code>. Only <code>approve</code> changes an order, and only once.</p>'
+            '<code>"waiting"</code>. Only <code>approve</code> changes an order, and only once. It '
+            "checks the order ID exactly, so a typo such as <code>A1000</code> is refused instead of "
+            "being filed against <code>A100</code>.</p>"
             + block("change_queue.py", w.source("change_queue.py"))
             + block("Python shell", shell_queue)
             + "<p>The address stayed <code>14 Bay Road</code> until the approval, and the second "
@@ -389,12 +404,15 @@ def build():
             + block("two_bots.py", w.source("two_bots.py"))
             + "<p>Run: <code>pytest -v</code>. Now the whole suite runs.</p>"
             + expected(all_tests)
-            + "<p>Fourteen chatbot tests, ten tool tests, and your six mini-project tests, which still use "
-            "<code>MockModel</code> and <code>reply</code>.</p>"
+            + f"<p>{words(n_chat).capitalize()} chatbot tests, {words(n_tools)} tool tests, and your "
+            f"{words(n_appt)} mini-project tests, which still use <code>MockModel</code> and "
+            "<code>reply</code>.</p>"
             + hint(
-                "<strong><code>missing 1 required positional argument</code>?</strong> A line somewhere "
-                "still creates a chatbot with the old values. The chatbot now takes four: name, "
-                "instructions, tools, model."
+                "<strong><code>missing 1 required positional argument: 'model'</code>?</strong> "
+                "<code>chatbot.py</code> is still the Week 11 version, which takes five values. Replace "
+                "it with the listing in step 8 and save it. <strong><code>takes 5 positional arguments "
+                "but 6 were given</code>?</strong> A line somewhere still creates a chatbot with the old "
+                "five values. The chatbot now takes four: name, instructions, tools, model."
             ),
         )
     )
@@ -495,7 +513,8 @@ def build():
             "cannot be returned yet. A tool lives in three places: the method with its <code>Args:</code> "
             "docstring, <code>tool_list</code>, and a branch in <code>run</code> that checks the order ID. "
             "Add one test for the tool and one chatbot test that uses <code>FakeModel</code>.</p>"
-            "<p><strong>Expected result:</strong> <code>pytest -v</code> shows 32 tests passing.</p>"
+            f"<p><strong>Expected result:</strong> <code>pytest -v</code> shows {guided_total + 2} "
+            "tests passing.</p>"
             + reveal(
                 "Answer key &mdash; Exercise 2",
                 block(
@@ -567,7 +586,8 @@ def build():
             "models. Its <code>decide</code> asks the first; if that returns <code>None</code>, it asks "
             "the second. Add a test that hands the chatbot <code>FallbackModel(SilentModel(), "
             "KeywordModel())</code>, then try it in <code>main.py</code> with Ollama switched off.</p>"
-            "<p><strong>Expected result:</strong> 33 tests passing, and with Ollama off:</p>"
+            f"<p><strong>Expected result:</strong> {guided_total + 3} tests passing, and with "
+            "Ollama off:</p>"
             + expected(ex4)
             + reveal(
                 "Answer key &mdash; Exercise 4",
@@ -745,8 +765,6 @@ def build():
 
     head = head_from("week11_lab.html", "ISM3232 Week 12 In-Class Lab")
     page = f'{head}\n<body>{"".join(p)}\n<script src="../site.js"></script>\n</body></html>\n'
-    path = DOCS / "week12_lab.html"
-    path.write_text(page)
     derived = [
         main_typed,
         off,
@@ -776,9 +794,10 @@ def build():
         '3. If the customer now types "thanks", how many messages does Ollama receive on the next call?\n'
         '4. Why does "Do you sell gift cards?" still go to a person, and why is that acceptable?'
     )
-    return path, derived
+    return page, derived
 
 
 if __name__ == "__main__":
-    path, _ = build()
-    print("wrote", path)
+    page, _ = build()
+    OUT.write_text(page)
+    print("wrote", OUT)

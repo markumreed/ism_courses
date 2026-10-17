@@ -1,5 +1,7 @@
-"""Check every Week 12 page: each code block outside the quiz must appear verbatim
-in a reference file (guided commit or current), a saved run, or a derived output.
+"""Check every Week 12 page without changing it: the page on disk must be exactly
+what its builder makes now, and each code block outside the quiz must appear
+verbatim in a reference file (guided commit or current), a saved run, or a
+derived output.
 
     python reference/ism3232/builders/verify_week12.py week12_reading.html ...
 """
@@ -114,6 +116,7 @@ if __name__ == "__main__":
     import importlib
 
     derived = []
+    stale = []
     for name in (
         "week12_reading",
         "week12_lecture",
@@ -125,8 +128,14 @@ if __name__ == "__main__":
             module = importlib.import_module(name)
         except ModuleNotFoundError:
             continue
-        derived += module.build()[1]
+        page, extra = module.build()
+        derived += extra
+        if (DOCS / f"{name}.html").read_text() != page:
+            stale.append(f"{name}.html")
     bad = 0
+    if stale:
+        print("pages on disk that differ from what their builder makes now:", stale)
+        bad += len(stale)
     for page in sys.argv[1:]:
         missing = check_listings(DOCS / page, sources(derived))
         leaks = leaked_answers(page)

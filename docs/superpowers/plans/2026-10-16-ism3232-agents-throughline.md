@@ -16,7 +16,7 @@
 - Only `ollama_model.py` imports `ollama`; only `app.py` imports `streamlit`. Every student-facing test passes with both blocked, which is what `reference/ism3232/tools/check.py` enforces. The autograder runs `python -m pytest -q` with its own interpreter, no installs, no network, a 30-second timeout.
 - Every listing passes `ruff format . && ruff check . && pytest` as typed under ruff 0.17.1 defaults (I001, SIM, PLW and others are on; E402 and E501 are not).
 - Python students know by the end of Week 11: variables, f-strings, `if/elif/else`, `and`/`or`/`not`, `for` and `while` loops, lists, dicts, `.get()`, list comprehensions (Week 6), `str()`, functions, pytest, classes, objects, `self`, composition (Week 10), `try/except`, `+` on lists, `history[-1]`, triple-quoted strings (Week 11). Never taught: `range()`, `.strip()`, `.split()`, `not in`, type hints, inheritance, decorators. Anything new gets a one-line explanation where it first appears.
-- Every model output shown on a page is a captured run of `granite4.1:3b` with the server on CPU limited to 4 cores: `CUDA_VISIBLE_DEVICES=-1 taskset -c 0-3 ollama serve`. Every "N out of M" claim is M actual runs saved under `reference/ism3232/runs/`.
+- Every model output shown on a page is a captured run of `granite4.1:3b` with the server on the CPU only: `CUDA_VISIBLE_DEVICES=-1 ollama serve` (amended during Task 4: a taskset pin to 4 cores oversubscribes llama-server's threads and makes each reply take minutes). Every "N out of M" claim is M actual runs saved under `reference/ism3232/runs/`.
 - Due dates (Sundays): W12 2026-11-15, W13 2026-11-22, W14 2026-11-29, W15 2026-12-06, W16 2026-12-13. Each week is live by the Monday it starts: Nov 9, Nov 16, Nov 23, Nov 30, Dec 7.
 - Lab folders: `~/ism3232/module06_agents` (Weeks 10–12) and `~/ism3232/module07_final_project` (Weeks 13–16). Commit messages include `lab NN`.
 - Pages are replaced in place. Reuse each page's own `<head>`. Lecture code uses `.code-block` with `kw`/`fn`/`str`/`comment`/`num` spans. `.expected` blocks need `white-space: pre-wrap`. Lab slide decks load a JS module, so preview them over `python3 -m http.server`, not `file://`.
@@ -215,10 +215,15 @@ from these files, so a listing on the site always matches code that ran.
   course model and prints every run.
 - `runs/weekNN/`: captured real runs that the pages quote.
 
-Real runs use the course model on CPU limited to four cores, about what a
-student laptop does:
+Real runs use the course model on the CPU only, as on a student laptop
+without a usable GPU, with Ollama's default 4k context:
 
-    CUDA_VISIBLE_DEVICES=-1 taskset -c 0-3 ollama serve
+    CUDA_VISIBLE_DEVICES=-1 ollama serve
+
+Do not pin it to a few cores with taskset: llama-server still starts one
+thread per physical core, and the oversubscribed threads make each reply
+take minutes. Pages never quote timings from these runs.
+
 
 Use a Python that has ruff, pytest, ollama, and streamlit installed (a
 virtual environment outside this repo). Exams and keys never go here.
@@ -1725,7 +1730,7 @@ git commit -m "Week 12 reference: exercises, mini-project, and run counter"
 - Consumes: the Task 3 folder and `count_runs.py`.
 - Produces: every model output and count the Week 12 pages quote. Pages quote these files and nothing else.
 
-- [ ] **Step 1: Start the server on CPU.** `(CUDA_VISIBLE_DEVICES=-1 taskset -c 0-3 ollama serve >| "$SCRATCHPAD/ollama.log" 2>&1 &)`, then poll `ollama list` until it answers. Work from `reference/ism3232/module06_agents` (so `count_runs.py` reads that folder's `main.py`) and run `mkdir -p ../runs/week12` once. Below, `count_runs.py N ...` saved to `<file>` means `"$PY" -B ../tools/count_runs.py N ... >| ../runs/week12/<file>`.
+- [ ] **Step 1: Start the server on CPU.** `(CUDA_VISIBLE_DEVICES=-1 ollama serve >| "$SCRATCHPAD/ollama.log" 2>&1 &)`, then poll `ollama list` until it answers. Work from `reference/ism3232/module06_agents` (so `count_runs.py` reads that folder's `main.py`) and run `mkdir -p ../runs/week12` once. Below, `count_runs.py N ...` saved to `<file>` means `"$PY" -B ../tools/count_runs.py N ... >| ../runs/week12/<file>`.
 
 - [ ] **Step 2: Capture the lab conversation (1 run).** Run `printf '%s\n' "hello" "Has my package A101 shipped?" "Is the day pack in stock?" "I want to change my shipping address" "It's order A102" "9 Pine Street, Tampa" "Do you sell gift cards?" "quit" "yes" | "$PY" main.py >| ../runs/week12/main_conversation.txt`. Expected shape (wording varies): A101 "still processing"; day pack out of stock; the model asks for the order ID and the address, then confirms the request was sent to staff; gift cards handed to a person; `Request 1: A102 to 9 Pine Street, Tampa`; `Request 1 approved.`; `A102 9 Pine Street, Tampa`.
 

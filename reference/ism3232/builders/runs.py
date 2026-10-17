@@ -61,5 +61,15 @@ def words(n):
         "eight",
         "nine",
         "ten",
+        "eleven",
+        "twelve",
+        "thirteen",
+        "fourteen",
+        "fifteen",
+        "sixteen",
+        "seventeen",
+        "eighteen",
+        "nineteen",
+        "twenty",
     ]
     return names[n] if 0 <= n < len(names) else str(n)

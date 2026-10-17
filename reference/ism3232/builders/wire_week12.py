@@ -25,7 +25,12 @@ WEEK12_CALLOUT = """<div class="callout teal">
 
 REPLACEMENTS = [
     # (files, old, new, expected total count)
-    ("strip", '<span class="map-item">W12 OOP III</span>', '<span class="map-item">W12 Tools+Guardrails</span>', 29),
+    (
+        "strip",
+        '<span class="map-item">W12 OOP III</span>',
+        '<span class="map-item">W12 Tools+Guardrails</span>',
+        29,
+    ),
     (
         ["site.js"],
         "Module 12 · OOP III — Design &amp; Practice",
@@ -33,7 +38,11 @@ REPLACEMENTS = [
         2,
     ),
     (
-        [f"docs/week1{n}_{kind}.html" for n in (1, 3) for kind in ("reading", "lecture", "lab")],
+        [
+            f"docs/week1{n}_{kind}.html"
+            for n in (1, 3)
+            for kind in ("reading", "lecture", "lab")
+        ],
         ">Week 12</span>OOP III — Design &amp; Practice</span>",
         f">Week 12</span>{NEW_TITLE}</span>",
         6,
@@ -46,10 +55,14 @@ REPLACEMENTS = [
     ),
     (
         ["index.html"],
-        "Design patterns in practice. A complete OOP mini-project: model a business domain end-to-end. "
-        "Code review session and capstone schema planning.",
-        "The model chooses when to use a tool. Every request passes one checked door, made-up details are "
-        "refused, and address changes wait for staff approval. Tests use a scripted fake model.",
+        (
+            "Design patterns in practice. A complete OOP mini-project: model a business domain end-to-end. "
+            "Code review session and capstone schema planning."
+        ),
+        (
+            "The model chooses when to use a tool. Every request passes one checked door, made-up details are "
+            "refused, and address changes wait for staff approval. Tests use a scripted fake model."
+        ),
         1,
     ),
     (
@@ -60,18 +73,26 @@ REPLACEMENTS = [
     ),
     (
         ["docs/course_guide.html"],
-        "Design patterns in practice. A complete OOP mini-project: model a business domain end-to-end. "
-        "Code review and capstone planning.",
-        "The model chooses tools. One checked door for every request, made-up details refused, and an "
-        "approval queue for changes. Tests with a fake model.",
+        (
+            "Design patterns in practice. A complete OOP mini-project: model a business domain end-to-end. "
+            "Code review and capstone planning."
+        ),
+        (
+            "The model chooses tools. One checked door for every request, made-up details refused, and an "
+            "approval queue for changes. Tests with a fake model."
+        ),
         1,
     ),
     (
         ["docs/course_guide.html"],
-        '<span class="mt">OOP III — Applied Practice</span><span class="ms">Evening or next morning — '
-        "end-to-end mini-project, capstone schema design</span>",
-        f'<span class="mt">{NEW_TITLE}</span><span class="ms">Evening or next morning — tool calls, '
-        "the Toolbox checks, the approval queue</span>",
+        (
+            '<span class="mt">OOP III — Applied Practice</span><span class="ms">Evening or next morning — '
+            "end-to-end mini-project, capstone schema design</span>"
+        ),
+        (
+            f'<span class="mt">{NEW_TITLE}</span><span class="ms">Evening or next morning — tool calls, '
+            "the Toolbox checks, the approval queue</span>"
+        ),
         1,
     ),
     (
@@ -82,47 +103,65 @@ REPLACEMENTS = [
     ),
     (
         ["docs/course_guide.html"],
-        '<span class="mt">OOP III — Applied Practice &amp; Design</span><span class="ms">Full week — '
-        "end-to-end OOP mini-project + capstone database schema planning</span>",
-        f'<span class="mt">{NEW_TITLE}</span><span class="ms">Full week — tool calls, guardrails, an '
-        "approval queue, and tests with a fake model</span>",
+        (
+            '<span class="mt">OOP III — Applied Practice &amp; Design</span><span class="ms">Full week — '
+            "end-to-end OOP mini-project + capstone database schema planning</span>"
+        ),
+        (
+            f'<span class="mt">{NEW_TITLE}</span><span class="ms">Full week — tool calls, guardrails, an '
+            "approval queue, and tests with a fake model</span>"
+        ),
         1,
     ),
     (
         ["docs/course_guide.html"],
-        '<span class="mt">OOP III — Applied Practice &amp; Design</span><span class="ms">End-to-end OOP '
-        "mini-project; code review; capstone planning</span>",
-        f'<span class="mt">{NEW_TITLE}</span><span class="ms">Model-chosen tools; the Toolbox checks; '
-        "the approval queue; FakeModel tests</span>",
+        (
+            '<span class="mt">OOP III — Applied Practice &amp; Design</span><span class="ms">End-to-end OOP '
+            "mini-project; code review; capstone planning</span>"
+        ),
+        (
+            f'<span class="mt">{NEW_TITLE}</span><span class="ms">Model-chosen tools; the Toolbox checks; '
+            "the approval queue; FakeModel tests</span>"
+        ),
         1,
     ),
     (
         ["docs/course_guide.html"],
-        "<p>Weeks 12 to 16 are being rebuilt in the same direction (tools and guardrails, then an agent "
-        "capstone). Until each one is released, the rows and dependency chains in this guide that mention "
-        "OOP III and the Request Tracker capstone describe the earlier version.</p>",
-        "<p>Week 12 has been rebuilt as well (see below). Weeks 13 to 16 are being rebuilt in the same "
-        "direction, toward an agent capstone with a chat page and a staff dashboard. Until each one is "
-        "released, the rows and dependency chains in this guide that mention the Request Tracker capstone "
-        "describe the earlier version.</p>",
+        (
+            "<p>Weeks 12 to 16 are being rebuilt in the same direction (tools and guardrails, then an agent "
+            "capstone). Until each one is released, the rows and dependency chains in this guide that mention "
+            "OOP III and the Request Tracker capstone describe the earlier version.</p>"
+        ),
+        (
+            "<p>Week 12 has been rebuilt as well (see below). Weeks 13 to 16 are being rebuilt in the same "
+            "direction, toward an agent capstone with a chat page and a staff dashboard. Until each one is "
+            "released, the rows and dependency chains in this guide that mention the Request Tracker capstone "
+            "describe the earlier version.</p>"
+        ),
         1,
     ),
     (
         ["docs/course_guide.html"],
-        "Every model output shown on the Week 11 pages is one real run, and wording on student screens will "
-        "differ.</p>\n</div>\n",
+        (
+            "Every model output shown on the Week 11 pages is one real run, and wording on student screens will "
+            "differ.</p>\n</div>\n"
+        ),
         "Every model output shown on the Week 11 pages is one real run, and wording on student screens will "
         "differ.</p>\n</div>\n\n" + WEEK12_CALLOUT + "\n",
         1,
     ),
     (
         ["docs/syllabus.html"],
-        '<td style="font-weight:600;">OOP III — Design &amp; Practice</td>\n'
-        '      <td style="font-size:12px;color:var(--muted);">design.md first · 2 entities · 1 manager · 6 tests</td>\n'
-        '      <td style="font-size:12px;font-family:var(--mono);color:var(--muted);">Assignment 12: design.md + models</td>',
-        '<td style="font-weight:600;">Tools and Guardrails</td>\n'
-        '      <td style="font-size:12px;color:var(--muted);">model-chosen tools · Toolbox checks · approval queue · FakeModel tests</td>\n'
-        '      <td style="font-size:12px;font-family:var(--mono);color:var(--muted);">Assignment 12: toolbox + approval queue</td>',
+        (
+            '<td style="font-weight:600;">OOP III — Design &amp; Practice</td>\n'
+            '      <td style="font-size:12px;color:var(--muted);">design.md first · 2 entities · 1 manager · 6 tests</td>\n'
+            '      <td style="font-size:12px;font-family:var(--mono);color:var(--muted);">Assignment 12: design.md + models</td>'
+        ),
+        (
+            '<td style="font-weight:600;">Tools and Guardrails</td>\n'
+            '      <td style="font-size:12px;color:var(--muted);">model-chosen tools · Toolbox checks · approval queue · FakeModel tests</td>\n'
+            '      <td style="font-size:12px;font-family:var(--mono);color:var(--muted);">Assignment 12: toolbox + approval queue</td>'
+        ),
         1,
     ),
     (
@@ -133,12 +172,16 @@ REPLACEMENTS = [
     ),
     (
         ["docs/slos.html"],
-        "Write design.md before any class code and commit it first; implement two entity classes and one "
-        "manager; pass all six required test types including the instance independence test; identify all "
-        "four common OOP mistakes.",
-        "Explain a tool call and describe a tool with a docstring; trace the tool loop and its limit; check "
-        "every tool request in one place and refuse details the customer never gave; make a change wait for "
-        "approval and apply it once; test the loop with a fake model.",
+        (
+            "Write design.md before any class code and commit it first; implement two entity classes and one "
+            "manager; pass all six required test types including the instance independence test; identify all "
+            "four common OOP mistakes."
+        ),
+        (
+            "Explain a tool call and describe a tool with a docstring; trace the tool loop and its limit; check "
+            "every tool request in one place and refuse details the customer never gave; make a change wait for "
+            "approval and apply it once; test the loop with a fake model."
+        ),
         1,
     ),
     (
@@ -149,25 +192,33 @@ REPLACEMENTS = [
     ),
     (
         ["docs/slo_mindmap.html"],
-        "tooltip_title:'Week 12 — OOP III: Applied Practice',\n"
-        "              tooltip_body:'Write design.md before any code; implement two entity classes and one manager; "
-        "pass all six test types.'}",
-        "tooltip_title:'Week 12 — Tools and Guardrails',\n"
-        "              tooltip_body:'Let the model choose tools; check every request in one Toolbox; make changes "
-        "wait for approval; test with a fake model.'}",
+        (
+            "tooltip_title:'Week 12 — OOP III: Applied Practice',\n"
+            "              tooltip_body:'Write design.md before any code; implement two entity classes and one manager; "
+            "pass all six test types.'}"
+        ),
+        (
+            "tooltip_title:'Week 12 — Tools and Guardrails',\n"
+            "              tooltip_body:'Let the model choose tools; check every request in one Toolbox; make changes "
+            "wait for approval; test with a fake model.'}"
+        ),
         1,
     ),
     (
         ["docs/unit_3_overview.html", "docs/unit_3_cheatsheet.html"],
-        'Weeks 10 and 11 are new: <a href="week10_reading.html">OOP for Agents</a> and '
-        '<a href="week11_reading.html">Talking to a Local Model</a>. The rest of this page still describes '
-        "the earlier Weeks 10 to 12 and will be replaced when Week 12 is released. For Weeks 10 and 11, use "
-        "the weekly pages.",
-        'Weeks 10 to 12 are new: <a href="week10_reading.html">OOP for Agents</a>, '
-        '<a href="week11_reading.html">Talking to a Local Model</a>, and '
-        '<a href="week12_reading.html">Tools and Guardrails</a>. The rest of this page still describes the '
-        "earlier Weeks 10 to 12 and will be replaced when Unit 4 is rebuilt. For Weeks 10 to 12, use the "
-        "weekly pages.",
+        (
+            'Weeks 10 and 11 are new: <a href="week10_reading.html">OOP for Agents</a> and '
+            '<a href="week11_reading.html">Talking to a Local Model</a>. The rest of this page still describes '
+            "the earlier Weeks 10 to 12 and will be replaced when Week 12 is released. For Weeks 10 and 11, use "
+            "the weekly pages."
+        ),
+        (
+            'Weeks 10 to 12 are new: <a href="week10_reading.html">OOP for Agents</a>, '
+            '<a href="week11_reading.html">Talking to a Local Model</a>, and '
+            '<a href="week12_reading.html">Tools and Guardrails</a>. The rest of this page still describes the '
+            "earlier Weeks 10 to 12 and will be replaced when Unit 4 is rebuilt. For Weeks 10 to 12, use the "
+            "weekly pages."
+        ),
         2,
     ),
     (
@@ -181,7 +232,9 @@ REPLACEMENTS = [
 
 def files_for(spec):
     if spec == "strip":
-        return sorted(p for p in DOCS.glob("*.html") if not p.name.startswith("week12_"))
+        return sorted(
+            p for p in DOCS.glob("*.html") if not p.name.startswith("week12_")
+        )
     return [(SITE / name).resolve() for name in spec]
 
 

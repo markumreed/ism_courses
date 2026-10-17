@@ -32,6 +32,9 @@ M = "module06_agents/"
 G = w.GUIDED
 
 
+OUT = DOCS / "week12_lecture.html"
+
+
 def of(pair):
     return f"{words(pair[0])} out of {words(pair[1])}"
 
@@ -295,6 +298,8 @@ def build():
             "What to notice",
             "<p>The model asked for the missing details, filed the change, and told the customer it "
             "would be reviewed. The address only changed when staff typed <code>yes</code>. "
+            "<code>request_address_change</code> checks the order ID exactly: a lookup may find "
+            "A100 inside A1000, a change may not. "
             "<em>Do you sell gift cards?</em> still went to a person.</p><p>Last week an address request "
             "ended the conversation. Now the chatbot collects the details and a person still decides.</p>",
         )
@@ -477,8 +482,6 @@ def build():
 
     head = head_from("week11_lecture.html", f"ISM3232 Week 12 — {w.TITLE_TEXT}")
     page = f'{head}\n<body>{"".join(p)}\n<script src="../site.js"></script>\n</body></html>\n'
-    path = DOCS / "week12_lecture.html"
-    path.write_text(page)
     derived = [
         main_typed,
         no_guard,
@@ -492,9 +495,10 @@ def build():
         + "\n\n"
         + method(M + "toolbox.py", "customer_said", G)
     )
-    return path, derived
+    return page, derived
 
 
 if __name__ == "__main__":
-    path, _ = build()
-    print("wrote", path)
+    page, _ = build()
+    OUT.write_text(page)
+    print("wrote", OUT)
