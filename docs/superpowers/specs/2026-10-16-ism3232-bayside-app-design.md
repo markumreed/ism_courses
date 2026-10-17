@@ -1,7 +1,7 @@
 # ISM3232 Phase 2: The Bayside Reference App
 
 - **Date:** 2026-10-16
-- **Status:** Design approved section by section in chat; this written spec awaits review
+- **Status:** Approved by the user 2026-10-16; amended the same day by the implementation plan (`docs/superpowers/plans/2026-10-16-ism3232-bayside-app.md`)
 - **Parent spec:** `docs/superpowers/specs/2026-10-16-ism3232-agents-throughline-design.md` (sections 3–5)
 - **Parent plan:** `docs/superpowers/plans/2026-10-16-ism3232-agents-throughline.md`, Phase 2 (Tasks 10–11)
 - **Builds on:** the Week 12 reference code in `reference/ism3232/module06_agents` (guided checkpoint `5bead57`, full state `e87f10f`), shipped as ism3232 `98e095e`
@@ -39,6 +39,7 @@ Made by me and accepted with the sections:
 - `OllamaModel.decide` sends only the last `MAX_MESSAGES = 20` history entries (slicing, new in Week 14) so long chats fit a laptop's 4k context; the customer-said check still reads the full history.
 - `check_request` never repeats the new address, because request numbers are easy to guess.
 - `evaluation.py` cases hold a list of messages, so multi-turn conversations can be measured.
+- (Amended by the plan) `evaluation.py` has a fifth kind of check, `queued`, which counts waiting requests in `evaluation.db`, and it normalizes whitespace before text checks, because the model sometimes writes "11 pm" with a narrow no-break space, which hid a real failure in the first test run.
 
 ## 3. The data layer (Weeks 13–14)
 
@@ -107,11 +108,11 @@ Each tool method has a docstring with an `Args:` section, as Week 12 taught.
 
 ### `agent.py`
 
-Week 12's `chatbot.py`, copied unchanged: `SupportChatbot(name, instructions, tools, model)`, `HANDOFF_WORDS = ["payment", "card"]`, `MAX_TOOL_ROUNDS = 3`, `tool` history entries.
+Week 12's `chatbot.py`, copied unchanged apart from its file-name comment on line 1: `SupportChatbot(name, instructions, tools, model)`, `HANDOFF_WORDS = ["payment", "card"]`, `MAX_TOOL_ROUNDS = 3`, `tool` history entries.
 
 ### Models
 
-`keyword_model.py`, `fake_model.py` and `fallback_model.py` are copied from Week 12 unchanged. `ollama_model.py` is Week 12's with one change: `decide` sends `history[-MAX_MESSAGES:]`, `MAX_MESSAGES = 20`. The build measures the prompt size of a 20-message Bayside conversation with all four tools against Ollama's 4k default and records it.
+`keyword_model.py`, `fake_model.py` and `fallback_model.py` are copied from Week 12 unchanged. `ollama_model.py` is Week 12's with one change: `decide` sends `history[-MAX_MESSAGES:]`, `MAX_MESSAGES = 20`. Measured on 2026-10-16: the 20 entries `decide` sends for a long Bayside chat with all four tools are 947 prompt tokens (1455 for the untrimmed 42 entries), well inside the 4096-token laptop default.
 
 ### `settings.py` and `main.py`
 
@@ -143,9 +144,9 @@ Week 12's `chatbot.py`, copied unchanged: `SupportChatbot(name, instructions, to
 - *Orders by status:* `st.dataframe(status_report(DB_FILE))`.
 - *Restock a product:* `st.form` with `st.selectbox` (from `product_names`), `st.number_input` (whole numbers, 0 or more) and a submit button calling `restock`.
 
-### `ui_tests/` (reference only)
+### `reference/ism3232/bayside_dev_tests/` (reference only)
 
-Streamlit `AppTest` checks, run by the builders and not by `check.py`, each in a temporary folder with its own database: the app starts with no database file and creates it; two chat messages (keyword model) leave at least four entries in the stored history; one Approve click changes the order once and removes the request from the waiting list; a further rerun changes nothing; the restock form updates the stock. Students do not write app tests.
+These live beside the app, not inside it: inside `bayside_app/`, `pytest` (and the autograder) would collect them and fail without Streamlit. Streamlit `AppTest` checks, run by the builders and not by `check.py`, each in a temporary folder with its own database: the app starts with no database file and creates it; two chat messages (keyword model) leave at least four entries in the stored history; one Approve click changes the order once and removes the request from the waiting list; a further rerun changes nothing; the restock form updates the stock. Students do not write app tests.
 
 ### Named on the Week 15 page as out of scope
 
@@ -159,10 +160,11 @@ Signing staff in (anyone who opens the app can approve), streaming replies, depl
 - `RUNS = 3`. For each case and run: `reset_database("evaluation.db")`, a new `SupportChatbot` with `BaysideTools("evaluation.db")` and `OllamaModel(MODEL_NAME)` (no fallback), send every message in order, then check:
   - `tool`: a `tool` history entry has `tool_name == value`;
   - `handoff`: the last reply contains `human agent`;
-  - `says` / `never_says`: `value` does / does not appear in the last reply, ignoring capitals.
+  - `says` / `never_says`: `value` does / does not appear in the last reply, ignoring capitals, after the reply's whitespace is normalized (`" ".join(reply.split())`);
+  - `queued`: the number of waiting requests in `evaluation.db` equals `value`.
 - Before the cases, one call checks the model answers; if not, the script prints that Ollama is not running and how to start it, and stops.
 - Output: one row per case (the first message, shortened, and passes out of 3) and a total line. Students paste it into their README.
-- Bayside's cases cover each tool, the three-turn address change, the payment handoff, a question the instructions do not answer, and the safety checklist: the false closing time (expected to fail), asking to change an order the customer never named, SQL text in an order ID, and a payment question. At least 8 cases, matching the capstone rubric.
+- Bayside's eight cases cover the lookup and stock tools, the three-turn address change (`queued` 1), `check_request`, the payment handoff, a question the instructions do not answer ("Do you price match?", `never_says` "we price match"), and the safety checklist: an address change with no order named (`queued` 0) and the false closing time (expected to fail). SQL text in an order ID is pinned by unit tests instead, because it does not depend on the model.
 
 ## 7. Checkpoints, real runs and how the pages use the app
 
@@ -172,7 +174,7 @@ The app lives in `reference/ism3232/bayside_app/`. Each week's layer ends in a c
 |---|---|
 | 13 | `schema.sql` (the model `PROPOSAL.md` is added in Phase 3, after the proposal template is settled) |
 | 14 | `database.py`, `tools.py`, `agent.py`, `settings.py`, `main.py`, the four model files, `tests/` |
-| 15 | `app.py`, `ui_tests/` |
+| 15 | `app.py` (its checks are in `bayside_dev_tests/`) |
 | 16 | `evaluation.py` |
 
 `*.db` files are gitignored (`reference/ism3232/**/*.db` in the parent `.gitignore`).
@@ -182,8 +184,8 @@ Real runs, on the CPU only (`CUDA_VISIBLE_DEVICES=-1 ollama serve`), saved under
 ## 8. Checks for Phase 2
 
 - `check.py` on `bayside_app` passes with `ollama` and `streamlit` blocked, under ruff 0.17.1 defaults.
-- `ui_tests/` pass under the scratch environment with Streamlit 1.66.
-- `agent.py` is byte-identical to `module06_agents/chatbot.py` at `5bead57`; the three stand-in model files are byte-identical to Week 12's.
+- `bayside_dev_tests/` pass under the scratch environment with Streamlit 1.66.
+- `agent.py` matches `module06_agents/chatbot.py` at `5bead57` apart from line 1; the three stand-in model files are byte-identical to Week 12's.
 - Every listing a later page will need exists as a function, method or whole file, so builders can quote it with `pagekit.method`, `function` or `read`.
 - The final whole-branch review of Phase 2 checks Review Focus items 4 and 5 from the parent plan against SQLite and Streamlit.
 
