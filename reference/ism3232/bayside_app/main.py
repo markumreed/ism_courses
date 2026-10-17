@@ -33,8 +33,10 @@ for request in waiting_requests(DB_FILE):
     answer = input("Approve? yes or no: ")
     if answer == "yes":
         print(approve_request(DB_FILE, number))
-    else:
+    elif answer == "no":
         print(reject_request(DB_FILE, number))
+    else:
+        print(f"Request {number} is still waiting.")
 
 for order in all_orders(DB_FILE):
     print(order["order_id"], order["address"])
