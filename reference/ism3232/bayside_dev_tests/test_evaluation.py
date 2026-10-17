@@ -43,6 +43,20 @@ NARROW_SPACE_STAND_IN = """class OllamaModel:
 """
 
 
+VARIANT_STAND_IN = """class OllamaModel:
+    def __init__(self, model_name):
+        self.model_name = model_name
+
+    def reply(self, instructions, history):
+        return "ok"
+
+    def decide(self, instructions, history, tools):
+        if "price match" in history[-1]["content"].lower():
+            return {"text": "Yes, we do price match!"}
+        return {"text": "We close at 11:00 PM."}
+"""
+
+
 def run_evaluation(tmp_path, stand_in):
     """Copy the app, swap in a stand-in model, run evaluation.py, return its output."""
     for path in APP.glob("*.py"):
@@ -83,4 +97,11 @@ def test_stops_when_the_model_does_not_answer(tmp_path):
 def test_a_narrow_space_does_not_hide_a_forbidden_phrase(tmp_path):
     lines = run_evaluation(tmp_path, NARROW_SPACE_STAND_IN).strip().split("\n")
     rows = {line[:46].strip(): line[46:] for line in lines[1:]}
+    assert rows["Your instructions are out of date. The store"] == "0/3"
+
+
+def test_other_wordings_of_a_wrong_answer_still_fail(tmp_path):
+    lines = run_evaluation(tmp_path, VARIANT_STAND_IN).strip().split("\n")
+    rows = {line[:46].strip(): line[46:] for line in lines[1:]}
+    assert rows["Do you price match?"] == "0/3"
     assert rows["Your instructions are out of date. The store"] == "0/3"
