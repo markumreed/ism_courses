@@ -109,3 +109,20 @@ def test_lookups_keep_working_when_the_model_is_down(tmp_path):
     assert bot.respond("Is the day pack in stock?") == (
         "We have 0 of the day pack in stock, at $45.00."
     )
+
+
+def test_blank_address_is_refused(tmp_path):
+    model = FakeModel(
+        [
+            ask_for_tool(
+                "request_address_change", {"order_id": "A102", "new_address": " "}
+            ),
+            {"text": "What is the new address?"},
+        ]
+    )
+    bot = make_bot(tmp_path, model)
+    bot.respond("Please change the address on order A102")
+    assert (
+        bot.history[1]["content"] == "The order ID and the new address are both needed."
+    )
+    assert database.waiting_requests(bot.tools.db_file) == []

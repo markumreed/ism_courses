@@ -68,6 +68,8 @@ class BaysideTools:
             request = database.find_request(self.db_file, int(number))
         except ValueError:
             return "Request numbers look like 3."
+        except OverflowError:
+            return f"There is no request {number}."
         if request is None:
             return f"There is no request {number}."
         order_id = request["order_id"]
@@ -114,9 +116,17 @@ class BaysideTools:
         """Return one argument as text without extra spaces, or "" if it is missing."""
         return str(arguments.get(key, "")).strip()
 
+    def words(self, text):
+        """Return text in lower case as whole words, without ?.!,# around each word."""
+        cleaned = []
+        for word in text.lower().split():
+            cleaned.append(word.strip("?.!,#"))
+        return " " + " ".join(cleaned) + " "
+
     def customer_said(self, history, text):
-        """Return True if text appears in a message the customer typed."""
+        """Return True if the customer typed text as whole words."""
+        wanted = self.words(text)
         for message in history:
-            if message["role"] == "user" and text.lower() in message["content"].lower():
+            if message["role"] == "user" and wanted in self.words(message["content"]):
                 return True
         return False

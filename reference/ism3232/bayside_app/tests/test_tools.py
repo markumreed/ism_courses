@@ -91,3 +91,43 @@ def test_made_up_request_number_is_refused(tmp_path):
         "check_request", {"number": 4}, customer("What about my request?")
     )
     assert "has not given that request number" in reply
+
+
+def test_a_typo_order_id_does_not_count_as_typed(tmp_path):
+    tools = make_tools(tmp_path)
+    history = customer("Change order A1000 to 9 Pine Street")
+    lookup = tools.run("look_up_order", {"order_id": "A100"}, history)
+    change = {"order_id": "A100", "new_address": "9 Pine Street"}
+    filed = tools.run("request_address_change", change, history)
+    assert "has not given that order ID" in lookup
+    assert "has not given that order ID" in filed
+    assert database.waiting_requests(tools.db_file) == []
+
+
+def test_a_request_number_must_be_typed_as_a_whole_word(tmp_path):
+    tools = make_tools(tmp_path)
+    reply = tools.run("check_request", {"number": "1"}, customer("Where is A101?"))
+    assert "has not given that request number" in reply
+
+
+def test_a_request_number_after_a_hash_counts_as_typed(tmp_path):
+    tools = make_tools(tmp_path)
+    reply = tools.run(
+        "check_request", {"number": "1"}, customer("What about request #1?")
+    )
+    assert reply == "There is no request 1."
+
+
+def test_a_huge_request_number_gets_a_sentence(tmp_path):
+    tools = make_tools(tmp_path)
+    reply = tools.check_request("99999999999999999999")
+    assert reply == "There is no request 99999999999999999999."
+
+
+def test_a_change_for_an_order_the_customer_never_named_is_refused(tmp_path):
+    tools = make_tools(tmp_path)
+    change = {"order_id": "A102", "new_address": "9 Pine Street"}
+    reply = tools.run(
+        "request_address_change", change, customer("Ship it to 9 Pine Street")
+    )
+    assert "has not given that order ID" in reply
