@@ -1,0 +1,9 @@
+2026-10-16 21:56:24.366 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+user: Has A101 shipped yet?
+assistant: I'm not sure how to help with that. I can check an order or stock.
+user: Please change the address on order A102 to 9 Pine Street, Tampa
+assistant: Order A102 is delivered.
+Staff tab, waiting: []
+A102 address now: 88 Pier Street
+user: What happened to request 1?
+assistant: I'm not sure how to help with that. I can check an order or stock.

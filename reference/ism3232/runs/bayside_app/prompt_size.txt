@@ -1,0 +1,2 @@
+last 20 entries (what decide sends): 28 messages, 947 prompt tokens
+all 42 entries: 56 messages, 1455 prompt tokens
