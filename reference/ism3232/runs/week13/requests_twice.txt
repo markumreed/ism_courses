@@ -1,0 +1,12 @@
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .read schema.sql
+sqlite> .mode column
+sqlite> .headers on
+sqlite> INSERT OR IGNORE INTO change_requests (order_id, new_address) VALUES ('A100', '1 Main Street');
+sqlite> INSERT OR IGNORE INTO change_requests (order_id, new_address) VALUES ('A100', '1 Main Street');
+sqlite> SELECT number, order_id, new_address, status FROM change_requests;
+number  order_id  new_address    status 
+------  --------  -------------  -------
+1       A100      1 Main Street  waiting
+2       A100      1 Main Street  waiting

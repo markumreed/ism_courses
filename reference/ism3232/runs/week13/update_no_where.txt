@@ -1,0 +1,15 @@
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .read schema.sql
+sqlite> .mode column
+sqlite> .headers on
+sqlite> UPDATE products SET stock = 0;
+sqlite> SELECT name, stock FROM products;
+name          stock
+------------  -----
+rain jacket   0    
+day pack      0    
+trail hat     0    
+fleece vest   0    
+water bottle  0    
+hiking socks  0    

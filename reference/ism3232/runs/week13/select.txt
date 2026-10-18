@@ -1,0 +1,28 @@
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .read schema.sql
+sqlite> .mode column
+sqlite> .headers on
+sqlite> SELECT order_id, customer, status FROM orders;
+order_id  customer    status    
+--------  ----------  ----------
+A100      Dana Cruz   shipped   
+A101      Sam Okafor  processing
+A102      Lee Park    delivered 
+A103      Ana Silva   processing
+A104      Max Duarte  shipped   
+A105      Ivy Chen    delivered 
+sqlite> SELECT order_id, item FROM orders WHERE status = 'shipped';
+order_id  item        
+--------  ------------
+A100      rain jacket 
+A104      water bottle
+sqlite> SELECT name, price FROM products ORDER BY price DESC;
+name          price
+------------  -----
+rain jacket   89.0 
+fleece vest   60.0 
+day pack      45.0 
+trail hat     25.0 
+water bottle  18.0 
+hiking socks  12.0 

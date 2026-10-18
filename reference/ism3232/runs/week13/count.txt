@@ -1,0 +1,17 @@
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .read schema.sql
+sqlite> .mode column
+sqlite> .headers on
+sqlite> SELECT COUNT(*) FROM products WHERE stock = 0;
+COUNT(*)
+--------
+2       
+sqlite> SELECT stock, COUNT(*) FROM products GROUP BY stock;
+stock  COUNT(*)
+-----  --------
+0      2       
+5      1       
+8      1       
+12     1       
+30     1       

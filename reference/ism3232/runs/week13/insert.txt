@@ -1,0 +1,12 @@
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .read schema.sql
+sqlite> .mode column
+sqlite> .headers on
+sqlite> INSERT INTO products (name, price, stock) VALUES ('beach towel', 22.00, 15);
+sqlite> SELECT * FROM products WHERE name = 'beach towel';
+name         price  stock
+-----------  -----  -----
+beach towel  22.0   15   
+sqlite> INSERT INTO products (name, price, stock) VALUES ('beach towel', 22.00, 15);
+Runtime error: UNIQUE constraint failed: products.name (19)

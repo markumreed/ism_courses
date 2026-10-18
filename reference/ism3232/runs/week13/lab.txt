@@ -1,0 +1,44 @@
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .read schema.sql
+sqlite> .tables
+change_requests  orders           products       
+sqlite> .mode column
+sqlite> .headers on
+sqlite> SELECT * FROM orders;
+order_id  customer    item          status      address       
+--------  ----------  ------------  ----------  --------------
+A100      Dana Cruz   rain jacket   shipped     14 Bay Road   
+A101      Sam Okafor  day pack      processing  3 Gull Lane   
+A102      Lee Park    trail hat     delivered   88 Pier Street
+A103      Ana Silva   fleece vest   processing  21 Harbor Way 
+A104      Max Duarte  water bottle  shipped     7 Dune Court  
+A105      Ivy Chen    hiking socks  delivered   40 Tide Street
+sqlite> SELECT order_id, customer FROM orders WHERE status = 'processing' ORDER BY customer;
+order_id  customer  
+--------  ----------
+A103      Ana Silva 
+A101      Sam Okafor
+sqlite> SELECT name, price FROM products WHERE stock = 0;
+name          price
+------------  -----
+day pack      45.0 
+hiking socks  12.0 
+sqlite> INSERT INTO orders (order_id, customer, item, status, address) VALUES ('A106', 'Kai Moreno', 'trail hat', 'processing', '5 Shell Road');
+sqlite> SELECT status, COUNT(*) FROM orders GROUP BY status;
+status      COUNT(*)
+----------  --------
+delivered   2       
+processing  3       
+shipped     2       
+sqlite> INSERT INTO change_requests (order_id, new_address) VALUES ('A101', '9 Pine Street, Tampa');
+sqlite> UPDATE orders SET address = '9 Pine Street, Tampa' WHERE order_id = 'A101';
+sqlite> UPDATE change_requests SET status = 'approved' WHERE number = 1;
+sqlite> SELECT order_id, address FROM orders WHERE order_id = 'A101';
+order_id  address             
+--------  --------------------
+A101      9 Pine Street, Tampa
+sqlite> SELECT number, order_id, status FROM change_requests;
+number  order_id  status  
+------  --------  --------
+1       A101      approved

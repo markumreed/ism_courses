@@ -26,6 +26,12 @@ from these files, so a listing on the site always matches code that ran.
   `ollama` and `streamlit` packages blocked, as the autograder sees it.
 - `tools/count_runs.py`: runs one conversation several times against the
   course model and prints every run.
+- `tools/sqlite_cli.py`: fetches and checks the `sqlite3` 3.45.1 that Ubuntu 24.04
+  installs and returns a session as a student sees it. Week 13's transcripts
+  come from it; sqlite.org's newer builds space `.mode column` output
+  differently.
+- `builders/week13_*.py`, `builders/capstone_*.py`: the Week 13 and capstone page
+  builders; `builders/verify_week13.py` checks the pages without changing them.
 - `runs/weekNN/`: captured real runs that the pages quote.
 
 Real runs use the course model on the CPU only, as on a student laptop

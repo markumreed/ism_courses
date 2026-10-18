@@ -1,0 +1,18 @@
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .read schema.sql
+sqlite> .tables
+change_requests  orders           products       
+sqlite> .schema products
+CREATE TABLE products (
+    name  TEXT PRIMARY KEY,
+    price REAL NOT NULL,
+    stock INTEGER NOT NULL
+);
+sqlite> SELECT * FROM products;
+rain jacket|89.0|12
+day pack|45.0|0
+trail hat|25.0|5
+fleece vest|60.0|8
+water bottle|18.0|30
+hiking socks|12.0|0

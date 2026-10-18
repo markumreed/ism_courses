@@ -1,0 +1,11 @@
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .read schema.sql
+sqlite> SELECT COUNT(*) FROM orders;
+6
+sqlite> DELETE FROM orders WHERE order_id = 'A105';
+sqlite> SELECT COUNT(*) FROM orders;
+5
+sqlite> .read schema.sql
+sqlite> SELECT COUNT(*) FROM orders;
+6
