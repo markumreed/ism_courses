@@ -17,7 +17,7 @@ PREV = (
     "Week 11",
     "Talking to a Local Model — Ollama, Instructions &amp; History",
 )
-NEXT = ("week13", "Week 13", "Capstone Design &amp; SQL")
+NEXT = ("week13", "Week 13", "Agent Design &amp; SQL — Proposal, Schema &amp; sqlite3")
 FOLDER = REF / "module06_agents"
 # The commit where module06_agents holds the end of the guided parts, before
 # the exercise and mini-project answers were added. (c805807 was the first such
