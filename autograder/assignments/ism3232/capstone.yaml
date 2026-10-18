@@ -3,31 +3,51 @@ key: capstone
 canvas_display_name: "Capstone Project"
 canvas_assignment_id: null
 submission_type: github_url
-expected_files: []
-mechanical_checks: ["file_present", "runs_without_error", "pytest_passes"]
+# The repo layout from the capstone spec; file_present flags a missing file
+# for the grader to look at, it does not deduct points by itself.
+expected_files:
+  - README.md
+  - PROPOSAL.md
+  - schema.sql
+  - database.py
+  - tools.py
+  - agent.py
+  - app.py
+  - evaluation.py
+mechanical_checks: ["file_present", "ruff_clean", "pytest_passes"]
 scoring_type: points
-# Matches the 5-component, 100-point rubric in
-# ism3232/docs/capstone_rubric.html exactly (each component's point tiers
-# are discrete: e.g. OOP Design is 25/18/12/6/0, not a continuous scale).
-# The instructor enters the tier's point value directly for each component.
+# Matches the eight-part, 100-point rubric in ism3232/docs/capstone_rubric.html.
+# The instructor enters the tier's point value for each part.
 rubric:
-  proposal_design:
+  proposal:
+    points: 10
+    source: human
+    prompt: "Proposal (Week 13) - capstone_rubric.html part 1."
+  database_layer:
     points: 15
     source: human
-    prompt: "Proposal & Design Document - see capstone_rubric.html component 1 (15/10/5/0 tiers)."
-  oop_design:
-    points: 25
-    source: human
-    prompt: "OOP Design (models.py) - see capstone_rubric.html component 2 (25/18/12/6/0 tiers)."
-  database_layer:
+    prompt: "Database layer (Week 14) - capstone_rubric.html part 2."
+  tools_guardrails:
     points: 20
     source: human
-    prompt: "Database Layer (database.py) - see capstone_rubric.html component 3 (20/14/8/4/0 tiers)."
-  streamlit_interface:
-    points: 25
+    prompt: "Tools and guardrails (Weeks 12 and 14) - capstone_rubric.html part 3."
+  agent_models:
+    points: 10
     source: human
-    prompt: "Streamlit Interface (app.py) - see capstone_rubric.html component 4 (25/.../0 tiers)."
-  genai_feature:
+    prompt: "Agent and models (Weeks 10-12) - capstone_rubric.html part 4."
+  streamlit_app:
     points: 15
     source: human
-    prompt: "GenAI Feature (ai_feature.py) - see capstone_rubric.html component 5 (15/.../0 tiers)."
+    prompt: "Streamlit app (Week 15) - capstone_rubric.html part 5."
+  evaluation_safety:
+    points: 10
+    source: human
+    prompt: "Evaluation and safety (Week 16) - capstone_rubric.html part 6."
+  tests_workflow:
+    points: 10
+    source: human
+    prompt: "Tests and workflow - capstone_rubric.html part 7."
+  live_demo:
+    points: 10
+    source: human
+    prompt: "Live demo (Week 16) - capstone_rubric.html part 8."
