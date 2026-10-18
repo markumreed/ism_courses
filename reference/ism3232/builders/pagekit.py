@@ -403,10 +403,10 @@ def slide_point(title, bullets, note):
     )
 
 
-def slide_code(title, code, note, size=".74em"):
+def slide_code(title, code, note, size=".74em", lang="python"):
     return (
         f'<section class="s-code"><h3 style="color:var(--S);text-align:left;font-size:.52em;'
-        f'margin-bottom:.25em;">⌨ {title}</h3><pre><code class="language-python" '
+        f'margin-bottom:.25em;">⌨ {title}</h3><pre><code class="language-{lang}" '
         f'style="max-height:620px;font-size:{size};line-height:1.3;">{esc(code.rstrip())}</code></pre>'
         f"{notes(note)}</section>"
     )

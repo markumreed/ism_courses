@@ -69,3 +69,10 @@ def test_output_of_drops_the_typed_lines():
 def test_saved_sessions_match_a_fresh_run():
     for name in w.SESSIONS:
         assert w.run_session(os.environ["SQLITE3_CLI"], name) == w.run_text(name), name
+
+
+def test_slide_code_can_mark_sql():
+    from pagekit import slide_code
+
+    assert 'class="language-sql"' in slide_code("t", "SELECT 1;", "n", lang="sql")
+    assert 'class="language-python"' in slide_code("t", "x = 1", "n")
