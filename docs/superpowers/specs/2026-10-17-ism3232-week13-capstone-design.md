@@ -1,7 +1,7 @@
 # ISM3232 Phase 3: Week 13, the Capstone Starters and the Rubric
 
 - **Date:** 2026-10-17
-- **Status:** Design approved section by section in chat; this written spec awaits review
+- **Status:** Approved 2026-10-17. Amended with the Phase 3 plan (`docs/superpowers/plans/2026-10-17-ism3232-week13-capstone.md`): section 8's capture tool, and lab steps 4 and 8.
 - **Parent spec:** `docs/superpowers/specs/2026-10-16-ism3232-agents-throughline-design.md` (sections 4–6)
 - **Parent plan:** `docs/superpowers/plans/2026-10-16-ism3232-agents-throughline.md`, Phase 3 (Tasks 12–14)
 - **Builds on:** the Bayside reference app, `reference/ism3232/bayside_app/` (checkpoints: Week 13 `04bc8c9`, full app `172d6ad`)
@@ -151,11 +151,11 @@ Title: **Agent Design & SQL — Proposal, Schema & sqlite3**. Week-strip label: 
 1. Install `sqlite3` (Ubuntu: `sudo apt install sqlite3`; macOS: already there); `sqlite3 --version`.
 2. Practise on Bayside in `~/ism3232/sql_practice/` (outside the capstone folder): copy `schema.sql` from the page, `.read` it, run queries with expected output.
 3. Four SQL exercises with click-to-reveal answers: orders still processing, sorted; products out of stock; orders by status (`GROUP BY`); approve a change by hand (the two `UPDATE`s `approve_request` runs in Week 14), checked with `SELECT`.
-4. Set up `~/ism3232/module07_final_project`: venv; `pip install pytest ruff streamlit ollama`; `requirements.txt`; `.gitignore` with `.venv/`, `__pycache__/`, `*.db`.
+4. Set up `~/ism3232/module07_final_project`: venv; `pip install pytest ruff streamlit ollama`; `requirements.txt`; `.gitignore` with `.venv/`, `__pycache__/`, `*.db`; `git init`. Then the one-time GitHub setup from Week 4: each module folder is its own repository, so create `ism3232-module07` on GitHub (Public, no README), `git remote add origin …`, `git branch -M main`.
 5. Choose a business and write `PROPOSAL.md` from the starters page.
 6. Write `schema.sql` for your business: your business tables with at least five sample rows each, plus an empty `change_requests`. Check it in `sqlite3` by running `.read` twice and confirming the row counts are unchanged.
 7. Sign-off at your laptop.
-8. Commit and push: `git add . && git commit -m 'lab 13: proposal and schema' && git push`. The page says why there is no `ruff`/`pytest` step this week and that Week 14 adds tests.
+8. Commit and push: `git add . && git commit -m 'lab 13: proposal and schema' && git push -u origin main` (the first push of a new repository; later weeks use `git push`). The page says why there is no `ruff`/`pytest` step this week: `pytest` finds no tests and exits with code 5, which stops the `&&` chain. It also says that Week 14 adds tests.
 9. Submission box: `PROPOSAL.md` and `schema.sql` in `module07_final_project`, the repository URL in Canvas, Approved or Revise.
 
 ### Lab slides
@@ -190,7 +190,11 @@ Also on the page: the score summary, demo rules (a borrowed laptop or lab machin
 ## 8. Build and checks
 
 - Builders in `reference/ism3232/builders/`: five Week 13 pages, `capstone_starters.html`, `capstone_rubric.html`, using `pagekit`; `schema.sql` read from `04bc8c9`; Bayside's model proposal from `172d6ad`.
-- Real `sqlite3` output: the official SQLite command-line tool downloaded from sqlite.org into its own scratch folder, checked against the published SHA3-256 checksum; every session starts from a fresh copy of `schema.sql`; transcripts and a `capture.sh` under `reference/ism3232/runs/week13/`. The pages say the version number on student screens will differ; `.mode column` output is the same from 3.33 on, which covers current Ubuntu and macOS.
+- Real `sqlite3` output comes from the `sqlite3` package Ubuntu 24.04 installs, 3.45.1-1ubuntu2.8, which is what `sudo apt install sqlite3` gives WSL students.
+  - It is fetched with `apt-get download` into its own scratch folder and checked against the SHA-256 in apt's signed index.
+  - Every session starts from a fresh copy of `schema.sql`. Transcripts and a `capture.sh` live under `reference/ism3232/runs/week13/`.
+  - Why not sqlite.org's current build (3.54.1): a probe on 2026-10-17 ran the same session through both, and 3.54.1 aligns `.mode column` output differently. It right-aligns numbers and spaces `.tables` output more widely, so it would not match student screens.
+  - The pages say that a Mac's version line, and possibly its column spacing, will differ; the rows are what matter.
 - `verify_week13.py`: each page on disk equals its builder's output; every listing appears verbatim in its source; quiz items parse as `_build_qti.py` reads them; exercise answers appear only inside the lab's answer keys; every SQL answer key re-run in `sqlite3` prints what the page shows.
 - Screenshots in light and dark themes and a console-error check for every new or changed page.
 - Ship on the user's word: commit the `ism3232` pages, bump the parent pointer together with `_build_qti.py`, confirm the live pages.
