@@ -344,8 +344,11 @@ def build():
             + block(
                 "ollama_model.py — decide", w.app_method("ollama_model.py", "decide")
             )
-            + "<p>In <code>keyword_model.py</code>, change the keywords and tool names to "
-            "yours, so the program can run without Ollama. This is Bayside&rsquo;s:</p>"
+            + "<p>In <code>keyword_model.py</code>, change the keywords, the tool names "
+            "and the argument names (Bayside&rsquo;s <code>order_id</code> and "
+            "<code>item</code>) to yours, so the program can run without Ollama. If an "
+            "argument name does not match the one your <code>run</code> reads, every "
+            "request is refused as missing. This is Bayside&rsquo;s:</p>"
             + block("keyword_model.py", w.app_file("keyword_model.py"))
             + "<p>Create <code>settings.py</code> from your proposal&rsquo;s instructions "
             "draft, in the shape of Bayside&rsquo;s:</p>"
