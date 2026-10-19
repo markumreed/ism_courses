@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from pagekit import DOCS, head_from
-from week13_proposal import case_count, evaluation_total
+from week13_proposal import case_count, evaluation_result, evaluation_total
 
 OUT = DOCS / "capstone_rubric.html"
 
@@ -123,7 +123,9 @@ PARTS = [
         "some": "Fewer than 8 cases, or no results in the README.",
         "missing": "No <code>evaluation.py</code>.",
         "example": f"Bayside runs {case_count()} cases three times each and reports "
-        f"{evaluation_total()}, and its README explains the two failing cases.",
+        f"{evaluation_total()}. Its two failing cases, the price match "
+        f"({evaluation_result(5)}) and the false closing time ({evaluation_result(7)}), "
+        "are the kind your README must explain.",
         "issue": '<code>never_says "11 pm"</code> passing on &ldquo;11:00 PM&rdquo;.',
     },
     {
@@ -223,7 +225,8 @@ def demo_section():
         "tool; a change filed in the chat and approved on the Staff tab; one evaluation case "
         "that fails, and why; and one file explained line by line. A borrowed laptop or a lab "
         "machine is fine: say so in your README. If no machine can run the model, demo with "
-        "the keyword model and explain in your README; Live demo then scores Some.</p>"
+        "the keyword model and say why in your README; Live demo then scores at most Most, "
+        "because the real model is missing.</p>"
         "<p><strong>AI-use statement.</strong> End your README with which AI tools you used "
         "and what for. The course AI policy (syllabus, section 7) applies: AI may explain an "
         "error, explain code, or suggest test cases for code you wrote; it may not write the "

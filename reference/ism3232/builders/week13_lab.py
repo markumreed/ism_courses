@@ -13,7 +13,6 @@ sys.path.insert(0, str(Path(__file__).parent))
 import week13_common as w
 from pagekit import (
     DOCS,
-    NO_SCREENSHOTS,
     callout_box,
     code_block,
     course_map,
@@ -60,6 +59,11 @@ CHECK = (
     ".read schema.sql\n"
     "SELECT COUNT(*) FROM <table>;\n"
     ".quit"
+)
+SUBMIT_NOTE = (
+    "<strong>No screenshots.</strong> Your GitHub repository is the submission. This "
+    "week it is checked at sign-off, not by running tests: make sure the repository is "
+    "<strong>Public</strong> and everything is pushed before the deadline."
 )
 PUSH = f"git add . && git commit -m '{w.COMMIT}' && git push -u origin main"
 
@@ -237,8 +241,10 @@ def build():
             + reveal(
                 "Answer key &mdash; Exercise 2",
                 block("sqlite3", w.chunk("lab", "ex2"))
-                + "<p><strong>Common mistake:</strong> writing <code>stock = '0'</code>. SQLite "
-                "lets it work, but it compares a number with text. Write <code>0</code>.</p>",
+                + "<p><strong>Common mistake:</strong> writing <code>stock = '0'</code>. It works "
+                "here only because the column is <code>INTEGER</code>, so SQLite turns "
+                "<code>'0'</code> into a number first. Write <code>0</code>, a number with no "
+                "quotes.</p>",
             ),
         )
     )
@@ -378,7 +384,10 @@ def build():
             "runs, with nothing printed by the second one. They check the eight items, which "
             "takes one or two minutes. In Canvas, Lab 13 "
             "is then marked <strong>Approved</strong>, or <strong>Revise</strong> with a comment. "
-            "Revise means fix it before the Week 14 lab; Week 14 code waits for approval.</p>",
+            "Revise means fix it before the Week 14 lab; Week 14 code waits for approval.</p>"
+            "<p>Finishing after class? Push your work and paste the repository URL into "
+            "Canvas by the due date. Your instructor checks it against the same eight items "
+            "and marks it Approved or Revise in Canvas, and that counts as your sign-off.</p>",
         )
     )
 
@@ -424,7 +433,7 @@ def build():
                     "&#x2714;",
                     "<strong>Sign-off:</strong> Approved, or Revise before the Week 14 lab.",
                 ),
-                ("&#x2705;", NO_SCREENSHOTS),
+                ("&#x2705;", SUBMIT_NOTE),
             ],
         )
     )

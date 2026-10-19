@@ -184,7 +184,8 @@ def build():
     add(listing("sqlite3", w.run_text("first_look")))
     add(
         "<p>The first two lines are the shell&rsquo;s greeting; the version on your screen "
-        "may differ. <code>SELECT * FROM products;</code> means &ldquo;show every column of "
+        "may differ, and on a Mac the columns of a table can be spaced a little "
+        "differently. The rows are what matter. <code>SELECT * FROM products;</code> means &ldquo;show every column of "
         "every row&rdquo;. <code>.quit</code> leaves the shell; the database file keeps "
         "everything.</p>"
     )

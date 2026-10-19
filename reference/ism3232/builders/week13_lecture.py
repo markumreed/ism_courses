@@ -12,7 +12,6 @@ sys.path.insert(0, str(Path(__file__).parent))
 import week13_common as w
 from pagekit import (
     DOCS,
-    NO_SCREENSHOTS,
     assignment,
     callout_blue,
     card,
@@ -25,6 +24,7 @@ from pagekit import (
     section_divider,
     two_col,
 )
+from week13_lab import SUBMIT_NOTE
 from week13_reading import COPY, REOPEN
 from week13_starters import CHECKLIST
 
@@ -358,7 +358,7 @@ def build():
                     "<strong>Sign-off:</strong> Approved, or Revise before the Week 14 lab.",
                 ),
                 ("&#x1F517;", "<strong>Link:</strong> GitHub repository URL."),
-                ("&#x2705;", NO_SCREENSHOTS),
+                ("&#x2705;", SUBMIT_NOTE),
             ],
         )
     )
