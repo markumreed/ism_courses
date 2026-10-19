@@ -95,7 +95,7 @@ create_tables("bayside.db")
 tools = BaysideTools("bayside.db")
 typed = [{"role": "user", "content": "Where is order A1000?"}]
 print(tools.run("look_up_order", {"order_id": "A100"}, typed))
-print(tools.words("Where is order A1000?"))""",
+print(repr(tools.words("Where is order A1000?")))""",
 }
 
 
