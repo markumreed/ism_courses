@@ -284,7 +284,7 @@ STRIP = [
     "W11 Local Model",
     "W12 Tools+Guardrails",
     "W13 Design+SQL",
-    "W14 Python+SQL",
+    "W14 DB Tools",
     "W15 Streamlit",
     "W16 GenAI+Demo",
 ]

@@ -18,7 +18,11 @@ PREV = (
     "Week 12",
     "Tools and Guardrails — Model-Chosen Tools, Checks &amp; Approval",
 )
-NEXT = ("week14", "Week 14", "Python + SQL Integration")
+NEXT = (
+    "week14",
+    "Week 14",
+    "Database Tools — sqlite3, Placeholders &amp; Tested Tools",
+)
 # Bayside reference app checkpoints (reference/ism3232/README.md).
 SCHEMA_REV = "04bc8c9"  # Week 13: schema.sql only
 FULL_REV = "172d6ad"  # the whole app after the final review fixes
