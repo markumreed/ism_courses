@@ -339,8 +339,9 @@ def build():
             "read it twice and compare the counts. Use your business&rsquo;s name for the "
             "database file and your own table names:</p>"
             + block("Terminal and sqlite3", CHECK)
-            + "<p>This is what Bayside&rsquo;s check looks like. The counts after the second "
-            "<code>.read</code> must match the first:</p>"
+            + "<p>Your schema passes when <strong>the second <code>.read</code> prints "
+            "nothing</strong> and the counts after it match the first. This is what "
+            "Bayside&rsquo;s check looks like:</p>"
             + block(
                 "sqlite3 &mdash; Bayside, first read",
                 w.chunks("read_twice", "setup", "first"),
@@ -348,10 +349,21 @@ def build():
             + block(
                 "sqlite3 &mdash; Bayside, read again", w.chunk("read_twice", "again")
             )
+            + "<p>Matching counts alone are not enough. Here Bayside&rsquo;s schema was "
+            "saved as <code>plain_insert.sql</code> with every <code>OR IGNORE</code> "
+            "removed. The counts still match, but the second <code>.read</code> prints "
+            "errors:</p>"
+            + block(
+                "sqlite3 &mdash; a schema with plain INSERT, read twice",
+                w.run_text("plain_twice"),
+            )
             + hint(
-                "If a count grows, a table is missing its <code>PRIMARY KEY</code>, or "
-                "<code>change_requests</code> has sample rows. Fix the file, delete the "
-                "<code>.db</code> file, and check again."
+                "A <code>UNIQUE constraint failed</code> line means an <code>INSERT</code> is "
+                "missing <code>OR IGNORE</code>. Next week the app runs "
+                "<code>schema.sql</code> every time it starts, and that error would stop it on "
+                "every start after the first. If a count grows instead, a table is missing its "
+                "<code>PRIMARY KEY</code>, or <code>change_requests</code> has sample rows. "
+                "Fix the file, delete the <code>.db</code> file, and check again."
             ),
         )
     )
@@ -363,7 +375,8 @@ def build():
             11,
             "Get your proposal signed off",
             "<p>Show your instructor <code>PROPOSAL.md</code> and the two <code>.read</code> "
-            "runs. They check the eight items, which takes one or two minutes. In Canvas, Lab 13 "
+            "runs, with nothing printed by the second one. They check the eight items, which "
+            "takes one or two minutes. In Canvas, Lab 13 "
             "is then marked <strong>Approved</strong>, or <strong>Revise</strong> with a comment. "
             "Revise means fix it before the Week 14 lab; Week 14 code waits for approval.</p>",
         )

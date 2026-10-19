@@ -1,0 +1,10 @@
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .read plain_insert.sql
+sqlite> SELECT COUNT(*) FROM orders;
+6
+sqlite> .read plain_insert.sql
+Runtime error near line 25: UNIQUE constraint failed: orders.order_id (19)
+Runtime error near line 33: UNIQUE constraint failed: products.name (19)
+sqlite> SELECT COUNT(*) FROM orders;
+6

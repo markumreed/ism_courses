@@ -35,9 +35,9 @@ def test_the_banner_is_in_no_part():
     assert all("SQLite version" not in piece for piece in w.split(TEXT, PARTS).values())
 
 
-def test_every_session_starts_by_reading_the_schema():
+def test_every_session_starts_by_reading_a_schema_file():
     for name, parts in w.SESSIONS.items():
-        assert parts[0][1][0] == ".read schema.sql", name
+        assert parts[0][1][0].startswith(".read "), name
 
 
 def test_answers_are_typed_only_in_the_lab_session():
@@ -76,3 +76,11 @@ def test_slide_code_can_mark_sql():
 
     assert 'class="language-sql"' in slide_code("t", "SELECT 1;", "n", lang="sql")
     assert 'class="language-python"' in slide_code("t", "x = 1", "n")
+
+
+def test_a_plain_insert_schema_errors_on_the_second_read_but_counts_match():
+    first = w.output_of("plain_twice", "first")
+    again = w.output_of("plain_twice", "again")
+    assert "UNIQUE constraint failed" not in first
+    assert "UNIQUE constraint failed" in again
+    assert first.split("\n")[-1] == again.split("\n")[-1]

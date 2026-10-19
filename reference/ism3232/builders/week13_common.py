@@ -62,7 +62,7 @@ SAMPLE_REQUEST = (
 )
 
 # Every session is typed into `sqlite3 bayside.db` in a new folder that holds
-# only schema.sql from SCHEMA_REV. Each part is (name, typed lines).
+# schema.sql from SCHEMA_REV (and plain_insert.sql, made from it). Each part is (name, typed lines).
 SESSIONS = {
     "first_look": [
         ("read", [".read schema.sql", ".tables"]),
@@ -127,6 +127,13 @@ SESSIONS = {
             ],
         ),
     ],
+    # Bayside's schema with every OR IGNORE removed (plain_insert.sql): the counts
+    # still match on the second .read, but it prints an error, and Week 14's app
+    # would crash on every start after the first.
+    "plain_twice": [
+        ("first", [".read plain_insert.sql", "SELECT COUNT(*) FROM orders;"]),
+        ("again", [".read plain_insert.sql", "SELECT COUNT(*) FROM orders;"]),
+    ],
     # One practice database, typed in the order the lab gives it.
     "lab": [
         (
@@ -169,10 +176,16 @@ def schema_text():
     return read("bayside_app/schema.sql", SCHEMA_REV)
 
 
+def plain_insert_text():
+    """Bayside's schema.sql with every INSERT OR IGNORE turned into a plain INSERT."""
+    return schema_text().replace("INSERT OR IGNORE", "INSERT")
+
+
 def fresh_folder():
-    """A new temporary folder holding only schema.sql."""
+    """A new temporary folder holding schema.sql and plain_insert.sql."""
     folder = Path(tempfile.mkdtemp(prefix="ism3232-sql-"))
     (folder / "schema.sql").write_text(schema_text())
+    (folder / "plain_insert.sql").write_text(plain_insert_text())
     return folder
 
 

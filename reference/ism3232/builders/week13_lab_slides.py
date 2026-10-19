@@ -359,8 +359,19 @@ def build():
         )
     )
     add(
+        out_slide(
+            f"{number + 3}. PLAIN INSERT",
+            "Matching counts are not enough",
+            w.run_text("plain_twice"),
+            "The counts match, but the second .read printed errors: an INSERT is missing OR IGNORE.",
+            "Bayside's schema with every OR IGNORE removed. Week 14's app runs schema.sql on every "
+            "start, so this error would stop it on every start after the first. The check passes "
+            "only when the second .read prints nothing.",
+        )
+    )
+    add(
         warn(
-            f"{number + 3}. NO SAMPLE REQUESTS",
+            f"{number + 4}. NO SAMPLE REQUESTS",
             "change_requests starts empty",
             [
                 (
@@ -372,7 +383,7 @@ def build():
             "Show requests_twice from the reading if a student asks why.",
         )
     )
-    number += 4
+    number += 5
 
     add(
         divider(
