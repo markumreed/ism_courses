@@ -409,7 +409,7 @@ ISM3232_TITLES = {
     10: "OOP for Agents — Classes, Objects & Composition",
     11: "Talking to a Local Model — Ollama, Instructions & History",
     12: "Tools and Guardrails — Model-Chosen Tools, Checks & Approval",
-    13: "Capstone Design & SQL Foundations",
+    13: "Agent Design & SQL — Proposal, Schema & sqlite3",
     14: "Python + SQL Integration",
     15: "Streamlit Business Interface",
     16: "GenAI Feature & Final Demo",
