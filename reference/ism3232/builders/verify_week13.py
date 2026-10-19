@@ -68,6 +68,60 @@ def expected_misses(text, outputs):
     return [plain(box)[:60] for box in boxes if plain(box).rstrip() not in allowed]
 
 
+BLOCK = re.compile(
+    r'<div class="(?:code-label|cb-label)">(.*?)</div><pre>(?:<code>)?(.*?)(?:</code>)?</pre>',
+    re.DOTALL,
+)
+COPY_STEP = "cp bayside.db practice_copy.db"
+BANNER = ("SQLite version ", 'Enter ".help"')
+
+
+def follow_along_problems(text, cli):
+    """Type a page's sqlite3 blocks, in page order, into one database the way a
+    student following along would, and report blocks whose shown output differs.
+    After a Terminal block that copies the database, the next sqlite3 block runs
+    in a new session on the copy, and later blocks go back to the original."""
+    import shutil
+
+    sys.path.insert(0, str(w.REF / "tools"))
+    from sqlite_cli import transcript
+
+    segments = [["bayside.db", []]]
+    for label, code in BLOCK.findall(text):
+        label, code = plain(label), plain(code)
+        if label.startswith("Terminal") and COPY_STEP in code:
+            segments.append(["practice_copy.db", []])
+        elif label.startswith("sqlite3") and "sqlite> " in code:
+            segments[-1][1].append(code)
+            if segments[-1][0] == "practice_copy.db":
+                segments.append(["bayside.db", []])
+    folder = w.fresh_folder()
+    problems = []
+    for db, blocks in segments:
+        if not blocks:
+            continue
+        if db == "practice_copy.db":
+            shutil.copy(folder / "bayside.db", folder / db)
+        typed = [
+            line[len("sqlite> ") :]
+            for block in blocks
+            for line in block.split("\n")
+            if line.startswith("sqlite> ")
+        ]
+        out = transcript(cli, folder, typed, db)
+        pos = 0
+        for block in blocks:
+            shown = "\n".join(
+                line for line in block.split("\n") if not line.startswith(BANNER)
+            )
+            found = out.find(shown, pos)
+            if found == -1:
+                problems.append(f"in {db}: {shown.split(chr(10))[0][:60]}")
+            else:
+                pos = found + len(shown)
+    return problems
+
+
 def qti_functions():
     """parse_quiz and find_correct_ident from _build_qti.py, without running the
     part of that script that writes the quiz zips."""
@@ -142,6 +196,7 @@ def main():
     from capstone_rubric import PARTS
     from sqlite_cli import cli_from_env
 
+    cli = cli_from_env()
     bad, derived, texts = [], [], {}
     for name in PAGES:
         page, extra = importlib.import_module(name).build()
@@ -167,7 +222,12 @@ def main():
     bad += [f"week13_reading: {p}" for p in quiz_problems(DOCS / "week13_reading.html")]
     config = yaml.safe_load(CONFIG.read_text())
     bad += [f"capstone_rubric: {p}" for p in rubric_problems(PARTS, config)]
-    bad += sessions_problems(cli_from_env())
+    for name in ("week13_reading", "week13_lecture"):
+        bad += [
+            f"{name}: following along: {p}"
+            for p in follow_along_problems(texts[name], cli)
+        ]
+    bad += sessions_problems(cli)
     for line in bad:
         print(line)
     print("verify_week13:", "OK" if not bad else f"{len(bad)} problem(s)")

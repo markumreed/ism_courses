@@ -36,7 +36,7 @@ INSTALL_MAC = "sqlite3 --version"
 PRACTICE_FOLDER = (
     "mkdir -p ~/ism3232/sql_practice\ncd ~/ism3232/sql_practice\ncode schema.sql"
 )
-OPEN = "sqlite3 bayside.db"
+OPEN = "sqlite3 lab13.db"
 SETUP = (
     "mkdir -p ~/ism3232/module07_final_project\n"
     "cd ~/ism3232/module07_final_project\n"
@@ -183,14 +183,19 @@ def build():
         task(
             3,
             "Open the database and look around",
-            block("Terminal", OPEN)
+            "<p>Open a new database file for the lab. If you followed along with the "
+            "reading in this folder, its <code>bayside.db</code> has your changes in it; a "
+            "new file means none of them change today&rsquo;s results.</p>"
+            + block("Terminal", OPEN)
             + "<p>At the <code>sqlite&gt;</code> prompt, type each line:</p>"
             + block("sqlite3", w.typed("lab", "practice"))
             + "<p>You should see:</p>"
             + expected(w.chunk("lab", "practice"))
             + hint(
-                "<code>.quit</code> leaves sqlite3. Run <code>sqlite3 bayside.db</code> again "
-                "later and everything is still there. Keep this window open for Part 3."
+                "<code>.quit</code> leaves sqlite3. Run <code>sqlite3 lab13.db</code> again "
+                "later and everything is still there, but you would have to turn "
+                "<code>.mode column</code> and <code>.headers on</code> on again: every new "
+                "session starts with them off. Keep this window open for Part 3."
             ),
         )
     )
@@ -337,7 +342,8 @@ def build():
             + "<p>This is what Bayside&rsquo;s check looks like. The counts after the second "
             "<code>.read</code> must match the first:</p>"
             + block(
-                "sqlite3 &mdash; Bayside, first read", w.chunk("read_twice", "first")
+                "sqlite3 &mdash; Bayside, first read",
+                w.chunks("read_twice", "setup", "first"),
             )
             + block(
                 "sqlite3 &mdash; Bayside, read again", w.chunk("read_twice", "again")

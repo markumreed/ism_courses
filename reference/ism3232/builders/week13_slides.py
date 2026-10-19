@@ -21,7 +21,7 @@ from pagekit import (
     slide_title,
     slides_shell,
 )
-from week13_reading import COPY
+from week13_reading import COPY, REOPEN
 
 OUT = DOCS / "week13_slides.html"
 
@@ -170,16 +170,8 @@ def build():
         slide_section(
             4,
             "Changing Rows Safely",
-            "INSERT, UPDATE with and without WHERE, and reading the schema twice.",
-        )
-    )
-    add(
-        slide_code(
-            "INSERT, and the primary key refusing a duplicate",
-            w.chunk("insert", "insert") + "\n" + w.chunk("insert", "again"),
-            "The second INSERT fails: there is already a product with that name.",
-            size=".55em",
-            lang="plaintext",
+            "UPDATE with and without WHERE, INSERT, and reading the schema twice. Run them "
+            "live in this order in one database.",
         )
     )
     add(
@@ -194,16 +186,27 @@ def build():
     add(
         slide_code(
             "UPDATE without WHERE, on a copy",
-            COPY + "\n\n" + w.chunk("update_no_where", "update"),
-            "Every row changes, with no warning and no undo. That is why it is done on a copy.",
-            size=".7em",
+            COPY + "\n\n" + w.chunks("update_no_where", "display", "update"),
+            "Every row changes, with no warning and no undo. That is why it is done on a copy. "
+            "A new session starts with the display off, so turn it on again first.",
+            size=".62em",
+            lang="plaintext",
+        )
+    )
+    add(
+        slide_code(
+            "Back in the practice database: INSERT, then a duplicate",
+            REOPEN + "\n\n" + w.chunks("insert", "display", "insert", "again"),
+            "Quit the copy and reopen bayside.db (display on again). The second INSERT fails: "
+            "there is already a product with that name.",
+            size=".52em",
             lang="plaintext",
         )
     )
     add(
         slide_code(
             "Reading the schema twice",
-            w.run_text("read_twice"),
+            w.chunks("read_twice", "first", "delete", "again"),
             "Six, five, six: the deleted sample row came back. Week 14 runs schema.sql on every "
             "start, which is why change_requests starts empty.",
             size=".85em",
@@ -286,8 +289,8 @@ def build():
     derived = [
         w.chunk("select", "setup") + "\n" + w.chunk("select", "all"),
         w.chunk("count", "count") + "\n" + w.chunk("count", "group"),
-        w.chunk("insert", "insert") + "\n" + w.chunk("insert", "again"),
-        COPY + "\n\n" + w.chunk("update_no_where", "update"),
+        COPY + "\n\n" + w.chunks("update_no_where", "display", "update"),
+        REOPEN + "\n\n" + w.chunks("insert", "display", "insert", "again"),
     ]
     return page, derived
 

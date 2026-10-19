@@ -31,6 +31,9 @@ GITIGNORE_LINE = (
 )
 
 SETUP = [".read schema.sql", ".mode column", ".headers on"]
+# Every new sqlite3 session starts in list mode with headers off, so pages
+# that reopen a database show these two lines again.
+DISPLAY = [".mode column", ".headers on"]
 
 # Exercise answers. Only the lab page (inside its answer keys) and the lab
 # slides may show these lines.
@@ -78,7 +81,8 @@ SESSIONS = {
         ("group", ["SELECT stock, COUNT(*) FROM products GROUP BY stock;"]),
     ],
     "insert": [
-        ("setup", SETUP),
+        ("read", [".read schema.sql"]),
+        ("display", DISPLAY),
         ("insert", [TOWEL, "SELECT * FROM products WHERE name = 'beach towel';"]),
         ("again", [TOWEL]),
     ],
@@ -93,14 +97,16 @@ SESSIONS = {
         ),
     ],
     "update_no_where": [
-        ("setup", SETUP),
+        ("read", [".read schema.sql"]),
+        ("display", DISPLAY),
         (
             "update",
             ["UPDATE products SET stock = 0;", "SELECT name, stock FROM products;"],
         ),
     ],
     "read_twice": [
-        ("first", [".read schema.sql", "SELECT COUNT(*) FROM orders;"]),
+        ("setup", SETUP),
+        ("first", ["SELECT COUNT(*) FROM orders;"]),
         (
             "delete",
             [
@@ -212,3 +218,8 @@ def output_of(name, part):
 def typed(name, part):
     """The lines a student types for one part, as a shell block shows them."""
     return "\n".join(dict(SESSIONS[name])[part])
+
+
+def chunks(name, *parts):
+    """Several adjacent parts of one saved session, as one block."""
+    return "\n".join(chunk(name, part) for part in parts)

@@ -1,7 +1,10 @@
 """Tests for verify_week13.py. Run from this folder: python -m pytest -q"""
 
+import os
 import sys
 from pathlib import Path
+
+import pytest
 
 sys.path.insert(0, str(Path(__file__).parent))
 
@@ -110,3 +113,48 @@ def test_tiers_must_follow_100_70_40_0():
     assert v.rubric_problems(parts, CONFIG) == [
         "proposal: tiers (10, 8, 4, 0) do not follow 100/70/40/0"
     ]
+
+
+needs_cli = pytest.mark.skipif(
+    not os.environ.get("SQLITE3_CLI"), reason="set SQLITE3_CLI"
+)
+
+
+def sqlite_block(text):
+    return f'<div class="code-label">sqlite3</div><pre><code>{text}</code></pre>'
+
+
+def terminal_block(text):
+    return f'<div class="code-label">Terminal</div><pre><code>{text}</code></pre>'
+
+
+@needs_cli
+def test_blocks_that_follow_on_in_one_database_pass():
+    page = sqlite_block("sqlite&gt; SELECT 1;\n1") + sqlite_block(
+        "sqlite&gt; SELECT 2;\n2"
+    )
+    assert v.follow_along_problems(page, os.environ["SQLITE3_CLI"]) == []
+
+
+@needs_cli
+def test_a_block_whose_output_needs_a_fresh_database_is_reported():
+    page = sqlite_block(
+        "sqlite&gt; CREATE TABLE t (a);\nsqlite&gt; INSERT INTO t VALUES (1);"
+    ) + sqlite_block(
+        "sqlite&gt; INSERT INTO t VALUES (2);\nsqlite&gt; SELECT COUNT(*) FROM t;\n1"
+    )
+    assert len(v.follow_along_problems(page, os.environ["SQLITE3_CLI"])) == 1
+
+
+@needs_cli
+def test_the_copy_keeps_the_rows_but_starts_a_new_session():
+    setup = sqlite_block(
+        "sqlite&gt; .mode column\nsqlite&gt; .headers on\n"
+        "sqlite&gt; CREATE TABLE t (a);\nsqlite&gt; INSERT INTO t VALUES (7);"
+    )
+    copy = terminal_block("cp bayside.db practice_copy.db\nsqlite3 practice_copy.db")
+    list_mode = sqlite_block("sqlite&gt; SELECT a FROM t;\n7")
+    column_mode = sqlite_block("sqlite&gt; SELECT a FROM t;\na\n-\n7")
+    cli = os.environ["SQLITE3_CLI"]
+    assert v.follow_along_problems(setup + copy + list_mode, cli) == []
+    assert len(v.follow_along_problems(setup + copy + column_mode, cli)) == 1

@@ -25,7 +25,7 @@ from pagekit import (
     section_divider,
     two_col,
 )
-from week13_reading import COPY
+from week13_reading import COPY, REOPEN
 from week13_starters import CHECKLIST
 
 OUT = DOCS / "week13_lecture.html"
@@ -211,20 +211,35 @@ def build():
     )
 
     add(section_divider("Section 4 &mdash; Changing Rows Safely"))
-    add(
-        sql(
-            "sqlite3 &mdash; INSERT, and the primary key refusing a duplicate",
-            w.chunk("insert", "insert") + "\n" + w.chunk("insert", "again"),
-        )
-    )
     add(sql("sqlite3 &mdash; UPDATE with WHERE", w.chunk("update", "update")))
     add(sql("Terminal &mdash; on a throwaway copy", COPY))
     add(
         sql(
-            "sqlite3 &mdash; UPDATE without WHERE", w.chunk("update_no_where", "update")
+            "sqlite3 &mdash; UPDATE without WHERE (a new session: display on again)",
+            w.chunks("update_no_where", "display", "update"),
         )
     )
-    add(sql("sqlite3 &mdash; reading the schema twice", w.run_text("read_twice")))
+    add(
+        card(
+            "Say this",
+            "<p>Every new sqlite3 session starts in list mode with headers off, so the copy "
+            "needs <code>.mode column</code> and <code>.headers on</code> again. Then quit the "
+            "copy and reopen the practice database.</p>",
+        )
+    )
+    add(sql("Terminal &mdash; back to the practice database", REOPEN))
+    add(
+        sql(
+            "sqlite3 &mdash; INSERT, and the primary key refusing a duplicate",
+            w.chunks("insert", "display", "insert", "again"),
+        )
+    )
+    add(
+        sql(
+            "sqlite3 &mdash; reading the schema twice",
+            w.chunks("read_twice", "first", "delete", "again"),
+        )
+    )
     add(
         card(
             "Say this",
@@ -363,7 +378,7 @@ def build():
 
     head = head_from("week12_lecture.html", f"ISM3232 Week 13 — {w.TITLE_TEXT}")
     page = f'{head}\n<body>{"".join(p)}\n<script src="../site.js"></script>\n</body></html>\n'
-    derived = [COPY, w.chunk("insert", "insert") + "\n" + w.chunk("insert", "again")]
+    derived = [COPY, REOPEN]
     return page, derived
 
 

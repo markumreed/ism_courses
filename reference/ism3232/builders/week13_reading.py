@@ -30,6 +30,7 @@ from week13_starters import CHECKLIST
 OUT = DOCS / "week13_reading.html"
 OPEN = "cd ~/ism3232/sql_practice\nsqlite3 bayside.db"
 COPY = "cp bayside.db practice_copy.db\nsqlite3 practice_copy.db"
+REOPEN = "sqlite3 bayside.db"
 
 
 def build():
@@ -212,14 +213,6 @@ def build():
         "group. The two products with no stock land in one row:</p>"
     )
     add(listing("sqlite3", w.chunk("count", "group")))
-    add("<h3>Adding a row</h3>")
-    add("<p><code>INSERT</code> adds a row. List the columns, then the values:</p>")
-    add(listing("sqlite3", w.chunk("insert", "insert")))
-    add(
-        "<p>Run the same <code>INSERT</code> again and the primary key refuses it, because "
-        "there is already a product with that name:</p>"
-    )
-    add(listing("sqlite3", w.chunk("insert", "again")))
     add("<h3>Changing rows</h3>")
     add(
         "<p><code>UPDATE &hellip; SET &hellip; WHERE</code> changes the rows that match. "
@@ -236,7 +229,27 @@ def build():
         )
     )
     add(listing("Terminal", COPY))
-    add(listing("sqlite3", w.chunk("update_no_where", "update")))
+    add(
+        "<p>Every new sqlite3 session starts with <code>.mode column</code> and "
+        "<code>.headers on</code> turned off, so turn them on again in the copy first:</p>"
+    )
+    add(listing("sqlite3", w.chunks("update_no_where", "display", "update")))
+    add(
+        "<p>Every product now has a stock of 0. Leave the copy with <code>.quit</code> and "
+        "open your practice database again. The copy can simply be deleted.</p>"
+    )
+    add(listing("Terminal", REOPEN))
+    add("<h3>Adding a row</h3>")
+    add(
+        "<p><code>INSERT</code> adds a row. List the columns, then the values. This is a new "
+        "session, so turn the display on again first:</p>"
+    )
+    add(listing("sqlite3", w.chunks("insert", "display", "insert")))
+    add(
+        "<p>Run the same <code>INSERT</code> again and the primary key refuses it, because "
+        "there is already a product with that name:</p>"
+    )
+    add(listing("sqlite3", w.chunk("insert", "again")))
 
     add("<h2>Why IF NOT EXISTS and INSERT OR IGNORE</h2>")
     add(
@@ -244,9 +257,10 @@ def build():
         "only because of two choices. <code>CREATE TABLE IF NOT EXISTS</code> skips a table "
         "that is already there. <code>INSERT OR IGNORE</code> skips a row whose primary key "
         "is already in the table. One side effect: a sample row you delete comes back the "
-        "next time the file runs:</p>"
+        "next time the file runs. Count the orders, delete one, then read the schema "
+        "again:</p>"
     )
-    add(listing("sqlite3", w.run_text("read_twice")))
+    add(listing("sqlite3", w.chunks("read_twice", "first", "delete", "again")))
     add(
         "<p>Six orders, then five after the <code>DELETE</code>, then six again: the second "
         "<code>.read</code> put A105 back. That is fine for sample rows, and it is why your "
@@ -488,7 +502,7 @@ def build():
     page = (
         f'{head}\n<body>\n{body}\n<script src="../site.js"></script>\n</body></html>\n'
     )
-    return page, [OPEN, COPY, tables_section, conversations_section]
+    return page, [OPEN, COPY, REOPEN, tables_section, conversations_section]
 
 
 if __name__ == "__main__":
