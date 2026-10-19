@@ -173,9 +173,11 @@ def warmup_folder():
 
 
 def pytest_summary(folder):
-    """The last line of a real pytest run in folder, without its timing."""
+    """The last line of a real pytest run in folder, without its timing. -P keeps
+    the folder off sys.path, as a student's own pytest command does, so a
+    missing tests/__init__.py fails here too."""
     result = subprocess.run(
-        [sys.executable, "-B", "-m", "pytest", "-q", "-p", "no:cacheprovider"],
+        [sys.executable, "-B", "-P", "-m", "pytest", "-q", "-p", "no:cacheprovider"],
         cwd=folder,
         capture_output=True,
         text=True,

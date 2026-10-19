@@ -303,9 +303,13 @@ def build():
             "Write your tools class and its tests",
             "<p>Create <code>tools.py</code> with a class named for your business that takes "
             "<code>db_file</code>, like <code>BaysideTools</code>. Give it "
-            "<code>tool_list</code>, your lookup tools and your change tool, each with an "
-            "<code>Args:</code> docstring, and the <code>run</code> door. Copy these three "
-            "methods as they are:</p>"
+            "<code>tool_list</code>, your lookup tools, your change tool and "
+            "<code>check_request</code>, each with an <code>Args:</code> docstring, and the "
+            "<code>run</code> door. Copy <code>check_request</code> from the warm-up&rsquo;s "
+            "<code>tools.py</code> and change its column and record names to yours. Like "
+            "Bayside&rsquo;s <code>look_up_order</code>, each lookup tool looks for the ID "
+            "among the words it is given, because the keyword model passes the "
+            "customer&rsquo;s whole sentence. Copy these three methods as they are:</p>"
             + block(
                 "tools.py — copy as they are",
                 "\n\n".join(
@@ -316,8 +320,9 @@ def build():
             + "<p>Then write <code>tests/test_tools.py</code> with at least five tests. Start "
             "from Bayside&rsquo;s helpers:</p>"
             + block("tests/test_tools.py — first block", w.tools_test_top())
-            + "<p>Test a lookup, a change that waits, an unknown tool refused, a missing value "
-            "refused, and a value the customer never typed refused.</p>"
+            + "<p>Test a lookup that finds the ID inside a sentence, a change that waits, an "
+            "unknown tool refused, a missing value refused, and a value the customer never "
+            "typed refused.</p>"
             + block(
                 "tests/test_tools.py — Bayside's made-up value test",
                 app_test("tests/test_tools.py", "test_made_up_order_id_is_refused"),
@@ -399,9 +404,17 @@ def build():
             "<code>python3 main.py</code>. If your laptop cannot run the model, change "
             "<code>OllamaModel(MODEL_NAME)</code> to <code>KeywordModel()</code> and add "
             "<code>from keyword_model import KeywordModel</code>.</p>"
+            "<p>The keyword model handles lookups only: it cannot file a change or ask about "
+            "one. To try the staff review on it, file one request from <code>python3</code> "
+            "first, the way you checked a lookup in Part 3: import your "
+            "<code>add_change_request</code> from <code>database</code> and call it with your "
+            "database file, a real ID and a new value. Then run <code>main.py</code>, type "
+            "<code>quit</code>, and approve the request. The record list at the end shows the "
+            "change.</p>"
             + hint(
-                "Run it twice. File a change, decide it at the staff review, then run it again "
-                "and ask about it: the decision is still in your database."
+                "Run it twice. With Ollama, file a change, decide it at the staff review, then "
+                "run it again and ask about it: the decision is still in your database. On the "
+                "keyword model, the second run&rsquo;s record list still shows the change."
             ),
         )
     )

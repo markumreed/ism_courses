@@ -78,24 +78,28 @@ def slide_problems(text):
 
 def warmup_problems(lab_text):
     """Rebuild the warm-up from the lab page's own blocks and compare its output
-    with the page's expected boxes."""
-    blocks = {plain(label): plain(code) for label, code in BLOCK.findall(lab_text)}
+    with the page's expected boxes. tests/__init__.py exists only if the page's
+    warm-up terminal block makes it."""
+    found = [(plain(label), plain(code)) for label, code in BLOCK.findall(lab_text)]
+    blocks = dict(found)
     missing = [key for key, label in w.LABELS.items() if label not in blocks]
+    terminal = [
+        code for label, code in found if label == "Terminal" and "sql_practice" in code
+    ]
+    if not terminal:
+        missing.append("terminal")
     if missing:
         return [f"warm-up block missing from the page: {key}" for key in missing]
     get = {key: blocks[label] for key, label in w.LABELS.items()}
-    folder = w.build_folder(
-        {
-            "schema.sql": w.app_file("schema.sql"),
-            "database.py": get["db_top"] + "\n\n\n" + get["db_find"] + "\n",
-            "tools.py": get["tools"] + "\n",
-            "tests/__init__.py": "",
-            "tests/test_database.py": get["test_top"]
-            + "\n\n\n"
-            + get["test_find"]
-            + "\n",
-        }
-    )
+    files = {
+        "schema.sql": w.app_file("schema.sql"),
+        "database.py": get["db_top"] + "\n\n\n" + get["db_find"] + "\n",
+        "tools.py": get["tools"] + "\n",
+        "tests/test_database.py": get["test_top"] + "\n\n\n" + get["test_find"] + "\n",
+    }
+    if "touch tests/__init__.py" in terminal[0]:
+        files["tests/__init__.py"] = ""
+    folder = w.build_folder(files)
     outputs = [shell(get["shell"].split("\n"), folder), w.pytest_summary(folder)]
     boxes = [plain(box).rstrip() for box in EXPECTED.findall(lab_text)]
     return [

@@ -31,10 +31,6 @@ def shell_slide(comment, title, code, expect, notes):
     return code_slide(comment, title, code, expect, notes, readonly=True, lang="shell")
 
 
-def python_slide(comment, title, code, expect, notes):
-    return code_slide(comment, title, code, expect, notes, readonly=True)
-
-
 def build():
     SHOWN.clear()
     timings = [
@@ -108,7 +104,7 @@ def build():
         )
     )
     add(
-        python_slide(
+        shell_slide(
             "7. HELPERS",
             "database.py — first block",
             w.warmup_database_top(),
@@ -250,10 +246,11 @@ def build():
                 ("a", "(order_id)"),
                 ("b", "(order_id,)"),
                 ("c", "[order_id]"),
-                ("d", "order_id,"),
+                ("d", "tuple(order_id)"),
             ],
             "b",
-            "(order_id,) — the comma makes it a tuple; (order_id) is just order_id.",
+            "(order_id,) — the comma makes it a tuple; (order_id) is just order_id, "
+            "and tuple(order_id) splits A100 into four letters.",
             "One last check on the most common mistake of the week.",
         )
     )
