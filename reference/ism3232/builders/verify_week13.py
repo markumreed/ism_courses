@@ -48,10 +48,24 @@ def answer_leaks(name, text, answers=w.ANSWERS):
     return [answer for answer in answers if answer in shown]
 
 
-def expected_misses(text, pool):
-    """Expected-output boxes whose text is in no saved transcript."""
-    boxes = re.findall(r'<div class="expected"[^>]*>(.*?)</div>', text, re.DOTALL)
-    return [plain(box)[:60] for box in boxes if plain(box) not in pool]
+def saved_outputs():
+    """Everything an expected box may show: the version line, and each part of
+    each saved session, with and without its typed lines."""
+    outputs = {w.run_text("version")}
+    for name, parts in w.SESSIONS.items():
+        for part, _ in parts:
+            outputs.add(w.chunk(name, part))
+            outputs.add(w.output_of(name, part))
+    return outputs
+
+
+def expected_misses(text, outputs):
+    """Expected-output boxes that are not exactly one saved output."""
+    allowed = {output.rstrip() for output in outputs}
+    boxes = re.findall(
+        r'<div class="[^"]*\bexpected\b[^"]*"[^>]*>(.*?)</div>', text, re.DOTALL
+    )
+    return [plain(box)[:60] for box in boxes if plain(box).rstrip() not in allowed]
 
 
 def qti_functions():
@@ -140,7 +154,6 @@ def main():
         *[p.read_text() for p in sorted(w.RUNS.glob("*.txt"))],
         *derived,
     ]
-    pool = "\n".join(sources)
     for name in PAGES:
         bad += [
             f"{name}: in no source: {m}"
@@ -149,7 +162,7 @@ def main():
         bad += [f"{name}: answer shown: {a}" for a in answer_leaks(name, texts[name])]
     bad += [
         f"week13_lab: not real output: {m}"
-        for m in expected_misses(texts["week13_lab"], pool)
+        for m in expected_misses(texts["week13_lab"], saved_outputs())
     ]
     bad += [f"week13_reading: {p}" for p in quiz_problems(DOCS / "week13_reading.html")]
     config = yaml.safe_load(CONFIG.read_text())

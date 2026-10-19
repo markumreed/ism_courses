@@ -33,12 +33,30 @@ def test_the_lab_slides_may_show_answers():
 
 def test_an_expected_box_must_be_real_output():
     page = '<div class="expected" style="white-space:pre-wrap;">day pack  0</div>'
-    assert v.expected_misses(page, "name  stock\nday pack  45.0") == ["day pack  0"]
+    assert v.expected_misses(page, ["name  stock\nday pack  45.0"]) == ["day pack  0"]
 
 
 def test_a_real_expected_box_passes():
     page = '<div class="expected" style="white-space:pre-wrap;">A101  processing</div>'
-    assert v.expected_misses(page, "sqlite> x\nA101  processing\n") == []
+    assert v.expected_misses(page, ["A101  processing   "]) == []
+
+
+def test_a_box_holding_only_part_of_an_output_is_not_enough():
+    page = '<div class="expected" style="white-space:pre-wrap;">2</div>'
+    assert v.expected_misses(page, ["delivered   2\nprocessing  3"]) == ["2"]
+
+
+def test_a_box_with_more_classes_is_still_checked():
+    page = '<div class="expected big">made up</div>'
+    assert v.expected_misses(page, ["A101  processing"]) == ["made up"]
+
+
+def test_saved_outputs_are_whole_parts_with_and_without_typed_lines():
+    outputs = v.saved_outputs()
+    assert v.w.chunk("lab", "ex1") in outputs
+    assert v.w.output_of("lab", "ex1") in outputs
+    assert v.w.run_text("version") in outputs
+    assert "2" not in outputs
 
 
 def quiz_page(tmp_path, items):
