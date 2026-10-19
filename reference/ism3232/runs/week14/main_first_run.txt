@@ -1,0 +1,16 @@
+Type a message, or type quit to stop.
+You: Sunny: Hello! How may I assist you today?
+You: Sunny: Your order A104 has been shipped.
+You: Sunny: We have 8 fleece vests in stock, priced at $60.00 each.
+You: Sunny: Your address change request for order A102 has been submitted and is pending staff approval.
+You: Sunny: Request 1 for order A102 is currently being reviewed by staff.
+You: Messages in this conversation: 14
+Staff review
+Request 1: A102 to 9 Pine Street, Tampa
+Approve? yes or no: Request 1 rejected.
+A100 14 Bay Road
+A101 3 Gull Lane
+A102 88 Pier Street
+A103 21 Harbor Way
+A104 7 Dune Court
+A105 40 Tide Street

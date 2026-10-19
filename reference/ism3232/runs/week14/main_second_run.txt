@@ -1,0 +1,10 @@
+Type a message, or type quit to stop.
+You: Sunny: Request 1 for order A102 was rejected.
+You: Messages in this conversation: 3
+Staff review
+A100 14 Bay Road
+A101 3 Gull Lane
+A102 88 Pier Street
+A103 21 Harbor Way
+A104 7 Dune Court
+A105 40 Tide Street
