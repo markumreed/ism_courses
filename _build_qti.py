@@ -3,7 +3,9 @@
 
 Output: quiz_exam_fa26/
   ism2411_quiz_w01.zip  …  ism2411_quiz_w15.zip   (14 module quizzes)
-  ism2411_midterm.zip                              (modules 1–8 combined)
+  ism2411_midterm.zip                              (modules 1–7, auto-graded only)
+  ism3232_quiz_w01.zip  …  ism3232_quiz_w16.zip   (15 module quizzes)
+  ism3232_midterm.zip                              (modules 1–7, auto-graded only)
 """
 
 import html
@@ -332,6 +334,20 @@ def manifest_xml(ident: str, filename: str) -> str:
 </manifest>"""
 
 
+MIDTERM_MODULES = [1, 2, 3, 4, 5, 6, 7]
+
+
+def midterm_items(items_by_module: dict[int, list[dict]]) -> list[dict]:
+    """Multiple choice and true/false items from the midterm modules.
+    Short Answer and Code Trace items (essay questions) are left out."""
+    return [
+        item
+        for mod in MIDTERM_MODULES
+        for item in items_by_module[mod]
+        if _qtype(item["type_label"], item["question"]) != "essay_question"
+    ]
+
+
 def write_zip(out_path: Path, ident: str, title: str, items: list[dict]):
     assess = assessment_xml(ident, title, items)
     manif  = manifest_xml(ident, f"{ident}.xml")
@@ -376,21 +392,18 @@ for mod in MODULES:
     title = f"ISM2411 Module {mod:02d} Quiz — {MODULE_TITLES[mod]}"
     write_zip(OUT / f"{ident}.zip", ident, title, items)
 
-# Midterm: modules 1–8
-midterm_items = []
-for mod in [1,2,3,4,5,6,7,8]:
-    for item in all_quiz_items[mod]:
-        midterm_items.append(item)
+# Midterm: multiple choice and true/false from modules 1–7
+ism2411_mid = midterm_items(all_quiz_items)
 
 write_zip(
     OUT / "ism2411_midterm.zip",
     "ism2411_midterm",
-    "ISM2411 Midterm Exam — Modules 1–8",
-    midterm_items,
+    "ISM2411 Midterm Exam — Multiple Choice, Modules 1–7",
+    ism2411_mid,
 )
 
 print(f"\n  {len(MODULES)} ISM2411 module quizzes + 1 midterm")
-print(f"  Midterm total: {len(midterm_items)} questions")
+print(f"  Midterm total: {len(ism2411_mid)} questions")
 
 # ── ISM3232 ───────────────────────────────────────────────────────────────────
 
@@ -428,15 +441,13 @@ for mod in ISM3232_MODULES:
     title = f"ISM3232 Module {mod:02d} Quiz — {ISM3232_TITLES[mod]}"
     write_zip(OUT / f"{ident}.zip", ident, title, items)
 
-# ISM3232 midterm: modules 1–8
-ism3232_mid = []
-for mod in [1,2,3,4,5,6,7,8]:
-    ism3232_mid.extend(ism3232_items[mod])
+# ISM3232 midterm: multiple choice and true/false from modules 1–7
+ism3232_mid = midterm_items(ism3232_items)
 
 write_zip(
     OUT / "ism3232_midterm.zip",
     "ism3232_midterm",
-    "ISM3232 Midterm Exam — Modules 1–8",
+    "ISM3232 Midterm Exam — Multiple Choice, Modules 1–7",
     ism3232_mid,
 )
 

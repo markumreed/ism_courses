@@ -28,7 +28,7 @@ Every week follows the same three-step rhythm:
 
 Class time is mostly active: independent, self-paced review of lecture content online, followed by independent and peer-supported coding during the in-person lab. Five required DataCamp courses (plus 2 optional) run in parallel with lecture content and are completed independently outside class time.
 
-Learning is assessed through weekly labs and quizzes (35%), five required DataCamp courses (15%), a 75-minute midterm exam (20%), a capstone retail analysis project (25%), and participation (5%).
+Learning is assessed through weekly labs and quizzes (35%), five required DataCamp courses (15%), a midterm exam (20%) with a 75-minute in-class part and a timed multiple-choice quiz in Canvas, a capstone retail analysis project (25%), and participation (5%).
 
 ---
 
@@ -103,7 +103,7 @@ This course moves quickly, and each module builds on the previous one. Here is w
 
 **Attend every lab.** It is the only in-person session each week, and it is structured practice that would take two to three times longer to complete alone. Missing lab hurts more than missing any single reading.
 
-**Use the self-check quizzes as your first study session.** Quizzes marked ★ MIDTERM-ELIGIBLE cover material tested on the midterm. The midterm is three handwritten questions, so those quiz questions will not repeat word for word. Questions marked ★ CAPSTONE-ELIGIBLE appear on the capstone verbatim or with minor variation. Treat the quiz as early exam prep.
+**Use the self-check quizzes as your first study session.** Quizzes marked ★ MIDTERM-ELIGIBLE cover material tested on the midterm. The midterm has two parts: three handwritten questions in class, and a timed multiple-choice quiz in Canvas that you take at home during exam week. The multiple-choice quiz reuses the Multiple Choice and True / False questions from the Module 1–7 quizzes word for word. Questions marked ★ CAPSTONE-ELIGIBLE appear on the capstone verbatim or with minor variation. Treat the quiz as early exam prep.
 
 **Run your code often.** Do not write 20 lines and then run. Write 3 lines, run, check, continue. Errors are easier to find when you introduce them one at a time.
 
@@ -145,7 +145,7 @@ For questions that may benefit the whole class (debugging approaches, assignment
 | Weekly Labs | 30% | 14 labs total (Modules 1–8, 10–15). Due Sunday at 11:59 PM. Graded on correctness, completion, code quality, and proper submission. Code must run without errors. |
 | Weekly Quizzes | 5% | 14 quizzes on Canvas, tied to the assigned reading. Open-note, untimed. Due before that week's lab. Quizzes marked ★ MIDTERM-ELIGIBLE cover material tested on the midterm. Questions marked ★ CAPSTONE-ELIGIBLE reappear on the capstone. |
 | DataCamp Courses | 15% | 5 required courses = 10% (graded on completion only, not speed or score). 2 optional bonus courses = up to 5% extra credit. See the DataCamp page for deadlines. |
-| Midterm Exam | 20% | Module 9. In-class, 75 minutes. Covers Modules 1–8. One handwritten page of notes allowed, using one side only of a standard 8.5 × 11 sheet. No laptops, no phones. |
+| Midterm Exam | 20% | Module 9. In-class, 75 minutes. Covers Modules 1–8. One handwritten page of notes allowed, using one side only of a standard 8.5 × 11 sheet. No laptops, no phones. Also a timed multiple-choice quiz in Canvas, taken at home during exam week: the Multiple Choice and True / False questions from the Module 1–7 quizzes, word for word. Your notes and the course site are allowed; AI tools are not. |
 | Capstone Project | 25% | Module 16. End-to-end retail sales analysis submitted as a GitHub repo with a Jupyter notebook. 5–7 minute live presentation. See the capstone rubric on the course website. |
 | Lab Participation & Engagement | 5% | Holistic assessment at midterm and end of semester: engagement during the weekly in-person lab, helping peers, completing in-class activities, attending office hours, demonstrating effort. |
 | **Total** | **100%** | |
@@ -182,7 +182,7 @@ You can access your scores at any time in Canvas under Grades. If you believe a 
 | 6 | Loops | for / while; break / continue; process transactions | Lab 5 |
 | 7 | Functions, Debugging & AI Literacy | def / return; tracebacks; AI modes; disclosure policy | Lab 6 |
 | 8 | Git & GitHub | Version control; push/pull; GitHub submission begins | Lab 7 |
-| 9 | **Midterm Exam** | Covers Modules 1–8 · 75 min · one handwritten page of notes allowed | Midterm |
+| 9 | **Midterm Exam** | Covers Modules 1–8 · 75 min · one handwritten page of notes allowed · plus a multiple-choice quiz in Canvas at home | Midterm |
 | 10 | Lists & Tuples | Indexing, slicing, methods; product inventory | Lab 8 |
 | 11 | Dictionaries | Key-value pairs; nesting; customer records | Lab 9 |
 | 12 | Working with Files | txt / csv; open(); import data; export report | Lab 10 |
@@ -234,10 +234,10 @@ This course uses USF's Canvas learning management system. All assignments, quizz
 Class sessions may be recorded using lecture capture technology. Student participation in live discussions may be captured. Recordings are made available only to students enrolled in this course, to assist those who cannot attend a live session or who want to review content. Students who prefer to participate via audio only may disable their video camera — please discuss this with the instructor.
 
 ### Laptop Usage
-Bring your laptop to every in-person lab session with VS Code and Python running. When completing the online lecture material, follow along with the code in your own environment — close social media and unrelated tabs. During the midterm exam, all electronic devices are prohibited. Only one handwritten page of notes (one side of a standard 8.5 × 11 sheet) is permitted during the exam.
+Bring your laptop to every in-person lab session with VS Code and Python running. When completing the online lecture material, follow along with the code in your own environment — close social media and unrelated tabs. During the in-class midterm exam, all electronic devices are prohibited. Only one handwritten page of notes (one side of a standard 8.5 × 11 sheet) is permitted during the exam.
 
 ### Phone Usage
-Phones must be silenced and put away during class sessions. Students may use devices to record lectures for personal use but must continue to meet classroom behavioral expectations while doing so. Phones are not permitted during the midterm exam.
+Phones must be silenced and put away during class sessions. Students may use devices to record lectures for personal use but must continue to meet classroom behavioral expectations while doing so. Phones are not permitted during the in-class midterm exam.
 
 ---
 
