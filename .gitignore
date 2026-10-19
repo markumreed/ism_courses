@@ -34,3 +34,6 @@ canvas_builder/*.imscc
 
 # SQLite files made by the ISM3232 reference apps
 reference/ism3232/**/*.db
+
+# Unpublished verification builds (this repository is public).
+reference/ism3232/_private/
