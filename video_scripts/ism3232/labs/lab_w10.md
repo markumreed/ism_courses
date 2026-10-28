@@ -958,7 +958,7 @@ git add . && git commit -m 'lab 10: OOP for agents chatbot and tool' && git push
 |---|---|---|
 | `TypeError: ...greet() takes 0 positional arguments but 1 was given` | A method is missing `self` in its parameter list. Python passes the object in, and there's nowhere to put it | `def greet(self):` |
 | `AttributeError: 'SupportChatbot' object has no attribute 'name'` | `name = name` without `self.` sets a local variable that disappears | `self.name = name` |
-| `TypeError: ...missing 1 required positional argument: 'self'` | You called a method on the **class** (`SupportChatbot.respond(...)`) | Call it on an **object**: `bot.respond(...)` |
+| `TypeError: ...greet() missing 1 required positional argument: 'self'` | You called a method on the **class** (`SupportChatbot.greet()`) | Call it on an **object**: `bot.greet()` |
 | `TypeError: SupportChatbot.__init__() missing 1 required positional argument: 'stock_tool'` | Exercise 3 changed `__init__`, but one place still passes three values | Update `main.py`, `make_bot()` and `two_bots.py` |
 | `ModuleNotFoundError: No module named 'stock_tool'` | The file name doesn't match the import (for example `stock_tools.py`), or the file was never saved | Run `ls` and make the file name match the `import` line exactly |
 | `can't open file '.../main.py': [Errno 2] No such file or directory` | The terminal is in a different folder | `cd ~/ism3232/module06_agents`, then run it again |
