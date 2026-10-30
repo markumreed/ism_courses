@@ -64,3 +64,13 @@ def test_with_clicks_writes_the_slide_convention():
     assert w.with_clicks("x = 1", 3, "Count: 1") == (
         "x = 1\n\n# After 3 clicks the page shows:\n# Count: 1"
     )
+
+
+def test_a_typed_address_is_filed_as_request_1():
+    out = w.typed_shell()
+    assert w.TYPED_ADDRESS in out
+    assert out.split("\n")[-2] == "1"
+
+
+def test_the_staff_row_shows_the_typed_address_as_plain_text():
+    assert w.staff_row() == f"Request 1: A102 to {w.TYPED_ADDRESS}"
