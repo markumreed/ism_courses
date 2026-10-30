@@ -450,6 +450,29 @@ def folder_at(rev, folder="reference/ism3232/module06_agents"):
     return target / folder
 
 
+def files_at(rev, folder):
+    """Every file under `folder` as it was in commit `rev`, as text."""
+    import subprocess
+
+    names = subprocess.run(
+        ["git", "ls-tree", "-r", "--name-only", rev, folder],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
+    ).stdout.split()
+    return [
+        subprocess.run(
+            ["git", "show", f"{rev}:{name}"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout
+        for name in names
+    ]
+
+
 def run_snippet(code, folder, stdin=""):
     """Run a standalone snippet inside `folder` and return what it prints."""
     import subprocess
