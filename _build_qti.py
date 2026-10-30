@@ -424,7 +424,7 @@ ISM3232_TITLES = {
     12: "Tools and Guardrails — Model-Chosen Tools, Checks & Approval",
     13: "Agent Design & SQL — Proposal, Schema & sqlite3",
     14: "Database Tools — sqlite3, Placeholders & Tested Tools",
-    15: "Streamlit Business Interface",
+    15: "Streamlit Chat & Staff — Reruns, Session State & Approvals",
     16: "GenAI Feature & Final Demo",
 }
 
