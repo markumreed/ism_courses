@@ -20,7 +20,11 @@ PREV = (
     "Week 13",
     "Agent Design &amp; SQL — Proposal, Schema &amp; sqlite3",
 )
-NEXT = ("week15", "Week 15", "Streamlit Interface")
+NEXT = (
+    "week15",
+    "Week 15",
+    "Streamlit Chat &amp; Staff — Reruns, Session State &amp; Approvals",
+)
 REV = "d44a23b"  # Bayside app, Week 14 checkpoint (after the final review fixes)
 WEEK12_REV = "e87f10f"  # module06_agents with Week 12's exercises
 APP = "bayside_app/"
