@@ -288,6 +288,14 @@ def build():
                         "&ldquo;pickup change&rdquo;",
                     ],
                     [
+                        (
+                            "the chat box&rsquo;s hint and the spinner&rsquo;s "
+                            "&ldquo;Sunny is thinking&rdquo;"
+                        ),
+                        "what your customers ask about, and your assistant&rsquo;s name",
+                        "&ldquo;Ask Spoke about a repair, a part, or a pickup change&rdquo;",
+                    ],
+                    [
                         "<code>all_orders</code>",
                         "your list function",
                         "<code>all_repairs</code>",
