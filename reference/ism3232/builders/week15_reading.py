@@ -200,7 +200,8 @@ def build():
         "<p><code>make_model</code> turns the sidebar choice into a model: the course model "
         "with the keyword rules behind it, or the keyword rules alone. <code>show</code> "
         "writes text into the page. Streamlit reads a pair of <code>$</code> signs as "
-        'math, so a price like $60.00 would come out garbled; <code>"\\\\$"</code> is a '
+        "math, so a reply with two prices, like $5 and $6, would come out garbled; "
+        '<code>"\\\\$"</code> is a '
         "backslash and a dollar sign (a backslash in a string is written twice), and a "
         "backslash before <code>$</code> tells Streamlit to show a plain dollar sign.</p>"
     )
@@ -290,8 +291,9 @@ def build():
         "<p>Changing a dropdown would normally rerun the script at once. Inside "
         "<code>st.form</code>, nothing reruns until the form&rsquo;s own button is pressed, "
         "so staff can pick a product and type a number, then send both together. "
-        "<code>min_value=0</code> and <code>step=1</code> are keyword arguments that stop "
-        "the number going below zero.</p>"
+        "Both <code>min_value=0</code> and <code>step=1</code> are keyword arguments: "
+        "<code>min_value=0</code> keeps the number from going below zero, and "
+        "<code>step=1</code> makes it count in whole numbers.</p>"
     )
 
     add("<h2>One round trip</h2>")
@@ -431,15 +433,15 @@ def build():
             1,
             "A counter shows Count: 1 after three clicks. Why?",
             [
+                "The button works only once",
+                "st.write keeps the first value it showed",
                 (
                     "Streamlit runs the whole script again on every click, so count = 0 runs "
                     "again"
                 ),
-                "The button works only once",
-                "st.write keeps the first value it showed",
                 "The browser ignores repeated clicks",
             ],
-            0,
+            2,
             "Every click reruns the script from the top. Only st.session_state keeps a "
             "value between runs.",
         ),
@@ -463,24 +465,24 @@ def build():
             "Why does app.py create the chatbot inside "
             '<code>if "bot" not in st.session_state:</code>?',
             [
-                "So the same chatbot, with its history, is used on every rerun",
                 "So the chatbot answers faster",
+                "So the same chatbot, with its history, is used on every rerun",
                 "Because a SupportChatbot can only be created once",
                 "So the database is created only once",
             ],
-            0,
+            1,
             "Without it, every rerun would build a new chatbot with an empty history.",
         ),
         quiz_mc(
             5,
             "Why does the Staff tab show each request with <code>st.text</code>?",
             [
-                "So text a customer typed cannot format the page or add a link",
                 "st.text is faster than st.markdown",
                 "st.markdown cannot show numbers",
                 "st.text saves the request",
+                "So text a customer typed cannot format the page or add a link",
             ],
-            0,
+            3,
             "Customer text is data. st.text shows it exactly as typed.",
         ),
         quiz_tf(
@@ -510,12 +512,12 @@ def build():
             8,
             "What does <code>st.form</code> change about the restock inputs?",
             [
-                "Nothing reruns until the form&rsquo;s submit button is pressed",
                 "The inputs are saved to the database by themselves",
                 "The form clears the table first",
+                "Nothing reruns until the form&rsquo;s submit button is pressed",
                 "The form keeps its values after a refresh",
             ],
-            0,
+            2,
             "Changing the dropdown or the number waits; Save sends both at once.",
         ),
         quiz_trace(

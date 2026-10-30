@@ -40,6 +40,9 @@ PRACTICE = "cd ~/ism3232/sql_practice"
 RUN = {name: f"streamlit run {name}" for name in w.WARMUP}
 RUN_APP = "streamlit run app.py"
 PYTEST = "pytest -q"
+SECOND_TERMINAL = (
+    "cd ~/ism3232/module07_final_project\nsource .venv/bin/activate\npython3"
+)
 FILE_REQUEST = (
     "from database import add_change_request\n"
     'add_change_request("<yours>.db", "<an ID>", "<new value>")'
@@ -357,7 +360,27 @@ def build():
                 "Keep <code>st.text</code> for the waiting rows: the request holds text a "
                 "customer typed, and <code>st.text</code> shows it exactly as typed. Your "
                 "edit form changes your Part 3 function, with your own labels."
-            ),
+            )
+            + "<p>Fit the form to the value you edit:</p>"
+            "<ul>"
+            "<li>A whole number, like Bayside&rsquo;s stock: keep "
+            "<code>st.number_input</code> and <code>int()</code>.</li>"
+            '<li>Text, such as a tenant&rsquo;s name: use <code>st.text_input("New '
+            'tenant")</code> instead of <code>st.number_input</code>, and pass the value '
+            "without <code>int()</code>.</li>"
+            "<li>A price: keep <code>st.number_input</code> with "
+            "<code>min_value=0.0, step=0.01</code>, and pass the value without "
+            "<code>int()</code>, which would cut off the cents.</li>"
+            "<li>One of a fixed set, such as a priority: use <code>st.selectbox</code> with "
+            "a list of the choices.</li>"
+            "</ul>"
+            "<p>If your change request has no new value (a cancellation), leave "
+            "&ldquo;to &hellip;&rdquo; out of the waiting row.</p>"
+            "<p>Now run it and open the Staff tab:</p>"
+            + block("Terminal", RUN_APP)
+            + "<p>If no request is waiting you see <em>Nothing is waiting.</em>, then your "
+            "records, your report and your form. Save one edit: the notice appears once and "
+            "the records table shows the change. Leave the app running for Part 7.</p>",
         )
     )
 
@@ -371,14 +394,17 @@ def build():
             "terminal): ask for a change in the Chat tab, approve it on the Staff tab, then "
             "go back to the Chat tab and ask what happened to it.</p>"
             "<p><strong>Keyword rules only:</strong> the keyword rules cannot file a change, "
-            "so file one yourself, as in Week 14. With the app still running, open "
-            "<code>python3</code> in a second terminal and type:</p>"
+            "so file one yourself, as in Week 14. With the app still running, open a second "
+            "terminal and start <code>python3</code> in your project folder:</p>"
+            + block("Terminal", SECOND_TERMINAL)
+            + "<p>Then type each line (leave out the new value if your request has none):</p>"
             + block("Python shell — type each line", FILE_REQUEST)
-            + "<p>Then rerun the page (press R, or click any button), approve the request "
-            "on the Staff tab, and watch your records table change.</p>"
-            "<p><strong>Everyone:</strong> refresh the browser once. The chat clears, because "
-            "it lived in <code>st.session_state</code>; the decision stays, because it is in "
-            "your database.</p>",
+            + "<p>The page only shows the new request after it reruns, so refresh the "
+            "browser: the request is already in your database. Approve it on the Staff tab "
+            "and watch your records table change.</p>"
+            "<p><strong>Everyone:</strong> refresh the browser once at the end. The chat "
+            "clears, because it lived in <code>st.session_state</code>; the decision stays, "
+            "because it is in your database.</p>",
         )
     )
 
@@ -444,6 +470,7 @@ def build():
         *RUN.values(),
         RUN_APP,
         PYTEST,
+        SECOND_TERMINAL,
         FILE_REQUEST,
         PUSH,
         *w.WARMUP.values(),

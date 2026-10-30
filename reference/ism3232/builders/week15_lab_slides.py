@@ -282,7 +282,8 @@ def build():
             "25. KEYWORD PATH",
             "Keyword rules only: file one yourself",
             FILE_REQUEST,
-            "In python3, with the app running; then press R and approve.",
+            "In python3 from your project folder, with the app running; then refresh the "
+            "browser and approve.",
             "With Ollama, ask for the change in the chat instead. Everyone refreshes once.",
         )
     )
