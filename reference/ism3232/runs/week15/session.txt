@@ -1,0 +1,26 @@
+# Week 15 session: Bayside app at 8b1b491, granite4.1:3b on the CPU, captured by session.py
+## chat
+You: Has A101 shipped yet?
+Sunny: Your order A101 is still processing.
+You: Please change the address on order A102 to 9 Pine Street, Tampa
+Sunny: Your address change request for order A102 has been submitted and is awaiting staff approval.
+## staff waiting
+Request 1: A102 to 9 Pine Street, Tampa
+## staff approved
+Request 1 approved.
+## orders
+A100 shipped 14 Bay Road
+A101 processing 3 Gull Lane
+A102 delivered 9 Pine Street, Tampa
+A103 processing 21 Harbor Way
+A104 shipped 7 Dune Court
+A105 delivered 40 Tide Street
+## chat after approval
+You: What happened to request 1?
+Sunny: Request 1 for order A102 has been approved.
+## after a refresh
+chat messages: 0
+## images
+chat.png 8c211355f539cbc04bdc5bd1aea4ebb1a8fc434626c9ea313af577e0d11529f3
+staff_waiting.png c2477220e09aad9d96b2bcda3337bcb3218fcf346856732f71020b55f77a06d6
+staff_approved.png 7eb78a24ae0efc5de24a67eb7e501636804003744b5b3adcc882f08094f8cbb5
