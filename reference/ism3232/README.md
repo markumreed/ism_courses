@@ -5,7 +5,11 @@ from these files, so a listing on the site always matches code that ran.
 
 - `module06_agents/`: the Weeks 10–12 lab folder. Its git history holds each
   checkpoint (Week 11 end, Week 12 guided parts, Week 12 with exercises and
-  mini-project).
+  mini-project). The Week 11 end is `81ee233`, with one difference from the
+  Week 11 lab page, which has no builder: since 2026-11-02 the page's
+  mini-project `test_unknown_request_gets_a_safe_reply` hands the helper a
+  `SilentModel` and checks for "try again", with `SilentModel` above
+  `make_helper`. The test count is the same (21), so Week 12 is unaffected.
 - `bayside_app/`: the Bayside Outfitters reference app that the Week 13–16
   pages quote. It is laid out exactly like a student's capstone repository.
   Checkpoint commits (page builders read each week's listings from these):

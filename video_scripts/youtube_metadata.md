@@ -71,7 +71,7 @@ YouTube video ID is the 11-character string in the URL:
 | 40 | PLACEHOLDER_LAB_W07 | Functions Lab — Lab Walkthrough \| ISM2411 Lab 07 | 10 min | ISM2411 |
 | 41 | PLACEHOLDER_LAB_W08 | Debugging Lab — Lab Walkthrough \| ISM2411 Lab 08 | 10 min | ISM2411 |
 | 42 | PLACEHOLDER_LAB_W10 | Lists & Tuples Lab — Lab Walkthrough \| ISM2411 Lab 10 | 10 min | ISM2411 |
-| 43 | PLACEHOLDER_LAB_W11 | CSV File I/O Lab — Lab Walkthrough \| ISM2411 Lab 11 | 10 min | ISM2411 |
+| 43 | PLACEHOLDER_LAB_W11 | Customer Dictionary & Lookup — Lab Walkthrough \| ISM2411 Lab 11 | 10 min | ISM2411 |
 | 44 | PLACEHOLDER_LAB_W12 | pandas Intro Lab — Lab Walkthrough \| ISM2411 Lab 12 | 10 min | ISM2411 |
 | 45 | PLACEHOLDER_LAB_W13 | Data Cleaning Lab — Lab Walkthrough \| ISM2411 Lab 13 | 10 min | ISM2411 |
 | 46 | PLACEHOLDER_LAB_W14 | Aggregation & Charts Lab — Lab Walkthrough \| ISM2411 Lab 14 | 10 min | ISM2411 |
@@ -93,7 +93,7 @@ YouTube video ID is the 11-character string in the URL:
 | 54 | PLACEHOLDER_LAB_W07 | Functions, Modules & pytest — Lab Walkthrough \| ISM3232 Lab 07 | 10 min | ISM3232 |
 | 55 | PLACEHOLDER_LAB_W08 | Debugging, AI Literacy & Midterm Review — Lab Walkthrough \| ISM3232 Lab 08 | 10 min | ISM3232 |
 | 56 | PLACEHOLDER_LAB_W10 | OOP I: Classes & Objects — Lab Walkthrough \| ISM3232 Lab 10 | 10 min | ISM3232 |
-| 57 | PLACEHOLDER_LAB_W11 | OOP II: Composition, Inheritance & SQL Mapping — Lab Walkthrough \| ISM3232 Lab 11 | 10 min | ISM3232 |
+| 57 | PLACEHOLDER_LAB_W11 | Talking to a Local Model: Ollama, Instructions & History — Lab Walkthrough \| ISM3232 Lab 11 | 10 min | ISM3232 |
 | 58 | PLACEHOLDER_LAB_W12 | OOP III: Applied Practice & Design — Lab Walkthrough \| ISM3232 Lab 12 | 10 min | ISM3232 |
 | 59 | PLACEHOLDER_LAB_W13 | Capstone Design & SQL Foundations — Lab Walkthrough \| ISM3232 Lab 13 | 10 min | ISM3232 |
 | 60 | PLACEHOLDER_LAB_W14 | Python + SQL Integration — Lab Walkthrough \| ISM3232 Lab 14 | 10 min | ISM3232 |
@@ -177,7 +177,7 @@ ISM2411_LAB_IDS = {
     "PLACEHOLDER_LAB_W07": "",   # ISM2411 Lab W07 — Functions
     "PLACEHOLDER_LAB_W08": "",   # ISM2411 Lab W08 — Debugging
     "PLACEHOLDER_LAB_W10": "",   # ISM2411 Lab W10 — Lists & Tuples
-    "PLACEHOLDER_LAB_W11": "",   # ISM2411 Lab W11 — CSV File I/O
+    "PLACEHOLDER_LAB_W11": "",   # ISM2411 Lab W11 — Customer Dictionary & Lookup
     "PLACEHOLDER_LAB_W12": "",   # ISM2411 Lab W12 — pandas Intro
     "PLACEHOLDER_LAB_W13": "",   # ISM2411 Lab W13 — Data Cleaning
     "PLACEHOLDER_LAB_W14": "",   # ISM2411 Lab W14 — Aggregation & Charts
@@ -195,7 +195,7 @@ ISM3232_LAB_IDS = {
     "PLACEHOLDER_LAB_W07": "",   # ISM3232 Lab W07 — Functions, Modules & pytest
     "PLACEHOLDER_LAB_W08": "",   # ISM3232 Lab W08 — Debugging, AI Literacy & Midterm Review
     "PLACEHOLDER_LAB_W10": "",   # ISM3232 Lab W10 — OOP I: Classes & Objects
-    "PLACEHOLDER_LAB_W11": "",   # ISM3232 Lab W11 — OOP II: Composition, Inheritance & SQL Mapping
+    "PLACEHOLDER_LAB_W11": "",   # ISM3232 Lab W11 — Talking to a Local Model: Ollama, Instructions & History
     "PLACEHOLDER_LAB_W12": "",   # ISM3232 Lab W12 — OOP III: Applied Practice & Design
     "PLACEHOLDER_LAB_W13": "",   # ISM3232 Lab W13 — Capstone Design & SQL Foundations
     "PLACEHOLDER_LAB_W14": "",   # ISM3232 Lab W14 — Python + SQL Integration

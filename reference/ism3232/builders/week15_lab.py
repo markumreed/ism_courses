@@ -391,7 +391,7 @@ def build():
             10,
             "File, approve, ask",
             "<p><strong>With Ollama</strong> (<code>ollama serve</code> in a second "
-            "terminal): ask for a change in the Chat tab, approve it on the Staff tab, then "
+            "terminal, unless Ollama starts on its own): ask for a change in the Chat tab, approve it on the Staff tab, then "
             "go back to the Chat tab and ask what happened to it.</p>"
             "<p><strong>Keyword rules only:</strong> the keyword rules cannot file a change, "
             "so file one yourself, as in Week 14. With the app still running, open a second "
@@ -414,7 +414,7 @@ def build():
         task(
             11,
             "Run the full ritual with Ollama switched off",
-            "<p>Stop the app (Ctrl+C) and quit Ollama first.</p>"
+            "<p>Stop the app (Ctrl+C) and switch Ollama off first.</p>"
             + block("Terminal", PUSH)
             + hint(
                 "Run it from the project folder. If <code>ruff check</code> stops on a fixable "

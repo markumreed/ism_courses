@@ -400,10 +400,15 @@ def build():
             "class, your list-of-records function, and your request&rsquo;s columns in the "
             "staff review:</p>"
             + block("main.py", w.app_file("main.py"))
-            + "<p>Start Ollama in a second terminal with <code>ollama serve</code>, then run "
-            "<code>python3 main.py</code>. If your laptop cannot run the model, change "
-            "<code>OllamaModel(MODEL_NAME)</code> to <code>KeywordModel()</code> and add "
-            "<code>from keyword_model import KeywordModel</code>.</p>"
+            + "<p>Make sure Ollama is running: on a Mac, the app; on Windows, <code>ollama serve</code> "
+            "in a second terminal, unless Ollama starts on its own. Then run "
+            "<code>python3 main.py</code>.</p>"
+            "<p>If your laptop cannot run the model, use the keyword model. Replace "
+            "<code>from ollama_model import OllamaModel</code> with "
+            "<code>from keyword_model import KeywordModel</code>, change "
+            "<code>OllamaModel(MODEL_NAME)</code> to <code>KeywordModel()</code>, and take "
+            "<code>MODEL_NAME</code> off the <code>settings</code> import. An import that nothing "
+            "uses stops <code>ruff check</code> with F401.</p>"
             "<p>The keyword model handles lookups only: it cannot file a change or ask about "
             "one. To try the staff review on it, file one request from <code>python3</code> "
             "first, the way you checked a lookup in Part 3: import your "
@@ -425,7 +430,7 @@ def build():
         task(
             10,
             "Run the full ritual with Ollama switched off",
-            "<p>Quit Ollama first. If your tests pass now, they pass when your repository is "
+            "<p>Switch Ollama off first. If your tests pass now, they pass when your repository is "
             "graded on a computer that has never had Ollama.</p>"
             + block("Terminal", PUSH)
             + hint(

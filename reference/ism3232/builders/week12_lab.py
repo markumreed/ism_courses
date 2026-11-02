@@ -447,13 +447,16 @@ def build():
         task(
             12,
             "Switch Ollama off and try again",
-            "<p>On a Mac, quit the Ollama app. On Windows, press Ctrl+C in the terminal running "
-            "<code>ollama serve</code>. Then run <code>python3 main.py</code>, type <code>hello</code>, "
+            "<p><strong>Mac:</strong> quit the Ollama app. <strong>Windows:</strong> press Ctrl+C in "
+            "the terminal running <code>ollama serve</code>, or, if Ollama starts on its own, run "
+            "<code>sudo systemctl stop ollama</code>.</p>"
+            "<p>Then run <code>python3 main.py</code>, type <code>hello</code>, "
             "<code>Where is order A100?</code> and <code>quit</code>.</p>"
             + expected(off)
             + "<p>Last week the order question still worked with Ollama off, because a rule answered it. "
             "Now the model decides, so a lookup needs the model too. Exercise 4 fixes that. Turn Ollama "
-            "back on before the exercises.</p>",
+            "back on before the exercises: open the app, run <code>ollama serve</code>, or run "
+            "<code>sudo systemctl start ollama</code>.</p>",
         )
     )
 
@@ -709,7 +712,8 @@ def build():
         task(
             18,
             "Run the full ritual with Ollama switched off",
-            "<p>Quit Ollama first. If your tests pass now, they pass when your repository is graded on a "
+            "<p>Switch Ollama off first, as in Step 12. If your tests pass now, they pass when your "
+            "repository is graded on a "
             "computer that has never had Ollama.</p>"
             + block(
                 "Terminal",
