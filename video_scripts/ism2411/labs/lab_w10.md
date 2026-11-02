@@ -79,10 +79,10 @@ Paste this header at the top of the file. The lab requires your two reflection a
 #   [2-3 sentences]
 ```
 
-To run the file, use this from inside `~/ism2411`. On a Mac, type `python3` if `python` isn't found.
+To run the file, use this from inside `~/ism2411`. In Ubuntu on Windows and on a Mac, the command is `python3`.
 
 ```bash
-python week10/inventory.py
+python3 week10/inventory.py
 ```
 
 Each exercise below starts with a `print("--- Exercise N ---")` line, so the output is easy to read and easy to grade.
@@ -450,7 +450,7 @@ print(f"Avg: {sum(high_sales) / len(high_sales):.2f}")
 
 </details>
 
-**Full run** of `python week10/inventory.py`:
+**Full run** of `python3 week10/inventory.py`:
 
 ```text
 --- Exercise 1 ---
