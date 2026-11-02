@@ -6,7 +6,8 @@ Type along, one exercise at a time. Run the file after each one and compare with
 
 | | |
 |---|---|
-| **Files** | `ism2411/week12/csv_practice.py`, one file holding all 8 exercises. It reads `week12/data/sales.csv` and writes `week12/data/cleaned.csv` and `week12/data/run_log.txt` |
+| **Repo** | A new GitHub repo, `ism2411-lab12`, set up the way Lab 11 reviewed |
+| **Files** | `csv_practice.py`, one file holding all 8 exercises, at the top level of the repo. It reads `data/sales.csv` and writes `data/cleaned.csv` and `data/run_log.txt` |
 | **Time** | About one lab session |
 | **Builds on** | Dictionaries and `.get()` (Module 11), lists and the accumulator pattern (Module 10), `for` loops and `if` (Modules 5–6), f-strings (Module 3), the GitHub workflow (Module 8) |
 | **New this week** | `open()` and its modes, `with`, `csv.reader`, `next()`, `csv.writer` with `newline=""`, `csv.DictReader`, relative paths, append mode |
@@ -15,7 +16,7 @@ Type along, one exercise at a time. Run the file after each one and compare with
 ### Contents
 
 0. [Five-minute refresher](#0-five-minute-refresher)
-1. [Set up the folder and the data](#1-set-up-the-folder-and-the-data)
+1. [Set up this lab's repo and the data](#1-set-up-this-labs-repo-and-the-data)
 2. [Exercises 1–4: read the file](#exercise-1--get-the-file)
 3. [Exercise 5: write a cleaned file](#exercise-5--filter-and-write)
 4. [Exercises 6–8: read by name, summarize, log](#exercise-6--csvdictreader)
@@ -54,19 +55,31 @@ with open("data/sales.csv", "r") as f:
 
 ---
 
-## 1. Set up the folder and the data
+## 1. Set up this lab's repo and the data
 
-Open VS Code's terminal (**View → Terminal**) and go to your course repo:
+This lab gets its own GitHub repo, `ism2411-lab12`, set up the same way as Lab 11's. On github.com, click **New repository**, name it `ism2411-lab12`, make it **Public**, and check **Add a README file**. Then, in VS Code's terminal (**View → Terminal**):
 
 ```bash
-cd ~/ism2411
-git pull
-mkdir -p week12/data
+cd ~
+git clone https://github.com/YOURUSERNAME/ism2411-lab12.git
+cd ism2411-lab12
+cp ~/ism2411/.gitignore .
+git add .gitignore
+git commit -m "add .gitignore for Python and OS files"
+git push
+mkdir data
+code .
 ```
 
-`mkdir -p` makes `week12` and the `data` folder inside it in one step. `git pull` brings down anything you changed on github.com, so your next push isn't rejected.
+- Clone from your home folder, `~`, never from inside another repo.
+- `cp` reuses the `.gitignore` you wrote in Lab 8, and it's pushed before anything else.
+- `mkdir data` makes the folder the CSV files live in.
 
-**Get `sales.csv`.** Download it from Canvas and drag it into `week12/data/` in VS Code's Explorer. To follow this code-along number for number, or if you don't have the Canvas file yet, make your own instead: run `code week12/data/sales.csv`, paste these 13 lines, and save.
+Replace the line in `README.md` with a title, `# ISM2411 Lab 12 — Read a Sales CSV, Write a Cleaned Report`, your name, and the command that runs the script, `python3 csv_practice.py`. Commit and push it.
+
+Check you're in the right place: `pwd` should end in `/ism2411-lab12`, and `git remote -v` should show `ism2411-lab12.git`. Any setup error is in the Lab 11 code-along's troubleshooting table.
+
+**Get `sales.csv`.** Download it from Canvas and drag it into `data/` in VS Code's Explorer. To follow this code-along number for number, or if you don't have the Canvas file yet, make your own instead: run `code data/sales.csv`, paste these 13 lines, and save.
 
 ```text
 product,price,quantity
@@ -86,14 +99,13 @@ Stand F,39.99,2
 
 > **Using the Canvas file?** Your products and totals will differ from the outputs below, but every exercise prints the same kind of thing. The Canvas file needs the same three columns, in this order: `product,price,quantity`.
 
-Now move into the week folder and create the script:
+Now create the script, at the top level of the repo:
 
 ```bash
-cd week12
 code csv_practice.py
 ```
 
-**Run everything from inside `~/ism2411/week12` this week.** The script opens `"data/sales.csv"`, a *relative* path, and Python looks for it starting from the folder your terminal is in, not the folder the script is in. From `~/ism2411`, that path means `~/ism2411/data/sales.csv`, which doesn't exist. Lab 11 ran from `~/ism2411`; this lab doesn't.
+**Run everything from inside `~/ism2411-lab12`.** The script opens `"data/sales.csv"`, a *relative* path, and Python looks for it starting from the folder your terminal is in, not the folder the script is in. From your home folder, that path means `~/data/sales.csv`, which doesn't exist. With one repo per lab, the repo's top folder is always the right place to run from.
 
 Paste this header at the top of the file. The lab requires your two reflection answers in a comment block at the top, so leave the placeholders now and fill them in at the end.
 
@@ -733,25 +745,26 @@ Replace the two placeholders at the top of the file with 2–3 sentences each:
 
 ## Submit
 
-From inside `~/ism2411/week12`, go back up one folder first, so `git add` picks up the whole week:
+Commit as you go, after each exercise or two. Once the reflection is filled in and you've run the script three times, make the last commit from inside `~/ism2411-lab12`:
 
 ```bash
-cd ~/ism2411
 git status
-git add week12/
-git commit -m "add module 12 csv lab: exercises 1-8, cleaned report and run log"
+git add csv_practice.py data/
+git commit -m "add exercises 1-8, cleaned report, run log and reflection"
 git push
+git status       # should say: Your branch is up to date with 'origin/main'
 ```
 
-Then open your repo on github.com and click into `week12/`. You should see `csv_practice.py` and a `data/` folder holding `sales.csv`, `cleaned.csv` and `run_log.txt`.
+Then open `https://github.com/YOURUSERNAME/ism2411-lab12` in a private or incognito window. You should see `.gitignore`, `README.md`, `csv_practice.py` and a `data/` folder holding `sales.csv`, `cleaned.csv` and `run_log.txt`.
 
-**Canvas:** paste your GitHub repository URL. That is the only thing you submit. Don't upload the files.
+**Canvas:** paste the URL of the repo's main page, `https://github.com/YOURUSERNAME/ism2411-lab12`. That is the only thing you submit. Don't upload the files.
 
-- [ ] `week12/csv_practice.py` is in your `ism2411` repo on github.com, with Exercises 1–8
-- [ ] It runs from top to bottom with no errors, from inside `week12`, and writes `data/cleaned.csv` and a new line in `data/run_log.txt`
+- [ ] `csv_practice.py` is in your `ism2411-lab12` repo on github.com, at the top level, with Exercises 1–8
+- [ ] It runs from top to bottom with no errors, from the repo's top folder, and writes `data/cleaned.csv` and a new line in `data/run_log.txt`
 - [ ] `data/cleaned.csv` and `data/run_log.txt` are pushed too, and the log has at least three lines
 - [ ] The reflection comment block at the top is filled in, not placeholders
-- [ ] The commit message describes the change
+- [ ] The repo is Public, with your `.gitignore` and a `README.md` with the lab title
+- [ ] Your commit messages describe each change
 - [ ] The repo URL is pasted in Canvas
 
 ---
@@ -760,7 +773,7 @@ Then open your repo on github.com and click into `week12/`. You should see `csv_
 
 | You see | Cause | Fix |
 |---|---|---|
-| `FileNotFoundError: [Errno 2] No such file or directory: 'data/sales.csv'` | The terminal is in the wrong folder, often `~/ism2411`, or the file is somewhere else | `cd ~/ism2411/week12`, then `ls data`. To see where Python is looking, `import os` and `print(os.getcwd())` |
+| `FileNotFoundError: [Errno 2] No such file or directory: 'data/sales.csv'` | The terminal is in the wrong folder, or the file is somewhere else | `cd ~/ism2411-lab12`, then `ls data`. To see where Python is looking, `import os` and `print(os.getcwd())` |
 | `TypeError: can't multiply sequence by non-int of type 'str'` | Two strings multiplied: `row[1] * row[2]` | Convert first: `float(row[1]) * int(row[2])` |
 | `ValueError: could not convert string to float: 'price'` | The header row went into the math | `next(reader)` before the loop |
 | `ValueError: could not convert string to float: '1,299.00'` | A price with a thousands comma | Remove it before converting: `float(price_str.replace(",", ""))` |

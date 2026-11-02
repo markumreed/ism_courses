@@ -6,7 +6,8 @@ Type along, one exercise at a time. Run the file after each one and compare with
 
 | | |
 |---|---|
-| **File** | `ism2411/week11/customers.py`, one file holding all 8 exercises |
+| **Repo** | A new GitHub repo, `ism2411-lab11`. From this lab on, every lab gets its own |
+| **File** | `customers.py`, one file holding all 8 exercises, at the top level of the repo |
 | **Time** | About one lab session |
 | **Builds on** | Lists and the accumulator pattern (Module 10), `for` loops and `if` (Modules 5–6), f-strings (Module 3), `try`/`except` (Lab 10, Exercise 5), the GitHub workflow (Module 8) |
 | **New this week** | Dictionaries: key access, add/update/delete, `.get()`, `.items()`, lookup tables, nested dictionaries, a list of dictionaries |
@@ -15,7 +16,8 @@ Type along, one exercise at a time. Run the file after each one and compare with
 ### Contents
 
 0. [Five-minute refresher](#0-five-minute-refresher)
-1. [Set up the file](#1-set-up-the-file)
+1. [Set up this lab's repo](#1-set-up-this-labs-repo)
+2. [Create the file](#2-create-the-file)
 2. [Exercises 1–4: one customer record](#exercise-1--one-customer)
 3. [Exercise 5: a lookup table](#exercise-5--lookup-table)
 4. [Exercises 6–8: many records](#exercise-6--list-of-dicts)
@@ -50,18 +52,97 @@ for key in customer:              # a plain loop gives the keys only
 
 ---
 
-## 1. Set up the file
+## 1. Set up this lab's repo
 
-Open VS Code's terminal (**View → Terminal**) and go to your course repo:
+**From this lab on, every lab gets its own GitHub repo:** `ism2411-lab11` for this one, `ism2411-lab12` for the next, and so on. This is a review of the setup you did in Lab 8. The first time takes about ten minutes. After that it takes two.
+
+**Why a new repo for each lab?** Each lab is its own small project. Its repo holds only that lab's files and that lab's commits, so the URL you submit shows exactly one piece of work, and your instructor clones exactly one lab to grade it. Real projects work the same way: one repo per project. Your `ism2411` repo from Lab 8 stays as it is, with your earlier labs in it. Don't add new labs to it.
+
+Five steps, in order. Run the commands in VS Code's terminal (**View → Terminal**), one line at a time. Lines that start with `#` are notes, so don't type them.
+
+**Step 1: make the repo on github.com.** Click **New repository**. Name it `ism2411-lab11`, all lowercase, with the two-digit lab number. Make it **Public**, because your instructor can't grade a private repo. Check **Add a README file**, which gives the repo its first commit so you can clone it. Leave .gitignore and License at *None*.
+
+**Step 2: clone it from your home folder.** Copy the URL from the green **Code** button, with the **HTTPS** tab selected. It ends in `.git`.
 
 ```bash
-cd ~/ism2411
-git pull
-mkdir week11
-code week11/customers.py
+# Start in your home folder, not inside another repo
+cd ~
+git clone https://github.com/YOURUSERNAME/ism2411-lab11.git
+cd ism2411-lab11
+git status       # should say: On branch main ... nothing to commit, working tree clean
+code .
 ```
 
-`git pull` brings down anything you changed on github.com, so your next push isn't rejected.
+`git status` should print:
+
+```text
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+```
+
+**Step 3: add your .gitignore and push it first.** Reuse the one you wrote in Lab 8:
+
+```bash
+# Reuse the .gitignore you wrote in Lab 8
+cp ~/ism2411/.gitignore .
+git add .gitignore
+git commit -m "add .gitignore for Python and OS files"
+git push
+```
+
+**Step 4: give the README a title.** Open `README.md` in VS Code. GitHub put one line in it. Replace it with this, put in your name, and save:
+
+````markdown
+# ISM2411 Lab 11 — Customer Dictionary & Lookup
+
+**Name:** Your Name Here
+
+## How to Run
+
+From this folder:
+
+```
+python3 customers.py
+```
+````
+
+```bash
+git add README.md
+git commit -m "add README with lab title and run instructions"
+git push
+```
+
+**Step 5: check you are in the right repo.**
+
+```bash
+pwd              # should end in /ism2411-lab11
+git remote -v     # both lines should show github.com/YOURUSERNAME/ism2411-lab11.git
+git log --oneline   # your two commits, then GitHub's Initial commit
+```
+
+`git log --oneline` shows three commits, newest first. Your hashes will be different:
+
+```text
+c999759 add README with lab title and run instructions
+e0c5fe4 add .gitignore for Python and OS files
+e4b27f5 Initial commit
+```
+
+**Every file in this lab goes in this folder,** at the top level next to `README.md`, and every command runs from here. Setup problems are at the top of [When something breaks](#when-something-breaks).
+
+> **The loop for the rest of the lab.** After each exercise or two: save, then `git add customers.py`, `git commit -m "add exercise 3: safe lookup with get"` (a message that says what changed), and `git push`. Small commits with clear messages are part of the work. If something goes wrong, `git status` tells you where you are and changes nothing.
+
+---
+
+## 2. Create the file
+
+From inside `~/ism2411-lab11`:
+
+```bash
+code customers.py
+```
 
 Paste this header at the top of the file. The lab requires your two reflection answers in a comment block at the top, so leave the placeholders now and fill them in at the end.
 
@@ -78,10 +159,10 @@ Paste this header at the top of the file. The lab requires your two reflection a
 #   [2-3 sentences]
 ```
 
-To run the file, use this from inside `~/ism2411`. In Ubuntu on Windows and on a Mac, the command is `python3`.
+To run the file, use this from inside `~/ism2411-lab11`. In Ubuntu on Windows and on a Mac, the command is `python3`.
 
 ```bash
-python3 week11/customers.py
+python3 customers.py
 ```
 
 Each exercise starts with a `print("--- Exercise N ---")` line, so the output is easy to read and easy to grade.
@@ -383,7 +464,7 @@ South: 500
 ## The finished file
 
 <details>
-<summary><b>Complete <code>week11/customers.py</code></b> (check yours against it)</summary>
+<summary><b>Complete <code>customers.py</code></b> (check yours against it)</summary>
 
 ```python
 # customers.py
@@ -487,7 +568,7 @@ for region in sorted(sales_by_region):
 
 </details>
 
-**Full run** of `python3 week11/customers.py`:
+**Full run** of `python3 customers.py`:
 
 ```text
 --- Exercise 1 ---
@@ -539,23 +620,25 @@ Replace the two `[2-3 sentences]` placeholders at the top with your own answers:
 
 ## Submit
 
-From inside `~/ism2411`:
+You've been committing as you go. Once the reflection is filled in, make the last commit from inside `~/ism2411-lab11`:
 
 ```bash
 git status
-git add week11/
-git commit -m "add module 11 customer dictionary lab: exercises 1-8 and reflection"
+git add customers.py
+git commit -m "add reflection answers to customers.py"
 git push
+git status       # should say: Your branch is up to date with 'origin/main'
 ```
 
-Then open your repo on github.com, click into `week11/`, and confirm `customers.py` is there with your reflection at the top.
+Then open `https://github.com/YOURUSERNAME/ism2411-lab11` in a private or incognito window, the way your instructor sees it. You should see `.gitignore`, `README.md` and `customers.py`, and your README under the file list. Click `customers.py` and check that your reflection is at the top.
 
-**Canvas:** paste your GitHub repository URL. That is the only thing you submit. Don't upload the file.
+**Canvas:** paste the URL of the repo's main page, `https://github.com/YOURUSERNAME/ism2411-lab11`. That is the only thing you submit. Don't upload the file, and don't paste the link to a single file.
 
-- [ ] `week11/customers.py` is in your `ism2411` repo on github.com
+- [ ] `customers.py` is in your `ism2411-lab11` repo on github.com, at the top level
+- [ ] The repo is Public, and also has your `.gitignore` and a `README.md` with the lab title
 - [ ] It runs from top to bottom with no errors and includes Exercises 1–8
 - [ ] The reflection comment block at the top is filled in, not placeholders
-- [ ] The commit message describes the change
+- [ ] Your commit messages describe each change
 - [ ] The repo URL is pasted in Canvas
 
 ---
@@ -564,6 +647,12 @@ Then open your repo on github.com, click into `week11/`, and confirm `customers.
 
 | You see | Cause | Fix |
 |---|---|---|
+| `fatal: destination path 'ism2411-lab11' already exists and is not an empty directory.` | You cloned it already | `cd ism2411-lab11` and carry on from Step 3 |
+| `fatal: repository 'https://github.com/.../ism2411-lab11.git/' not found` | The repo wasn't created, or the URL has a typo | Copy the URL from the repo's green **Code** button |
+| `pwd` shows `/ism2411/ism2411-lab11`, or `git status` in `~/ism2411` lists `ism2411-lab11/` under Untracked files | You cloned inside your Lab 8 repo | `cd ~`, then `mv ~/ism2411/ism2411-lab11 ~/`, then `cd ism2411-lab11`. Don't commit it to `ism2411` |
+| `cp: cannot stat '/home/you/ism2411/.gitignore': No such file or directory` | Your Lab 8 repo isn't at `~/ism2411` in this terminal | Make `.gitignore` in VS Code (New File, a dot first, no extension) and paste the starter content from Lab 8, Exercise 3 |
+| `git push` asks for a password, or says `Authentication failed` | GitHub wants your personal access token, or the token from Lab 8 has expired | Paste the token as the password. Expired: make a new one (Lab 8, Exercise 3) and clear the saved login |
+| `fatal: not a git repository (or any of the parent directories): .git` | The terminal isn't inside the lab's repo | `cd ~/ism2411-lab11` |
 | `KeyError: 'email'` and the program stops | Bracket notation asked for a key that isn't there, outside a `try` | Use `.get("email", "no email on file")`, or put the lookup under `try:` with `except KeyError` |
 | `KeyError: 'South'` in Exercise 8 | `sales_by_region[region] += ...` adds to a key that doesn't exist yet | `sales_by_region[region] = sales_by_region.get(region, 0) + sale["amount"]` |
 | `NameError: name 'name' is not defined` | The key has no quotes: `customer[name]` | `customer["name"]` |
@@ -571,7 +660,7 @@ Then open your repo on github.com, click into `week11/`, and confirm `customers.
 | `TypeError: 'builtin_function_or_method' object is not subscriptable` | `.get` with square brackets: `customer.get["email"]` | `.get` is a method, so it takes parentheses: `customer.get("email")` |
 | `SyntaxError: f-string: unmatched '['` | Double quotes around a key inside a double-quoted f-string, on Python 3.11 or older | Single quotes inside: `f"{customer['tier']}"` |
 | Exercise 5 prints `Discount: 0%` | The tier doesn't match a key exactly (`"Platinum"` vs `"platinum"`), so `.get` returns the default | Match the spelling and capitals in `tier_discounts` |
-| `can't open file ... No such file or directory` | The terminal isn't in `~/ism2411`, or the folder is named differently | `cd ~/ism2411`, then `ls week11` |
+| `can't open file ... No such file or directory` | The terminal isn't in `~/ism2411-lab11`, or the file is named differently | `cd ~/ism2411-lab11`, then `ls` |
 | `git push` is rejected | You edited something on github.com | `git pull`, then `git push` |
 
 > **`.get` can hide a typo.** The Exercise 5 row above has no error message at all, and that's what makes it dangerous. The default you chose is applied silently. When a `.get()` result looks wrong, print the key you looked up.
