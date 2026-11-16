@@ -28,7 +28,7 @@ Every week follows the same three-step rhythm:
 
 Class time is mostly active: independent, self-paced review of lecture content online, followed by independent and peer-supported coding during the in-person lab. Five required DataCamp courses (plus 2 optional) run in parallel with lecture content and are completed independently outside class time.
 
-Learning is assessed through weekly labs and quizzes (35%), five required DataCamp courses (15%), a midterm exam (20%) with a 75-minute in-class part and a timed multiple-choice quiz in Canvas, a capstone retail analysis project (25%), and participation (5%).
+Learning is assessed through weekly labs and quizzes (35%), five required DataCamp courses (15%), a midterm exam (20%) with a 75-minute in-class part and a timed multiple-choice quiz in Canvas, a capstone data analysis project on a business dataset each student picks for their major (25%), and participation (5%).
 
 ---
 
@@ -146,7 +146,7 @@ For questions that may benefit the whole class (debugging approaches, assignment
 | Weekly Quizzes | 5% | 14 quizzes on Canvas, tied to the assigned reading. Open-note, untimed. Due before that week's lab. Quizzes marked ★ MIDTERM-ELIGIBLE cover material tested on the midterm. Questions marked ★ CAPSTONE-ELIGIBLE reappear on the capstone. |
 | DataCamp Courses | 15% | 5 required courses = 10% (graded on completion only, not speed or score). 2 optional bonus courses = up to 5% extra credit. See the DataCamp page for deadlines. |
 | Midterm Exam | 20% | Module 9. In-class, 75 minutes. Covers Modules 1–8. One handwritten page of notes allowed, using one side only of a standard 8.5 × 11 sheet. No laptops, no phones. Also a timed multiple-choice quiz in Canvas, taken at home during exam week: the Multiple Choice and True / False questions from the Module 1–7 quizzes, word for word. Your notes and the course site are allowed; AI tools are not. |
-| Capstone Project | 25% | Module 16. End-to-end retail sales analysis submitted as a GitHub repo with a Jupyter notebook. 5–7 minute live presentation. See the capstone rubric on the course website. |
+| Capstone Project | 25% | Module 16. End-to-end analysis of a business dataset the student picks for their major (retail, accounting, finance, HR, IT, marketing, supply chain, or sport & entertainment), submitted as a GitHub repo with a Jupyter notebook. 5–7 minute live presentation. See the capstone rubric on the course website. |
 | Lab Participation & Engagement | 5% | Holistic assessment at midterm and end of semester: engagement during the weekly in-person lab, helping peers, completing in-class activities, attending office hours, demonstrating effort. |
 | **Total** | **100%** | |
 | DataCamp Bonus | Up to +5% | Completion of up to 2 optional DataCamp courses. Cannot raise the DataCamp component above 20% total. |
@@ -189,7 +189,7 @@ You can access your scores at any time in Canvas under Grades. If you believe a 
 | 13 | Intro to pandas | DataFrames; read_csv; filter, sort; retail dataset | Lab 11 |
 | 14 | Data Cleaning & Descriptive Stats | Missing values; dtypes; describe(), mean(), median() | Lab 12 |
 | 15 | Grouping & Visualization | groupby(); matplotlib; seaborn; chart selection | Lab 13 |
-| 16 | **Capstone Project** | End-to-end retail analysis; GitHub repo; 5–7 min presentation | Capstone |
+| 16 | **Capstone Project** | End-to-end analysis of a dataset for your major; GitHub repo; 5–7 min presentation | Capstone |
 
 **University-Scheduled Final Exam:** [Date and time per USF Final Examination calendar — posted in Canvas.]
 
