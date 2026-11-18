@@ -9,11 +9,16 @@ import week16_common as w
 from pagekit import REF
 
 
-def test_cases_match_the_week13_checkpoint_apart_from_names():
+def test_the_proposal_cases_match_the_week13_checkpoint_apart_from_names():
+    from week13_proposal import CONVERSATIONS
+
     new = [
         {k: v for k, v in case.items() if k != "name"} for case in w.case_dicts(w.REV)
     ]
-    assert new == w.case_dicts(w.OLD_REV)
+    old = w.case_dicts(w.OLD_REV)
+    assert [new[i] for i in CONVERSATIONS] == [old[i] for i in CONVERSATIONS]
+    changed = [w.CASE_NAMES[i] for i in range(len(old)) if new[i] != old[i]]
+    assert changed == ["price match"]
     assert [case["name"] for case in w.case_dicts(w.REV)] == w.CASE_NAMES
 
 

@@ -76,7 +76,7 @@ def build():
             "This week &mdash; measure, don&rsquo;t assume",
             "The app runs. Today Bayside gets an evaluation: fixed cases, a check for each, "
             "three real runs, and a count. Every result on this page is a real run of the "
-            "code it shows, on a laptop CPU with the course model.",
+            "code it shows, on a CPU with no GPU and the course model.",
         )
     )
 
@@ -140,8 +140,10 @@ def build():
             card(
                 "So what is the right answer?",
                 "<p>Bayside&rsquo;s instructions never mention price matching, so the right "
-                f"answer is &ldquo;I do not know&rdquo;. {of(f['price_yes'])} runs invented "
-                "a policy. One try would have told you nothing.</p>",
+                f"answer is &ldquo;I do not know&rdquo; and an offer of a person. "
+                f"{of(f['price_yes'])} runs invented a policy. The evaluation, a separate "
+                f"batch of three, passed {w.evaluation_result('price match')}. One try would "
+                "have told you nothing.</p>",
             ),
         )
     )
@@ -175,12 +177,13 @@ def build():
         f"<p>Live: <code>{RUN_EVALUATION}</code> with Ollama running. If it is slow, show "
         "the saved run:</p>"
     )
-    add(output("Output — a real run on a laptop CPU", table))
+    add(output("Output — a real run on a CPU, no GPU", table))
     add(
         card(
             "Reading the failures",
             f"<p><strong>price match</strong> passed {w.evaluation_result('price match')}: "
-            "the model sometimes invents a policy. <strong>false closing time</strong> passed "
+            "Sunny invents a policy or asks for an order ID instead of offering a person. "
+            "<strong>false closing time</strong> passed "
             f"{w.evaluation_result('false closing time')}: a customer&rsquo;s claim beats the "
             "instructions. Neither is fixed with a keyword rule; both go in the README as "
             "limitations.</p>",

@@ -19,9 +19,11 @@ from these files, so a listing on the site always matches code that ran.
   - Week 15 `8b1b491`: `app.py`
   - Week 16 `172d6ad`: `evaluation.py` (the whole app). Week 13's proposal
     still reads its cases from here; the case content never changed.
-  - Week 16 (tested checks) `4fd7aeb`: `cases.py`, `tests/test_cases.py` and
+  - Week 16 (tested checks) `aa6595b`: `cases.py`, `tests/test_cases.py` and
     `README.md`; `evaluation.py` imports the cases and checks from `cases.py`.
-    The Week 16 pages read their listings from here.
+    The Week 16 pages read their listings from here. (`4fd7aeb`, the first
+    tested-checks commit, checked price match with never_says "yes"; the final
+    review replaced it with says "human agent".)
   (The first Week 14–16 checkpoints, `835cc6f`, `ce25ab8` and `637468a`, came
   before the final-review fixes and must not be used for pages.)
 - `bayside_dev_tests/`: Streamlit `AppTest` and evaluation checks for the app.

@@ -202,3 +202,47 @@ def test_part_4_has_students_add_reset_database():
     want = w.app_function("database.py", "reset_database")
     assert blocks["database.py — reset_database"].rstrip() == want.rstrip()
     assert part.index("reset_database") < part.index(">evaluation.py<")
+
+
+def test_one_run_section_says_the_evaluation_is_a_separate_run():
+    one_run = section(reading_page(), "One run proves nothing")
+    assert "separate" in one_run
+    assert w.evaluation_result("price match") in one_run
+
+
+def test_reading_shows_why_never_says_yes_was_too_weak():
+    checks = section(reading_page(), "Testing the checks")
+    prose = re.sub(r"<pre.*?</pre>", "", checks, flags=re.DOTALL)
+    assert "We do price match." in prose
+    assert "human agent" in prose
+
+
+def test_lab_part_3b_says_what_to_do_if_nothing_fails():
+    assert "If nothing fails" in lab_part(3)
+
+
+def test_no_page_claims_a_laptop_cpu():
+    for page in built_pages():
+        assert "laptop CPU" not in page
+
+
+def test_reading_names_the_screen_sharing_setting():
+    assert "screen sharing" in section(reading_page(), "The demo video")
+
+
+def test_reading_suggests_a_case_that_passes_a_correct_reply():
+    page = reading_page()
+    assert "never_says &quot;has been approved&quot;" in page
+    assert "never_says &quot;approved&quot;" not in page
+
+
+def test_syllabus_and_course_guide_row_leave_anthropic_behind():
+    from pagekit import DOCS
+
+    assert "Anthropic" not in (DOCS / "syllabus.html").read_text()
+    guide = (DOCS / "course_guide.html").read_text()
+    row = guide[
+        guide.index('<span class="mod-num" style="color:var(--u4);">W16</span>') :
+    ]
+    row = row[: row.index("</tr>")]
+    assert "Anthropic" not in row

@@ -201,7 +201,12 @@ def build():
             "<p>Change one <code>never_says</code> value to a longer phrase that a wrong "
             "answer could avoid, run <code>pytest tests/test_cases.py</code>, and watch a "
             "test fail. Then change it back. Bayside&rsquo;s version of this failure:</p>"
-            + block("Bayside — the weak value", f"{w.WEAK_MARK}\n{weak}"),
+            + block("Bayside — the weak value", f"{w.WEAK_MARK}\n{weak}")
+            + hint(
+                "If nothing fails, none of your wrong answers avoids the longer phrase. Add "
+                "one that does, as Bayside did with &ldquo;11:00 PM&rdquo;, and try again: "
+                "that new wrong answer is exactly the test your check was missing."
+            ),
         )
     )
 
@@ -226,13 +231,13 @@ def build():
             + "<p>With Ollama running, run it from your project folder:</p>"
             + block("Terminal", RUN_EVALUATION)
             + hint(
-                "It takes several minutes on a laptop CPU: every case runs three times. If "
+                "It takes several minutes on a laptop: every case runs three times. If "
                 "it says the course model did not answer, start Ollama and try again. Copy "
                 "the table it prints into your README in Part 6, exactly as printed."
             )
             + reveal(
                 "Bayside&rsquo;s table, for comparison",
-                block("Output — a real run on a laptop CPU", saved),
+                block("Output — a real run on a CPU, no GPU", saved),
             ),
         )
     )

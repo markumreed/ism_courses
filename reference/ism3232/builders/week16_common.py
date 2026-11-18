@@ -25,7 +25,7 @@ PREV = (
     "Streamlit Chat &amp; Staff — Reruns, Session State &amp; Approvals",
 )
 NEXT = ("capstone_rubric", "Capstone", "Capstone Rubric")
-REV = "4fd7aeb"  # Bayside app, Week 16 checkpoint (tested checks)
+REV = "aa6595b"  # Bayside app, Week 16 checkpoint (tested checks)
 OLD_REV = "172d6ad"  # Week 16's first checkpoint; Week 13's proposal reads its cases
 APP = "bayside_app/"
 APP_FOLDER = "reference/ism3232/bayside_app"

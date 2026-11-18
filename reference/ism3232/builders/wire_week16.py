@@ -2,7 +2,9 @@
 Task 10).
 
 Every replacement states how many times it must match. The script checks all
-counts first and writes nothing unless every count is right. Pages that
+counts first and writes nothing unless every count is right. A replacement whose
+old text is gone and whose new text is in place counts as applied, so the script
+can be run again after entries are added. Pages that
 builders make (Weeks 12 to 16) are not touched here: their strip comes from
 pagekit.STRIP and Week 15's next link from week15_common.NEXT.
 
@@ -243,6 +245,46 @@ REPLACEMENTS = [
         BANNER_NEW,
         2,
     ),
+    # Added by the final-review fix pass: Week 16's old content in the syllabus
+    # (AI policy, tech stack) and the course guide's Week 16 topics.
+    (
+        ["docs/syllabus.html"],
+        "<li>Week 16 only: use the Anthropic API as a controlled application feature</li>",
+        (
+            "<li>Weeks 11 to 16: your app calls a local model (Ollama) as part of the "
+            "program; that is course content, not AI help with your code</li>"
+        ),
+        1,
+    ),
+    (
+        ["docs/syllabus.html"],
+        (
+            '<strong style="font-family:var(--mono);font-size:13px;">Anthropic API</strong>'
+            '</td><td style="font-family:var(--mono);font-size:12px;color:var(--muted);">'
+            "pip install anthropic</td><td>Controlled GenAI feature in the capstone. API key "
+            "required for Week 16.</td>"
+        ),
+        (
+            '<strong style="font-family:var(--mono);font-size:13px;">Ollama</strong>'
+            '</td><td style="font-family:var(--mono);font-size:12px;color:var(--muted);">'
+            "pip install ollama</td><td>Runs the course model (granite4.1:3b) on your own "
+            "computer in Weeks 11 to 16. No API key.</td>"
+        ),
+        1,
+    ),
+    (
+        ["docs/course_guide.html"],
+        (
+            '<td class="mod-topics">Anthropic API integration. Controlled AI feature in your '
+            "app. Final demo day: 5-minute live presentations and course retrospective.</td>"
+        ),
+        (
+            '<td class="mod-topics">Bayside&rsquo;s cases.py and the tests for its checks, '
+            "three real runs of every case, a safety checklist, specific limitations, the "
+            "final README, and an Unlisted demo video.</td>"
+        ),
+        1,
+    ),
     (
         ["../_build_qti.py"],
         '    16: "GenAI Feature & Final Demo",',
@@ -259,6 +301,19 @@ def files_for(spec):
     return [(SITE / name).resolve() for name in spec]
 
 
+def files_with(spec, new):
+    """The files of spec that should hold new once the replacement is applied: for
+    the strip, every page that carries a week strip; otherwise every named file."""
+    files = files_for(spec)
+    if spec == "strip":
+        return [
+            p
+            for p in files
+            if '<span class="map-item">W15 Streamlit</span>' in p.read_text()
+        ]
+    return files
+
+
 def main(write):
     plan = []
     ok = True
@@ -266,6 +321,12 @@ def main(write):
         files = files_for(spec)
         found = {path: path.read_text().count(old) for path in files}
         total = sum(found.values())
+        applied = total == 0 and all(
+            new in path.read_text() for path in files_with(spec, new)
+        )
+        if applied:
+            print(f"{'applied':>14}  {old[:70]!r}")
+            continue
         status = "ok" if total == expected else "COUNT MISMATCH"
         ok = ok and total == expected
         print(f"{status:>14}  {total:>2}/{expected:<2}  {old[:70]!r}")

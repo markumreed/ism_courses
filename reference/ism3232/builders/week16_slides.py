@@ -60,7 +60,8 @@ def build():
             "Do you price match?",
             [f"&ldquo;{esc(r)}&rdquo;" for r in f["price_replies"]],
             "Three fresh chats, same question. The instructions never mention price "
-            f"matching. {of(f['price_yes'])} runs invented a policy.",
+            f"matching. {of(f['price_yes'])} runs invented a policy. The evaluation is a "
+            f"separate batch of three: {w.evaluation_result('price match')}.",
         )
     )
 
@@ -122,7 +123,7 @@ def build():
     )
     add(
         slide_code(
-            "A real run on a laptop CPU",
+            "A real run on a CPU, no GPU",
             table,
             f"{w.evaluation_total()}. price match passed "
             f"{w.evaluation_result('price match')}; false closing time passed "

@@ -133,7 +133,8 @@ def build():
             "Bayside, with the weak value",
             f"{w.WEAK_MARK}\n{weak}",
             "11:00 PM slips past never_says 11 pm, so the test fails. Change it back.",
-            "Have everyone weaken one of their own values, watch the failure, and restore "
+            "If nothing fails, none of their wrong answers avoids the longer phrase: add one, "
+            "as Bayside did with 11:00 PM. Have everyone weaken one value, watch it fail, and restore "
             "it.",
         )
     )
@@ -158,7 +159,7 @@ def build():
             "evaluation.py (Bayside's)",
             w.app_file("evaluation.py"),
             "Change only the chatbot's name and the tools class.",
-            "Several minutes on a laptop CPU. Students without a capable laptop run it on a "
+            "Several minutes on a laptop. Students without a capable laptop run it on a "
             "partner's or lab machine and note it in the README.",
         )
     )
