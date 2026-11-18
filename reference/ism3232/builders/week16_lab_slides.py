@@ -145,6 +145,15 @@ def build():
     )
     add(
         static_slide(
+            "11b. RESET",
+            "database.py: reset_database (Bayside's)",
+            w.app_function("database.py", "reset_database"),
+            "Add it to your database.py, dropping your own tables (change_requests first).",
+            "Week 14 did not need it: evaluation.py is the first file that resets the data.",
+        )
+    )
+    add(
+        static_slide(
             "12. EVALUATION",
             "evaluation.py (Bayside's)",
             w.app_file("evaluation.py"),

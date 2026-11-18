@@ -192,3 +192,13 @@ def test_lab_slide_blocks_are_static():
     page = week16_lab_slides.build()[0]
     assert 'data-lang="python"' not in page
     assert 'class="run"' in page
+
+
+def test_part_4_has_students_add_reset_database():
+    from verify_week13 import BLOCK, plain
+
+    part = lab_part(4)
+    blocks = {plain(label): plain(code) for label, code in BLOCK.findall(part)}
+    want = w.app_function("database.py", "reset_database")
+    assert blocks["database.py — reset_database"].rstrip() == want.rstrip()
+    assert part.index("reset_database") < part.index(">evaluation.py<")

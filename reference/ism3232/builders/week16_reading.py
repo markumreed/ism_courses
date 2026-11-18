@@ -300,7 +300,8 @@ def build():
     add(
         "<p><code>evaluation.py</code> runs every case three times. Each run starts from a "
         "fresh copy of the database (<code>evaluation.db</code>, so your real data is never "
-        "touched) and a new chatbot on the real model, with no keyword fallback.</p>"
+        "touched), rebuilt by <code>reset_database()</code> in <code>database.py</code>, "
+        "and a new chatbot on the real model, with no keyword fallback.</p>"
     )
     add(listing("evaluation.py", w.app_file("evaluation.py")))
     add(

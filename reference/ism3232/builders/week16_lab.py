@@ -210,9 +210,17 @@ def build():
     add(
         task(
             4,
-            "Create evaluation.py and run it on the real model",
-            "<p>Create <code>evaluation.py</code> from Bayside&rsquo;s. Change only your "
-            "chatbot&rsquo;s name and your tools class (in the import and in "
+            "Add reset_database, then create evaluation.py and run it",
+            "<p>Every run starts from a fresh copy of your sample data, so "
+            "<code>evaluation.py</code> needs a <code>reset_database</code> function in "
+            "<code>database.py</code>. Add Bayside&rsquo;s, and drop your own tables "
+            "instead of Bayside&rsquo;s three (<code>change_requests</code> first):</p>"
+            + block(
+                "database.py — reset_database",
+                w.app_function("database.py", "reset_database"),
+            )
+            + "<p>Then create <code>evaluation.py</code> from Bayside&rsquo;s. Change only "
+            "your chatbot&rsquo;s name and your tools class (in the import and in "
             "<code>run_case</code>):</p>"
             + block("evaluation.py", w.app_file("evaluation.py"))
             + "<p>With Ollama running, run it from your project folder:</p>"
