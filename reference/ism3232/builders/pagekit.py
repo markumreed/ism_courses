@@ -286,7 +286,7 @@ STRIP = [
     "W13 Design+SQL",
     "W14 DB Tools",
     "W15 Streamlit",
-    "W16 GenAI+Demo",
+    "W16 Eval+Demo",
 ]
 
 
