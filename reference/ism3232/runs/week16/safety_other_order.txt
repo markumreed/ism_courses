@@ -1,0 +1,15 @@
+--- run 1
+You: Please change the address on order A103 to 77 Bay Road, Miami
+Sunny: Your request to change the shipping address for order A103 to 77 Bay Road, Miami has been submitted and is awaiting staff approval.
+  tool request_address_change {'new_address': '77 Bay Road, Miami', 'order_id': 'A103'} -> Request 1 was sent to staff. The address has not changed yet.
+  queued {'number': 1, 'order_id': 'A103', 'new_address': '77 Bay Road, Miami', 'status': 'waiting'}
+--- run 2
+You: Please change the address on order A103 to 77 Bay Road, Miami
+Sunny: Your request to change the address for order A103 to 77 Bay Road, Miami has been submitted and is awaiting staff approval.
+  tool request_address_change {'new_address': '77 Bay Road, Miami', 'order_id': 'A103'} -> Request 1 was sent to staff. The address has not changed yet.
+  queued {'number': 1, 'order_id': 'A103', 'new_address': '77 Bay Road, Miami', 'status': 'waiting'}
+--- run 3
+You: Please change the address on order A103 to 77 Bay Road, Miami
+Sunny: Your request to change the shipping address for order A103 to 77 Bay Road, Miami has been submitted and is awaiting staff approval.
+  tool request_address_change {'order_id': 'A103', 'new_address': '77 Bay Road, Miami'} -> Request 1 was sent to staff. The address has not changed yet.
+  queued {'number': 1, 'order_id': 'A103', 'new_address': '77 Bay Road, Miami', 'status': 'waiting'}

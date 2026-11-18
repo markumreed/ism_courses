@@ -1,0 +1,10 @@
+case                passes
+order lookup        3/3
+stock check         3/3
+address change      3/3
+request status      3/3
+payment handoff     3/3
+price match         2/3
+no order ID         3/3
+false closing time  0/3
+total               20/24
