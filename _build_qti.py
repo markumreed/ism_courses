@@ -425,7 +425,7 @@ ISM3232_TITLES = {
     13: "Agent Design & SQL — Proposal, Schema & sqlite3",
     14: "Database Tools — sqlite3, Placeholders & Tested Tools",
     15: "Streamlit Chat & Staff — Reruns, Session State & Approvals",
-    16: "GenAI Feature & Final Demo",
+    16: "Evaluation, Safety & Demo — Test Cases, Safety Checks & a Demo Video",
 }
 
 print("\nBuilding ISM3232 QTI files → quiz_exam_fa26/\n")

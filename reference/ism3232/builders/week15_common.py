@@ -15,7 +15,11 @@ PREV = (
     "Week 14",
     "Database Tools — sqlite3, Placeholders &amp; Tested Tools",
 )
-NEXT = ("week16", "Week 16", "GenAI Feature &amp; Final Demo")
+NEXT = (
+    "week16",
+    "Week 16",
+    "Evaluation, Safety &amp; Demo — Test Cases, Safety Checks &amp; a Demo Video",
+)
 REV = "8b1b491"  # Bayside app, Week 15 checkpoint (after the final review fixes)
 APP = "bayside_app/"
 APP_FOLDER = "reference/ism3232/bayside_app"

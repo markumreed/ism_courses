@@ -50,6 +50,21 @@ GITHUB = (
     f"git remote add origin https://github.com/YOURUSERNAME/{w.REPO}.git\n"
     "git branch -M main"
 )
+# Added by hand to the page in ism3232 7580ccc ("quick Git demo in Labs 4 and 13");
+# kept here so a rebuild does not drop it.
+GIT_DEMO = (
+    "<p><strong>Watch it (2 minutes):</strong> the same setup on a practice folder. The "
+    "demo pastes GitHub&rsquo;s own snippet, so it also commits a README and pushes right "
+    "away. Here you wait: your first commit and <code>git push -u origin main</code> come "
+    "in Part 8, once the proposal and schema are in.</p>"
+    '<div class="video-embed" style="margin:16px 0 20px;"><div style="position:relative;'
+    "padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;border:1px solid "
+    'var(--border,rgba(255,255,255,.08));"><iframe style="position:absolute;top:0;left:0;'
+    'width:100%;height:100%;" src="https://www.youtube.com/embed/XOCSkzt8shk" '
+    'title="Quick: Git and GitHub Example 2 — Connect a Local Folder to GitHub" '
+    'frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; '
+    'gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>'
+)
 FILES = "touch PROPOSAL.md schema.sql && code ."
 CHECK = (
     "sqlite3 my_business.db\n"
@@ -305,6 +320,7 @@ def build():
                 "Each module folder is its own repository, as in Week 4.",
             )
             + block("Terminal", GITHUB)
+            + GIT_DEMO
             + hint(
                 "<code>*.db</code> is in <code>.gitignore</code> because the database is "
                 "rebuilt from <code>schema.sql</code>, and real data never goes to GitHub."

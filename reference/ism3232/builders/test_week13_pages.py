@@ -73,3 +73,11 @@ def test_a_keyword_model_demo_with_a_readme_note_scores_above_some():
     rules = capstone_rubric.demo_section()
     assert "scores Some" not in rules
     assert "Most" in rules
+
+
+def test_lab_keeps_the_quick_git_demo_after_the_github_setup():
+    # Added by hand in ism3232 7580ccc; the builder must carry it, or a rebuild drops it.
+    page = week13_lab.build()[0]
+    setup = page.index("git branch -M main</pre></div>")
+    video = page.index("https://www.youtube.com/embed/XOCSkzt8shk")
+    assert setup < video < page.index("Part 5 &mdash;")
