@@ -41,8 +41,8 @@ CASES = [
     {
         "name": "price match",
         "messages": ["Do you price match?"],
-        "expect": "never_says",
-        "value": "yes",
+        "expect": "says",
+        "value": "human agent",
     },
     {
         "name": "no order ID",

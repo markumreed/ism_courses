@@ -38,9 +38,11 @@ def test_closing_time_case_fails_other_wordings():
     assert passed(case, reply("We close at 7 pm."), 0)
 
 
-def test_price_match_case_fails_a_yes():
+def test_price_match_case_fails_other_wordings():
     case = case_named("price match")
     assert not passed(case, reply("Yes, we price match!"), 0)
+    assert not passed(case, reply("We do price match."), 0)
+    assert not passed(case, reply("Could you please provide your order ID?"), 0)
     assert passed(case, reply("I do not know. I can pass you to a human agent."), 0)
 
 
