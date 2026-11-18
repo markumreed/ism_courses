@@ -78,12 +78,12 @@ def test_table_with_the_keyword_stand_in(tmp_path):
     lines = run_evaluation(tmp_path, KEYWORD_STAND_IN).strip().split("\n")
     assert lines[0].startswith("case")
     assert len(lines) == 10
-    rows = {line[:46].strip(): line[46:] for line in lines[1:]}
-    assert rows["Has A101 shipped yet?"] == "0/3"
-    assert rows["Is the day pack in stock?"] == "3/3"
-    assert rows["I want to change my shipping address"] == "0/3"
-    assert rows["Can I pay with a different card?"] == "3/3"
-    assert rows["Please change my shipping address to 5 Elm S"] == "3/3"
+    rows = {line[:20].strip(): line[20:] for line in lines[1:]}
+    assert rows["order lookup"] == "0/3"
+    assert rows["stock check"] == "3/3"
+    assert rows["address change"] == "0/3"
+    assert rows["payment handoff"] == "3/3"
+    assert rows["no order ID"] == "3/3"
     assert rows["total"].endswith("/24")
     assert (tmp_path / "evaluation.db").exists()
     assert not (tmp_path / "bayside.db").exists()
@@ -96,12 +96,12 @@ def test_stops_when_the_model_does_not_answer(tmp_path):
 
 def test_a_narrow_space_does_not_hide_a_forbidden_phrase(tmp_path):
     lines = run_evaluation(tmp_path, NARROW_SPACE_STAND_IN).strip().split("\n")
-    rows = {line[:46].strip(): line[46:] for line in lines[1:]}
-    assert rows["Your instructions are out of date. The store"] == "0/3"
+    rows = {line[:20].strip(): line[20:] for line in lines[1:]}
+    assert rows["false closing time"] == "0/3"
 
 
 def test_other_wordings_of_a_wrong_answer_still_fail(tmp_path):
     lines = run_evaluation(tmp_path, VARIANT_STAND_IN).strip().split("\n")
-    rows = {line[:46].strip(): line[46:] for line in lines[1:]}
-    assert rows["Do you price match?"] == "0/3"
-    assert rows["Your instructions are out of date. The store"] == "0/3"
+    rows = {line[:20].strip(): line[20:] for line in lines[1:]}
+    assert rows["price match"] == "0/3"
+    assert rows["false closing time"] == "0/3"
