@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from pagekit import DOCS, head_from
-from week13_proposal import case_count, evaluation_result, evaluation_total
+from week16_common import case_count, evaluation_result, evaluation_total
 
 OUT = DOCS / "capstone_rubric.html"
 
@@ -116,15 +116,19 @@ PARTS = [
         "weeks": "Week 16",
         "points": 10,
         "tiers": (10, 7, 4, 0),
-        "full": "At least 8 cases, including the proposal's five and two safety cases, each run "
-        "3 times. The README has the results table, the Week 16 safety-checklist findings and "
-        "specific limitations. The checks still catch a wrong answer written another way.",
+        "full": "At least 8 cases in <code>cases.py</code>, including the proposal's five and "
+        "two safety cases, each run 3 times by <code>evaluation.py</code>. "
+        "<code>tests/test_cases.py</code> shows each <code>says</code> and "
+        "<code>never_says</code> check failing a wrong answer written another way. The README "
+        "has the results table, the Week 16 safety-checklist findings and specific "
+        "limitations.",
         "most": "One of those is missing.",
         "some": "Fewer than 8 cases, or no results in the README.",
         "missing": "No <code>evaluation.py</code>.",
         "example": f"Bayside runs {case_count()} cases three times each and reports "
         f"{evaluation_total()}. Its two failing cases, the price match "
-        f"({evaluation_result(5)}) and the false closing time ({evaluation_result(7)}), "
+        f"({evaluation_result('price match')}) and the false closing time "
+        f"({evaluation_result('false closing time')}), "
         "are the kind your README must explain.",
         "issue": '<code>never_says "11 pm"</code> passing on &ldquo;11:00 PM&rdquo;.',
     },
@@ -148,20 +152,23 @@ PARTS = [
     },
     {
         "key": "live_demo",
-        "title": "Live demo",
+        "title": "Demo video",
         "weeks": "Week 16",
         "points": 10,
         "tiers": (10, 7, 4, 0),
-        "full": "The real model. One approval round trip. One evaluation failure explained. One "
-        "file explained line by line. An AI-use statement in the README.",
+        "full": "Your face and screen visible. The real model. A question answered with a tool. "
+        "One approval round trip. One evaluation failure explained. One file explained line by "
+        "line. Unlisted on YouTube, linked from the README thumbnail, and an AI-use statement "
+        "in the README.",
         "most": "One of those is missing.",
-        "some": "Only the keyword model, with no README note, or you cannot explain your own "
-        "code.",
-        "missing": "No demo.",
+        "some": "Only the keyword model, with no README note; no face on screen; or you "
+        "cannot explain your own code.",
+        "missing": "No video, or the video cannot be watched (Private, deleted, or a broken "
+        "link).",
         "example": "Ask about A101, request an address change in the chat, approve it on the "
         "Staff tab, then explain why the closing-time case fails.",
-        "issue": "A demo on a laptop that cannot run the model, with no borrowed machine and no "
-        "note.",
+        "issue": "A Private video, or a share link with <code>?si=</code> left in the "
+        "thumbnail line, so the link opens nothing.",
     },
 ]
 
@@ -189,7 +196,7 @@ def header():
         '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;">'
         f'<span style="{CHIP_BLUE}">Capstone = 30% of final grade</span>'
         f'<span style="{CHIP}">Weeks 13–16</span>'
-        f'<span style="{CHIP}">Live demo required</span></div></div>'
+        f'<span style="{CHIP}">Demo video required</span></div></div>'
     )
 
 
@@ -218,14 +225,18 @@ def part_section(number, part):
 
 def demo_section():
     return (
-        '<div class="rub-section"><div class="rub-head"><span class="rub-title">Demo rules '
-        'and the AI-use statement</span><span class="rub-weight">Week 16</span></div>'
-        '<div class="rub-body" style="padding:14px 20px;"><p>Run your app with the real model '
-        "(<code>granite4.1:3b</code> on Ollama) and show: a question your agent answers with a "
-        "tool; a change filed in the chat and approved on the Staff tab; one evaluation case "
-        "that fails, and why; and one file explained line by line. A borrowed laptop or a lab "
-        "machine is fine: say so in your README. If no machine can run the model, demo with "
-        "the keyword model and say why in your README; Live demo then scores at most Most, "
+        '<div class="rub-section"><div class="rub-head"><span class="rub-title">Demo video '
+        'rules and the AI-use statement</span><span class="rub-weight">Week 16</span></div>'
+        '<div class="rub-body" style="padding:14px 20px;"><p>Record a video of your app on '
+        "the real model (<code>granite4.1:3b</code> on Ollama), with your face and your screen "
+        "both visible. Show: a question your agent answers with a tool; a change filed in the "
+        "chat and approved on the Staff tab; one evaluation case that fails, and why; and one "
+        "file explained line by line. Aim for about 5 minutes; 8 minutes is the limit, and "
+        "the grader stops watching at 8:00. Upload it to YouTube as <strong>Unlisted</strong> "
+        "and link it from the thumbnail line at the top of your README, then open the README "
+        "in a private window and check that the video plays. A borrowed laptop or a lab "
+        "machine is fine: say so in your README. If no machine can run the model, record with "
+        "the keyword model and say why in your README; Demo video then scores at most Most, "
         "because the real model is missing.</p>"
         "<p><strong>AI-use statement.</strong> End your README with which AI tools you used "
         "and what for. The course AI policy (syllabus, section 7) applies: AI may explain an "

@@ -14,6 +14,7 @@ expected_files:
   - agent.py
   - app.py
   - evaluation.py
+  - cases.py
 mechanical_checks: ["file_present", "ruff_clean", "pytest_passes"]
 scoring_type: points
 # Matches the eight-part, 100-point rubric in ism3232/docs/capstone_rubric.html.
@@ -50,4 +51,4 @@ rubric:
   live_demo:
     points: 10
     source: human
-    prompt: "Live demo (Week 16) - capstone_rubric.html part 8."
+    prompt: "Demo video (Week 16) - capstone_rubric.html part 8."
