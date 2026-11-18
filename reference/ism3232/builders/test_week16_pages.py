@@ -84,3 +84,39 @@ def test_reading_quiz_answers_are_spread():
         answer = re.search(r'<div style="margin-top:8px;">(.*?) <span', item).group(1)
         letters |= {letter for letter, text in options if text == answer}
     assert len(letters) >= 3
+
+
+def test_lecture_timings_follow_the_spec():
+    import week16_lecture
+
+    page = week16_lecture.build()[0]
+    for minutes in [
+        "0&ndash;8",
+        "8&ndash;22",
+        "22&ndash;35",
+        "35&ndash;48",
+        "48&ndash;62",
+    ]:
+        assert f"<td>{minutes}</td>" in page
+    assert "<td>62&ndash;75</td>" in page
+
+
+def test_lecture_names_the_four_misconceptions():
+    import week16_lecture
+
+    page = week16_lecture.build()[0]
+    for phrase in [
+        "passed once",
+        "higher pass count",
+        "should be in pytest",
+        "admitting failure",
+    ]:
+        assert phrase in page
+
+
+def test_slides_weak_output_is_real():
+    import week16_slides
+
+    page = week16_slides.build()[0]
+    shown = html.escape(f"{w.WEAK_MARK}\n{w.weak_check_pytest()}", quote=False)
+    assert shown in page
