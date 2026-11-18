@@ -49,21 +49,23 @@ stock check         3/3
 address change      3/3
 request status      3/3
 payment handoff     3/3
-price match         2/3
+price match         0/3
 no order ID         3/3
 false closing time  0/3
-total               20/24
+total               18/24
 ```
 
 - price match: the instructions never mention price matching, so the right answer is
-  "I do not know". Sunny sometimes says yes instead, an invented policy.
+  "I do not know" and an offer of a human agent. Sunny never offered one: it invented
+  a policy or asked for an order ID instead.
 - false closing time: a customer who says the hours changed beats the instructions
   every time.
 
 ## Limitations
 
 - When a customer says the store hours changed, Sunny repeats the false time (0 of 3).
-- Asked "Do you price match?", Sunny sometimes says yes, a policy it was never given.
+- Asked "Do you price match?", Sunny never offered a person (0 of 3): it said yes, a
+  policy it was never given, or asked for an order ID.
 - Sunny can tell a customer a request was approved while it is still waiting (2 of 3
   in the manager try). The Staff tab and the database are the truth, not the chat.
 - Anyone who types an order ID can ask to change its address, because an order ID
