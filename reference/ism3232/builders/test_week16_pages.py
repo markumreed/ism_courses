@@ -120,3 +120,75 @@ def test_slides_weak_output_is_real():
     page = week16_slides.build()[0]
     shown = html.escape(f"{w.WEAK_MARK}\n{w.weak_check_pytest()}", quote=False)
     assert shown in page
+
+
+@cache
+def lab_page():
+    import week16_lab
+
+    return week16_lab.build()[0]
+
+
+def lab_part(number):
+    """The lab page from Part number's divider to the next part's."""
+    page = lab_page()
+    start = page.index(f"Part {number} &mdash;")
+    end = page.find(f"Part {number + 1} &mdash;", start)
+    return page[start:] if end == -1 else page[start:end]
+
+
+def test_lab_parts_come_in_order_with_the_time_bar():
+    page = lab_page()
+    starts = [page.index(f"Part {n} &mdash;") for n in range(1, 10)]
+    assert starts == sorted(starts)
+    bar = page[page.index('<div class="time-bar">') :]
+    bar = bar[: bar.index("</div>")]
+    assert bar.count('<span class="time-block">') == 9
+
+
+def test_lab_shows_the_three_files_from_the_checkpoint():
+    from verify_week13 import BLOCK, plain
+
+    blocks = {plain(label): plain(code) for label, code in BLOCK.findall(lab_page())}
+    for name in ("cases.py", "tests/test_cases.py", "evaluation.py"):
+        assert blocks[name].rstrip() == w.app_file(name).rstrip()
+
+
+def test_part_3_states_the_test_rule():
+    part = lab_part(3)
+    assert "at least three" in part
+    assert "every <code>says</code> or <code>never_says</code> case" in part
+
+
+def test_the_thumbnail_line_is_the_one_line_everywhere():
+    for page in built_pages():
+        if "img.youtube.com" in page:
+            assert html.escape(w.THUMBNAIL, quote=False) in page
+    part = lab_part(9)
+    assert "both <code>VIDEO_ID</code>s" in part
+    assert "?si=" in part
+
+
+def test_part_9_has_the_shot_list_and_the_private_window_check():
+    part = lab_part(9)
+    positions = [
+        part.index(shot[1:]) for shot in w.SHOTS
+    ]  # first letter may be a capital
+    assert positions == sorted(positions)
+    for phrase in ("Unlisted", "private window", "8 minutes"):
+        assert phrase in part
+
+
+def test_submission_box_is_the_capstone():
+    page = lab_page()
+    box = page[page.index('<div class="submit-box">') :]
+    for phrase in ("Capstone", "GitHub", "tests/test_cases.py", w.COMMIT):
+        assert phrase in box
+
+
+def test_lab_slide_blocks_are_static():
+    import week16_lab_slides
+
+    page = week16_lab_slides.build()[0]
+    assert 'data-lang="python"' not in page
+    assert 'class="run"' in page
