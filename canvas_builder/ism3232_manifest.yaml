@@ -99,37 +99,37 @@ modules:
       - {label: "Slides", site_path: "docs/week12_slides.html"}
     assignment: {name: "Assignment 12: design.md + Models", group: "Weekly Assignments & Quizzes", points: 10}
 
-  - title: "Unit 4 · Week 13 — Capstone Design & SQL"
+  - title: "Unit 4 · Week 13 — Agent Design & SQL"
     items:
       - {label: "Reading", site_path: "docs/week13_reading.html"}
       - {label: "Lecture", site_path: "docs/week13_lecture.html"}
       - {label: "Lab", site_path: "docs/week13_lab.html"}
       - {label: "Slides", site_path: "docs/week13_slides.html"}
-    assignment: {name: "Capstone: Proposal + schema.sql", group: "Capstone Project", points: 25}
+    assignment: {name: "Assignment 13: Proposal + schema.sql (Approved/Revise)", group: "Weekly Assignments & Quizzes", points: 10}
 
-  - title: "Unit 4 · Week 14 — Python + SQL Integration"
+  - title: "Unit 4 · Week 14 — Database Tools"
     items:
       - {label: "Reading", site_path: "docs/week14_reading.html"}
       - {label: "Lecture", site_path: "docs/week14_lecture.html"}
       - {label: "Lab", site_path: "docs/week14_lab.html"}
       - {label: "Slides", site_path: "docs/week14_slides.html"}
-    assignment: {name: "Capstone: database.py", group: "Capstone Project", points: 25}
+    assignment: {name: "Assignment 14: Database Tools", group: "Weekly Assignments & Quizzes", points: 10}
 
-  - title: "Unit 4 · Week 15 — Streamlit Interface"
+  - title: "Unit 4 · Week 15 — Streamlit Chat & Staff"
     items:
       - {label: "Reading", site_path: "docs/week15_reading.html"}
       - {label: "Lecture", site_path: "docs/week15_lecture.html"}
       - {label: "Lab", site_path: "docs/week15_lab.html"}
       - {label: "Slides", site_path: "docs/week15_slides.html"}
-    assignment: {name: "Capstone: app.py", group: "Capstone Project", points: 25}
+    assignment: {name: "Assignment 15: Streamlit Chat & Staff", group: "Weekly Assignments & Quizzes", points: 10}
 
-  - title: "Unit 4 · Week 16 — GenAI Feature & Final Demo"
+  - title: "Unit 4 · Week 16 — Evaluation, Safety & Demo"
     items:
       - {label: "Reading", site_path: "docs/week16_reading.html"}
       - {label: "Lecture", site_path: "docs/week16_lecture.html"}
       - {label: "Lab", site_path: "docs/week16_lab.html"}
       - {label: "Slides", site_path: "docs/week16_slides.html"}
-    assignment: {name: "Capstone: Full Repo + Live Demo", group: "Capstone Project", points: 25}
+    assignment: {name: "Capstone: Full Repo + Demo Video", group: "Capstone Project", points: 100}
 
   - title: "Developer Workflow"
     items:
