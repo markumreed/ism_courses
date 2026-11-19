@@ -146,7 +146,7 @@ For questions that may benefit the whole class (debugging approaches, assignment
 | Weekly Quizzes | 5% | 14 quizzes on Canvas, tied to the assigned reading. Open-note, untimed. Due before that week's lab. Quizzes marked ★ MIDTERM-ELIGIBLE cover material tested on the midterm. Questions marked ★ CAPSTONE-ELIGIBLE reappear on the capstone. |
 | DataCamp Courses | 15% | 5 required courses = 10% (graded on completion only, not speed or score). 2 optional bonus courses = up to 5% extra credit. See the DataCamp page for deadlines. |
 | Midterm Exam | 20% | Module 9. In-class, 75 minutes. Covers Modules 1–8. One handwritten page of notes allowed, using one side only of a standard 8.5 × 11 sheet. No laptops, no phones. Also a timed multiple-choice quiz in Canvas, taken at home during exam week: the Multiple Choice and True / False questions from the Module 1–7 quizzes, word for word. Your notes and the course site are allowed; AI tools are not. |
-| Capstone Project | 25% | Module 16. End-to-end analysis of a business dataset the student picks for their major (retail, accounting, finance, HR, IT, marketing, supply chain, or sport & entertainment), submitted as a GitHub repo with a Jupyter notebook. 5–7 minute live presentation. See the capstone rubric on the course website. |
+| Capstone Project | 25% | Module 16. End-to-end analysis of a business dataset the student picks for their major (retail, accounting, finance, HR, IT, marketing, supply chain, or sport & entertainment), submitted as a GitHub repo with a Jupyter notebook. Includes a 5-minute recorded video (face and screen, Public on YouTube, linked in the README) instead of a live presentation. See the capstone rubric on the course website. |
 | Lab Participation & Engagement | 5% | Holistic assessment at midterm and end of semester: engagement during the weekly in-person lab, helping peers, completing in-class activities, attending office hours, demonstrating effort. |
 | **Total** | **100%** | |
 | DataCamp Bonus | Up to +5% | Completion of up to 2 optional DataCamp courses. Cannot raise the DataCamp component above 20% total. |
@@ -162,7 +162,7 @@ For questions that may benefit the whole class (debugging approaches, assignment
 
 ## INSTRUCTOR FEEDBACK POLICY AND GRADE DISSEMINATION [OPTIONAL]
 
-The instructor will respond to course-related emails within 48 business hours (Monday–Friday). Feedback on weekly labs will be posted in Canvas within one week of the submission deadline. Midterm exams will be reviewed in class; scores will be posted in Canvas within 72 hours of the exam session. Capstone grades and written feedback will be posted within two weeks of the final presentation.
+The instructor will respond to course-related emails within 48 business hours (Monday–Friday). Feedback on weekly labs will be posted in Canvas within one week of the submission deadline. Midterm exams will be reviewed in class; scores will be posted in Canvas within 72 hours of the exam session. Capstone grades and written feedback will be posted within two weeks of the capstone due date.
 
 You can access your scores at any time in Canvas under Grades. If you believe a score was recorded incorrectly, contact the instructor within one week of the grade being posted in Canvas.
 
@@ -189,7 +189,7 @@ You can access your scores at any time in Canvas under Grades. If you believe a 
 | 13 | Intro to pandas | DataFrames; read_csv; filter, sort; retail dataset | Lab 11 |
 | 14 | Data Cleaning & Descriptive Stats | Missing values; dtypes; describe(), mean(), median() | Lab 12 |
 | 15 | Grouping & Visualization | groupby(); matplotlib; seaborn; chart selection | Lab 13 |
-| 16 | **Capstone Project** | End-to-end analysis of a dataset for your major; GitHub repo; 5–7 min presentation | Capstone |
+| 16 | **Capstone Project** | End-to-end analysis of a dataset for your major; GitHub repo; 5-min recorded video | Capstone |
 
 **University-Scheduled Final Exam:** [Date and time per USF Final Examination calendar — posted in Canvas.]
 
@@ -221,7 +221,7 @@ Midterm exams are reviewed in class on the day they are returned, then collected
 All work in this course is individual. Discussion of concepts and general debugging approaches with classmates is permitted and encouraged. Sharing code — whether by showing your screen, sending a file, or posting in a chat — is academic dishonesty. Each student's submitted code must be written independently. If you debug together, each person must write their own solution from scratch afterward. The standard: can you explain every line of your submission without help? If not, it is not yours.
 
 ### Final Examinations Policy
-All final examinations are scheduled in accordance with USF's Final Examination Policy. The capstone presentation in Module 16 counts as this course's final assessment. Students must be available for the scheduled presentation window.
+All final examinations are scheduled in accordance with USF's Final Examination Policy. The capstone in Module 16 (GitHub repo, written report, and 5-minute recorded video) counts as this course's final assessment. There is no in-class presentation; the video is submitted with the repo by the capstone due date.
 
 ---
 
@@ -309,6 +309,6 @@ All dates and assignments are tentative and may be changed at the discretion of 
 | Mid-term Grading Opens | [See academic calendar] |
 | Mid-term Grading Closes | [See academic calendar] |
 | Withdrawal Deadline | [See academic calendar] |
-| Capstone Presentations | Module 16 (Week 16) |
+| Capstone Due (repo, report, 5-min video) | Module 16 (Week 16) |
 | Final Examination Week | [See academic calendar] |
 | University Holidays | [See academic calendar] |
