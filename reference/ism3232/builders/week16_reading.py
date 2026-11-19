@@ -176,7 +176,7 @@ def build():
         "<li>Run each case several times and read a pass count.</li>"
         "<li>Run a safety checklist against an agent and record what happened.</li>"
         "<li>Write specific limitations.</li>"
-        "<li>Record a demo video, publish it as Unlisted, and link it from the README.</li>"
+        "<li>Record a demo video, publish it as Public, and link it from the README.</li>"
         "</ol>"
     )
 
@@ -521,8 +521,9 @@ def build():
         "video during screen sharing; then start a meeting by yourself, share your screen, "
         "and record to this computer) and OBS Studio.</li>"
         "<li><strong>Uploading:</strong> upload to YouTube and set the visibility to "
-        "<strong>Unlisted</strong>, never Private: an Unlisted video plays for anyone with "
-        "the link and does not show up in search. For the audience question, choose "
+        "<strong>Public</strong>, never Private: a Public video plays for anyone and can "
+        "show up in search, so keep passwords and personal details off the screen. For "
+        "the audience question, choose "
         "&ldquo;No, it&rsquo;s not made for kids&rdquo;. If your school account cannot "
         "upload, use a personal Google account.</li>"
         "<li><strong>The video ID:</strong> the text after <code>v=</code> in the watch "
@@ -574,8 +575,8 @@ def build():
         ),
         ("Limitation", "A specific, measured way the agent can go wrong."),
         (
-            "Unlisted",
-            "A YouTube setting: anyone with the link can watch; search cannot find it.",
+            "Public",
+            "A YouTube setting: anyone can watch, and search can find it.",
         ),
         ("Thumbnail link", "A README image that links to your video."),
     ]:
@@ -672,9 +673,10 @@ def build():
         quiz_mc(
             8,
             "Which YouTube visibility should your demo video have?",
-            ["Private", "Unlisted", "Public, and searchable", "Members only"],
-            1,
-            "an Unlisted video plays for anyone with the link; a Private one does not.",
+            ["Private", "Unlisted", "Public", "Members only"],
+            2,
+            "the course asks for Public; a Private video plays only for accounts you "
+            "invite, so the grader could not watch it.",
         ),
         quiz_trace(
             9,

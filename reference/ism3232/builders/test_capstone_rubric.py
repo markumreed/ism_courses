@@ -34,7 +34,7 @@ def test_the_rubric_quotes_the_week16_run():
 def test_part_8_is_the_demo_video():
     demo = part("live_demo")
     assert demo["title"] == "Demo video"
-    for phrase in ("Unlisted", "face and screen", "README"):
+    for phrase in ("Public", "face and screen", "README"):
         assert phrase in demo["full"]
     assert "cannot be watched" in demo["missing"]
 

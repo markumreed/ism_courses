@@ -376,8 +376,9 @@ def build():
             "both be in it.</li>"
             "<li><strong>Upload</strong> to YouTube (Create, then Upload videos). For the "
             "audience, choose &ldquo;No, it&rsquo;s not made for kids&rdquo;. Set the "
-            "visibility to <strong>Unlisted</strong>, never Private. If your school "
-            "account cannot upload, use a personal Google account.</li>"
+            "visibility to <strong>Public</strong>, never Private; anyone can find a "
+            "Public video, so keep passwords and personal details off the screen. If your "
+            "school account cannot upload, use a personal Google account.</li>"
             "<li><strong>Find the video ID:</strong> the text after <code>v=</code>, or "
             "after <code>youtu.be/</code>, stopping before any <code>?</code> or "
             "<code>&amp;</code>. A share link ends with <code>?si=</code> and more: leave "
@@ -417,7 +418,7 @@ def build():
                 (
                     "&#x1F3A5;",
                     (
-                        "<strong>Demo video:</strong> Unlisted on YouTube, face and screen, "
+                        "<strong>Demo video:</strong> Public on YouTube, face and screen, "
                         "about 5 minutes and at most 8, linked from the README."
                     ),
                 ),

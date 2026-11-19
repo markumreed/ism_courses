@@ -158,7 +158,7 @@ PARTS = [
         "tiers": (10, 7, 4, 0),
         "full": "Your face and screen visible. The real model. A question answered with a tool. "
         "One approval round trip. One evaluation failure explained. One file explained line by "
-        "line. Unlisted on YouTube, linked from the README thumbnail, and an AI-use statement "
+        "line. Public on YouTube, linked from the README thumbnail, and an AI-use statement "
         "in the README.",
         "most": "One of those is missing.",
         "some": "Only the keyword model, with no README note; no face on screen; or you "
@@ -232,7 +232,7 @@ def demo_section():
         "both visible. Show: a question your agent answers with a tool; a change filed in the "
         "chat and approved on the Staff tab; one evaluation case that fails, and why; and one "
         "file explained line by line. Aim for about 5 minutes; 8 minutes is the limit, and "
-        "the grader stops watching at 8:00. Upload it to YouTube as <strong>Unlisted</strong> "
+        "the grader stops watching at 8:00. Upload it to YouTube as <strong>Public</strong> "
         "and link it from the thumbnail line at the top of your README, then open the README "
         "in a private window and check that the video plays. A borrowed laptop or a lab "
         "machine is fine: say so in your README. If no machine can run the model, record with "

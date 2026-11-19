@@ -25,7 +25,7 @@ Success means:
 | Question | Choice (user, 2026-11-18) |
 |---|---|
 | The demo | A recorded video published on YouTube. The student's face and screen are both visible. The video is embedded in the capstone README. Students submit only the GitHub URL in Canvas |
-| YouTube visibility | Unlisted |
+| YouTube visibility | Public (changed from Unlisted on 2026-11-19; the Automation Bonus was dropped the same day) |
 | How students show their checks catch a wrong answer written another way (rubric part 6) | Approach B, below |
 
 **Approaches considered for the rubric's "the checks still catch a wrong answer written another way":**

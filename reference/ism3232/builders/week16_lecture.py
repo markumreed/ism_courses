@@ -121,7 +121,7 @@ def build():
                     "Finishing the capstone",
                     (
                         "Specific limitations; the README; the video&rsquo;s shot list, "
-                        "Unlisted, the thumbnail line; due Dec 13"
+                        "Public visibility, the thumbnail line; due Dec 13"
                     ),
                 ],
             ],
@@ -250,7 +250,7 @@ def build():
             card(
                 "The demo video",
                 "<p>Face and screen, about 5 minutes, 8 at most, on the real model. Upload "
-                f"as Unlisted and link it from the README.</p><ol>{shots}</ol>",
+                f"as Public and link it from the README.</p><ol>{shots}</ol>",
             ),
         )
     )
@@ -320,7 +320,7 @@ def build():
                 (
                     "&#x1F3A5;",
                     (
-                        "<strong>Demo video:</strong> Unlisted on YouTube, face and screen, about 5 "
+                        "<strong>Demo video:</strong> Public on YouTube, face and screen, about 5 "
                         "minutes and at most 8."
                     ),
                 ),

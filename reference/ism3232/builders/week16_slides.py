@@ -156,7 +156,7 @@ def build():
     add(
         slide_point(
             "The demo video",
-            [*w.SHOTS, "Face and screen; about 5 minutes, 8 at most; Unlisted"],
+            [*w.SHOTS, "Face and screen; about 5 minutes, 8 at most; Public"],
             "Walk the shot list. Show the README thumbnail line and the private-window "
             "check.",
         )

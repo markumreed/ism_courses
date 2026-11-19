@@ -64,7 +64,7 @@ REPLACEMENTS = [
         ),
         (
             "Measure the agent: named test cases, checks tested without a model, three real "
-            "runs each, a safety checklist, the final README, and an Unlisted YouTube demo "
+            "runs each, a safety checklist, the final README, and a Public YouTube demo "
             "video."
         ),
         1,
@@ -115,7 +115,7 @@ REPLACEMENTS = [
         ),
         (
             f'<span class="mt">{SHORT}</span><span class="ms">Test cases and checks; three '
-            "real runs; safety checklist; final README; Unlisted demo video</span>"
+            "real runs; safety checklist; final README; Public demo video</span>"
         ),
         1,
     ),
@@ -168,7 +168,7 @@ REPLACEMENTS = [
         ),
         (
             "The final demonstration is a recorded video (face and screen, about 5 minutes, "
-            "at most 8), published Unlisted on YouTube and linked from the capstone README, "
+            "at most 8), published as Public on YouTube and linked from the capstone README, "
             "so it does not change."
         ),
         1,
@@ -205,7 +205,7 @@ REPLACEMENTS = [
         (
             "Write evaluation cases and test their checks without a model; run each case "
             "three times and report the pass count; run a safety checklist and write "
-            "specific limitations; publish an Unlisted demo video linked from the README."
+            "specific limitations; publish a Public demo video linked from the README."
         ),
         1,
     ),
@@ -229,7 +229,7 @@ REPLACEMENTS = [
         ),
         (
             "tooltip_body:'Test cases with tested checks, three real runs each, a safety "
-            "checklist, specific limitations, and an Unlisted demo video.'},"
+            "checklist, specific limitations, and a Public demo video.'},"
         ),
         1,
     ),
@@ -281,7 +281,7 @@ REPLACEMENTS = [
         (
             '<td class="mod-topics">Bayside&rsquo;s cases.py and the tests for its checks, '
             "three real runs of every case, a safety checklist, specific limitations, the "
-            "final README, and an Unlisted demo video.</td>"
+            "final README, and a Public demo video.</td>"
         ),
         1,
     ),

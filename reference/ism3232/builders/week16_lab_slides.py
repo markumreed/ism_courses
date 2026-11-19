@@ -65,7 +65,7 @@ def build():
             '<div><span class="k">Submission</span><span class="v">The capstone: GitHub URL in Canvas, video linked from the README</span></div>\n</ul>',
             "<strong>Essential today:</strong> cases.py, tests/test_cases.py, one real "
             "evaluation run, the safety findings, the README.\n"
-            "<strong>At home:</strong> record, upload Unlisted, link, check, submit.",
+            "<strong>At home:</strong> record, upload as Public, link, check, submit.",
         )
     )
 
@@ -252,7 +252,7 @@ def build():
             "README line 3",
             w.THUMBNAIL,
             "Replace both VIDEO_IDs. Leave out any ?si= from a share link.",
-            "Unlisted, never Private. Check it in a private window: a video nobody can watch "
+            "Public, never Private. Check it in a private window: a video nobody can watch "
             "scores 0.",
         )
     )

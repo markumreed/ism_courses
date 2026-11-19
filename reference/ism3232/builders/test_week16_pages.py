@@ -175,7 +175,7 @@ def test_part_9_has_the_shot_list_and_the_private_window_check():
         part.index(shot[1:]) for shot in w.SHOTS
     ]  # first letter may be a capital
     assert positions == sorted(positions)
-    for phrase in ("Unlisted", "private window", "8 minutes"):
+    for phrase in ("Public", "private window", "8 minutes"):
         assert phrase in part
 
 
@@ -246,3 +246,47 @@ def test_syllabus_and_course_guide_row_leave_anthropic_behind():
     ]
     row = row[: row.index("</tr>")]
     assert "Anthropic" not in row
+
+
+HAND_KEPT = [
+    "../index.html",
+    "syllabus.html",
+    "slos.html",
+    "slo_mindmap.html",
+    "course_guide.html",
+    "capstone_rubric.html",
+]
+
+
+def test_the_demo_video_is_public_everywhere():
+    from pagekit import DOCS
+
+    pages = built_pages() + [(DOCS / name).read_text() for name in HAND_KEPT]
+    for page in pages:
+        if 'class="quiz-item"' in page:  # the quiz keeps Unlisted as a wrong option
+            page = page[: page.index('class="quiz-item"')]
+        assert "Unlisted" not in page
+    assert "Public" in section(reading_page(), "The demo video")
+
+
+def test_reading_quiz_answer_is_public():
+    page = reading_page()
+    quiz = page[page.index("Which YouTube visibility") :]
+    answer = quiz[quiz.index('<details class="quiz-answer">') :]
+    assert answer[answer.index("</summary>") :].split("<span")[0].endswith(">Public ")
+
+
+def test_no_page_offers_the_automation_bonus():
+    from pagekit import DOCS, ROOT
+
+    pages = [
+        DOCS / "syllabus.html",
+        DOCS / "expectations.html",
+        DOCS / "unit_4_overview.html",
+        DOCS / "unit_all_overview.html",
+        ROOT / "canvas_builder" / "ism3232_syllabus.html",
+    ]
+    for path in pages:
+        text = path.read_text()
+        assert "Automation Bonus" not in text, path.name
+        assert "+5%" not in text, path.name
