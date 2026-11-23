@@ -6,12 +6,16 @@ Writes, into OUT_DIR:
   upload_whole_folder.srt   subtitles that match the narration
   upload_whole_folder.md    narration script, timings, YouTube title/description/chapters
 
-    python _make_upload_video.py OUT_DIR --voice en_US-lessac-medium.onnx [--preview]
+    python _make_upload_video.py OUT_DIR --model kokoro-v1.0.onnx --voices voices-v1.0.bin [--speaker af_heart] [--preview]
+    python _make_upload_video.py OUT_DIR --tts piper --model en_US-lessac-medium.onnx [--preview]
 
-Needs pillow, numpy, imageio-ffmpeg and piper-tts. The narration is spoken by a
-local piper voice (`python -m piper.download_voices en_US-lessac-medium`), so
-nothing is sent anywhere. --preview writes contact sheets of still frames to
-OUT_DIR/preview/ instead of encoding the video.
+Needs pillow, numpy and imageio-ffmpeg, plus kokoro-onnx (the default voice) or
+piper-tts. The narration is synthesized locally, so nothing is sent anywhere.
+Kokoro-82M files: kokoro-v1.0.onnx and voices-v1.0.bin from
+https://github.com/thewh1teagle/kokoro-onnx/releases (tag model-files-v1.0).
+Piper voices: `python -m piper.download_voices en_US-lessac-medium`.
+--preview writes contact sheets of still frames to OUT_DIR/preview/ instead of
+encoding the video.
 
 The screens are simplified drawings of VS Code, Finder / File Explorer, the
 GitHub upload page and Canvas, using the real button labels students click.
@@ -966,7 +970,7 @@ def sc_drag(fr, d, t, S, dur):
     brb, fhb = lerp_box(BR_FULL, BR_RIGHT, p), lerp_box(FH_OFF, FH_LEFT, p)
     cb = br_cb(brb)
     s1 = S[1][0]
-    t_grab, t_drop = s1 + 0.7, s1 + 2.3
+    t_grab, t_drop = s1 + 0.7, max(s1 + 2.0, S[1][1] - 0.2)  # the drop lands on "let go"
     cbF, RF = upload_geom(BR_RIGHT)
     zone = to_screen(RF["zone"], cbF)
     cells = finder_cells(FH_LEFT, HOME_ITEMS)
@@ -1191,31 +1195,65 @@ SCENES = [
 LEAD, GAP, TAIL = 0.5, 0.35, 0.7
 
 
-def synth_all(voice_path, cache_dir):
+def level(x):
+    """Float samples in [-1, 1] -> int16 at about -20 dBFS RMS, peaks at most -1 dBFS."""
+    x = np.asarray(x, dtype=np.float32)
+    rms = float(np.sqrt(np.mean(x * x))) or 1e-9
+    peak = float(np.max(np.abs(x))) or 1e-9
+    gain = min(10 ** (-20 / 20) / rms, 0.89 / peak)
+    return np.clip(x * gain * 32767, -32768, 32767).astype(np.int16)
+
+
+def make_tts(args):
+    """Return (description, speak); speak(text) -> (float32 samples, sample rate)."""
+    if args.tts == "kokoro":
+        from kokoro_onnx import Kokoro
+
+        k = Kokoro(str(args.model), str(args.voices))
+
+        def speak(text):
+            return k.create(text, voice=args.speaker, speed=args.speed, lang="en-us")
+
+        return f"Kokoro-82M, voice {args.speaker}", speak
     from piper import PiperVoice, SynthesisConfig
 
-    voice = PiperVoice.load(str(voice_path))
-    cfg = SynthesisConfig(length_scale=1.08)
-    sr = voice.config.sample_rate
+    voice = PiperVoice.load(str(args.model))
+    cfg = SynthesisConfig(length_scale=1.08 / args.speed)
+
+    def speak(text):
+        bio = io.BytesIO()
+        with wave.open(bio, "wb") as wf:
+            voice.synthesize_wav(text, wf, syn_config=cfg)
+        bio.seek(0)
+        with wave.open(bio, "rb") as rf:
+            pcm = np.frombuffer(rf.readframes(rf.getnframes()), dtype=np.int16)
+            return pcm.astype(np.float32) / 32768, rf.getframerate()
+
+    return f"piper, voice {args.model.stem}", speak
+
+
+def synth_all(args, cache_dir):
+    desc, speak = make_tts(args)
     cache_dir.mkdir(parents=True, exist_ok=True)
+    rates = set()
     for sc in SCENES:
         sc["lines"] = []
         for item in sc["say"]:
             spoken, shown = (item, item) if isinstance(item, str) else item
-            key = hashlib.sha1(f"{voice_path.name}|1.08|{spoken}".encode()).hexdigest()[:16]
-            path = cache_dir / f"{key}.npy"
+            key = hashlib.sha1(f"{desc}|{args.speed}|{spoken}".encode()).hexdigest()[:16]
+            path = cache_dir / f"{key}.npz"
             if path.exists():
-                audio = np.load(path)
+                z = np.load(path)
+                audio, sr = z["audio"], int(z["sr"])
             else:
-                bio = io.BytesIO()
-                with wave.open(bio, "wb") as wf:
-                    voice.synthesize_wav(spoken, wf, syn_config=cfg)
-                bio.seek(0)
-                with wave.open(bio, "rb") as rf:
-                    audio = np.frombuffer(rf.readframes(rf.getnframes()), dtype=np.int16).copy()
-                np.save(path, audio)
+                samples, sr = speak(spoken)
+                audio = level(samples)
+                np.savez(path, audio=audio, sr=sr)
+            rates.add(sr)
             sc["lines"].append((spoken, shown, audio))
-    return sr
+    if len(rates) != 1:
+        raise SystemExit(f"mixed sample rates: {rates}")
+    return rates.pop(), desc
 
 
 def plan_timing(sr):
@@ -1251,7 +1289,7 @@ def stamp(sec, srt=True):
     return f"{h:02}:{m:02}:{s:02},{ms:03}" if srt else f"{m}:{s:02}"
 
 
-def write_text_outputs(out):
+def write_text_outputs(out, voice_desc):
     srt, n = [], 1
     for sc in SCENES:
         for (_, shown, _), (a, b) in zip(sc["lines"], sc["S"]):
@@ -1264,7 +1302,7 @@ def write_text_outputs(out):
         "# Upload Your Lab to GitHub: Drag One Folder (ISM2411)",
         "",
         f"Built by `_make_upload_video.py` (parent repo). Length {stamp(total, False)}. "
-        "Narration is a local piper voice (en_US-lessac-medium); the on-screen screens are simplified drawings "
+        f"Narration: {voice_desc}, synthesized locally. The screens are simplified drawings "
         "of VS Code, Finder / File Explorer, GitHub's upload page and Canvas with the real button labels. "
         "Example lab: Lab 14 (`ism2411-lab14`: `clean.py` and `data/`).",
         "",
@@ -1309,14 +1347,20 @@ def write_text_outputs(out):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("out", type=Path)
-    ap.add_argument("--voice", type=Path, required=True)
+    ap.add_argument("--tts", choices=("kokoro", "piper"), default="kokoro")
+    ap.add_argument("--model", type=Path, required=True, help="kokoro-v1.0.onnx, or a piper voice .onnx")
+    ap.add_argument("--voices", type=Path, help="voices-v1.0.bin (Kokoro only)")
+    ap.add_argument("--speaker", default="af_heart", help="Kokoro voice name")
+    ap.add_argument("--speed", type=float, default=1.0)
     ap.add_argument("--preview", action="store_true")
     args = ap.parse_args()
+    if args.tts == "kokoro" and not args.voices:
+        ap.error("--voices is required with Kokoro")
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
-    sr = synth_all(args.voice, out / ".tts_cache")
+    sr, voice_desc = synth_all(args, out / ".tts_cache")
     total_frames = plan_timing(sr)
-    write_text_outputs(out)
+    write_text_outputs(out, voice_desc)
     if args.preview:
         pv = out / "preview"
         pv.mkdir(exist_ok=True)
@@ -1336,7 +1380,7 @@ def main():
     for sc in SCENES:
         for (_, _, clip), (a, _) in zip(sc["lines"], sc["S"]):
             o = round((sc["start"] + a) * sr)
-            audio[o:o + len(clip)] = (clip[: max(0, len(audio) - o)] * 0.89).astype(np.int16)  # -1 dB: AAC headroom
+            audio[o:o + len(clip)] = clip[: max(0, len(audio) - o)]  # level() already left 1 dB of headroom
     wav_path = out / ".narration.wav"
     with wave.open(str(wav_path), "wb") as wf:
         wf.setnchannels(1)

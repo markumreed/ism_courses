@@ -1,6 +1,6 @@
 # Upload Your Lab to GitHub: Drag One Folder (ISM2411)
 
-Built by `_make_upload_video.py` (parent repo). Length 1:58. Narration is a local piper voice (en_US-lessac-medium); the on-screen screens are simplified drawings of VS Code, Finder / File Explorer, GitHub's upload page and Canvas with the real button labels. Example lab: Lab 14 (`ism2411-lab14`: `clean.py` and `data/`).
+Built by `_make_upload_video.py` (parent repo). Length 1:53. Narration: Kokoro-82M, voice af_heart, synthesized locally. The screens are simplified drawings of VS Code, Finder / File Explorer, GitHub's upload page and Canvas with the real button labels. Example lab: Lab 14 (`ism2411-lab14`: `clean.py` and `data/`).
 
 Goes in: ISM2411 Lab 11 `#repo-setup` (the hub the later labs link to), and optionally the upload line of Labs 14–15 and the capstone. Inline short-video pattern: a `<strong>Watch it (N minutes):</strong>` caption paragraph + `video-embed`, no Lab Walkthrough divider.
 
@@ -18,9 +18,9 @@ https://markumreed.github.io/ism2411/pages/week11_lab.html#repo-setup
 
 0:00 Your lab folder
 0:27 Find your folder
-0:46 Upload the whole folder
-1:04 Commit and check
-1:23 Upload again, check, submit
+0:44 Upload the whole folder
+1:01 Commit and check
+1:20 Upload again, check, submit
 ```
 
 Upload `upload_whole_folder.srt` as the English subtitles.
@@ -39,7 +39,7 @@ On screen: Each lab lives in one folder, such as `ism2411-lab14`
 > Each lab lives in one folder on your laptop.
 > For Lab 14, it holds your script and a data folder.
 
-### 0:15 · Data Files
+### 0:14 · Data Files
 
 On screen: Drag the CSV from Downloads onto the `data` folder in VS Code
 
@@ -55,14 +55,14 @@ On screen: In VS Code's terminal: `cd ~`, then `open .` (Mac) or `explorer.exe .
 > The second one is different on a Mac and on Windows.
 > A window opens on your home folder, and your lab folder is right there.
 
-### 0:46 · Step 2 · Open The Upload Page
+### 0:44 · Step 2 · Open The Upload Page
 
 On screen: On your repo page, click Add file → Upload files
 
 > Now open your repo on GitHub.
 > Click Add file, then Upload files.
 
-### 0:52 · Step 3 · Drag The Whole Folder
+### 0:50 · Step 3 · Drag The Whole Folder
 
 On screen: Drag your whole `ism2411-lab14` folder onto the box
 
@@ -70,14 +70,14 @@ On screen: Drag your whole `ism2411-lab14` folder onto the box
 > Drag your whole lab folder onto the box, and let go.
 > GitHub lists every file inside it.
 
-### 1:04 · Step 4 · Commit
+### 1:01 · Step 4 · Commit
 
 On screen: Click Commit changes. The default message is fine.
 
 > Scroll down. GitHub's default message is fine.
 > Click the green Commit changes button.
 
-### 1:11 · Step 5 · Check
+### 1:08 · Step 5 · Check
 
 On screen: Your lab folder sits next to `README.md`, with your files inside
 
@@ -85,14 +85,14 @@ On screen: Your lab folder sits next to `README.md`, with your files inside
 > Click it to check that your script and data folder are inside.
 > That's exactly what your instructor expects.
 
-### 1:23 · Every Exercise Or Two
+### 1:20 · Every Exercise Or Two
 
 On screen: Drag the same folder again. Every upload is saved.
 
 > After each exercise or two, drag the same folder in again.
 > Files with the same name are replaced, and every upload is saved in your history.
 
-### 1:34 · Before You Submit
+### 1:30 · Before You Submit
 
 On screen: Check it in a private window, then paste the URL into Canvas
 
@@ -100,6 +100,6 @@ On screen: Check it in a private window, then paste the URL into Canvas
 > If you see a 404 page, your repo is private. Switch it to Public in Settings.
 > Then paste your repo's address into Canvas.
 
-### 1:49 · End card
+### 1:44 · End card
 
 > That's it. If anything goes wrong, the setup section in Lab 11 has hints for the usual problems.
