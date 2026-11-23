@@ -1,0 +1,103 @@
+1
+00:00:00,500 --> 00:00:03,792
+Here's the easiest way to get a lab onto GitHub.
+
+2
+00:00:03,892 --> 00:00:06,603
+You drag one folder into your browser.
+
+3
+00:00:08,467 --> 00:00:11,480
+Each lab lives in one folder on your laptop.
+
+4
+00:00:11,580 --> 00:00:15,301
+For Lab 14, it holds your script and a data folder.
+
+5
+00:00:16,267 --> 00:00:21,439
+When a lab gives you a CSV file, your browser saves it in your Downloads folder.
+
+6
+00:00:21,539 --> 00:00:26,631
+Drag it onto the data folder in VS Code's sidebar, and VS Code copies it in.
+
+7
+00:00:28,367 --> 00:00:31,833
+Finished an exercise or two? Time to upload.
+
+8
+00:00:31,933 --> 00:00:35,886
+In VS Code's terminal, type the two commands on the screen.
+
+9
+00:00:36,586 --> 00:00:39,611
+The second one is different on a Mac and on Windows.
+
+10
+00:00:40,511 --> 00:00:44,801
+A window opens on your home folder, and your lab folder is right there.
+
+11
+00:00:46,567 --> 00:00:48,767
+Now open your repo on GitHub.
+
+12
+00:00:48,867 --> 00:00:51,369
+Click Add file, then Upload files.
+
+13
+00:00:53,133 --> 00:00:55,543
+Put the two windows side by side.
+
+14
+00:00:56,043 --> 00:00:59,799
+Drag your whole lab folder onto the box, and let go.
+
+15
+00:01:00,399 --> 00:01:02,936
+GitHub lists every file inside it.
+
+16
+00:01:04,700 --> 00:01:07,934
+Scroll down. GitHub's default message is fine.
+
+17
+00:01:08,334 --> 00:01:10,708
+Click the green Commit changes button.
+
+18
+00:01:12,467 --> 00:01:15,944
+Your repo now shows your lab folder next to the readme.
+
+19
+00:01:16,044 --> 00:01:19,557
+Click it to check that your script and data folder are inside.
+
+20
+00:01:19,957 --> 00:01:22,703
+That's exactly what your instructor expects.
+
+21
+00:01:24,467 --> 00:01:28,722
+After each exercise or two, drag the same folder in again.
+
+22
+00:01:28,822 --> 00:01:33,879
+Files with the same name are replaced, and every upload is saved in your history.
+
+23
+00:01:35,333 --> 00:01:38,869
+Before you submit, open your repo in a private window.
+
+24
+00:01:38,969 --> 00:01:44,618
+If you see a 404 page, your repo is private. Switch it to Public in Settings.
+
+25
+00:01:45,318 --> 00:01:48,261
+Then paste your repo's address into Canvas.
+
+26
+00:01:50,200 --> 00:01:56,359
+That's it. If anything goes wrong, the setup section in Lab 11 has hints for the usual problems.
