@@ -37,3 +37,7 @@ reference/ism3232/**/*.db
 
 # Unpublished verification builds (this repository is public).
 reference/ism3232/_private/
+
+# ISM2411 Spring 2027 redesign: case generators, answer keys, and the
+# closed-book weekly-check bank. Students must never see these.
+ism2411_sp27/_private/
